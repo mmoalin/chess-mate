@@ -20,7 +20,7 @@ import type { CurriculumAttempt, LearnerSetup, ReviewItem } from './features/jou
 import { OpeningTrainer } from './features/openings/openingTrainer';
 import type { RepertoireLine, RepertoireSide, TrainingProgress } from './features/openings/types';
 import { EngineService } from './services/engineService';
-import { createSupabaseBrowserClient, SupabasePersistence } from './services/supabasePersistence';
+import { createSupabaseBrowserClient, getSupabaseUnavailableReason, SupabasePersistence } from './services/supabasePersistence';
 import './styles.css';
 
 const modes: Array<{ id: GameMode; label: string; icon: React.ComponentType<{ size: number }> }> = [
@@ -34,6 +34,7 @@ export default function App() {
   const managerRef = useRef(new GameManager());
   const engineRef = useRef(new EngineService());
   const supabaseClient = useMemo(() => createSupabaseBrowserClient(), []);
+  const supabaseUnavailableReason = useMemo(() => getSupabaseUnavailableReason(), []);
   const persistence = useMemo(() => new SupabasePersistence(supabaseClient), [supabaseClient]);
   const trainer = useMemo(() => new OpeningTrainer(starterRepertoires), []);
 
@@ -364,7 +365,13 @@ export default function App() {
           <button className="icon-button" type="button" title="Reset board" onClick={resetBoard}>
             <RotateCcw size={18} />
           </button>
-          <AuthPanel client={supabaseClient} user={user} onUserChange={setUser} layout="compact" />
+          <AuthPanel
+            client={supabaseClient}
+            user={user}
+            onUserChange={setUser}
+            layout="compact"
+            unavailableReason={supabaseUnavailableReason}
+          />
         </div>
       </header>
       <section className="workspace">

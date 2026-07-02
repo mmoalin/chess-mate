@@ -52,4 +52,17 @@ describe('AuthPanel', () => {
     expect(screen.getByRole('button', { name: /Sign in/i })).toBeDisabled();
     expect(screen.getByRole('button', { name: /Create account/i })).toBeDisabled();
   });
+
+  it('shows the missing Supabase env vars when sync is unavailable', () => {
+    render(
+      <AuthPanel
+        client={null}
+        user={null}
+        onUserChange={vi.fn()}
+        unavailableReason="Missing VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in the deployed build."
+      />
+    );
+
+    expect(screen.getByText(/Missing VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY/i)).toBeInTheDocument();
+  });
 });

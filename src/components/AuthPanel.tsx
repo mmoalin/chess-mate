@@ -7,13 +7,15 @@ type AuthPanelProps = {
   user: User | null;
   onUserChange: (user: User | null) => void;
   layout?: 'panel' | 'compact';
+  unavailableReason?: string;
 };
 
-export function AuthPanel({ client, user, onUserChange, layout = 'panel' }: AuthPanelProps) {
+export function AuthPanel({ client, user, onUserChange, layout = 'panel', unavailableReason }: AuthPanelProps) {
   const [mode, setMode] = useState<'sign-in' | 'register'>('sign-in');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState(client ? 'Sign in to sync progress.' : 'Add Supabase env vars to enable sync.');
+  const unavailableMessage = unavailableReason ?? 'Add Supabase env vars to enable sync.';
+  const [message, setMessage] = useState(client ? 'Sign in to sync progress.' : unavailableMessage);
 
   async function signIn() {
     if (!client) return;
@@ -105,7 +107,7 @@ export function AuthPanel({ client, user, onUserChange, layout = 'panel' }: Auth
             setMode(nextMode);
             setMessage(
               !client
-                ? 'Add Supabase env vars to enable sync.'
+                ? unavailableMessage
                 : nextMode === 'sign-in'
                   ? 'Sign in to sync progress.'
                   : 'Create an account to save progress across sessions.'

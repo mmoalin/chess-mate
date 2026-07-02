@@ -108,6 +108,19 @@ export function createSupabaseBrowserClient(): SupabaseClient | null {
   return createClient(url, anonKey);
 }
 
+export function getSupabaseUnavailableReason(): string | undefined {
+  const missingVars = [
+    !import.meta.env.VITE_SUPABASE_URL ? 'VITE_SUPABASE_URL' : null,
+    !import.meta.env.VITE_SUPABASE_ANON_KEY ? 'VITE_SUPABASE_ANON_KEY' : null
+  ].filter((value): value is string => Boolean(value));
+
+  if (missingVars.length === 0) {
+    return undefined;
+  }
+
+  return `Missing ${missingVars.join(' and ')} in the deployed build. Add the variable${missingVars.length === 1 ? '' : 's'} and redeploy.`;
+}
+
 export class SupabasePersistence {
   constructor(private readonly client: SupabaseClient | null) {}
 
