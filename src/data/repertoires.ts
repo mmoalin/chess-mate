@@ -15,8 +15,8 @@ export const starterRepertoires: RepertoireLine[] = [
     middlegameIdeas: [
       {
         title: 'Build the attack after development',
-        summary: 'Use the open f-file and central lead to improve pieces before looking for kingside pressure.',
-        planMoves: ['O-O', 'd3', 'Qe1'],
+        summary: 'Move the bishop first, castle, and use the open f-file and central lead to build kingside pressure.',
+        planMoves: ['Be2', 'Nc6', 'O-O'],
         themes: ['development', 'king-safety', 'open-files', 'initiative'],
         warning: 'The f-pawn push is only useful if e4 stays defended and the king gets safe quickly.'
       }
@@ -46,8 +46,8 @@ export const starterRepertoires: RepertoireLine[] = [
     middlegameIdeas: [
       {
         title: 'Turn queen pressure into development',
-        summary: 'Use Qf3 to question the knight, then regain time by developing pieces toward the center and king.',
-        planMoves: ['bxc3', 'd4', 'Bd3'],
+        summary: 'Use Qf3 to question the knight, then regain time by rebuilding the center and developing pieces.',
+        planMoves: ['bxc3', 'Nc6', 'd4'],
         themes: ['development', 'open-files', 'initiative'],
         warning: 'Do not keep moving the queen while the kingside pieces are still asleep.'
       }
@@ -68,7 +68,7 @@ export const starterRepertoires: RepertoireLine[] = [
       {
         title: 'Keep the chain flexible',
         summary: 'Finish development, castle, and prepare c3 or e4 only when the pieces can support the pawn break.',
-        planMoves: ['O-O', 'Nbd2', 'c3'],
+        planMoves: ['O-O', 'Bb7', 'Nbd2'],
         themes: ['pawn-chain', 'pawn-break', 'weak-squares', 'minor-piece-quality'],
         warning: 'An early e4 can leave d4 weak, and Black ideas with ...Qb6 can pressure b2.'
       }
@@ -120,7 +120,7 @@ export const starterRepertoires: RepertoireLine[] = [
       {
         title: 'Use the c-file after castling',
         summary: 'Complete development with ...Be7 and ...O-O, then place a rook on c8 and look for queenside counterplay.',
-        planMoves: ['Be7', 'O-O', 'Qc7'],
+        planMoves: ['O-O', 'Be7', 'Be3', 'O-O', 'Qd2', 'Qc7'],
         themes: ['open-files', 'dynamic-advantage', 'development', 'king-safety'],
         warning: 'Pawn hunting before castling can leave Black behind in a sharp open Sicilian.'
       }
@@ -151,7 +151,7 @@ export const starterRepertoires: RepertoireLine[] = [
       {
         title: 'Counter through the long diagonal',
         summary: 'Castle, connect rooks, and use the c-file and g7 bishop to pressure White central and queenside squares.',
-        planMoves: ['O-O', 'Nc6', 'Rc8'],
+        planMoves: ['Be2', 'O-O', 'O-O', 'Nc6', 'Qd2', 'Bd7'],
         themes: ['open-files', 'dynamic-advantage', 'king-safety'],
         warning: 'The Dragon can become dangerous for both sides if Black delays castling.'
       }
@@ -172,7 +172,7 @@ export const starterRepertoires: RepertoireLine[] = [
       {
         title: 'Stay solid but active',
         summary: 'Develop the kingside, support the bishop, and prepare ...c5 or ...e5 when your pieces are ready.',
-        planMoves: ['e6', 'Nd7', 'Ngf6'],
+        planMoves: ['h5', 'Bh7', 'Nf3', 'e6'],
         themes: ['pawn-break', 'minor-piece-quality', 'development', 'pawn-chain'],
         warning: 'Passive development lets White build space without being challenged.'
       }
@@ -203,7 +203,7 @@ export const starterRepertoires: RepertoireLine[] = [
       {
         title: 'Attack the base of the chain',
         summary: 'Use ...c5 to pressure d4, develop smoothly, and trade when it improves the minor pieces.',
-        planMoves: ['Nc6', 'Qb6', 'Nge7'],
+        planMoves: ['O-O', 'Nc6', 'c3', 'Qb6'],
         themes: ['pawn-break', 'minor-piece-quality', 'development', 'pawn-chain'],
         warning: 'If Black only defends passively, White keeps the space advantage for free.'
       }
