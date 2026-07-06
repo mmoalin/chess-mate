@@ -1,5 +1,15 @@
 export type RepertoireSide = 'white' | 'black';
 
+export type RepertoireDifficulty = 'beginner' | 'theory';
+
+export type RepertoireMiddlegameIdea = {
+  title: string;
+  summary: string;
+  planMoves?: string[];
+  themes: string[];
+  warning?: string;
+};
+
 export type RepertoireLine = {
   id: string;
   side: RepertoireSide;
@@ -8,6 +18,10 @@ export type RepertoireLine = {
   movesSan: string[];
   tags: string[];
   themeTags?: string[];
+  difficulty?: RepertoireDifficulty;
+  parentLineId?: string;
+  middlegameIdeas?: RepertoireMiddlegameIdea[];
+  modelPositionPly?: number;
   explanation?: string;
   moveExplanations?: RepertoireMoveExplanation[];
   commonMistakes?: RepertoireMoveExplanation[];
