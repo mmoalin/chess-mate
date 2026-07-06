@@ -4,3 +4,4 @@ dist/
 .pnpm-store/
 *.tsbuildinfo
 *.log
+.worktrees/
