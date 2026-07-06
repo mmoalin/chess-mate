@@ -159,7 +159,7 @@ export function summarizeLearningProgress(input: LearningProgressInput): Learnin
 }
 
 function chooseLine(lines: RepertoireLine[], side: 'white' | 'black', style: LearnerSetup['openingStyle']) {
-  const sideLines = lines.filter((line) => line.side === side);
+  const sideLines = lines.filter((line) => line.side === side && line.difficulty !== 'theory');
   if (style === 'solid') {
     return sideLines.find((line) => line.tags.includes('solid') || line.tags.includes('structure')) ?? sideLines[0];
   }
