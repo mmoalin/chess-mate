@@ -337,6 +337,94 @@ textarea {
   font-weight: 700;
 }
 
+.line-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.difficulty-badge {
+  border: 1px solid #b7d4c5;
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.difficulty-badge.beginner {
+  background: #eef8f2;
+  color: #24624f;
+}
+
+.difficulty-badge.theory {
+  border-color: #d9a626;
+  background: #fff3cb;
+  color: #6f5211;
+}
+
+.link-button {
+  border: 0;
+  background: transparent;
+  color: #24624f;
+  min-height: 34px;
+  padding: 0;
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.theory-branch-list,
+.middlegame-ideas {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.theory-branch-button {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  border: 1px solid #d6e0ea;
+  border-radius: 8px;
+  background: #fff;
+  color: #1f2933;
+  padding: 10px;
+  text-align: left;
+}
+
+.theory-branch-button span {
+  font-weight: 800;
+}
+
+.theory-branch-button small {
+  color: #52606d;
+  line-height: 1.4;
+}
+
+.plan-card {
+  border: 1px solid #e4ded1;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+}
+
+.plan-card strong,
+.plan-card span {
+  display: block;
+}
+
+.plan-card p {
+  margin: 6px 0;
+}
+
+.plan-card span {
+  color: #24624f;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
 .lesson-card {
   border-left: 4px solid #2b7e62;
   border-radius: 6px;
