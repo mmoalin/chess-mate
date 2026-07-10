@@ -143,7 +143,7 @@ describe('App', () => {
     const selectedPosition = screen.getByLabelText('Chess board mock').getAttribute('data-position');
     expect(selectedPosition).not.toBe(initialPosition);
     expect(selectedPosition).toContain(' w ');
-    expect(screen.getByRole('region', { name: /Repertoire moves/i })).toHaveTextContent(/3 \/ 5/i);
+    expect(screen.getByRole('region', { name: /Repertoire moves/i })).toHaveTextContent(/3 \/ 10/i);
   });
 
   it('scores a curriculum task answer and marks it complete', async () => {
