@@ -7,6 +7,7 @@ import { GameManager } from './core/gameManager';
 import type { BoardOrientation, GameMode } from './core/types';
 import { starterRepertoires } from './data/repertoires';
 import { calculateModuleProgress, starterCurriculumModules } from './features/curriculum/curriculum';
+import { getStudyChallenge } from './features/curriculum/studyChallenges';
 import type { CurriculumTaskProgress } from './features/curriculum/types';
 import {
   buildReviewItemFromMistake,
@@ -57,7 +58,10 @@ export default function App() {
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
   const [localProgress, setLocalProgress] = useState<TrainingProgress[]>([]);
   const [hintText, setHintText] = useState('');
-  const [studyAnswer, setStudyAnswer] = useState('');
+  const [activeTaskIndex, setActiveTaskIndex] = useState(0);
+  const [selectedStudyChoice, setSelectedStudyChoice] = useState('');
+  const [studySubmitted, setStudySubmitted] = useState(false);
+  const [showStudyHint, setShowStudyHint] = useState(false);
   const [curriculumAttempts, setCurriculumAttempts] = useState<Record<string, CurriculumAttempt>>({});
   const [reviewDetection, setReviewDetection] = useState<{ lineName: string; matchedPlyCount: number; leftBookAtPly: number | null } | null>(
     null
@@ -77,7 +81,8 @@ export default function App() {
     [sideLines]
   );
   const activeModule = starterCurriculumModules.find((module) => module.id === moduleId) ?? starterCurriculumModules[0];
-  const activeTask = activeModule?.tasks[0];
+  const activeTask = activeModule?.tasks[activeTaskIndex] ?? activeModule?.tasks[0];
+  const activeStudyChallenge = activeTask ? getStudyChallenge(activeTask) : null;
   const taskProgress: CurriculumTaskProgress[] = activeModule
     ? activeModule.tasks
         .map((task) => curriculumAttempts[task.id])
@@ -353,16 +358,43 @@ export default function App() {
     refresh();
   }
 
-  function submitStudyAnswer() {
-    if (!activeTask) return;
+  function selectStudyModule(nextModuleId: string) {
+    setModuleId(nextModuleId);
+    setActiveTaskIndex(0);
+    setSelectedStudyChoice('');
+    setStudySubmitted(false);
+    setShowStudyHint(false);
+  }
+
+  function selectStudyTask(index: number) {
+    setActiveTaskIndex(index);
+    setSelectedStudyChoice('');
+    setStudySubmitted(false);
+    setShowStudyHint(false);
+  }
+
+  function submitStudyChoice() {
+    if (!activeTask || !activeStudyChallenge || !selectedStudyChoice) return;
     const previousAttempts = curriculumAttempts[activeTask.id]?.attempts ?? 0;
+    const correct = selectedStudyChoice === activeStudyChallenge.correctChoiceId;
     const attempt = scoreCurriculumAttempt({
       task: activeTask,
-      answer: studyAnswer,
+      answer: correct ? `${activeTask.title} ${activeTask.themes?.join(' ') ?? ''}` : '',
       previousAttempts,
       now: new Date().toISOString()
     });
-    setCurriculumAttempts((items) => ({ ...items, [activeTask.id]: attempt }));
+    setCurriculumAttempts((items) => ({
+      ...items,
+      [activeTask.id]: {
+        ...attempt,
+        score: correct ? activeTask.maxScore : 0,
+        completed: correct,
+        feedback: correct
+          ? 'Correct. ' + activeStudyChallenge.teachingPoint
+          : 'Not quite. ' + activeStudyChallenge.teachingPoint
+      }
+    }));
+    setStudySubmitted(true);
   }
 
   function stepReview(delta: number) {
@@ -666,8 +698,11 @@ export default function App() {
 
           {learnerSetup && mode === 'curriculum' && activeModule && (
             <section className="dock-panel">
-              <p className="eyebrow">Curriculum</p>
-              <select value={activeModule.id} onChange={(event) => setModuleId(event.target.value)}>
+              <div className="study-kicker-row">
+                <p className="eyebrow">Study path</p>
+                <span className="study-session-badge">5 min lesson</span>
+              </div>
+              <select aria-label="Study module" value={activeModule.id} onChange={(event) => selectStudyModule(event.target.value)}>
                 {starterCurriculumModules.map((module) => (
                   <option key={module.id} value={module.id}>
                     {module.title}
@@ -692,38 +727,73 @@ export default function App() {
                 <span>Progress</span>
                 <strong>{activeModuleProgress?.completionPercent ?? 0}%</strong>
               </div>
-              <div className="task-list">
+              <div className="study-progress-bar" aria-label="Study progress">
+                <span style={{ width: `${activeModuleProgress?.completionPercent ?? 0}%` }} />
+              </div>
+              <div className="study-task-rail" aria-label="Study tasks">
                 {activeModule.tasks.map((task) => (
-                  <article key={task.id}>
-                    <div>
-                      <p className="eyebrow">{formatTaskType(task.type)}</p>
-                      <strong>{task.title}</strong>
-                    </div>
-                    <p>{task.prompt}</p>
-                  </article>
+                  <button
+                    key={task.id}
+                    className={activeTask?.id === task.id ? 'active' : ''}
+                    type="button"
+                    onClick={() => selectStudyTask(activeModule.tasks.indexOf(task))}
+                  >
+                    <span>{curriculumAttempts[task.id]?.completed ? '✓' : activeModule.tasks.indexOf(task) + 1}</span>
+                    <strong>{task.title}</strong>
+                  </button>
                 ))}
               </div>
               {activeTask && (
-                <div className="lesson-card">
-                  <p className="eyebrow">Try it</p>
-                  <strong>{activeTask.title}</strong>
-                  <label className="field-label">
-                    Your answer
-                    <textarea
-                      aria-label="Task answer"
-                      value={studyAnswer}
-                      onChange={(event) => setStudyAnswer(event.target.value)}
-                    />
-                  </label>
-                  <button className="secondary-button" type="button" onClick={submitStudyAnswer}>
-                    Submit answer
-                  </button>
-                  {curriculumAttempts[activeTask.id] && (
-                    <p className="analysis">
-                      Score {curriculumAttempts[activeTask.id].score}/{activeTask.maxScore}.{' '}
-                      {curriculumAttempts[activeTask.id].feedback}
-                    </p>
+                <div className="study-challenge-card">
+                  <div className="study-challenge-header">
+                    <div>
+                      <p className="eyebrow">{formatTaskType(activeTask.type)} · Task {activeTaskIndex + 1} of {activeModule.tasks.length}</p>
+                      <h3>{activeTask.title}</h3>
+                    </div>
+                    <span className="study-score-badge">Score {curriculumAttempts[activeTask.id]?.score ?? 0}/{activeTask.maxScore}</span>
+                  </div>
+                  <p className="study-prompt">{activeTask.prompt}</p>
+                  <div className="study-choice-list" role="radiogroup" aria-label="Study choices">
+                    {activeStudyChallenge?.choices.map((choice) => (
+                      <button
+                        key={choice.id}
+                        className={selectedStudyChoice === choice.id ? 'selected' : ''}
+                        type="button"
+                        role="radio"
+                        aria-checked={selectedStudyChoice === choice.id}
+                        onClick={() => {
+                          setSelectedStudyChoice(choice.id);
+                          setStudySubmitted(false);
+                        }}
+                      >
+                        <span>{selectedStudyChoice === choice.id ? '●' : '○'}</span>
+                        {choice.label}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="study-actions">
+                    <button className="secondary-button" type="button" onClick={() => setShowStudyHint((visible) => !visible)}>
+                      {showStudyHint ? 'Hide hint' : 'Need a hint?'}
+                    </button>
+                    <button className="primary-button" type="button" disabled={!selectedStudyChoice} onClick={submitStudyChoice}>
+                      Check answer
+                    </button>
+                  </div>
+                  {showStudyHint && <p className="study-hint">Hint: {activeStudyChallenge?.hint}</p>}
+                  {studySubmitted && curriculumAttempts[activeTask.id] && (
+                    <div className={`study-feedback ${curriculumAttempts[activeTask.id].completed ? 'correct' : 'try-again'}`}>
+                      <strong>{curriculumAttempts[activeTask.id].completed ? 'Correct choice' : 'Keep exploring'}</strong>
+                      <p>{curriculumAttempts[activeTask.id].feedback}</p>
+                    </div>
                   )}
+                  <div className="study-next-row">
+                    <span>{studySubmitted ? 'Your answer is recorded.' : 'Choose the plan you would play.'}</span>
+                    {activeTaskIndex < activeModule.tasks.length - 1 && (
+                      <button className="link-button" type="button" disabled={!curriculumAttempts[activeTask.id]?.completed} onClick={() => selectStudyTask(activeTaskIndex + 1)}>
+                        Next task →
+                      </button>
+                    )}
+                  </div>
                 </div>
               )}
             </section>

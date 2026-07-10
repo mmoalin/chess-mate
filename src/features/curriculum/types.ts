@@ -15,6 +15,10 @@ export type CurriculumTask = {
   prompt: string;
   themes?: string[];
   maxScore: number;
+  choices?: Array<{ id: string; label: string }>;
+  correctChoiceId?: string;
+  hint?: string;
+  teachingPoint?: string;
 };
 
 export type CurriculumCompletionCriteria = {

@@ -146,19 +146,17 @@ describe('App', () => {
     expect(screen.getByRole('region', { name: /Repertoire moves/i })).toHaveTextContent(/3 \/ 10/i);
   });
 
-  it('scores a curriculum task answer and marks it complete', async () => {
+  it('scores an interactive curriculum choice and unlocks the next task', async () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
     await userEvent.click(screen.getByRole('button', { name: /Study/i }));
-    await userEvent.type(
-      screen.getByRole('textbox', { name: /Task answer/i }),
-      'A developing move brings a knight toward the center and helps castle.'
-    );
-    await userEvent.click(screen.getByRole('button', { name: /Submit answer/i }));
+    await userEvent.click(screen.getByRole('radio', { name: /Develop a knight toward the centre/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Check answer/i }));
 
     expect(screen.getByText(/Score 10\/10/i)).toBeInTheDocument();
-    expect(screen.getByText(/Good work/i)).toBeInTheDocument();
+    expect(screen.getByText(/Correct choice/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Next task/i })).toBeEnabled();
   });
 
   it('detects where a review PGN leaves the selected repertoire', async () => {
