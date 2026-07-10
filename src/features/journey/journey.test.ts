@@ -60,6 +60,32 @@ describe('learner journey helpers', () => {
     });
   });
 
+  it('does not recommend theory branches as the beginner setup default', () => {
+    const theoryLine: RepertoireLine = {
+      ...whiteLine,
+      id: 'white-vienna-gambit-theory',
+      name: 'Vienna Gambit: Theory Branch',
+      difficulty: 'theory',
+      parentLineId: 'white-vienna-main',
+      tags: ['vienna', 'attacking']
+    };
+    const beginnerLine: RepertoireLine = {
+      ...whiteLine,
+      difficulty: 'beginner',
+      tags: ['vienna', 'attacking']
+    };
+
+    const setup = createLearnerSetup({
+      sidePreference: 'both',
+      experienceLevel: 'beginner',
+      studyTimeMinutes: 10,
+      openingStyle: 'active',
+      lines: [theoryLine, beginnerLine, blackLine]
+    });
+
+    expect(setup.recommendedWhiteLineId).toBe('white-vienna-main');
+  });
+
   it('recommends due review before new study and falls back to the first setup line', () => {
     const setup = createLearnerSetup({
       sidePreference: 'both',

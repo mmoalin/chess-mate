@@ -171,4 +171,24 @@ describe('App', () => {
     expect(screen.getByText(/Matched 2 moves in Vienna Game: Main Development/i)).toBeInTheDocument();
     expect(screen.getByText(/Left book on move 3/i)).toBeInTheDocument();
   });
+
+  it('shows beginner difficulty and middlegame ideas for the default opening line', async () => {
+    render(<App />);
+
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+
+    expect(screen.getByText(/Beginner/i)).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /Middlegame ideas/i })).toHaveTextContent(
+      /Build the attack after development/i
+    );
+  });
+
+  it('surfaces theory branches without making them the default lesson', async () => {
+    render(<App />);
+
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+
+    expect(screen.getByRole('heading', { name: /Vienna Game: Main Development Plan/i })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /Theory branches/i })).toHaveTextContent(/Vienna Gambit/i);
+  });
 });

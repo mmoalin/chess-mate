@@ -70,6 +70,8 @@ export default function App() {
   const visibleSideLines =
     themeFilter === 'all' ? sideLines : sideLines.filter((line) => line.themeTags?.includes(themeFilter));
   const activeLine = visibleSideLines.find((line) => line.id === lineId) ?? visibleSideLines[0] ?? sideLines[0];
+  const activeParentLine = activeLine?.parentLineId ? trainer.findLine(activeLine.parentLineId) : activeLine;
+  const theoryBranches = activeParentLine ? trainer.theoryBranchesFor(activeParentLine.id) : [];
   const availableThemes = useMemo(
     () => Array.from(new Set(sideLines.flatMap((line) => line.themeTags ?? []))).sort(),
     [sideLines]
@@ -548,6 +550,16 @@ export default function App() {
           {learnerSetup && mode === 'opening-trainer' && (
             <section className="dock-panel">
               <p className="eyebrow">Repertoire</p>
+              <div className="line-meta-row">
+                <span className={`difficulty-badge ${activeLine?.difficulty === 'theory' ? 'theory' : 'beginner'}`}>
+                  {formatDifficulty(activeLine)}
+                </span>
+                {activeLine?.difficulty === 'theory' && activeParentLine && (
+                  <button className="link-button" type="button" onClick={() => selectLine(activeParentLine.id)}>
+                    Back to {activeParentLine.name}
+                  </button>
+                )}
+              </div>
               <div className="segmented-control">
                 <button className={side === 'white' ? 'selected' : ''} type="button" onClick={() => selectSide('white')}>
                   White
@@ -601,6 +613,30 @@ export default function App() {
                 ))}
               </div>
               <p>{activeLine?.explanation}</p>
+              {theoryBranches.length > 0 && activeLine?.difficulty !== 'theory' && (
+                <section className="theory-branch-list" aria-label="Theory branches">
+                  <p className="eyebrow">Build on this</p>
+                  {theoryBranches.map((branch) => (
+                    <button key={branch.id} className="theory-branch-button" type="button" onClick={() => selectLine(branch.id)}>
+                      <span>{branch.name}</span>
+                      <small>{branch.explanation}</small>
+                    </button>
+                  ))}
+                </section>
+              )}
+              {activeLine?.middlegameIdeas && activeLine.middlegameIdeas.length > 0 && (
+                <section className="middlegame-ideas" aria-label="Middlegame ideas">
+                  <p className="eyebrow">Middlegame ideas</p>
+                  {activeLine.middlegameIdeas.map((idea) => (
+                    <article key={idea.title} className="plan-card">
+                      <strong>{idea.title}</strong>
+                      <p>{idea.summary}</p>
+                      <span>{formatPlanMoves(idea.planMoves)}</span>
+                      {idea.warning && <p className="analysis">{idea.warning}</p>}
+                    </article>
+                  ))}
+                </section>
+              )}
               <div className="lesson-card">
                 <p className="eyebrow">Lesson goal</p>
                 <strong>Understand the first structure before memorizing</strong>
@@ -753,6 +789,14 @@ function formatThemeLabel(theme: string): string {
     .split('-')
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ');
+}
+
+function formatDifficulty(line?: RepertoireLine): string {
+  return line?.difficulty === 'theory' ? 'Theory' : 'Beginner';
+}
+
+function formatPlanMoves(moves?: string[]): string {
+  return moves?.length ? moves.join(' -> ') : 'Choose a plan from the position.';
 }
 
 function formatTaskType(taskType: string): string {

@@ -70,4 +70,54 @@ describe('OpeningTrainer', () => {
     expect(trainer.moveExplanation('vienna-main', 2)?.principle).toBe('develop');
     expect(trainer.commonMistake('vienna-main', 2)?.summary).toMatch(/queen moves/i);
   });
+
+  it('sorts beginner lines before theory branches while keeping side filtering', () => {
+    const trainer = new OpeningTrainer([
+      {
+        ...line,
+        id: 'vienna-gambit-theory',
+        name: 'Vienna Gambit: Theory Branch',
+        difficulty: 'theory',
+        parentLineId: 'vienna-main'
+      },
+      {
+        ...line,
+        id: 'vienna-main',
+        name: 'Vienna Game Main Line',
+        difficulty: 'beginner'
+      },
+      {
+        ...line,
+        id: 'sicilian-theory',
+        side: 'black',
+        name: 'Sicilian Theory Branch',
+        difficulty: 'theory',
+        parentLineId: 'sicilian-main'
+      }
+    ]);
+
+    expect(trainer.linesForSide('white').map((item) => item.id)).toEqual(['vienna-main', 'vienna-gambit-theory']);
+  });
+
+  it('finds theory branches that build from a parent beginner line', () => {
+    const trainer = new OpeningTrainer([
+      { ...line, id: 'vienna-main', difficulty: 'beginner' },
+      {
+        ...line,
+        id: 'vienna-gambit-theory',
+        name: 'Vienna Gambit: Theory Branch',
+        difficulty: 'theory',
+        parentLineId: 'vienna-main'
+      },
+      {
+        ...line,
+        id: 'london-theory',
+        name: 'London Theory Branch',
+        difficulty: 'theory',
+        parentLineId: 'london-main'
+      }
+    ]);
+
+    expect(trainer.theoryBranchesFor('vienna-main').map((item) => item.id)).toEqual(['vienna-gambit-theory']);
+  });
 });

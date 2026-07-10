@@ -8,15 +8,21 @@ export class OpeningTrainer {
   }
 
   allLines(): RepertoireLine[] {
-    return [...this.lines];
+    return sortBeginnerFirst(this.lines);
   }
 
   linesForSide(side: RepertoireSide): RepertoireLine[] {
-    return this.lines.filter((line) => line.side === side);
+    return sortBeginnerFirst(this.lines.filter((line) => line.side === side));
   }
 
   linesForTheme(theme: string): RepertoireLine[] {
-    return this.lines.filter((line) => line.themeTags?.includes(theme));
+    return sortBeginnerFirst(this.lines.filter((line) => line.themeTags?.includes(theme)));
+  }
+
+  theoryBranchesFor(parentLineId: string): RepertoireLine[] {
+    return sortBeginnerFirst(
+      this.lines.filter((line) => line.difficulty === 'theory' && line.parentLineId === parentLineId)
+    );
   }
 
   availableThemes(): string[] {
@@ -62,4 +68,12 @@ export class OpeningTrainer {
 
 function normalizeSan(san: string): string {
   return san.replace(/[+#]/g, '').trim();
+}
+
+function sortBeginnerFirst(lines: RepertoireLine[]): RepertoireLine[] {
+  return [...lines].sort((a, b) => difficultyRank(a) - difficultyRank(b));
+}
+
+function difficultyRank(line: RepertoireLine): number {
+  return line.difficulty === 'theory' ? 1 : 0;
 }
