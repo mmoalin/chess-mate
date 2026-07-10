@@ -27,4 +27,5 @@ describe('GameManager', () => {
     expect(manager.getReplayPositions()[3]).toContain(' b ');
     expect(manager.getReplayPositions()[4]).toContain(' w ');
   });
+
 });

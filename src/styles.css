@@ -220,6 +220,13 @@ button {
   flex: 0 0 auto;
 }
 
+.feedback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .account-strip {
   display: grid;
   grid-template-columns: minmax(130px, 1fr) auto auto;
@@ -644,6 +651,14 @@ textarea {
   color: #35434b;
   font-weight: 700;
 }
+
+.field-help {
+  color: #6b7780;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
 
 .study-choice-list {
   display: grid;

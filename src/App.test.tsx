@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import App from './App';
@@ -105,6 +105,40 @@ describe('App', () => {
     expect(screen.getByRole('textbox', { name: /PGN input/i })).toHaveValue('1. e4 e5 2. Nf3 Nc6');
     expect(screen.getByRole('button', { name: /Load PGN/i })).toBeInTheDocument();
   });
+
+  it('uses Review for both PGN replay and engine play', async () => {
+    render(<App />);
+
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Review/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Play vs Stockfish/i }));
+
+    expect(screen.getByText(/Stockfish replies automatically/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Reset game/i })).toBeInTheDocument();
+    expect(screen.queryByRole('textbox', { name: /PGN input/i })).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: /Review a game/i }));
+
+    expect(screen.getByRole('textbox', { name: /PGN input/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Load PGN/i })).toBeInTheDocument();
+  });
+
+  it('copies played moves as standard PGN', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText }
+    });
+
+    render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Repertoire move 1: e4/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Copy PGN/i }));
+
+    await waitFor(() => expect(writeText).toHaveBeenCalledWith(expect.stringContaining('e4')));
+    expect(screen.getByText(/PGN copied/i)).toBeInTheDocument();
+  });
+
 
   it('switches to the curriculum study workflow', async () => {
     render(<App />);

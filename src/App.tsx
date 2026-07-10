@@ -1,5 +1,5 @@
 import type { User } from '@supabase/supabase-js';
-import { BookOpen, Brain, ChevronLeft, ChevronRight, ClipboardList, List, RotateCcw, Swords } from 'lucide-react';
+import { BookOpen, Brain, ChevronLeft, ChevronRight, ClipboardList, List, RotateCcw } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import { ChessBoardUI } from './components/ChessBoardUI';
 import { AuthPanel } from './components/AuthPanel';
@@ -28,7 +28,6 @@ const modes: Array<{ id: GameMode; label: string; icon: React.ComponentType<{ si
   { id: 'opening-trainer', label: 'Openings', icon: Brain },
   { id: 'curriculum', label: 'Study', icon: BookOpen },
   { id: 'game-review', label: 'Review', icon: ClipboardList },
-  { id: 'play-engine', label: 'Play', icon: Swords }
 ];
 
 export default function App() {
@@ -52,6 +51,7 @@ export default function App() {
   const [orientation, setOrientation] = useState<BoardOrientation>('white');
   const [pgnInput, setPgnInput] = useState('1. e4 e5 2. Nf3 Nc6');
   const [reviewPly, setReviewPly] = useState(0);
+  const [reviewMode, setReviewMode] = useState<'pgn' | 'engine'>('pgn');
   const [analysis, setAnalysis] = useState('Engine analysis appears here.');
   const [user, setUser] = useState<User | null>(null);
   const [learnerSetup, setLearnerSetup] = useState<LearnerSetup | null>(null);
@@ -66,7 +66,6 @@ export default function App() {
   const [reviewDetection, setReviewDetection] = useState<{ lineName: string; matchedPlyCount: number; leftBookAtPly: number | null } | null>(
     null
   );
-  const [learnerPlan, setLearnerPlan] = useState('');
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
 
@@ -218,7 +217,8 @@ export default function App() {
       void persistProgress(activeLine, result).catch((error) => setFeedback(error.message));
     }
 
-    if (mode === 'play-engine') {
+    if (mode === 'game-review' && reviewMode === 'engine') {
+      setFeedback(`You played ${move.san}. Stockfish is choosing a reply.`);
       void playEngineReply();
     }
 
@@ -313,6 +313,13 @@ export default function App() {
     resetBoard();
   }
 
+  function switchReviewMode(nextMode: 'pgn' | 'engine') {
+    setReviewMode(nextMode);
+    setReviewDetection(null);
+    resetBoard();
+    setFeedback(nextMode === 'pgn' ? 'Load a PGN to review a game.' : 'Make a move on the board. Stockfish will reply automatically.');
+  }
+
   function showHint() {
     const expectedMove = activeLine?.movesSan[moveIndex];
     setHintText(expectedMove ? `Look for ${expectedMove}: it supports the opening idea before chasing tactics.` : 'This line is complete.');
@@ -404,10 +411,6 @@ export default function App() {
   }
 
   async function analyzeCurrentPosition() {
-    if (!learnerPlan.trim()) {
-      setAnalysis('Write your plan first, then compare it with Stockfish.');
-      return;
-    }
     setAnalysis('Analyzing current position...');
     try {
       const result = await engineRef.current.analyze(snapshot.fen, { depth: 8 });
@@ -415,6 +418,21 @@ export default function App() {
       setAnalysis(`Depth ${result.depth ?? '-'} | ${score} | best ${result.bestMove?.from ?? ''}${result.bestMove?.to ?? ''}`);
     } catch (error) {
       setAnalysis(error instanceof Error ? error.message : 'Analysis failed.');
+    }
+  }
+
+  async function copyGamePgn() {
+    const pgn = managerRef.current.snapshot().pgn;
+    if (!pgn) {
+      setFeedback('There are no moves to copy yet.');
+      return;
+    }
+
+    try {
+      await copyTextToClipboard(pgn);
+      setFeedback('PGN copied. You can paste it here for review or into another chess tool.');
+    } catch {
+      setFeedback('Could not access the clipboard. Select the moves from Move history and copy them manually.');
     }
   }
 
@@ -462,9 +480,14 @@ export default function App() {
               <p>{feedback}</p>
               <p className="analysis">{analysis}</p>
             </div>
-            <button className="secondary-button" type="button" onClick={analyzeCurrentPosition}>
-              Analyze position
-            </button>
+            <div className="feedback-actions">
+              <button className="secondary-button" type="button" onClick={copyGamePgn}>
+                Copy PGN
+              </button>
+              <button className="secondary-button" type="button" onClick={analyzeCurrentPosition}>
+                Analyze position
+              </button>
+            </div>
           </section>
           {isHistoryOpen && (
             <section className="history-drawer" aria-label="Move history">
@@ -801,53 +824,55 @@ export default function App() {
 
           {learnerSetup && mode === 'game-review' && (
             <section className="dock-panel">
-              <p className="eyebrow">Game Review</p>
-              <textarea aria-label="PGN input" value={pgnInput} onChange={(event) => setPgnInput(event.target.value)} />
-              <div className="button-row">
-                <button className="secondary-button" type="button" onClick={loadReviewPgn}>
-                  Load PGN
+              <p className="eyebrow">Review workspace</p>
+              <div className="segmented-control review-mode-switch" aria-label="Review purpose">
+                <button className={reviewMode === 'pgn' ? 'selected' : ''} type="button" onClick={() => switchReviewMode('pgn')}>
+                  Review a game
                 </button>
-                <button className="icon-button" type="button" title="Previous move" onClick={() => stepReview(-1)}>
-                  <ChevronLeft size={18} />
-                </button>
-                <button className="icon-button" type="button" title="Next move" onClick={() => stepReview(1)}>
-                  <ChevronRight size={18} />
+                <button className={reviewMode === 'engine' ? 'selected' : ''} type="button" onClick={() => switchReviewMode('engine')}>
+                  Play vs Stockfish
                 </button>
               </div>
-              {reviewDetection && (
-                <div className="lesson-card">
-                  <p className="eyebrow">Opening match</p>
-                  <strong>
-                    Matched {reviewDetection.matchedPlyCount} moves in {reviewDetection.lineName}
-                  </strong>
-                  <p>
-                    {reviewDetection.leftBookAtPly
-                      ? `Left book on move ${reviewDetection.leftBookAtPly}.`
-                      : 'You stayed inside the starter repertoire.'}
-                  </p>
-                </div>
+              {reviewMode === 'pgn' ? (
+                <>
+                  <p>Paste a PGN to replay the game, step through positions, and see where it left your opening repertoire.</p>
+                  <textarea aria-label="PGN input" value={pgnInput} onChange={(event) => setPgnInput(event.target.value)} />
+                  <div className="button-row">
+                    <button className="secondary-button" type="button" onClick={loadReviewPgn}>
+                      Load PGN
+                    </button>
+                    <button className="icon-button" type="button" title="Previous move" onClick={() => stepReview(-1)}>
+                      <ChevronLeft size={18} />
+                    </button>
+                    <button className="icon-button" type="button" title="Next move" onClick={() => stepReview(1)}>
+                      <ChevronRight size={18} />
+                    </button>
+                  </div>
+                  {reviewDetection && (
+                    <div className="lesson-card">
+                      <p className="eyebrow">Opening match</p>
+                      <strong>
+                        Matched {reviewDetection.matchedPlyCount} moves in {reviewDetection.lineName}
+                      </strong>
+                      <p>
+                        {reviewDetection.leftBookAtPly
+                          ? `Left book on move ${reviewDetection.leftBookAtPly}.`
+                          : 'You stayed inside the starter repertoire.'}
+                      </p>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <p>Make a move on the board. Stockfish replies automatically, so you can play a complete training game without leaving Review.</p>
+                  <button className="secondary-button" type="button" onClick={resetBoard}>
+                    Reset game
+                  </button>
+                </>
               )}
             </section>
           )}
 
-          {learnerSetup && mode === 'play-engine' && (
-            <section className="dock-panel">
-              <p className="eyebrow">Play Engine</p>
-              <p>Make a move on the board. Stockfish replies at a light training depth.</p>
-              <label className="field-label">
-                My plan before engine
-                <textarea
-                  aria-label="Learner plan"
-                  value={learnerPlan}
-                  onChange={(event) => setLearnerPlan(event.target.value)}
-                  placeholder="Name your candidate move or plan before asking Stockfish."
-                />
-              </label>
-              <button className="secondary-button" type="button" onClick={playEngineReply}>
-                Ask engine to move
-              </button>
-            </section>
-          )}
         </aside>
       </section>
     </main>
@@ -871,4 +896,22 @@ function formatPlanMoves(moves?: string[]): string {
 
 function formatTaskType(taskType: string): string {
   return formatThemeLabel(taskType);
+}
+
+async function copyTextToClipboard(text: string): Promise<void> {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand('copy');
+  textarea.remove();
+  if (!copied) throw new Error('Clipboard access unavailable.');
 }

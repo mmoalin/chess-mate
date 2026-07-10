@@ -80,14 +80,13 @@ export class GameManager {
 
   private getLegalTargets(): Record<string, string[]> {
     const targets: Record<string, string[]> = {};
-
     for (const move of this.game.moves({ verbose: true })) {
       targets[move.from] ??= [];
       targets[move.from].push(move.to);
     }
-
     return targets;
   }
+
 
   private tryMove(move: string | { from: string; to: string; promotion?: string }): Move | null {
     try {

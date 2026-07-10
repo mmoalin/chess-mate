@@ -23,8 +23,8 @@ Without these variables, the app still runs, but account sync is disabled and th
 ## Modes
 
 - Openings: train built-in White and Black repertoire lines.
-- Review: paste PGN, load it, and step through replay positions.
-- Play: make moves against the Stockfish worker.
+- Review: paste PGN, load it, and step through replay positions, or switch to Play vs Stockfish for an engine training game.
+- Position analysis: compare the current board position with the Stockfish worker.
 
 ## Verification
 
