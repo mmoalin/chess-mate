@@ -25,6 +25,22 @@ export type RepertoireLine = {
   explanation?: string;
   moveExplanations?: RepertoireMoveExplanation[];
   commonMistakes?: RepertoireMoveExplanation[];
+  practicalAssessment?: 'practical' | 'playable' | 'equal' | 'inferior';
+  branchPurpose?: string;
+  criticalPositions?: CriticalPosition[];
+};
+
+export type CriticalPosition = {
+  id: string;
+  lineId: string;
+  ply: number;
+  fen: string;
+  prompt: string;
+  expectedMoves: string[];
+  acceptableMoves?: string[];
+  themes: string[];
+  hint?: string;
+  teachingPoint?: string;
 };
 
 export type RepertoireMoveExplanation = {
@@ -58,4 +74,24 @@ export type TrainingProgress = {
   mistakeCount?: number;
   themeWeaknesses?: string[];
   updatedAt: string;
+};
+
+export type CriticalMoveResult = MoveTrainingResult & {
+  positionId: string;
+  themes: string[];
+  hintUsed?: boolean;
+};
+
+export type PositionProgress = {
+  userId: string;
+  openingId: string;
+  positionId: string;
+  side: RepertoireSide;
+  attempts: number;
+  correctCount: number;
+  hintCount: number;
+  mistakeThemes: string[];
+  masteryScore: number;
+  dueAt: string;
+  lastReviewedAt?: string;
 };

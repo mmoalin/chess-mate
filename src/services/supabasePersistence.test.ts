@@ -2,11 +2,17 @@ import { describe, expect, it } from 'vitest';
 import {
   mapCurriculumProgressFromRow,
   mapCurriculumProgressToRow,
+  mapPositionProgressFromRow,
+  mapPositionProgressToRow,
   mapProgressFromRow,
   mapProgressToRow
 } from './supabasePersistence';
 
 describe('Supabase progress mappers', () => {
+  it('round-trips position progress rows', () => {
+    const progress = { userId: 'user-1', openingId: 'alien', positionId: 'trigger', side: 'white' as const, attempts: 3, correctCount: 2, hintCount: 1, mistakeThemes: ['initiative'], masteryScore: 60, dueAt: '2026-07-12T00:00:00.000Z', lastReviewedAt: '2026-07-11T00:00:00.000Z' };
+    expect(mapPositionProgressFromRow(mapPositionProgressToRow(progress))).toEqual(progress);
+  });
   it('round-trips training progress rows', () => {
     const progress = {
       userId: 'user-1',

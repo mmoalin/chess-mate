@@ -549,6 +549,20 @@ textarea {
   text-transform: capitalize;
 }
 
+.critical-position-card {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+  border: 1px solid #c7dce8;
+  border-radius: 8px;
+  background: #f3faff;
+  padding: 12px;
+}
+
+.critical-position-card p {
+  margin: 0;
+}
+
 .study-kicker-row,
 .study-challenge-header,
 .study-next-row,

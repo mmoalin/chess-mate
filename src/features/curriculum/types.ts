@@ -6,7 +6,9 @@ export type CurriculumTaskType =
   | 'choose-plan'
   | 'calculate-line'
   | 'endgame-drill'
-  | 'model-game';
+  | 'model-game'
+  | 'find-move'
+  | 'position-choice';
 
 export type CurriculumTask = {
   id: string;
@@ -19,6 +21,11 @@ export type CurriculumTask = {
   correctChoiceId?: string;
   hint?: string;
   teachingPoint?: string;
+  openingId?: string;
+  fen?: string;
+  sideToMove?: 'white' | 'black';
+  expectedMoves?: string[];
+  acceptableMoves?: string[];
 };
 
 export type CurriculumCompletionCriteria = {

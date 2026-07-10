@@ -13,7 +13,8 @@ describe('curriculum module validation', () => {
       'pawn-chains',
       'open-files',
       'imbalances',
-      'basic-endgames'
+      'basic-endgames',
+      'alien-gambit-mastery'
     ]);
 
     for (const module of starterCurriculumModules) {

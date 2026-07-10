@@ -2,6 +2,96 @@ import type { RepertoireLine } from '../features/openings/types';
 
 export const starterRepertoires: RepertoireLine[] = [
   {
+    id: 'white-alien-gambit-main',
+    side: 'white',
+    name: 'Alien Gambit: f7 Attack',
+    eco: 'B15',
+    movesSan: ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Nf6', 'Ng5', 'h6', 'Nxf7'],
+    tags: ['alien-gambit', 'caro-kann', 'gambit', 'attacking'],
+    themeTags: ['initiative', 'king-safety', 'forcing-moves', 'development'],
+    difficulty: 'beginner',
+    modelPositionPly: 10,
+    practicalAssessment: 'practical',
+    explanation: 'Invite ...h6, then use the knight sacrifice on f7 only when development and forcing checks justify the material investment.',
+    middlegameIdeas: [{
+      title: 'Attack before the king consolidates',
+      summary: 'Bring the bishop to c4, use the open lines, and keep checking before Black can develop and secure the king.',
+      planMoves: ['Bc4', 'e6', 'Qe2'],
+      themes: ['initiative', 'king-safety', 'forcing-moves'],
+      warning: 'The sacrifice is a practical weapon, not a forced win; if the attack disappears, stop sacrificing and seek compensation.'
+    }],
+    moveExplanations: [
+      { moveIndex: 8, principle: 'create a hook', summary: 'Ng5 makes ...h6 uncomfortable and prepares the f7 idea.' },
+      { moveIndex: 10, principle: 'force the king', summary: 'Nxf7 is the signature sacrifice: play forcing moves while Black is uncoordinated.' }
+    ],
+    commonMistakes: [
+      { moveIndex: 8, principle: 'do not rush', summary: 'If Black does not weaken f7, develop or reroute the knight instead of sacrificing automatically.' },
+      { moveIndex: 10, principle: 'calculate checks', summary: 'After Nxf7, every attacking move must be checked for a real continuation.' }
+    ],
+    criticalPositions: [{
+      id: 'alien-white-sacrifice-trigger', lineId: 'white-alien-gambit-main', ply: 10,
+      fen: 'rnbqkb1r/pp2ppp1/2p2n1p/6N1/3P4/8/PPP2PPP/R1BQKBNR w KQkq - 0 6',
+      prompt: 'Black has played ...h6. Is the Alien sacrifice ready?', expectedMoves: ['Nxf7'],
+      themes: ['initiative', 'forcing-moves'], hint: 'The knight has been chased to the square that attacks f7.',
+      teachingPoint: 'Nxf7 is the thematic practical sacrifice, but the compensation depends on continuing with forcing development.'
+    }]
+  },
+  {
+    id: 'white-alien-gambit-decline',
+    side: 'white',
+    name: 'Alien Gambit: No ...h6',
+    eco: 'B15',
+    movesSan: ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Nf6', 'Ng5', 'Bf5', 'Bc4'],
+    tags: ['alien-gambit', 'caro-kann', 'gambit'],
+    themeTags: ['development', 'initiative', 'king-safety'],
+    difficulty: 'theory',
+    parentLineId: 'white-alien-gambit-main',
+    modelPositionPly: 10,
+    practicalAssessment: 'playable',
+    branchPurpose: 'Shows White how to keep the initiative when Black refuses to create the f7 hook.',
+    explanation: 'Without ...h6, keep the knight and develop actively rather than forcing the sacrifice.',
+    middlegameIdeas: [{ title: 'Keep the pieces aimed at f7', summary: 'Develop the bishop and queen while preserving the knight as an attacking piece.', planMoves: ['Bc4', 'e6', 'Qe2'], themes: ['development', 'initiative'] }]
+  },
+  {
+    id: 'black-alien-gambit-defense',
+    side: 'black',
+    name: 'Alien Gambit: Calm Defense',
+    eco: 'B15',
+    movesSan: ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Nf6', 'Ng5', 'Nbd7', 'Bc4', 'e6'],
+    tags: ['alien-gambit', 'caro-kann', 'defense'],
+    themeTags: ['king-safety', 'development', 'counterplay', 'minor-piece-quality'],
+    difficulty: 'beginner',
+    modelPositionPly: 9,
+    practicalAssessment: 'equal',
+    explanation: 'Do not help the attack with ...h6. Develop, cover f7, and use ...c5 or ...e6 to challenge White’s center.',
+    middlegameIdeas: [{ title: 'Let the attack run out', summary: 'Keep f7 covered, develop the queenside knight, and challenge the center before chasing the knight.', planMoves: ['Nbd7', 'Bc4', 'e6', 'Qe2', 'c5'], themes: ['king-safety', 'development', 'counterplay'], warning: 'Grabbing the knight immediately can open lines for White; prioritize coordination.' }],
+    moveExplanations: [{ moveIndex: 9, principle: 'avoid the hook', summary: 'Nbd7 develops and protects key squares without giving White the desired ...h6 tempo.' }],
+    commonMistakes: [{ moveIndex: 9, principle: 'do not chase blindly', summary: '...h6 invites Nxf7 and gives White the practical attack.' }],
+    criticalPositions: [{
+      id: 'alien-black-defense-choice', lineId: 'black-alien-gambit-defense', ply: 9,
+      fen: 'rnbqkb1r/pp2pppp/2p2n2/6N1/3P4/8/PPP2PPP/R1BQKBNR b KQkq - 2 5',
+      prompt: 'White has played Ng5. Choose a calm defensive plan before the f7 sacrifice is enabled.', expectedMoves: ['Nbd7'],
+      themes: ['king-safety', 'development'], hint: 'Develop a piece and keep f7 protected without creating a target.',
+      teachingPoint: 'Nbd7 is a practical defensive move: it develops, supports the center, and avoids the ...h6 hook.'
+    }]
+  },
+  {
+    id: 'black-alien-gambit-accepted',
+    side: 'black',
+    name: 'Alien Gambit: After Nxf7',
+    eco: 'B15',
+    movesSan: ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Nf6', 'Ng5', 'h6', 'Nxf7', 'Kxf7'],
+    tags: ['alien-gambit', 'caro-kann', 'defense', 'tactics'],
+    themeTags: ['king-safety', 'counterplay', 'development'],
+    difficulty: 'theory',
+    parentLineId: 'black-alien-gambit-defense',
+    modelPositionPly: 11,
+    practicalAssessment: 'playable',
+    branchPurpose: 'Teaches Black to accept the material only after checking whether the king can survive the forcing continuation.',
+    explanation: 'If you take on f7, expect checks and rapid development; move the king deliberately and return to coordination.',
+    middlegameIdeas: [{ title: 'Survive, then consolidate', summary: 'After the king move, develop with tempo and trade attacking pieces whenever safe.', planMoves: ['Kxf7', 'Bc4', 'e6'], themes: ['king-safety', 'development', 'counterplay'], warning: 'Material is not enough if the king remains exposed to checks.' }]
+  },
+  {
     id: 'white-vienna-main',
     side: 'white',
     name: 'Vienna Game: Main Development Plan',

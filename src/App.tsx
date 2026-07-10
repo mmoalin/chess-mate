@@ -1,6 +1,6 @@
 import type { User } from '@supabase/supabase-js';
 import { BookOpen, Brain, ChevronLeft, ChevronRight, ClipboardList, List, RotateCcw } from 'lucide-react';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChessBoardUI } from './components/ChessBoardUI';
 import { AuthPanel } from './components/AuthPanel';
 import { GameManager } from './core/gameManager';
@@ -19,7 +19,7 @@ import {
 } from './features/journey/journey';
 import type { CurriculumAttempt, LearnerSetup, ReviewItem } from './features/journey/types';
 import { OpeningTrainer } from './features/openings/openingTrainer';
-import type { RepertoireLine, RepertoireSide, TrainingProgress } from './features/openings/types';
+import type { CriticalPosition, PositionProgress, RepertoireLine, RepertoireSide, TrainingProgress } from './features/openings/types';
 import { EngineService } from './services/engineService';
 import { createSupabaseBrowserClient, getSupabaseUnavailableReason, SupabasePersistence } from './services/supabasePersistence';
 import './styles.css';
@@ -68,6 +68,13 @@ export default function App() {
   );
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+  const [activeCriticalPosition, setActiveCriticalPosition] = useState<CriticalPosition | null>(null);
+  const [positionProgress, setPositionProgress] = useState<PositionProgress[]>([]);
+
+  useEffect(() => {
+    if (!user) return;
+    void persistence.loadPositionProgress(user.id).then(setPositionProgress).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not load position progress.'));
+  }, [persistence, user]);
 
   const sideLines = trainer.linesForSide(side);
   const visibleSideLines =
@@ -142,7 +149,7 @@ export default function App() {
     });
     setLearnerSetup(setup);
     setMode('opening-trainer');
-    setLineId(setup.recommendedWhiteLineId);
+    setLineId(trainer.findLine('white-vienna-main') ? 'white-vienna-main' : setup.recommendedWhiteLineId);
     setFeedback('Start with the idea, then play the first move when you are ready.');
   }
 
@@ -183,6 +190,34 @@ export default function App() {
     }
 
     setLastMove({ from, to });
+
+    if (activeCriticalPosition) {
+      const result = trainer.evaluateCriticalMove(activeCriticalPosition, move.san);
+      const existing = positionProgress.find((item) => item.positionId === activeCriticalPosition.id);
+      const now = new Date();
+      const next: PositionProgress = {
+        userId: user?.id ?? 'local',
+        openingId: activeCriticalPosition.lineId,
+        positionId: activeCriticalPosition.id,
+        side: activeLine?.side ?? 'white',
+        attempts: (existing?.attempts ?? 0) + 1,
+        correctCount: (existing?.correctCount ?? 0) + (result.status === 'correct' ? 1 : 0),
+        hintCount: existing?.hintCount ?? 0,
+        mistakeThemes: result.status === 'incorrect' ? Array.from(new Set([...(existing?.mistakeThemes ?? []), ...activeCriticalPosition.themes])) : existing?.mistakeThemes ?? [],
+        masteryScore: Math.min(100, (existing?.masteryScore ?? 0) + (result.status === 'correct' ? 25 : -10)),
+        dueAt: new Date(now.getTime() + (result.status === 'correct' ? 3 : 1) * 86400000).toISOString(),
+        lastReviewedAt: now.toISOString()
+      };
+      setPositionProgress((items) => items.some((item) => item.positionId === next.positionId) ? items.map((item) => item.positionId === next.positionId ? next : item) : [...items, next]);
+      void persistence.upsertPositionProgress(next).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not save position progress.'));
+      if (result.status === 'incorrect') {
+        addReviewItem({ id: `review-position-${activeCriticalPosition.id}`, sourceType: 'theme', sourceId: activeCriticalPosition.id, title: `Review ${activeLine?.name ?? 'Alien Gambit'} critical position`, prompt: activeCriticalPosition.prompt, themeTags: activeCriticalPosition.themes, dueAt: next.dueAt, status: 'due' });
+      }
+      setFeedback(result.status === 'correct' ? `Correct. ${activeCriticalPosition.teachingPoint ?? ''}` : `Try again. ${activeCriticalPosition.expectedMoves.join(' or ')}. ${activeCriticalPosition.hint ?? ''}`);
+      if (result.status === 'correct') setActiveCriticalPosition(null);
+      refresh();
+      return true;
+    }
 
     if (mode === 'opening-trainer' && activeLine) {
       const result = trainer.recordMove(activeLine.id, moveIndex, move.san);
@@ -248,6 +283,7 @@ export default function App() {
     setReviewPly(0);
     setLastMove(null);
     setLessonCard(null);
+    setActiveCriticalPosition(null);
     setFeedback('Board reset.');
     refresh();
   }
@@ -313,11 +349,29 @@ export default function App() {
     resetBoard();
   }
 
+  function startCriticalPosition(position: CriticalPosition) {
+    setActiveCriticalPosition(position);
+    managerRef.current.reset(position.fen);
+    setMoveIndex(position.ply);
+    setLastMove(null);
+    setFeedback(position.prompt);
+    refresh();
+  }
+
   function switchReviewMode(nextMode: 'pgn' | 'engine') {
     setReviewMode(nextMode);
     setReviewDetection(null);
     resetBoard();
     setFeedback(nextMode === 'pgn' ? 'Load a PGN to review a game.' : 'Make a move on the board. Stockfish will reply automatically.');
+  }
+
+  function startAlienPractice() {
+    const line = side === 'black' ? trainer.findLine('black-alien-gambit-defense') : trainer.findLine('white-alien-gambit-main');
+    managerRef.current.reset();
+    setLineId(line?.id ?? lineId);
+    setActiveCriticalPosition(null);
+    setFeedback(`Alien Gambit practice ready for ${side}.`);
+    refresh();
   }
 
   function showHint() {
@@ -819,6 +873,15 @@ export default function App() {
                   </div>
                 </div>
               )}
+              {activeLine?.criticalPositions && activeLine.criticalPositions.length > 0 && (
+                <section className="critical-position-card" aria-label="Critical positions">
+                  <p className="eyebrow">Critical position</p>
+                  <p>{activeCriticalPosition?.prompt ?? 'Practice the decision that defines this branch.'}</p>
+                  <button className="secondary-button" type="button" onClick={() => startCriticalPosition(activeLine.criticalPositions![0])}>
+                    {activeCriticalPosition ? 'Restart position' : 'Practice position'}
+                  </button>
+                </section>
+              )}
             </section>
           )}
 
@@ -865,6 +928,9 @@ export default function App() {
               ) : (
                 <>
                   <p>Make a move on the board. Stockfish replies automatically, so you can play a complete training game without leaving Review.</p>
+                  <button className="secondary-button" type="button" onClick={startAlienPractice}>
+                    Start Alien Gambit practice
+                  </button>
                   <button className="secondary-button" type="button" onClick={resetBoard}>
                     Reset game
                   </button>

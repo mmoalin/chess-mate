@@ -60,4 +60,12 @@ describe('starterRepertoires', () => {
       }
     }
   });
+
+  it('includes both Alien Gambit sides and critical positions', () => {
+    expect(starterRepertoires.find((line) => line.id === 'white-alien-gambit-main')?.criticalPositions).toHaveLength(1);
+    expect(starterRepertoires.find((line) => line.id === 'black-alien-gambit-defense')?.criticalPositions).toHaveLength(1);
+    expect(starterRepertoires.filter((line) => line.tags.includes('alien-gambit')).map((line) => line.side)).toEqual(
+      expect.arrayContaining(['white', 'black'])
+    );
+  });
 });

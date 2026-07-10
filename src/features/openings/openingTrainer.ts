@@ -1,4 +1,4 @@
-import type { MoveTrainingResult, RepertoireLine, RepertoireMoveExplanation, RepertoireSide } from './types';
+import type { CriticalMoveResult, CriticalPosition, MoveTrainingResult, RepertoireLine, RepertoireMoveExplanation, RepertoireSide } from './types';
 
 export class OpeningTrainer {
   private lines: RepertoireLine[];
@@ -62,6 +62,24 @@ export class OpeningTrainer {
       expectedMove,
       nextMoveIndex,
       completed
+    };
+  }
+
+  criticalPositionsFor(lineId: string): CriticalPosition[] {
+    return this.findLine(lineId)?.criticalPositions ?? [];
+  }
+
+  evaluateCriticalMove(position: CriticalPosition, playedSan: string): CriticalMoveResult {
+    const normalized = normalizeSan(playedSan);
+    const expected = [...position.expectedMoves, ...(position.acceptableMoves ?? [])].map(normalizeSan);
+    const correct = expected.includes(normalized);
+    return {
+      positionId: position.id,
+      themes: position.themes,
+      status: correct ? 'correct' : 'incorrect',
+      expectedMove: position.expectedMoves[0] ?? null,
+      nextMoveIndex: correct ? position.ply + 1 : position.ply,
+      completed: correct
     };
   }
 }

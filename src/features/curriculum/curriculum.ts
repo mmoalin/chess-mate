@@ -13,6 +13,7 @@ const validTaskTypes = new Set<CurriculumTaskType>([
   'calculate-line',
   'endgame-drill',
   'model-game'
+  , 'find-move', 'position-choice'
 ]);
 
 export const starterCurriculumModules: CurriculumModule[] = [
@@ -214,6 +215,20 @@ export const starterCurriculumModules: CurriculumModule[] = [
       minimumScorePercent: 70,
       requiredTaskIds: ['basic-endgames-opposition', 'basic-endgames-passed-pawn']
     }
+  },
+  {
+    id: 'alien-gambit-mastery',
+    title: 'Alien Gambit Mastery',
+    level: 'beginner',
+    sourceInspiration: ['critical-position training', 'practical attack and defense'],
+    themes: ['initiative', 'king-safety', 'forcing-moves', 'development', 'counterplay'],
+    lessonSummary: 'Learn the f7 idea as White, neutralize it as Black, and recognize when the attack is practical rather than forced.',
+    tasks: [
+      { id: 'alien-recognize', type: 'choose-plan', title: 'Recognize the Trigger', prompt: 'What makes the Alien Gambit sacrifice on f7 available?', themes: ['initiative', 'forcing-moves'], maxScore: 10, choices: [{ id: 'hook', label: 'Black has played ...h6 and the knight can take f7 with tempo' }, { id: 'random', label: 'Any time the knight reaches g5' }], correctChoiceId: 'hook', hint: 'Look for the pawn move that chases the knight.', teachingPoint: 'The ...h6 hook is the practical trigger; without it, White should usually develop instead.' },
+      { id: 'alien-white-plan', type: 'choose-plan', title: 'Continue the Attack', prompt: 'After the sacrifice, what is White’s priority?', themes: ['initiative', 'king-safety'], maxScore: 10, choices: [{ id: 'checks', label: 'Use forcing checks and develop with tempo' }, { id: 'queenless', label: 'Trade queens immediately and simplify' }], correctChoiceId: 'checks', hint: 'White is down material and needs activity.', teachingPoint: 'The compensation is initiative; drifting or simplifying usually ends the attack.' },
+      { id: 'alien-black-plan', type: 'choose-plan', title: 'Defend the Alien', prompt: 'What should Black do before chasing the knight?', themes: ['king-safety', 'development'], maxScore: 10, choices: [{ id: 'develop', label: 'Develop, cover f7, and avoid creating the ...h6 hook' }, { id: 'pawnhunt', label: 'Chase the knight with every available pawn move' }], correctChoiceId: 'develop', hint: 'Coordination matters more than winning a tempo.', teachingPoint: 'Calm development and f7 control reduce the attack without opening more lines.' }
+    ],
+    completionCriteria: { minimumScorePercent: 70, requiredTaskIds: ['alien-recognize', 'alien-white-plan', 'alien-black-plan'] }
   }
 ];
 

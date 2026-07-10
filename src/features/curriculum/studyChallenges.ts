@@ -8,6 +8,9 @@ type StudyChallenge = {
 };
 
 const challenges: Record<string, StudyChallenge> = {
+  'alien-recognize': { choices: [{ id: 'hook', label: 'Black has played ...h6 and the knight can take f7 with tempo' }, { id: 'random', label: 'Any time the knight reaches g5' }], correctChoiceId: 'hook', hint: 'Look for the pawn move that chases the knight.', teachingPoint: 'The ...h6 hook is the practical trigger; without it, White should usually develop instead.' },
+  'alien-white-plan': { choices: [{ id: 'checks', label: 'Use forcing checks and develop with tempo' }, { id: 'queenless', label: 'Trade queens immediately and simplify' }], correctChoiceId: 'checks', hint: 'White is down material and needs activity.', teachingPoint: 'The compensation is initiative; drifting or simplifying usually ends the attack.' },
+  'alien-black-plan': { choices: [{ id: 'develop', label: 'Develop, cover f7, and avoid creating the ...h6 hook' }, { id: 'pawnhunt', label: 'Chase the knight with every available pawn move' }], correctChoiceId: 'develop', hint: 'Coordination matters more than winning a tempo.', teachingPoint: 'Calm development and f7 control reduce the attack without opening more lines.' },
   'opening-principles-explain-development': {
     choices: [
       { id: 'center', label: 'Develop a knight toward the centre and support castling.' },

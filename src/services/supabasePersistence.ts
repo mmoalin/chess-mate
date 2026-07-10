@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import type { TrainingProgress } from '../features/openings/types';
+import type { PositionProgress, TrainingProgress } from '../features/openings/types';
 
 export type CurriculumProgress = {
   userId: string;
@@ -36,6 +36,28 @@ export type CurriculumProgressRow = {
   status: CurriculumProgress['status'];
   last_reviewed_at: string;
 };
+
+export type PositionProgressRow = {
+  user_id: string;
+  opening_id: string;
+  position_id: string;
+  side: PositionProgress['side'];
+  attempts: number;
+  correct_count: number;
+  hint_count: number;
+  mistake_themes: string[];
+  mastery_score: number;
+  due_at: string;
+  last_reviewed_at?: string | null;
+};
+
+export function mapPositionProgressToRow(progress: PositionProgress): PositionProgressRow {
+  return { user_id: progress.userId, opening_id: progress.openingId, position_id: progress.positionId, side: progress.side, attempts: progress.attempts, correct_count: progress.correctCount, hint_count: progress.hintCount, mistake_themes: progress.mistakeThemes, mastery_score: progress.masteryScore, due_at: progress.dueAt, last_reviewed_at: progress.lastReviewedAt ?? null };
+}
+
+export function mapPositionProgressFromRow(row: PositionProgressRow): PositionProgress {
+  return { userId: row.user_id, openingId: row.opening_id, positionId: row.position_id, side: row.side, attempts: row.attempts, correctCount: row.correct_count, hintCount: row.hint_count, mistakeThemes: row.mistake_themes ?? [], masteryScore: row.mastery_score, dueAt: row.due_at, lastReviewedAt: row.last_reviewed_at ?? undefined };
+}
 
 export function mapProgressToRow(progress: TrainingProgress): TrainingProgressRow {
   return {
@@ -158,5 +180,18 @@ export class SupabasePersistence {
     if (error) throw error;
 
     return (data ?? []).map((row) => mapCurriculumProgressFromRow(row as CurriculumProgressRow));
+  }
+
+  async upsertPositionProgress(progress: PositionProgress): Promise<void> {
+    if (!this.client) return;
+    const { error } = await this.client.from('position_progress').upsert(mapPositionProgressToRow(progress));
+    if (error) throw error;
+  }
+
+  async loadPositionProgress(userId: string): Promise<PositionProgress[]> {
+    if (!this.client) return [];
+    const { data, error } = await this.client.from('position_progress').select('*').eq('user_id', userId);
+    if (error) throw error;
+    return (data ?? []).map((row) => mapPositionProgressFromRow(row as PositionProgressRow));
   }
 }

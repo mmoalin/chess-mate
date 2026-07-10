@@ -41,10 +41,26 @@ create table if not exists public.settings (
   updated_at timestamptz not null default now()
 );
 
+create table if not exists public.position_progress (
+  user_id uuid not null references auth.users(id) on delete cascade,
+  opening_id text not null,
+  position_id text not null,
+  side text not null check (side in ('white', 'black')),
+  attempts integer not null default 0 check (attempts >= 0),
+  correct_count integer not null default 0 check (correct_count >= 0),
+  hint_count integer not null default 0 check (hint_count >= 0),
+  mistake_themes text[] not null default '{}',
+  mastery_score integer not null default 0 check (mastery_score >= 0 and mastery_score <= 100),
+  due_at timestamptz not null default now(),
+  last_reviewed_at timestamptz,
+  primary key (user_id, opening_id, position_id)
+);
+
 alter table public.profiles enable row level security;
 alter table public.training_progress enable row level security;
 alter table public.curriculum_progress enable row level security;
 alter table public.settings enable row level security;
+alter table public.position_progress enable row level security;
 
 create policy "Users read own profile"
   on public.profiles for select
@@ -67,5 +83,10 @@ create policy "Users manage own curriculum progress"
 
 create policy "Users manage own settings"
   on public.settings for all
+  using (auth.uid() = user_id)
+  with check (auth.uid() = user_id);
+
+create policy "Users manage own position progress"
+  on public.position_progress for all
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);

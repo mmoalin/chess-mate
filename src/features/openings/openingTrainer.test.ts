@@ -39,6 +39,16 @@ describe('OpeningTrainer', () => {
     });
   });
 
+  it('evaluates expected and acceptable critical-position moves', () => {
+    const trainer = new OpeningTrainer([{
+      ...line,
+      criticalPositions: [{ id: 'critical', lineId: line.id, ply: 2, fen: 'start', prompt: 'Choose', expectedMoves: ['Nxf7'], acceptableMoves: ['Bc4'], themes: ['initiative'] }]
+    }]);
+    const position = trainer.criticalPositionsFor(line.id)[0];
+    expect(trainer.evaluateCriticalMove(position, 'Bc4').status).toBe('correct');
+    expect(trainer.evaluateCriticalMove(position, 'a3').status).toBe('incorrect');
+  });
+
   it('returns side-specific repertoire lines', () => {
     const trainer = new OpeningTrainer([
       line,
