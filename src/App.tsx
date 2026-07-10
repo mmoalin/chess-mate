@@ -245,6 +245,46 @@ export default function App() {
     refresh();
   }
 
+  function showHistoryPly(ply: number) {
+    const positions = managerRef.current.getReplayPositions();
+    if (!positions[ply]) return;
+
+    const currentSnapshot = managerRef.current.snapshot();
+    const isCurrentPosition = ply === positions.length - 1;
+    setReviewPly(ply);
+    setLastMove(null);
+    setSnapshot(
+      isCurrentPosition
+        ? currentSnapshot
+        : {
+            ...currentSnapshot,
+            fen: positions[ply],
+            legalTargets: {}
+          }
+    );
+  }
+
+  function showRepertoireMove(targetMoveIndex: number) {
+    if (!activeLine) return;
+
+    managerRef.current.reset();
+    for (const move of activeLine.movesSan.slice(0, targetMoveIndex + 1)) {
+      const result = managerRef.current.applySanMove(move);
+      if (!result.ok) {
+        setFeedback(result.reason);
+        refresh();
+        return;
+      }
+    }
+
+    setMoveIndex(Math.min(targetMoveIndex + 1, activeLine.movesSan.length));
+    setReviewPly(targetMoveIndex + 1);
+    setLastMove(null);
+    setLessonCard(null);
+    setFeedback(`Showing position after ${activeLine.movesSan[targetMoveIndex]}.`);
+    refresh();
+  }
+
   function selectSide(nextSide: RepertoireSide) {
     const firstLine = trainer.linesForSide(nextSide)[0];
     setSide(nextSide);
@@ -326,8 +366,7 @@ export default function App() {
   function stepReview(delta: number) {
     const positions = managerRef.current.getReplayPositions();
     const nextPly = Math.min(Math.max(reviewPly + delta, 0), positions.length - 1);
-    setReviewPly(nextPly);
-    setSnapshot({ ...snapshot, fen: positions[nextPly] });
+    showHistoryPly(nextPly);
   }
 
   async function analyzeCurrentPosition() {
@@ -397,7 +436,28 @@ export default function App() {
             <section className="history-drawer" aria-label="Move history">
               <div>
                 <p className="eyebrow">Move history</p>
-                <div className="history">{snapshot.history.length ? snapshot.history.join(' ') : 'No moves yet.'}</div>
+                <div className="history">
+                  {snapshot.history.length
+                    ? snapshot.history.map((move, index) => {
+                        const ply = index + 1;
+                        const moveNumber = Math.floor(index / 2) + 1;
+                        const movePrefix = index % 2 === 0 ? `${moveNumber}.` : `${moveNumber}...`;
+
+                        return (
+                          <button
+                            key={`${move}-${index}`}
+                            className={reviewPly === ply ? 'selected' : ''}
+                            type="button"
+                            aria-label={`Move ${ply}: ${move}`}
+                            onClick={() => showHistoryPly(ply)}
+                          >
+                            <span>{movePrefix}</span>
+                            {move}
+                          </button>
+                        );
+                      })
+                    : 'No moves yet.'}
+                </div>
               </div>
               <button className="secondary-button" type="button" onClick={() => setIsHistoryOpen(false)}>
                 Close history
@@ -512,9 +572,15 @@ export default function App() {
                 </div>
                 <div className="move-strip">
                   {activeLine?.movesSan.map((move, index) => (
-                    <span key={`${move}-${index}`} className={index < moveIndex ? 'done' : index === moveIndex ? 'current' : ''}>
+                    <button
+                      key={`${move}-${index}`}
+                      className={index < moveIndex ? 'done' : index === moveIndex ? 'current' : ''}
+                      type="button"
+                      aria-label={`Repertoire move ${index + 1}: ${move}`}
+                      onClick={() => showRepertoireMove(index)}
+                    >
                       {move}
-                    </span>
+                    </button>
                   ))}
                 </div>
               </section>

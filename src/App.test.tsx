@@ -4,7 +4,11 @@ import { describe, expect, it, vi } from 'vitest';
 import App from './App';
 
 vi.mock('react-chessboard', () => ({
-  Chessboard: () => <div aria-label="Chess board mock" />
+  Chessboard: ({ options }: { options: { position: string } }) => (
+    <div aria-label="Chess board mock" data-position={options.position}>
+      Board position: {options.position}
+    </div>
+  )
 }));
 
 describe('App', () => {
@@ -76,6 +80,22 @@ describe('App', () => {
     expect(screen.getByRole('button', { name: /Hide moves/i })).toBeInTheDocument();
   });
 
+  it('navigates the board to a clicked move in the move history', async () => {
+    render(<App />);
+
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Review/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Load PGN/i }));
+    const finalPosition = screen.getByLabelText('Chess board mock').getAttribute('data-position');
+
+    await userEvent.click(screen.getByRole('button', { name: /Show moves/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Move 1: e4/i }));
+
+    const selectedPosition = screen.getByLabelText('Chess board mock').getAttribute('data-position');
+    expect(selectedPosition).not.toBe(finalPosition);
+    expect(selectedPosition).toContain(' b ');
+  });
+
   it('switches to game review mode from the mode tabs', async () => {
     render(<App />);
 
@@ -110,6 +130,20 @@ describe('App', () => {
 
     expect(screen.getByText(/Repertoire move: e4/i)).toBeInTheDocument();
     expect(screen.getByRole('region', { name: /Feedback/i })).toHaveTextContent(/Repertoire move: e4/i);
+  });
+
+  it('navigates the board when a repertoire move chip is clicked', async () => {
+    render(<App />);
+
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    const initialPosition = screen.getByLabelText('Chess board mock').getAttribute('data-position');
+
+    await userEvent.click(screen.getByRole('button', { name: /Repertoire move 2: e5/i }));
+
+    const selectedPosition = screen.getByLabelText('Chess board mock').getAttribute('data-position');
+    expect(selectedPosition).not.toBe(initialPosition);
+    expect(selectedPosition).toContain(' w ');
+    expect(screen.getByRole('region', { name: /Repertoire moves/i })).toHaveTextContent(/3 \/ 5/i);
   });
 
   it('scores a curriculum task answer and marks it complete', async () => {

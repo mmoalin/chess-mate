@@ -502,12 +502,14 @@ textarea {
   margin-top: 12px;
 }
 
-.move-strip span {
+.move-strip button {
   border: 1px solid #d8d1c2;
   border-radius: 6px;
   padding: 5px 8px;
   background: #fff;
+  color: #243226;
   font-weight: 700;
+  min-height: 34px;
 }
 
 .move-strip .done {
@@ -527,7 +529,33 @@ textarea {
 }
 
 .history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   line-height: 1.7;
+}
+
+.history button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #d8d1c2;
+  border-radius: 6px;
+  background: #fff;
+  color: #243226;
+  min-height: 32px;
+  padding: 4px 8px;
+  font-weight: 700;
+}
+
+.history button span {
+  color: #6b7280;
+  font-weight: 800;
+}
+
+.history button.selected {
+  border-color: #d9a626;
+  background: #f7d27b;
 }
 
 .auth-grid {
