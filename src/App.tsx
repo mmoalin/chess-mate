@@ -97,6 +97,29 @@ export default function App() {
   const learnerId = user?.id ?? LOCAL_LEARNER_ID;
 
   useEffect(() => {
+    if (!supabaseClient) return;
+
+    let active = true;
+    void supabaseClient.auth.getSession().then(({ data, error }) => {
+      if (!active) return;
+      if (error) {
+        setFeedback(`Could not restore your account session: ${error.message}`);
+        return;
+      }
+      setUser(data.session?.user ?? null);
+    });
+
+    const { data: authListener } = supabaseClient.auth.onAuthStateChange((_event, session) => {
+      if (active) setUser(session?.user ?? null);
+    });
+
+    return () => {
+      active = false;
+      authListener.subscription.unsubscribe();
+    };
+  }, [supabaseClient]);
+
+  useEffect(() => {
     void contentRepository.loadPublished().then(setRepertoireGraph).catch(() => setRepertoireGraph(embeddedRepertoireGraph));
   }, [contentRepository]);
 

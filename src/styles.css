@@ -245,6 +245,14 @@ button {
   display: none;
 }
 
+.account-strip:has(.auth-grid) .auth-message {
+  display: block;
+  grid-column: 1 / -1;
+  margin: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
 .account-strip .auth-grid {
   display: contents;
 }
@@ -254,6 +262,10 @@ button {
 }
 
 .account-strip:has(.auth-grid) > div:first-child {
+  display: contents;
+}
+
+.account-strip:has(.auth-grid) > div:first-child > :not(.auth-message) {
   display: none;
 }
 
