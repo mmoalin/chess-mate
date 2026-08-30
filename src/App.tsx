@@ -869,6 +869,27 @@ export default function App() {
             lastMove={lastMove}
             onMoveAttempt={handleMove}
           />
+          {learnerSetup && mode === 'opening-trainer' && activeLine && (
+            <section className="line-progress mobile-line-progress" aria-label="Moves near board">
+              <div className="stat-row">
+                <span>Move</span>
+                <strong>{Math.min(moveIndex + 1, activeLine.movesSan.length)} / {activeLine.movesSan.length}</strong>
+              </div>
+              <div className="move-strip">
+                {activeLine.movesSan.map((move, index) => (
+                  <button
+                    key={`mobile-${move}-${index}`}
+                    className={index < moveIndex ? 'done' : index === moveIndex ? 'current' : ''}
+                    type="button"
+                    aria-label={`Board move ${index + 1}: ${move}`}
+                    onClick={() => showRepertoireMove(index)}
+                  >
+                    {move}
+                  </button>
+                ))}
+              </div>
+            </section>
+          )}
           <section className="feedback-strip" aria-label="Feedback">
             <div>
               <p className="eyebrow">Feedback</p>
@@ -1034,7 +1055,7 @@ export default function App() {
                   </option>
                 ))}
               </select>
-              <section className="line-progress" aria-label="Repertoire moves">
+              <section className="line-progress dock-line-progress" aria-label="Repertoire moves">
                 <div className="stat-row">
                   <span>Move</span>
                   <strong>

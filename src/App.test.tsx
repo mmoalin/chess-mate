@@ -44,6 +44,7 @@ describe('App', () => {
     const dockText = dock.textContent ?? '';
 
     expect(screen.getByRole('region', { name: /Repertoire moves/i })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /Moves near board/i })).toHaveTextContent(/1 \/ 10/i);
     expect(dockText.indexOf('Move')).toBeLessThan(dockText.indexOf('Lesson goal'));
   });
 

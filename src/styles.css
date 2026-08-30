@@ -798,6 +798,10 @@ textarea {
   padding: 10px;
 }
 
+.mobile-line-progress {
+  display: none;
+}
+
 .line-progress .stat-row {
   border-top: 0;
   padding-top: 0;
@@ -932,6 +936,33 @@ textarea {
 
   .board-shell {
     width: 100%;
+  }
+
+  .board-column {
+    gap: 10px;
+  }
+
+  .mobile-line-progress {
+    display: block;
+    margin-top: 0;
+    padding: 8px 10px;
+    position: static;
+  }
+
+  .mobile-line-progress .move-strip {
+    flex-wrap: nowrap;
+    margin-top: 8px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+    scrollbar-width: thin;
+  }
+
+  .mobile-line-progress .move-strip button {
+    flex: 0 0 auto;
+  }
+
+  .dock-line-progress {
+    display: none;
   }
 
   .topbar {
