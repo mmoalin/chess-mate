@@ -28,6 +28,14 @@ export type RepertoireLine = {
   practicalAssessment?: 'practical' | 'playable' | 'equal' | 'inferior';
   branchPurpose?: string;
   criticalPositions?: CriticalPosition[];
+  deviationPolicies?: RepertoireDeviationPolicy[];
+};
+
+export type RepertoireDeviationPolicy = {
+  ply: number;
+  moveUci?: string;
+  category: 'harmless' | 'direct-threat' | 'central-challenge' | 'tactical-opportunity' | 'new-branch';
+  guidance: string;
 };
 
 export type CriticalPosition = {

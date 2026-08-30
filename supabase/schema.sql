@@ -90,3 +90,6 @@ create policy "Users manage own position progress"
   on public.position_progress for all
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
+
+-- Apply supabase/migrations/202608280001_guided_repertoire.sql after this base
+-- schema to add versioned repertoire content, publishing, and guided learner state.

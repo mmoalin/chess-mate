@@ -87,13 +87,12 @@ export class EngineService {
 
   async compareMove(fen: string, candidate: UciMove, options: AnalysisOptions = {}): Promise<{ candidate: EngineAnalysis; best: EngineAnalysis; delta: number | null }> {
     const position = new Chess(fen);
-    const turn = position.turn();
     position.move(candidate);
     const best = await this.analyze(fen, options);
     const candidateAnalysis = await this.analyze(position.fen(), options);
-    const current = scoreForMover(best.score, turn);
-    const after = scoreForMover(candidateAnalysis.score, turn === 'w' ? 'b' : 'w');
-    return { candidate: candidateAnalysis, best, delta: current === null || after === null ? null : after - current };
+    const bestForMover = scoreForSideToMove(best.score);
+    const candidateForMover = candidateAnalysis.score ? -scoreForSideToMove(candidateAnalysis.score)! : null;
+    return { candidate: candidateAnalysis, best, delta: bestForMover === null || candidateForMover === null ? null : candidateForMover - bestForMover };
   }
 
   stop() {
@@ -129,10 +128,9 @@ export class EngineService {
   }
 }
 
-function scoreForMover(score: EngineScore | null, turn: 'w' | 'b'): number | null {
+function scoreForSideToMove(score: EngineScore | null): number | null {
   if (!score) return null;
-  const whiteScore = score.type === 'mate' ? Math.sign(score.value || 1) * 100 : score.value / 100;
-  return turn === 'w' ? whiteScore : -whiteScore;
+  return score.type === 'mate' ? Math.sign(score.value || 1) * 10000 : score.value;
 }
 
 function createStockfishWorker(): Worker {

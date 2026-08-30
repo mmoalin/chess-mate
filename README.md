@@ -1,6 +1,87 @@
 # Chess Opening Trainer
 
-A Vite + React + TypeScript chess training app focused on opening repertoires for White and Black. It includes a shared board, a `chess.js` game manager, built-in starter lines, Stockfish-backed analysis/play, PGN review, and Supabase progress sync.
+A browser-based chess learning app focused on opening preparation, short strategic lessons, and game review. It combines an interactive `chess.js` board, built-in White and Black repertoires, a guided curriculum, local Stockfish analysis, PGN review, adaptive practice, and optional Supabase progress sync.
+
+## Features
+
+### Opening training
+
+- Practice complete repertoire lines for White or Black on an interactive drag-and-drop board.
+- Validate every move against the selected line and receive immediate correct/incorrect feedback.
+- Follow move-by-move progress, or click any repertoire move to display the resulting position.
+- Switch automatically between White and Black board orientation.
+- Filter lines by themes including development, initiative, king safety, pawn chains, open files, weak squares, and counterplay.
+- Learn with move explanations, common-mistake guidance, strategic summaries, hints, and move reveals.
+- Explore optional theory branches after learning their beginner parent lines.
+- Study practical middlegame plans, candidate continuations, and warnings for each repertoire.
+- Drill critical positions from supplied FENs with position-specific feedback.
+- Turn opening mistakes into due review items and track recurring weak themes.
+
+The starter repertoire contains 12 lines covering:
+
+- Alien Gambit plans for White and defensive responses for Black.
+- Vienna Game and Vienna Gambit.
+- London System and the `...Qb6` branch.
+- Open Sicilian and Sicilian Dragon.
+- Classical Caro-Kann and Caro-Kann Advance.
+
+### Guided study path
+
+The Study workspace contains six curriculum modules with three interactive tasks per module:
+
+- Opening Principles
+- Pawn Chains
+- Open Files
+- Imbalances
+- Basic Endgames
+- Alien Gambit Mastery
+
+Lessons include explaining moves, finding themes, choosing plans, calculating lines, studying model games, and solving endgame decisions. Each module provides hints, teaching points, answer feedback, retries, task scores, attempt counts, completion requirements, and a progress bar. Later tasks unlock after the current task is passed.
+
+### Game review
+
+- Paste and import standard PGN.
+- Replay games with previous/next controls or by clicking moves in the history drawer.
+- Detect the closest built-in opening and report how long the game remained in the repertoire.
+- Identify the ply where the game left known theory and add it to the review queue.
+- Copy the current game as PGN for use in another chess tool.
+
+### Stockfish tools
+
+- Analyze the current position and display search depth, evaluation, and best move.
+- Play a complete training game against Stockfish with automatic engine replies.
+- Start a dedicated Alien Gambit engine-practice game.
+- Run Stockfish locally in a web worker without an external engine service.
+
+### Progress and recommendations
+
+- Beginner onboarding built around a focused ten-minute study routine.
+- Recommended next activities based on learner setup and due reviews.
+- A Today dashboard with the next lesson, due-review count, mastered-line count, daily target, and weak themes.
+- Local tracking of correct moves, mistakes, streaks, current line position, theme weaknesses, and mastery state.
+- Critical-position tracking with attempts, correct answers, mistake themes, mastery scores, and future review dates.
+- Shorter review intervals after errors and longer intervals after successful critical-position practice.
+
+### Accounts and cloud sync
+
+- Register, sign in, and sign out with email and password through Supabase Auth.
+- Save opening-training and critical-position progress when signed in.
+- Database support for profiles, repertoire progress, curriculum progress, position mastery, and preferences.
+- Row-level security policies that restrict learners to their own records.
+- Continue using the app locally when Supabase is not configured.
+
+The persistence layer includes curriculum and settings support, although those areas are not yet fully connected to the current interface.
+
+### Board and interface
+
+- Legal chess movement, castling, en passant, notation, game-over detection, and promotion support.
+- Legal-piece and last-move highlighting, plus arrow drawing.
+- Collapsible move-history drawer and one-click board reset.
+- Live feedback and analysis shared across all workflows.
+- Three primary workspaces: **Openings**, **Study**, and **Review**.
+- Responsive two-column layout that collapses to one column on smaller screens.
+
+Drag-and-drop promotions currently default to a queen.
 
 ## Run Locally
 
@@ -15,16 +96,12 @@ If `node` and `pnpm` are not on PATH in Codex Desktop, use the bundled Node runt
 
 1. Create a Supabase project.
 2. Run `supabase/schema.sql` in the Supabase SQL editor.
-3. Copy `.env.example` to `.env.local`.
-4. Fill in `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
+3. Run `supabase/migrations/202608280001_guided_repertoire.sql` to add versioned repertoire content, publishing, and guided learner state.
+4. Add the first content editor manually with `insert into public.content_editors (user_id) values ('<AUTH_USER_UUID>');`.
+5. Copy `.env.example` to `.env.local`.
+6. Fill in `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
 
 Without these variables, the app still runs, but account sync is disabled and the login panel explains what is missing.
-
-## Modes
-
-- Openings: train built-in White and Black repertoire lines.
-- Review: paste PGN, load it, and step through replay positions, or switch to Play vs Stockfish for an engine training game.
-- Position analysis: compare the current board position with the Stockfish worker.
 
 ## Verification
 

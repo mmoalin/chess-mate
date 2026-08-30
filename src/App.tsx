@@ -1,11 +1,16 @@
 import type { User } from '@supabase/supabase-js';
-import { BookOpen, Brain, ChevronLeft, ChevronRight, ClipboardList, List, RotateCcw } from 'lucide-react';
+import { BookOpen, Brain, ChevronLeft, ChevronRight, ClipboardList, Home, List, Map as MapIcon, RotateCcw, Shield } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChessBoardUI } from './components/ChessBoardUI';
 import { AuthPanel } from './components/AuthPanel';
 import { GameManager } from './core/gameManager';
 import type { BoardOrientation, GameMode } from './core/types';
 import { starterRepertoires } from './data/repertoires';
+import { recommendGuidedNextActivity } from './domain/repertoire/recommendations';
+import { matchPgnToRepertoire } from './domain/repertoire/pgn';
+import { buildPositionKey } from './domain/repertoire/positionKey';
+import { classifyMove, createInitialMastery, scheduleReview } from './domain/repertoire/training';
+import type { LearnerProfile, LearningAttempt, MasteryState, RepertoireBacklogItem, RepertoireGraph, RepertoireSelection } from './domain/repertoire/types';
 import { calculateModuleProgress, starterCurriculumModules } from './features/curriculum/curriculum';
 import { getStudyChallenge } from './features/curriculum/studyChallenges';
 import type { CurriculumTaskProgress } from './features/curriculum/types';
@@ -20,12 +25,20 @@ import {
 import type { CurriculumAttempt, LearnerSetup, ReviewItem } from './features/journey/types';
 import { OpeningTrainer } from './features/openings/openingTrainer';
 import type { CriticalPosition, PositionProgress, RepertoireLine, RepertoireSide, TrainingProgress } from './features/openings/types';
+import { AdminPanel } from './features/guided/AdminPanel';
+import { GuidedOnboarding, type GuidedOnboardingResult } from './features/guided/GuidedOnboarding';
+import { RepertoireMap } from './features/guided/RepertoireMap';
+import { TodayPanel } from './features/guided/TodayPanel';
 import { EngineService } from './services/engineService';
+import { GuidedContentRepository, embeddedRepertoireGraph } from './services/guidedContentRepository';
+import { GuidedLearnerRepository, LOCAL_LEARNER_ID } from './services/guidedLearnerRepository';
 import { createSupabaseBrowserClient, getSupabaseUnavailableReason, SupabasePersistence } from './services/supabasePersistence';
 import './styles.css';
 
 const modes: Array<{ id: GameMode; label: string; icon: React.ComponentType<{ size: number }> }> = [
-  { id: 'opening-trainer', label: 'Openings', icon: Brain },
+  { id: 'today', label: 'Today', icon: Home },
+  { id: 'repertoire', label: 'Repertoire', icon: MapIcon },
+  { id: 'opening-trainer', label: 'Train openings', icon: Brain },
   { id: 'curriculum', label: 'Study', icon: BookOpen },
   { id: 'game-review', label: 'Review', icon: ClipboardList },
 ];
@@ -36,6 +49,8 @@ export default function App() {
   const supabaseClient = useMemo(() => createSupabaseBrowserClient(), []);
   const supabaseUnavailableReason = useMemo(() => getSupabaseUnavailableReason(), []);
   const persistence = useMemo(() => new SupabasePersistence(supabaseClient), [supabaseClient]);
+  const contentRepository = useMemo(() => new GuidedContentRepository(supabaseClient), [supabaseClient]);
+  const learnerRepository = useMemo(() => new GuidedLearnerRepository(supabaseClient), [supabaseClient]);
   const trainer = useMemo(() => new OpeningTrainer(starterRepertoires), []);
 
   const [mode, setMode] = useState<GameMode>('opening-trainer');
@@ -70,11 +85,66 @@ export default function App() {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [activeCriticalPosition, setActiveCriticalPosition] = useState<CriticalPosition | null>(null);
   const [positionProgress, setPositionProgress] = useState<PositionProgress[]>([]);
+  const [repertoireGraph, setRepertoireGraph] = useState<RepertoireGraph>(embeddedRepertoireGraph);
+  const [guidedProfile, setGuidedProfile] = useState<LearnerProfile | null>(null);
+  const [guidedSelections, setGuidedSelections] = useState<RepertoireSelection[]>([]);
+  const [guidedMastery, setGuidedMastery] = useState<MasteryState[]>([]);
+  const [guidedBacklog, setGuidedBacklog] = useState<RepertoireBacklogItem[]>([]);
+  const [isContentEditor, setIsContentEditor] = useState(false);
+  const [contentDraft, setContentDraft] = useState<RepertoireGraph | null>(null);
+  const [adminBusy, setAdminBusy] = useState(false);
+
+  const learnerId = user?.id ?? LOCAL_LEARNER_ID;
+
+  useEffect(() => {
+    void contentRepository.loadPublished().then(setRepertoireGraph).catch(() => setRepertoireGraph(embeddedRepertoireGraph));
+  }, [contentRepository]);
+
+  useEffect(() => {
+    let active = true;
+    const prepare = user ? learnerRepository.sync?.(user.id) ?? Promise.resolve() : Promise.resolve();
+    void prepare.then(() => Promise.all([
+      learnerRepository.loadProfile(learnerId), learnerRepository.loadSelections(learnerId),
+      learnerRepository.loadMastery(learnerId), learnerRepository.loadBacklog(learnerId)
+    ])).then(([profile, selections, mastery, backlog]) => {
+      if (!active) return;
+      setGuidedProfile(profile); setGuidedSelections(selections); setGuidedMastery(mastery); setGuidedBacklog(backlog);
+      if (profile?.onboardingCompleted) setLearnerSetup((current) => current ?? createLegacySetup());
+    }).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not load guided progress.'));
+    if (user) {
+      void contentRepository.isEditor().then((editor) => {
+        if (!active) return;
+        setIsContentEditor(editor);
+        if (editor) void contentRepository.loadDraft().then(setContentDraft).catch(() => undefined);
+      });
+    } else setIsContentEditor(false);
+    return () => { active = false; };
+  }, [contentRepository, learnerId, learnerRepository, user]);
 
   useEffect(() => {
     if (!user) return;
-    void persistence.loadPositionProgress(user.id).then(setPositionProgress).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not load position progress.'));
-  }, [persistence, user]);
+    void Promise.all([persistence.loadPositionProgress(user.id), persistence.loadProgress(user.id)]).then(([positions, lines]) => {
+      setPositionProgress(positions); setLocalProgress(lines);
+      const now = new Date().toISOString();
+      const migrated: MasteryState[] = [];
+      for (const progress of positions) {
+        const node = Object.values(repertoireGraph.positions).find((candidate) => candidate.legacyPositionIds.includes(progress.positionId));
+        if (!node) continue;
+        const state = createInitialMastery({ learnerId: user.id, itemKey: `legacy-position:${progress.positionId}`, positionKey: node.key, now });
+        state.recall = { score: progress.masteryScore, streak: progress.correctCount, intervalDays: Math.max(1, Math.round((new Date(progress.dueAt).getTime() - Date.now()) / 86400000)), status: progress.masteryScore >= 80 ? 'reliable' : 'learning', dueAt: progress.dueAt, lastReviewedAt: progress.lastReviewedAt };
+        migrated.push(state);
+      }
+      for (const progress of lines) {
+        const unit = Object.values(repertoireGraph.learningUnits).find((candidate) => candidate.lineKey === progress.lineId);
+        if (!unit) continue;
+        const state = createInitialMastery({ learnerId: user.id, itemKey: unit.key, positionKey: unit.startPositionKey, now });
+        state.recall = { score: progress.status === 'mastered' || progress.status === 'completed' ? 80 : Math.min(70, progress.correctCount * 10), streak: progress.streak ?? 0, intervalDays: 1, status: progress.status === 'mastered' || progress.status === 'completed' ? 'reliable' : 'learning', dueAt: progress.dueAt ?? now, lastReviewedAt: progress.lastReviewedAt };
+        migrated.push(state);
+      }
+      for (const state of migrated) void learnerRepository.saveMastery(state).catch(() => undefined);
+      if (migrated.length) setGuidedMastery((items) => mergeMastery(items, migrated));
+    }).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not load position progress.'));
+  }, [learnerRepository, persistence, repertoireGraph, user]);
 
   const sideLines = trainer.linesForSide(side);
   const visibleSideLines =
@@ -116,6 +186,16 @@ export default function App() {
     reviewItems,
     now: new Date().toISOString()
   });
+  const selectedOpeningKeys = guidedSelections.length
+    ? guidedSelections.map((selection) => selection.openingFamilyKey).filter((key) => Boolean(repertoireGraph.openings[key]))
+    : ['white-vienna-main', 'black-caro-kann-main'].filter((key) => Boolean(repertoireGraph.openings[key]));
+  const guidedNextActivity = recommendGuidedNextActivity({
+    graph: repertoireGraph,
+    selectedOpeningKeys,
+    mastery: guidedMastery,
+    backlog: guidedBacklog,
+    now: new Date().toISOString()
+  });
 
   function refresh() {
     setSnapshot(managerRef.current.snapshot());
@@ -139,7 +219,7 @@ export default function App() {
     await persistence.upsertProgress(progress);
   }
 
-  function startLearning() {
+  function createLegacySetup() {
     const setup = createLearnerSetup({
       sidePreference: 'both',
       experienceLevel: 'beginner',
@@ -147,10 +227,85 @@ export default function App() {
       openingStyle: 'active',
       lines: starterRepertoires
     });
+    return setup;
+  }
+
+  function startLearning() {
+    const setup = createLegacySetup();
     setLearnerSetup(setup);
     setMode('opening-trainer');
     setLineId(trainer.findLine('white-vienna-main') ? 'white-vienna-main' : setup.recommendedWhiteLineId);
     setFeedback('Start with the idea, then play the first move when you are ready.');
+  }
+
+  function completeGuidedOnboarding(result: GuidedOnboardingResult) {
+    const setup = createLegacySetup();
+    setLearnerSetup(setup);
+    setGuidedProfile(result.profile);
+    const selections = result.openingFamilyKeys.map((openingFamilyKey) => ({
+      id: createId(), learnerId, openingFamilyKey, preferredEdges: {}, updatedAt: result.profile.updatedAt
+    } satisfies RepertoireSelection));
+    setGuidedSelections(selections);
+    void learnerRepository.saveProfile(result.profile).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not save setup.'));
+    for (const selection of selections) void learnerRepository.saveSelection(selection).catch(() => undefined);
+    const first = selections.find((selection) => repertoireGraph.openings[selection.openingFamilyKey]?.side === 'white')?.openingFamilyKey;
+    if (first) startOpening(first);
+    setMode('opening-trainer');
+    setFeedback('Your repertoire map is ready. Start with the idea, then recall the move from the board.');
+  }
+
+  function startOpening(openingKey: string) {
+    const opening = repertoireGraph.openings[openingKey];
+    if (!opening) return;
+    const line = opening.lineKeys.map((key) => trainer.findLine(key)).find(Boolean);
+    if (line) {
+      setSide(line.side); setOrientation(line.side); setLineId(line.id); resetBoard();
+    }
+    setMode('opening-trainer');
+  }
+
+  function startGuidedTarget(targetKey: string) {
+    const unit = repertoireGraph.learningUnits[targetKey];
+    if (unit) startOpening(unit.openingFamilyKey);
+    else if (repertoireGraph.openings[targetKey]) startOpening(targetKey);
+    else if (repertoireGraph.motifs[targetKey]) {
+      const legacyId = targetKey.replace(/^motif:/, '');
+      const position = starterRepertoires.flatMap((line) => line.criticalPositions ?? []).find((item) => item.id === legacyId);
+      const line = position ? trainer.findLine(position.lineId) : undefined;
+      if (line) { setSide(line.side); setLineId(line.id); setOrientation(line.side); }
+      if (position) { setMode('opening-trainer'); startCriticalPosition(position); }
+      else setMode('game-review');
+    } else setMode('game-review');
+  }
+
+  async function recordGuidedAttempt(input: Omit<LearningAttempt, 'id' | 'learnerId' | 'createdAt'>) {
+    const now = new Date().toISOString();
+    const attempt: LearningAttempt = { ...input, id: createId(), learnerId, createdAt: now };
+    const previous = guidedMastery.find((item) => item.itemKey === input.itemKey) ?? createInitialMastery({ learnerId, itemKey: input.itemKey, positionKey: input.positionKey, now });
+    const next = scheduleReview(previous, attempt);
+    setGuidedMastery((items) => items.some((item) => item.itemKey === next.itemKey) ? items.map((item) => item.itemKey === next.itemKey ? next : item) : [...items, next]);
+    await Promise.all([learnerRepository.appendAttempt(attempt), learnerRepository.saveMastery(next)]);
+  }
+
+  function addGuidedBacklog(input: Omit<RepertoireBacklogItem, 'id' | 'learnerId' | 'status' | 'createdAt'>) {
+    if (guidedBacklog.some((item) => item.positionKey === input.positionKey && item.reason === input.reason)) return;
+    const item: RepertoireBacklogItem = { ...input, id: createId(), learnerId, status: 'new', createdAt: new Date().toISOString() };
+    setGuidedBacklog((items) => [...items, item]);
+    void learnerRepository.saveBacklogItem(item).catch(() => undefined);
+  }
+
+  async function resolveUncoveredMove(input: { fen: string; from: string; to: string; promotion?: string; positionKey: string; familyKey: string; title: string }) {
+    setFeedback('This move is outside your repertoire. Stockfish is checking whether it is still reasonable…');
+    try {
+      const comparison = await engineRef.current.compareMove(input.fen, { from: input.from, to: input.to, promotion: input.promotion }, { depth: 6 });
+      const loss = comparison.delta === null ? undefined : Math.max(0, -comparison.delta);
+      const classification = classifyMove({ graph: repertoireGraph, positionKey: input.positionKey, playedUci: `${input.from}${input.to}${input.promotion ?? ''}`, openingFamilyKey: input.familyKey, engineCentipawnLoss: loss });
+      setFeedback(classification.message);
+      if (classification.kind !== 'reasonable') addGuidedBacklog({ positionKey: input.positionKey, reason: 'forgotten-move', title: input.title });
+    } catch {
+      setFeedback('This move is not covered yet. It was saved as a repertoire gap; engine analysis is optional.');
+      addGuidedBacklog({ positionKey: input.positionKey, reason: 'forgotten-move', title: input.title });
+    }
   }
 
   function upsertLocalProgress(line: RepertoireLine, result: ReturnType<OpeningTrainer['recordMove']>) {
@@ -183,6 +338,12 @@ export default function App() {
   }
 
   function handleMove(from: string, to: string, promotion?: string) {
+    const positionKeyBefore = buildPositionKey(snapshot.fen);
+    const familyKey = activeParentLine?.id ?? activeLine?.id ?? '';
+    const expectedEdge = Object.values(repertoireGraph.edges).find((edge) => edge.from === positionKeyBefore && edge.legacyLineIds.includes(activeLine?.id ?? '') && edge.order === moveIndex);
+    const guidedClassification = familyKey
+      ? classifyMove({ graph: repertoireGraph, positionKey: positionKeyBefore, playedUci: `${from}${to}${promotion ?? ''}`, openingFamilyKey: familyKey, preferredEdgeKey: expectedEdge?.key })
+      : null;
     const move = managerRef.current.attemptMove(from, to, promotion);
     if (!move.ok) {
       setFeedback(move.reason);
@@ -214,6 +375,8 @@ export default function App() {
         addReviewItem({ id: `review-position-${activeCriticalPosition.id}`, sourceType: 'theme', sourceId: activeCriticalPosition.id, title: `Review ${activeLine?.name ?? 'Alien Gambit'} critical position`, prompt: activeCriticalPosition.prompt, themeTags: activeCriticalPosition.themes, dueAt: next.dueAt, status: 'due' });
       }
       setFeedback(result.status === 'correct' ? `Correct. ${activeCriticalPosition.teachingPoint ?? ''}` : `Try again. ${activeCriticalPosition.expectedMoves.join(' or ')}. ${activeCriticalPosition.hint ?? ''}`);
+      const motif = Object.values(repertoireGraph.motifs).find((item) => item.positionKeys.includes(positionKeyBefore));
+      void recordGuidedAttempt({ itemKey: motif?.key ?? `motif:${activeCriticalPosition.id}`, positionKey: positionKeyBefore, dimension: 'tactics', response: move.san, correct: result.status === 'correct', hintUsed: false, revealed: false }).catch(() => undefined);
       if (result.status === 'correct') setActiveCriticalPosition(null);
       refresh();
       return true;
@@ -231,9 +394,12 @@ export default function App() {
             ? { title: 'Why this move?', principle: explanation.principle, summary: explanation.summary }
             : null
         );
+        const unit = Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id && item.edgeKeys.includes(expectedEdge?.key ?? ''));
+        void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch(() => undefined);
       } else {
         const mistake = trainer.commonMistake(activeLine.id, moveIndex);
-        setFeedback(`Try again. Repertoire move: ${result.expectedMove ?? 'none'}.`);
+        const accepted = guidedClassification?.kind === 'alternative' || guidedClassification?.kind === 'transposition' || guidedClassification?.kind === 'reasonable';
+        setFeedback(accepted ? guidedClassification.message : guidedClassification?.message ?? `Try again. Repertoire move: ${result.expectedMove ?? 'none'}.`);
         addReviewItem(
           buildReviewItemFromMistake({
             line: activeLine,
@@ -248,6 +414,14 @@ export default function App() {
             ? { title: 'Common mistake', principle: mistake.principle, summary: mistake.summary }
             : null
         );
+        const unit = Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id && item.startPositionKey === positionKeyBefore)
+          ?? Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id);
+        void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: accepted, hintUsed: Boolean(hintText), revealed: false }).catch(() => undefined);
+        if (guidedClassification?.kind === 'mistake') {
+          addGuidedBacklog({ positionKey: positionKeyBefore, reason: 'forgotten-move', title: `Review ${activeLine.name} after ${move.san}` });
+        } else if (guidedClassification?.kind === 'uncovered') {
+          void resolveUncoveredMove({ fen: snapshot.fen, from, to, promotion, positionKey: positionKeyBefore, familyKey, title: `Review ${activeLine.name} after ${move.san}` });
+        }
       }
       void persistProgress(activeLine, result).catch((error) => setFeedback(error.message));
     }
@@ -394,6 +568,12 @@ export default function App() {
     setReviewPly(managerRef.current.getReplayPositions().length - 1);
     setFeedback('PGN loaded for review.');
     const detection = detectOpeningFromHistory(managerRef.current.snapshot().history, starterRepertoires);
+    let guidedDetection: ReturnType<typeof matchPgnToRepertoire> | null = null;
+    try {
+      guidedDetection = matchPgnToRepertoire({ pgn: pgnInput, graph: repertoireGraph, selectedOpeningFamilyKeys: selectedOpeningKeys });
+    } catch {
+      guidedDetection = null;
+    }
     const detectedLine = starterRepertoires.find((line) => line.id === detection?.lineId);
     setReviewDetection(
       detection && detectedLine
@@ -415,6 +595,18 @@ export default function App() {
         dueAt: new Date().toISOString(),
         status: 'due'
       });
+    }
+    if (guidedDetection?.divergencePly) {
+      const reason = guidedDetection.recommendedAction === 'schedule-tactic' ? 'missed-tactic'
+        : guidedDetection.divergingSide === 'learner' ? 'forgotten-move' : 'opponent-deviation';
+      addGuidedBacklog({
+        positionKey: guidedDetection.lastKnownPositionKey,
+        reason,
+        title: guidedDetection.divergingSide === 'learner'
+          ? `Recall the repertoire move at ply ${guidedDetection.divergencePly}`
+          : `Cover the opponent response at ply ${guidedDetection.divergencePly}`
+      });
+      setFeedback(`Game matched ${guidedDetection.matchedPlyCount} repertoire plies. ${guidedDetection.divergingSide === 'learner' ? 'Your move' : 'The opponent move'} created the first gap.`);
     }
     refresh();
   }
@@ -456,6 +648,8 @@ export default function App() {
       }
     }));
     setStudySubmitted(true);
+    const unit = Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine?.id);
+    if (unit) void recordGuidedAttempt({ itemKey: unit.key, positionKey: unit.startPositionKey, dimension: 'understanding', response: selectedStudyChoice, correct, hintUsed: showStudyHint, revealed: false }).catch(() => undefined);
   }
 
   function stepReview(delta: number) {
@@ -490,12 +684,39 @@ export default function App() {
     }
   }
 
+  async function createContentDraft() {
+    setAdminBusy(true);
+    try {
+      const draft = await contentRepository.clonePublishedToDraft();
+      setContentDraft(draft); setFeedback('Working draft created from the published repertoire.');
+    } catch (error) {
+      setFeedback(error instanceof Error ? error.message : 'Could not create the content draft.');
+    } finally { setAdminBusy(false); }
+  }
+
+  async function saveContentDraft() {
+    if (!contentDraft) return;
+    setAdminBusy(true);
+    try { await contentRepository.saveDraft(contentDraft); setFeedback('Content draft saved.'); }
+    catch (error) { setFeedback(error instanceof Error ? error.message : 'Could not save the content draft.'); }
+    finally { setAdminBusy(false); }
+  }
+
+  async function publishContentDraft() {
+    setAdminBusy(true);
+    try {
+      const published = await contentRepository.publishDraft();
+      setRepertoireGraph(published); setContentDraft(null); setFeedback(`Published repertoire release ${published.release.version}.`); setMode('repertoire');
+    } catch (error) { setFeedback(error instanceof Error ? error.message : 'Could not publish the content draft.'); }
+    finally { setAdminBusy(false); }
+  }
+
   return (
     <main className="app-shell">
       <header className="topbar">
         <div>
           <p className="eyebrow">Chess Opening Trainer</p>
-          <h1>{mode === 'opening-trainer' ? activeLine?.name : modes.find((item) => item.id === mode)?.label}</h1>
+          <h1>{mode === 'opening-trainer' ? activeLine?.name : mode === 'admin' ? 'Content admin' : modes.find((item) => item.id === mode)?.label}</h1>
         </div>
         <div className="topbar-actions">
           <button
@@ -579,21 +800,7 @@ export default function App() {
 
         <aside className="task-dock" aria-label="Task dock">
           {!learnerSetup && (
-            <section className="dock-summary onboarding-panel">
-              <p className="eyebrow">Beginner setup</p>
-              <h2>Set up your training</h2>
-              <p>
-                We will start with one active White line, one Black response, short lessons, and a small daily review queue.
-              </p>
-              <div className="setup-grid">
-                <span>Level: Beginner adult</span>
-                <span>Time: 10 minutes</span>
-                <span>Style: Active but principled</span>
-              </div>
-              <button className="primary-button" type="button" onClick={startLearning}>
-                Start learning
-              </button>
-            </section>
+            <GuidedOnboarding learnerId={learnerId} openings={Object.values(repertoireGraph.openings)} onComplete={completeGuidedOnboarding} />
           )}
 
           {learnerSetup && nextActivity && (
@@ -654,7 +861,14 @@ export default function App() {
                 </button>
               );
             })}
+            {isContentEditor && <button className={mode === 'admin' ? 'active' : ''} type="button" onClick={() => setMode('admin')} title="Admin"><Shield size={17} />Admin</button>}
           </nav>
+
+          {learnerSetup && mode === 'today' && <TodayPanel next={guidedNextActivity} mastery={guidedMastery} backlog={guidedBacklog} onStart={startGuidedTarget} />}
+
+          {learnerSetup && mode === 'repertoire' && <RepertoireMap graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} />}
+
+          {learnerSetup && mode === 'admin' && isContentEditor && <AdminPanel draft={contentDraft} busy={adminBusy} onCreateDraft={createContentDraft} onChange={setContentDraft} onSave={saveContentDraft} onPublish={publishContentDraft} onPreviewPosition={(fen) => { managerRef.current.reset(fen); refresh(); }} />}
 
           {learnerSetup && mode === 'opening-trainer' && (
             <section className="dock-panel">
@@ -980,4 +1194,17 @@ async function copyTextToClipboard(text: string): Promise<void> {
   const copied = document.execCommand('copy');
   textarea.remove();
   if (!copied) throw new Error('Clipboard access unavailable.');
+}
+
+function createId(): string {
+  return globalThis.crypto?.randomUUID?.() ?? `guided-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
+function mergeMastery(current: MasteryState[], incoming: MasteryState[]): MasteryState[] {
+  const merged = new Map(current.map((item) => [item.itemKey, item]));
+  for (const item of incoming) {
+    const existing = merged.get(item.itemKey);
+    if (!existing || item.updatedAt >= existing.updatedAt) merged.set(item.itemKey, item);
+  }
+  return Array.from(merged.values());
 }

@@ -119,6 +119,26 @@ export const starterRepertoires: RepertoireLine[] = [
     commonMistakes: [
       { moveIndex: 2, principle: 'avoid drift', summary: 'Early queen moves usually give Black easy developing tempi.' },
       { moveIndex: 4, principle: 'prepare breaks', summary: 'Pushing without enough piece support can leave e4 and the king exposed.' }
+    ],
+    deviationPolicies: [
+      { ply: 1, category: 'new-branch', guidance: 'Black declined 1...e5. Keep the e4 center, develop naturally, and treat the result as a new opening branch rather than a failed Vienna.' },
+      { ply: 3, category: 'harmless', guidance: 'Black chose a different setup. Protect e4, finish development, and only play f4 when the center is stable.' }
+    ],
+    criticalPositions: [
+      {
+        id: 'vienna-f4-trigger', lineId: 'white-vienna-main', ply: 4,
+        fen: 'rnbqkb1r/pppp1ppp/5n2/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3',
+        prompt: 'Black has developed naturally. Choose the move that creates the Vienna initiative.', expectedMoves: ['f4'], acceptableMoves: ['Nf3'],
+        themes: ['initiative', 'center-control'], hint: 'Challenge e5 before the position becomes quiet.',
+        teachingPoint: 'f4 is the thematic break, but normal development remains playable when you prefer less risk.'
+      },
+      {
+        id: 'vienna-central-capture', lineId: 'white-vienna-main', ply: 6,
+        fen: 'rnbqkb1r/ppp2ppp/5n2/3pp3/4PP2/2N5/PPPP2PP/R1BQKBNR w KQkq - 0 4',
+        prompt: 'Black struck with ...d5. Resolve the center before continuing the attack.', expectedMoves: ['fxe5'],
+        themes: ['calculation', 'center-control'], hint: 'The e5 pawn is the anchor of Black center.',
+        teachingPoint: 'Opening aggression works only when forcing central replies are calculated first.'
+      }
     ]
   },
   {
@@ -275,6 +295,26 @@ export const starterRepertoires: RepertoireLine[] = [
     commonMistakes: [
       { moveIndex: 5, principle: 'timing', summary: 'Ignoring the central tension can let White choose a more comfortable structure.' },
       { moveIndex: 7, principle: 'piece quality', summary: 'Trapping the bishop behind e6 too early reduces Black light-square control.' }
+    ],
+    deviationPolicies: [
+      { ply: 2, category: 'central-challenge', guidance: 'White did not play d4. Continue with ...d5 when it is sound, develop the light bishop before ...e6, and avoid storing a separate branch for every quiet move.' },
+      { ply: 4, category: 'harmless', guidance: 'White chose a different development order. Maintain the c6–d5 center and develop the light bishop actively before closing it in.' }
+    ],
+    criticalPositions: [
+      {
+        id: 'caro-center-resolution', lineId: 'black-caro-kann-main', ply: 5,
+        fen: 'rnbqkbnr/pp2pppp/2p5/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq - 1 3',
+        prompt: 'White has defended the center. Choose the Caro-Kann structural decision.', expectedMoves: ['dxe4'], acceptableMoves: ['Nf6'],
+        themes: ['center-control', 'pawn-structure'], hint: 'Clarify e4 before developing the bishop outside the chain.',
+        teachingPoint: 'The exchange makes the active bishop development possible; ...Nf6 is playable but belongs to a different structure.'
+      },
+      {
+        id: 'caro-bishop-development', lineId: 'black-caro-kann-main', ply: 7,
+        fen: 'rnbqkbnr/pp2pppp/2p5/8/3PN3/8/PPP2PPP/R1BQKBNR b KQkq - 0 4',
+        prompt: 'Develop the light-squared bishop before building the compact pawn shell.', expectedMoves: ['Bf5'],
+        themes: ['development', 'minor-piece-quality'], hint: 'Do not trap the bishop behind ...e6.',
+        teachingPoint: 'Active piece placement is what makes the Caro-Kann solid rather than passive.'
+      }
     ]
   },
   {
