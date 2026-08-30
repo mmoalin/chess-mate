@@ -87,7 +87,37 @@ export function validateRepertoireGraph(graph: RepertoireGraph): ContentValidati
     if (motif.positionKeys.some((key) => !graph.positions[key])) issues.push(issue('motif-position-missing', 'Tactical motif references a missing position.', motif.key));
   }
 
+  const drillOrders = new Map<string, string>();
+  for (const drill of Object.values(graph.conceptDrills ?? {})) {
+    if (!graph.openings[drill.openingFamilyKey]) issues.push(issue('concept-opening-missing', 'Concept drill references a missing opening.', drill.key));
+    if (!drill.planChoices.some((choice) => choice.correct)) issues.push(issue('concept-correct-plan-missing', 'Concept drill needs a correct plan choice.', drill.key));
+    if (drill.scenarios.length < 2) issues.push(issue('concept-scenarios-missing', 'Concept drill needs two decision scenarios.', drill.key));
+    const orderKey = `${drill.openingFamilyKey}|${drill.order}`;
+    if (drillOrders.has(orderKey)) issues.push(issue('concept-order-collision', 'Two concept drills have the same opening and order.', drill.key));
+    drillOrders.set(orderKey, drill.key);
+    for (const scenario of drill.scenarios) {
+      try {
+        const chess = new Chess(scenario.setupFen);
+        const opponent = moveUci(chess, scenario.opponentMoveUci);
+        if (!opponent) {
+          issues.push(issue('concept-opponent-move-illegal', `Scenario ${scenario.id} has an illegal opponent move.`, drill.key));
+          continue;
+        }
+        for (const candidate of [...scenario.preferredMovesUci, ...scenario.acceptableMovesUci]) {
+          const candidatePosition = new Chess(chess.fen());
+          if (!moveUci(candidatePosition, candidate)) issues.push(issue('concept-candidate-move-illegal', `Scenario ${scenario.id} has an illegal candidate move.`, drill.key));
+        }
+      } catch {
+        issues.push(issue('concept-scenario-fen-invalid', `Scenario ${scenario.id} has an invalid setup position.`, drill.key));
+      }
+    }
+  }
+
   return deduplicate(issues);
+}
+
+function moveUci(chess: Chess, uci: string) {
+  return chess.move({ from: uci.slice(0, 2), to: uci.slice(2, 4), promotion: uci.slice(4) || undefined });
 }
 
 function normalizeSan(value: string): string {

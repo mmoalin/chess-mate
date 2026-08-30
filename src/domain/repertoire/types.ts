@@ -91,6 +91,40 @@ export type DeviationPolicy = {
   guidance: string;
 };
 
+export type PlanChoice = {
+  id: string;
+  label: string;
+  correct: boolean;
+  feedback: string;
+};
+
+export type SparringScenario = {
+  id: string;
+  setupFen: string;
+  opponentMoveUci: string;
+  prompt: string;
+  change: string;
+  preferredMovesUci: string[];
+  acceptableMovesUci: string[];
+  hint: string;
+  teachingPoint: string;
+  watchFor: string;
+};
+
+export type ConceptDrill = {
+  key: string;
+  openingFamilyKey: string;
+  title: string;
+  principle: string;
+  summary: string;
+  themes: string[];
+  depth: LearnerDepth;
+  order: number;
+  planPrompt: string;
+  planChoices: PlanChoice[];
+  scenarios: SparringScenario[];
+};
+
 export type RepertoireGraph = {
   release: ContentRelease;
   positions: Record<PositionKey, PositionNode>;
@@ -100,6 +134,7 @@ export type RepertoireGraph = {
   guidance: Record<string, PositionGuidance>;
   motifs: Record<string, TacticalMotif>;
   deviationPolicies: Record<string, DeviationPolicy>;
+  conceptDrills: Record<string, ConceptDrill>;
 };
 
 export type RepertoireSelection = {

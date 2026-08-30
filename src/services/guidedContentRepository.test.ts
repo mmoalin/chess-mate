@@ -9,6 +9,8 @@ describe('GuidedContentRepository', () => {
     expect(graph.openings['black-caro-kann-main']).toBeDefined();
     expect(Object.keys(graph.deviationPolicies).length).toBeGreaterThan(0);
     expect(Object.values(graph.motifs).some((motif) => motif.key.includes('vienna'))).toBe(true);
+    expect(Object.keys(graph.conceptDrills)).toHaveLength(6);
+    expect(graph.release.schemaVersion).toBe(2);
   });
 
   it('requires Supabase for shared draft creation', async () => {

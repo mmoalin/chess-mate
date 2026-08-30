@@ -19,7 +19,8 @@ const EMPTY_GRAPH: Omit<RepertoireGraph, 'release'> = {
   learningUnits: {},
   guidance: {},
   motifs: {},
-  deviationPolicies: {}
+  deviationPolicies: {},
+  conceptDrills: {}
 };
 
 export function compileLegacyLines(lines: RepertoireLine[]): RepertoireGraph {
@@ -29,7 +30,7 @@ export function compileLegacyLines(lines: RepertoireLine[]): RepertoireGraph {
       version: 1,
       status: 'published',
       title: 'Embedded starter repertoire',
-      schemaVersion: 1
+      schemaVersion: 2
     },
     ...structuredClone(EMPTY_GRAPH)
   };

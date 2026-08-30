@@ -1,4 +1,5 @@
 import { Chessboard } from 'react-chessboard';
+import { Chess } from 'chess.js';
 import type { BoardOrientation } from '../core/types';
 
 type Arrow = {
@@ -37,12 +38,17 @@ export function ChessBoardUI({ fen, orientation, legalTargets, lastMove, arrows 
           lightSquareStyle: { backgroundColor: '#ede7d2' },
           onPieceDrop: ({ sourceSquare, targetSquare }) => {
             if (!targetSquare) return false;
-            return onMoveAttempt(sourceSquare, targetSquare, 'q');
+            return onMoveAttempt(sourceSquare, targetSquare, promotionForMove(fen, sourceSquare, targetSquare));
           }
         }}
       />
     </div>
   );
+}
+
+export function promotionForMove(fen: string, sourceSquare: string, targetSquare: string): string | undefined {
+  const piece = new Chess(fen).get(sourceSquare as Parameters<Chess['get']>[0]);
+  return piece?.type === 'p' && (targetSquare.endsWith('1') || targetSquare.endsWith('8')) ? 'q' : undefined;
 }
 
 function buildSquareStyles(

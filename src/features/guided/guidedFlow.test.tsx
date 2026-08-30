@@ -26,7 +26,20 @@ describe('guided repertoire flow', () => {
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
     await userEvent.click(screen.getByRole('button', { name: /^Today$/i }));
     expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/One clear next action/i);
-    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Continue with the next uncovered repertoire branch/i);
+    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Learn one opening idea, then apply it against two different replies/i);
+  });
+
+  it('starts an idea-first session from Today and checks the plan before board play', async () => {
+    render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: /^Today$/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Start now/i }));
+    expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent(/Plan Lab \+ Adaptive Sparring/i);
+    await userEvent.click(screen.getAllByRole('radio')[0]);
+    await userEvent.click(screen.getByRole('button', { name: /Check plan/i }));
+    expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent(/Plan recognized/i);
+    await userEvent.click(screen.getByRole('button', { name: /Test it on the board/i }));
+    expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent(/More than one sound answer may be accepted/i);
   });
 
   it('restores anonymous onboarding from local storage after remount', async () => {

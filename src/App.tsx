@@ -29,6 +29,8 @@ import { AdminPanel } from './features/guided/AdminPanel';
 import { GuidedOnboarding, type GuidedOnboardingResult } from './features/guided/GuidedOnboarding';
 import { RepertoireMap } from './features/guided/RepertoireMap';
 import { TodayPanel } from './features/guided/TodayPanel';
+import { IdeaTrainingPanel } from './features/guided/IdeaTrainingPanel';
+import { advanceScenario, beginScenarios, completeScenario, createIdeaTrainingSession, evaluateAuthoredMove, evaluateEngineLoss, submitPlanChoice, type IdeaTrainingSession } from './features/guided/ideaTraining';
 import { EngineService } from './services/engineService';
 import { GuidedContentRepository, embeddedRepertoireGraph } from './services/guidedContentRepository';
 import { GuidedLearnerRepository, LOCAL_LEARNER_ID } from './services/guidedLearnerRepository';
@@ -89,12 +91,18 @@ export default function App() {
   const [guidedProfile, setGuidedProfile] = useState<LearnerProfile | null>(null);
   const [guidedSelections, setGuidedSelections] = useState<RepertoireSelection[]>([]);
   const [guidedMastery, setGuidedMastery] = useState<MasteryState[]>([]);
+  const guidedMasteryRef = useRef<MasteryState[]>([]);
   const [guidedBacklog, setGuidedBacklog] = useState<RepertoireBacklogItem[]>([]);
   const [isContentEditor, setIsContentEditor] = useState(false);
   const [contentDraft, setContentDraft] = useState<RepertoireGraph | null>(null);
   const [adminBusy, setAdminBusy] = useState(false);
+  const [activeConceptKey, setActiveConceptKey] = useState('');
+  const [ideaSession, setIdeaSession] = useState<IdeaTrainingSession | null>(null);
 
   const learnerId = user?.id ?? LOCAL_LEARNER_ID;
+  const activeConceptDrill = repertoireGraph.conceptDrills?.[activeConceptKey];
+
+  useEffect(() => { guidedMasteryRef.current = guidedMastery; }, [guidedMastery]);
 
   useEffect(() => {
     if (!supabaseClient) return;
@@ -287,9 +295,39 @@ export default function App() {
     setMode('opening-trainer');
   }
 
+  function loadConceptScenario(drill: NonNullable<typeof activeConceptDrill>, index: number) {
+    const scenario = drill.scenarios[index];
+    if (!scenario) return;
+    managerRef.current.reset(scenario.setupFen);
+    const opponent = managerRef.current.attemptMove(scenario.opponentMoveUci.slice(0, 2), scenario.opponentMoveUci.slice(2, 4), scenario.opponentMoveUci.slice(4) || undefined);
+    setLastMove(opponent.ok ? { from: scenario.opponentMoveUci.slice(0, 2), to: scenario.opponentMoveUci.slice(2, 4) } : null);
+    setFeedback(scenario.prompt);
+    refresh();
+  }
+
+  function startConceptDrill(drillKey: string) {
+    const drill = repertoireGraph.conceptDrills?.[drillKey];
+    if (!drill) return;
+    const opening = repertoireGraph.openings[drill.openingFamilyKey];
+    setActiveConceptKey(drill.key);
+    setIdeaSession(createIdeaTrainingSession(drill));
+    setMode('idea-training');
+    setOrientation(opening?.side ?? 'white');
+    loadConceptScenario(drill, 0);
+  }
+
+  function startIdeasForOpening(openingKey: string) {
+    const drills = Object.values(repertoireGraph.conceptDrills ?? {}).filter((drill) => drill.openingFamilyKey === openingKey).sort((a, b) => a.order - b.order);
+    const next = drills.find((drill) => !guidedMastery.some((item) => item.itemKey === drill.key && item.understanding.status === 'reliable')) ?? drills[0];
+    if (next) startConceptDrill(next.key);
+    else startOpening(openingKey);
+  }
+
   function startGuidedTarget(targetKey: string) {
+    const concept = repertoireGraph.conceptDrills?.[targetKey];
     const unit = repertoireGraph.learningUnits[targetKey];
-    if (unit) startOpening(unit.openingFamilyKey);
+    if (concept) startConceptDrill(concept.key);
+    else if (unit) startOpening(unit.openingFamilyKey);
     else if (repertoireGraph.openings[targetKey]) startOpening(targetKey);
     else if (repertoireGraph.motifs[targetKey]) {
       const legacyId = targetKey.replace(/^motif:/, '');
@@ -301,11 +339,58 @@ export default function App() {
     } else setMode('game-review');
   }
 
+  function checkIdeaPlan() {
+    if (!ideaSession || !activeConceptDrill) return;
+    const next = submitPlanChoice(ideaSession, activeConceptDrill);
+    setIdeaSession(next);
+    if (next.planCorrect !== null) void recordGuidedAttempt({ itemKey: activeConceptDrill.key, positionKey: buildPositionKey(snapshot.fen), dimension: 'understanding', response: next.selectedChoiceId, correct: next.planCorrect, hintUsed: false, revealed: false }).catch(() => undefined);
+  }
+
+  function startIdeaScenarios() {
+    if (!ideaSession || !activeConceptDrill) return;
+    setIdeaSession(beginScenarios(ideaSession));
+    loadConceptScenario(activeConceptDrill, 0);
+  }
+
+  function nextIdeaScenario() {
+    if (!ideaSession || !activeConceptDrill) return;
+    const next = advanceScenario(ideaSession, activeConceptDrill);
+    setIdeaSession(next);
+    if (next.stage === 'scenario') loadConceptScenario(activeConceptDrill, next.scenarioIndex);
+    else setFeedback(`${activeConceptDrill.title} session complete.`);
+  }
+
+  function retryIdeaScenario() {
+    if (!ideaSession || !activeConceptDrill) return;
+    setIdeaSession({ ...ideaSession, currentResult: null, evaluating: false, scenarioResults: ideaSession.scenarioResults.slice(0, -1) });
+    loadConceptScenario(activeConceptDrill, ideaSession.scenarioIndex);
+  }
+
+  async function evaluateIdeaMove(fen: string, playedUci: string) {
+    if (!ideaSession || !activeConceptDrill) return;
+    const scenario = activeConceptDrill.scenarios[ideaSession.scenarioIndex];
+    if (!scenario) return;
+    const authored = evaluateAuthoredMove(playedUci, scenario.preferredMovesUci, scenario.acceptableMovesUci);
+    let result = authored;
+    if (!result) {
+      try {
+        const comparison = await engineRef.current.compareMove(fen, { from: playedUci.slice(0, 2), to: playedUci.slice(2, 4), promotion: playedUci.slice(4) || undefined }, { depth: 6 });
+        result = evaluateEngineLoss(comparison.delta === null ? null : Math.max(0, -comparison.delta));
+      } catch {
+        result = evaluateEngineLoss(null);
+      }
+    }
+    setIdeaSession((current) => current ? completeScenario(current, result!) : current);
+    setFeedback(`${result.feedback} ${scenario.teachingPoint}`);
+    if (result.correct !== null) void recordGuidedAttempt({ itemKey: activeConceptDrill.key, positionKey: buildPositionKey(fen), dimension: 'understanding', response: playedUci, correct: result.correct, hintUsed: ideaSession.hintUsed, revealed: ideaSession.revealed }).catch(() => undefined);
+  }
+
   async function recordGuidedAttempt(input: Omit<LearningAttempt, 'id' | 'learnerId' | 'createdAt'>) {
     const now = new Date().toISOString();
     const attempt: LearningAttempt = { ...input, id: createId(), learnerId, createdAt: now };
-    const previous = guidedMastery.find((item) => item.itemKey === input.itemKey) ?? createInitialMastery({ learnerId, itemKey: input.itemKey, positionKey: input.positionKey, now });
+    const previous = guidedMasteryRef.current.find((item) => item.itemKey === input.itemKey) ?? createInitialMastery({ learnerId, itemKey: input.itemKey, positionKey: input.positionKey, now });
     const next = scheduleReview(previous, attempt);
+    guidedMasteryRef.current = guidedMasteryRef.current.some((item) => item.itemKey === next.itemKey) ? guidedMasteryRef.current.map((item) => item.itemKey === next.itemKey ? next : item) : [...guidedMasteryRef.current, next];
     setGuidedMastery((items) => items.some((item) => item.itemKey === next.itemKey) ? items.map((item) => item.itemKey === next.itemKey ? next : item) : [...items, next]);
     await Promise.all([learnerRepository.appendAttempt(attempt), learnerRepository.saveMastery(next)]);
   }
@@ -361,7 +446,12 @@ export default function App() {
   }
 
   function handleMove(from: string, to: string, promotion?: string) {
+    if (mode === 'idea-training' && ideaSession && (ideaSession.evaluating || ideaSession.currentResult)) {
+      setFeedback('Use the coaching card before making another move.');
+      return false;
+    }
     const positionKeyBefore = buildPositionKey(snapshot.fen);
+    const fenBefore = snapshot.fen;
     const familyKey = activeParentLine?.id ?? activeLine?.id ?? '';
     const expectedEdge = Object.values(repertoireGraph.edges).find((edge) => edge.from === positionKeyBefore && edge.legacyLineIds.includes(activeLine?.id ?? '') && edge.order === moveIndex);
     const guidedClassification = familyKey
@@ -374,6 +464,13 @@ export default function App() {
     }
 
     setLastMove({ from, to });
+
+    if (mode === 'idea-training' && ideaSession?.stage === 'scenario' && activeConceptDrill) {
+      setIdeaSession({ ...ideaSession, evaluating: true });
+      void evaluateIdeaMove(fenBefore, `${from}${to}${promotion ?? ''}`);
+      refresh();
+      return true;
+    }
 
     if (activeCriticalPosition) {
       const result = trainer.evaluateCriticalMove(activeCriticalPosition, move.san);
@@ -739,7 +836,7 @@ export default function App() {
       <header className="topbar">
         <div>
           <p className="eyebrow">Chess Opening Trainer</p>
-          <h1>{mode === 'opening-trainer' ? activeLine?.name : mode === 'admin' ? 'Content admin' : modes.find((item) => item.id === mode)?.label}</h1>
+          <h1>{mode === 'opening-trainer' ? activeLine?.name : mode === 'idea-training' ? activeConceptDrill?.title : mode === 'admin' ? 'Content admin' : modes.find((item) => item.id === mode)?.label}</h1>
         </div>
         <div className="topbar-actions">
           <button
@@ -889,7 +986,23 @@ export default function App() {
 
           {learnerSetup && mode === 'today' && <TodayPanel next={guidedNextActivity} mastery={guidedMastery} backlog={guidedBacklog} onStart={startGuidedTarget} />}
 
-          {learnerSetup && mode === 'repertoire' && <RepertoireMap graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} />}
+          {learnerSetup && mode === 'repertoire' && <RepertoireMap graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} onPracticeIdeas={startIdeasForOpening} />}
+
+          {learnerSetup && mode === 'idea-training' && activeConceptDrill && ideaSession && (
+            <IdeaTrainingPanel
+              drill={activeConceptDrill}
+              session={ideaSession}
+              onSelectPlan={(choiceId) => setIdeaSession({ ...ideaSession, selectedChoiceId: choiceId })}
+              onCheckPlan={checkIdeaPlan}
+              onStartScenarios={startIdeaScenarios}
+              onHint={() => setIdeaSession({ ...ideaSession, hintUsed: true })}
+              onReveal={() => setIdeaSession({ ...ideaSession, hintUsed: true, revealed: true })}
+              onNext={nextIdeaScenario}
+              onRetryScenario={retryIdeaScenario}
+              onRestart={() => startConceptDrill(activeConceptDrill.key)}
+              onLinePractice={() => startOpening(activeConceptDrill.openingFamilyKey)}
+            />
+          )}
 
           {learnerSetup && mode === 'admin' && isContentEditor && <AdminPanel draft={contentDraft} busy={adminBusy} onCreateDraft={createContentDraft} onChange={setContentDraft} onSave={saveContentDraft} onPublish={publishContentDraft} onPreviewPosition={(fen) => { managerRef.current.reset(fen); refresh(); }} />}
 

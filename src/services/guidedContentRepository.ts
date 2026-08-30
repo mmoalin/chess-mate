@@ -1,5 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { starterRepertoires } from '../data/repertoires';
+import { starterConceptDrills } from '../data/conceptDrills';
 import { compileLegacyLines } from '../domain/repertoire/graph';
 import type { ContentRepository } from '../domain/repertoire/repositories';
 import type { RepertoireGraph } from '../domain/repertoire/types';
@@ -9,6 +10,7 @@ import { GuidedBrowserStore } from './guidedStorage';
 type ReleaseRow = { id: string; version: number; status: 'draft' | 'published' | 'archived'; title: string; schema_version: number; published_at?: string | null };
 
 export const embeddedRepertoireGraph = compileLegacyLines(starterRepertoires);
+embeddedRepertoireGraph.conceptDrills = Object.fromEntries(starterConceptDrills.map((drill) => [drill.key, drill]));
 
 export class GuidedContentRepository implements ContentRepository {
   constructor(private readonly client: SupabaseClient | null, private readonly store = new GuidedBrowserStore()) {}
@@ -19,7 +21,7 @@ export class GuidedContentRepository implements ContentRepository {
         const { data, error } = await this.client.from('content_releases').select('*').eq('status', 'published').maybeSingle();
         if (error) throw error;
         if (data) {
-          const graph = await this.loadRelease(data as ReleaseRow);
+          const graph = withStarterConcepts(await this.loadRelease(data as ReleaseRow));
           if (validateRepertoireGraph(graph).length === 0) {
             await this.store.put('content:published', graph);
             return graph;
@@ -29,14 +31,14 @@ export class GuidedContentRepository implements ContentRepository {
         // The last valid cache is the intentional network/schema fallback.
       }
     }
-    return (await this.store.get<RepertoireGraph>('content:published')) ?? embeddedRepertoireGraph;
+    return withStarterConcepts((await this.store.get<RepertoireGraph>('content:published')) ?? embeddedRepertoireGraph);
   }
 
   async loadDraft(): Promise<RepertoireGraph | null> {
     if (!this.client || !(await this.isEditor())) return null;
     const { data, error } = await this.client.from('content_releases').select('*').eq('status', 'draft').maybeSingle();
     if (error) throw error;
-    return data ? this.loadRelease(data as ReleaseRow) : null;
+    return data ? withStarterConcepts(await this.loadRelease(data as ReleaseRow)) : null;
   }
 
   async saveDraft(graph: RepertoireGraph): Promise<void> {
@@ -44,6 +46,7 @@ export class GuidedContentRepository implements ContentRepository {
     const issues = validateRepertoireGraph(graph);
     if (issues.length) throw new Error(issues.map((issue) => issue.message).join(' '));
     const releaseId = graph.release.id;
+    await checked(this.client.from('content_releases').update({ schema_version: Math.max(2, graph.release.schemaVersion) }).eq('id', releaseId));
     await this.clearDraftContent(releaseId);
 
     await checked(this.client.from('repertoire_positions').insert(Object.values(graph.positions).map((node) => ({
@@ -84,6 +87,12 @@ export class GuidedContentRepository implements ContentRepository {
     await checked(this.client.from('tactical_motif_positions').insert(Object.values(graph.motifs).flatMap((motif) =>
       motif.positionKeys.map((positionKey) => ({ release_id: releaseId, motif_key: motif.key, position_key: positionKey }))
     )));
+    const conceptRows = Object.values(graph.conceptDrills ?? {}).map((drill) => ({
+      release_id: releaseId, stable_key: drill.key, opening_family_key: drill.openingFamilyKey, title: drill.title,
+      principle: drill.principle, summary: drill.summary, themes: drill.themes, depth: drill.depth, sort_order: drill.order,
+      plan_prompt: drill.planPrompt, plan_choices: drill.planChoices, scenarios: drill.scenarios
+    }));
+    if (conceptRows.length) await checked(this.client.from('concept_drills').insert(conceptRows));
   }
 
   async clonePublishedToDraft(): Promise<RepertoireGraph> {
@@ -118,19 +127,19 @@ export class GuidedContentRepository implements ContentRepository {
 
   private async loadRelease(release: ReleaseRow): Promise<RepertoireGraph> {
     if (!this.client) return embeddedRepertoireGraph;
-    const [positions, openings, edges, units, steps, guidance, policies, motifs, motifPositions] = await Promise.all([
+    const [positions, openings, edges, units, steps, guidance, policies, motifs, motifPositions, conceptDrills] = await Promise.all([
       selectRows(this.client, 'repertoire_positions', release.id), selectRows(this.client, 'opening_families', release.id),
       selectRows(this.client, 'repertoire_edges', release.id), selectRows(this.client, 'learning_units', release.id),
       selectRows(this.client, 'learning_unit_steps', release.id), selectRows(this.client, 'position_guidance', release.id),
       selectRows(this.client, 'deviation_policies', release.id), selectRows(this.client, 'tactical_motifs', release.id),
-      selectRows(this.client, 'tactical_motif_positions', release.id)
+      selectRows(this.client, 'tactical_motif_positions', release.id), selectRows(this.client, 'concept_drills', release.id)
     ]);
-    return rowsToGraph(release, { positions, openings, edges, units, steps, guidance, policies, motifs, motifPositions });
+    return rowsToGraph(release, { positions, openings, edges, units, steps, guidance, policies, motifs, motifPositions, conceptDrills });
   }
 
   private async clearDraftContent(releaseId: string): Promise<void> {
     if (!this.client) return;
-    for (const table of ['tactical_motif_positions', 'position_guidance', 'deviation_policies', 'learning_unit_steps', 'tactical_motifs', 'learning_units', 'repertoire_edges', 'opening_families', 'repertoire_positions']) {
+    for (const table of ['concept_drills', 'tactical_motif_positions', 'position_guidance', 'deviation_policies', 'learning_unit_steps', 'tactical_motifs', 'learning_units', 'repertoire_edges', 'opening_families', 'repertoire_positions']) {
       await checked(this.client.from(table).delete().eq('release_id', releaseId));
     }
   }
@@ -150,7 +159,7 @@ async function checked(promise: PromiseLike<{ error: unknown }>): Promise<void> 
 function rowsToGraph(release: ReleaseRow, rows: Record<string, any[]>): RepertoireGraph {
   const graph: RepertoireGraph = {
     release: { id: release.id, version: release.version, status: release.status, title: release.title, schemaVersion: release.schema_version, publishedAt: release.published_at ?? undefined },
-    positions: {}, edges: {}, openings: {}, learningUnits: {}, guidance: {}, motifs: {}, deviationPolicies: {}
+    positions: {}, edges: {}, openings: {}, learningUnits: {}, guidance: {}, motifs: {}, deviationPolicies: {}, conceptDrills: {}
   };
   for (const row of rows.positions) graph.positions[row.stable_key] = { key: row.stable_key, fen: row.fen, sideToMove: row.side_to_move, openingFamilyKeys: row.opening_family_keys ?? [], legacyPositionIds: row.legacy_position_ids ?? [] };
   for (const row of rows.openings) graph.openings[row.stable_key] = { key: row.stable_key, name: row.name, side: row.side, context: row.context, rootPositionKey: row.root_position_key, eco: row.eco ?? undefined, summary: row.summary, tags: row.tags ?? [], recommendedDepths: row.recommended_depths ?? [], lineKeys: row.line_keys ?? [] };
@@ -159,5 +168,12 @@ function rowsToGraph(release: ReleaseRow, rows: Record<string, any[]>): Repertoi
   for (const row of rows.guidance) graph.guidance[row.stable_key] = { key: row.stable_key, positionKey: row.position_key, edgeKey: row.edge_key ?? undefined, kind: row.kind, title: row.title, text: row.body };
   for (const row of rows.policies) graph.deviationPolicies[row.stable_key] = { key: row.stable_key, positionKey: row.position_key, moveUci: row.move_uci ?? undefined, category: row.category, guidance: row.guidance };
   for (const row of rows.motifs) graph.motifs[row.stable_key] = { key: row.stable_key, title: row.title, pattern: row.pattern, trigger: row.trigger_text, execution: row.execution, prerequisites: row.prerequisites, limitation: row.limitation, difficulty: row.difficulty, positionKeys: rows.motifPositions.filter((link) => link.motif_key === row.stable_key).map((link) => link.position_key) };
+  for (const row of rows.conceptDrills ?? []) graph.conceptDrills[row.stable_key] = { key: row.stable_key, openingFamilyKey: row.opening_family_key, title: row.title, principle: row.principle, summary: row.summary, themes: row.themes ?? [], depth: row.depth, order: row.sort_order, planPrompt: row.plan_prompt, planChoices: row.plan_choices ?? [], scenarios: row.scenarios ?? [] };
   return graph;
+}
+
+function withStarterConcepts(graph: RepertoireGraph): RepertoireGraph {
+  if (Object.keys(graph.conceptDrills ?? {}).length) return graph;
+  const compatible = starterConceptDrills.filter((drill) => Boolean(graph.openings[drill.openingFamilyKey]));
+  return { ...graph, conceptDrills: Object.fromEntries(compatible.map((drill) => [drill.key, drill])) };
 }

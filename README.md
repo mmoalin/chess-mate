@@ -97,9 +97,10 @@ If `node` and `pnpm` are not on PATH in Codex Desktop, use the bundled Node runt
 1. Create a Supabase project.
 2. Run `supabase/schema.sql` in the Supabase SQL editor.
 3. Run `supabase/migrations/202608280001_guided_repertoire.sql` to add versioned repertoire content, publishing, and guided learner state.
-4. Add the first content editor manually with `insert into public.content_editors (user_id) values ('<AUTH_USER_UUID>');`.
-5. Copy `.env.example` to `.env.local`.
-6. Fill in `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
+4. Run `supabase/migrations/202608300001_concept_drills.sql` to add idea-first Plan Lab and Adaptive Sparring content.
+5. Add the first content editor manually with `insert into public.content_editors (user_id) values ('<AUTH_USER_UUID>');`.
+6. Copy `.env.example` to `.env.local`.
+7. Fill in `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
 
 Without these variables, the app still runs, but account sync is disabled and the login panel explains what is missing.
 
