@@ -1,6 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { describe, expect, it, vi } from 'vitest';
 import { createInitialMastery } from '../domain/repertoire/training';
 import type { LearnerProfile, LearningAttempt, RepertoireBacklogItem, RepertoireSelection } from '../domain/repertoire/types';
+import type { GuidedBrowserStore } from './guidedStorage';
 import { GuidedLearnerRepository, LOCAL_LEARNER_ID } from './guidedLearnerRepository';
 
 describe('GuidedLearnerRepository offline mode', () => {
@@ -20,5 +22,37 @@ describe('GuidedLearnerRepository offline mode', () => {
     expect(await repository.loadAttempts(LOCAL_LEARNER_ID)).toEqual([attempt]);
     expect(await repository.loadMastery(LOCAL_LEARNER_ID)).toEqual([mastery]);
     expect(await repository.loadBacklog(LOCAL_LEARNER_ID)).toEqual([backlog]);
+  });
+
+  it('surfaces Supabase read errors instead of treating them as empty data', async () => {
+    const databaseError = { message: 'guided mastery is unavailable', code: 'PGRST205' };
+    const client = {
+      from: vi.fn(() => ({
+        select: vi.fn(() => ({ eq: vi.fn().mockResolvedValue({ data: null, error: databaseError }) }))
+      }))
+    } as unknown as SupabaseClient;
+    const store = {
+      list: vi.fn().mockResolvedValue([])
+    } as unknown as GuidedBrowserStore;
+
+    const repository = new GuidedLearnerRepository(client, store);
+
+    await expect(repository.loadMastery('user-1')).rejects.toBe(databaseError);
+  });
+
+  it('upserts repertoire selections on their user and opening identity', async () => {
+    const upsert = vi.fn().mockResolvedValue({ error: null });
+    const client = { from: vi.fn(() => ({ upsert })) } as unknown as SupabaseClient;
+    const store = { put: vi.fn().mockResolvedValue(undefined) } as unknown as GuidedBrowserStore;
+    const repository = new GuidedLearnerRepository(client, store);
+    const selection: RepertoireSelection = {
+      id: 'selection-1', learnerId: 'user-1', openingFamilyKey: 'white-vienna-main', preferredEdges: {}, updatedAt: '2026-09-04T10:00:00.000Z'
+    };
+
+    await repository.saveSelection(selection);
+
+    expect(upsert).toHaveBeenCalledWith(expect.objectContaining({
+      user_id: 'user-1', opening_family_key: 'white-vienna-main'
+    }), { onConflict: 'user_id,opening_family_key' });
   });
 });

@@ -11,7 +11,8 @@ export class GuidedLearnerRepository implements LearnerRepository {
   async loadProfile(learnerId: string): Promise<LearnerProfile | null> {
     const local = await this.store.get<LearnerProfile>(`profile:${learnerId}`);
     if (!this.canSync(learnerId)) return local;
-    const { data } = await this.client!.from('learner_profiles').select('*').eq('user_id', learnerId).maybeSingle();
+    const { data, error } = await this.client!.from('learner_profiles').select('*').eq('user_id', learnerId).maybeSingle();
+    if (error) throw error;
     const remote = data ? profileFromRow(data) : null;
     if (remote && (!local || remote.updatedAt >= local.updatedAt)) await this.store.put(`profile:${learnerId}`, remote);
     return remote && (!local || remote.updatedAt >= local.updatedAt) ? remote : local;
@@ -25,7 +26,8 @@ export class GuidedLearnerRepository implements LearnerRepository {
   async loadSelections(learnerId: string): Promise<RepertoireSelection[]> {
     const local = await this.store.list<RepertoireSelection>(`selection:${learnerId}:`);
     if (!this.canSync(learnerId)) return local;
-    const { data } = await this.client!.from('repertoire_selections').select('*').eq('user_id', learnerId);
+    const { data, error } = await this.client!.from('repertoire_selections').select('*').eq('user_id', learnerId);
+    if (error) throw error;
     const merged = mergeLatest(local, (data ?? []).map(selectionFromRow), (item) => item.openingFamilyKey);
     await Promise.all(merged.map((item) => this.store.put(`selection:${learnerId}:${item.openingFamilyKey}`, item)));
     return merged;
@@ -33,13 +35,14 @@ export class GuidedLearnerRepository implements LearnerRepository {
 
   async saveSelection(selection: RepertoireSelection): Promise<void> {
     await this.store.put(`selection:${selection.learnerId}:${selection.openingFamilyKey}`, selection);
-    if (this.canSync(selection.learnerId)) await upsert(this.client!, 'repertoire_selections', selectionToRow(selection));
+    if (this.canSync(selection.learnerId)) await upsert(this.client!, 'repertoire_selections', selectionToRow(selection), 'user_id,opening_family_key');
   }
 
   async loadMastery(learnerId: string): Promise<MasteryState[]> {
     const local = await this.store.list<MasteryState>(`mastery:${learnerId}:`);
     if (!this.canSync(learnerId)) return local;
-    const { data } = await this.client!.from('guided_mastery').select('*').eq('user_id', learnerId);
+    const { data, error } = await this.client!.from('guided_mastery').select('*').eq('user_id', learnerId);
+    if (error) throw error;
     const merged = mergeLatest(local, (data ?? []).map(masteryFromRow), (item) => item.itemKey);
     await Promise.all(merged.map((item) => this.store.put(`mastery:${learnerId}:${item.itemKey}`, item)));
     return merged;
@@ -58,7 +61,8 @@ export class GuidedLearnerRepository implements LearnerRepository {
   async loadAttempts(learnerId: string): Promise<LearningAttempt[]> {
     const local = await this.store.list<LearningAttempt>(`attempt:${learnerId}:`);
     if (!this.canSync(learnerId)) return local;
-    const { data } = await this.client!.from('learning_attempts').select('*').eq('user_id', learnerId);
+    const { data, error } = await this.client!.from('learning_attempts').select('*').eq('user_id', learnerId);
+    if (error) throw error;
     const merged = mergeById(local, (data ?? []).map(attemptFromRow));
     await Promise.all(merged.map((item) => this.store.put(`attempt:${learnerId}:${item.id}`, item)));
     return merged;
@@ -67,7 +71,8 @@ export class GuidedLearnerRepository implements LearnerRepository {
   async loadBacklog(learnerId: string): Promise<RepertoireBacklogItem[]> {
     const local = await this.store.list<RepertoireBacklogItem>(`backlog:${learnerId}:`);
     if (!this.canSync(learnerId)) return local;
-    const { data } = await this.client!.from('repertoire_backlog').select('*').eq('user_id', learnerId);
+    const { data, error } = await this.client!.from('repertoire_backlog').select('*').eq('user_id', learnerId);
+    if (error) throw error;
     const merged = mergeById(local, (data ?? []).map(backlogFromRow));
     await Promise.all(merged.map((item) => this.store.put(`backlog:${learnerId}:${item.id}`, item)));
     return merged;

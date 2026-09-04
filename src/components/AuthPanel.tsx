@@ -1,6 +1,7 @@
 import { LogIn, UserPlus } from 'lucide-react';
 import type { SupabaseClient, User } from '@supabase/supabase-js';
 import { useState } from 'react';
+import { getErrorMessage } from '../core/errors';
 
 type AuthPanelProps = {
   client: SupabaseClient | null;
@@ -11,11 +12,7 @@ type AuthPanelProps = {
 };
 
 function authErrorMessage(error: unknown, fallback: string): string {
-  const message = error instanceof Error
-    ? error.message
-    : typeof error === 'object' && error && 'message' in error
-      ? String(error.message)
-      : '';
+  const message = getErrorMessage(error, '');
   return message === 'Failed to fetch'
     ? 'Unable to reach the account service. Check the Supabase project URL and try again.'
     : message || fallback;

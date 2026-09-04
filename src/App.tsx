@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChessBoardUI } from './components/ChessBoardUI';
 import { AuthPanel } from './components/AuthPanel';
 import { GameManager } from './core/gameManager';
+import { getErrorMessage, reportBackgroundError } from './core/errors';
 import type { BoardOrientation, GameMode } from './core/types';
 import { starterRepertoires } from './data/repertoires';
 import { recommendGuidedNextActivity } from './domain/repertoire/recommendations';
@@ -141,12 +142,12 @@ export default function App() {
       if (!active) return;
       setGuidedProfile(profile); setGuidedSelections(selections); setGuidedMastery(mastery); setGuidedBacklog(backlog);
       if (profile?.onboardingCompleted) setLearnerSetup((current) => current ?? createLegacySetup());
-    }).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not load guided progress.'));
+    }).catch((error) => setFeedback(getErrorMessage(error, 'Could not load guided progress.')));
     if (user) {
       void contentRepository.isEditor().then((editor) => {
         if (!active) return;
         setIsContentEditor(editor);
-        if (editor) void contentRepository.loadDraft().then(setContentDraft).catch(() => undefined);
+        if (editor) void contentRepository.loadDraft().then(setContentDraft).catch((error) => reportBackgroundError('content draft load', error));
       });
     } else setIsContentEditor(false);
     return () => { active = false; };
@@ -172,9 +173,9 @@ export default function App() {
         state.recall = { score: progress.status === 'mastered' || progress.status === 'completed' ? 80 : Math.min(70, progress.correctCount * 10), streak: progress.streak ?? 0, intervalDays: 1, status: progress.status === 'mastered' || progress.status === 'completed' ? 'reliable' : 'learning', dueAt: progress.dueAt ?? now, lastReviewedAt: progress.lastReviewedAt };
         migrated.push(state);
       }
-      for (const state of migrated) void learnerRepository.saveMastery(state).catch(() => undefined);
+      for (const state of migrated) void learnerRepository.saveMastery(state).catch((error) => reportBackgroundError('migrated mastery save', error));
       if (migrated.length) setGuidedMastery((items) => mergeMastery(items, migrated));
-    }).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not load position progress.'));
+    }).catch((error) => setFeedback(getErrorMessage(error, 'Could not load position progress.')));
   }, [learnerRepository, persistence, repertoireGraph, user]);
 
   const sideLines = trainer.linesForSide(side);
@@ -277,8 +278,8 @@ export default function App() {
       id: createId(), learnerId, openingFamilyKey, preferredEdges: {}, updatedAt: result.profile.updatedAt
     } satisfies RepertoireSelection));
     setGuidedSelections(selections);
-    void learnerRepository.saveProfile(result.profile).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not save setup.'));
-    for (const selection of selections) void learnerRepository.saveSelection(selection).catch(() => undefined);
+    void learnerRepository.saveProfile(result.profile).catch((error) => setFeedback(getErrorMessage(error, 'Could not save setup.')));
+    for (const selection of selections) void learnerRepository.saveSelection(selection).catch((error) => reportBackgroundError('repertoire selection save', error));
     const first = selections.find((selection) => repertoireGraph.openings[selection.openingFamilyKey]?.side === 'white')?.openingFamilyKey;
     if (first) startOpening(first);
     setMode('opening-trainer');
@@ -343,7 +344,7 @@ export default function App() {
     if (!ideaSession || !activeConceptDrill) return;
     const next = submitPlanChoice(ideaSession, activeConceptDrill);
     setIdeaSession(next);
-    if (next.planCorrect !== null) void recordGuidedAttempt({ itemKey: activeConceptDrill.key, positionKey: buildPositionKey(snapshot.fen), dimension: 'understanding', response: next.selectedChoiceId, correct: next.planCorrect, hintUsed: false, revealed: false }).catch(() => undefined);
+    if (next.planCorrect !== null) void recordGuidedAttempt({ itemKey: activeConceptDrill.key, positionKey: buildPositionKey(snapshot.fen), dimension: 'understanding', response: next.selectedChoiceId, correct: next.planCorrect, hintUsed: false, revealed: false }).catch((error) => reportBackgroundError('plan attempt save', error));
   }
 
   function startIdeaScenarios() {
@@ -382,7 +383,7 @@ export default function App() {
     }
     setIdeaSession((current) => current ? completeScenario(current, result!) : current);
     setFeedback(`${result.feedback} ${scenario.teachingPoint}`);
-    if (result.correct !== null) void recordGuidedAttempt({ itemKey: activeConceptDrill.key, positionKey: buildPositionKey(fen), dimension: 'understanding', response: playedUci, correct: result.correct, hintUsed: ideaSession.hintUsed, revealed: ideaSession.revealed }).catch(() => undefined);
+    if (result.correct !== null) void recordGuidedAttempt({ itemKey: activeConceptDrill.key, positionKey: buildPositionKey(fen), dimension: 'understanding', response: playedUci, correct: result.correct, hintUsed: ideaSession.hintUsed, revealed: ideaSession.revealed }).catch((error) => reportBackgroundError('idea move save', error));
   }
 
   async function recordGuidedAttempt(input: Omit<LearningAttempt, 'id' | 'learnerId' | 'createdAt'>) {
@@ -399,7 +400,7 @@ export default function App() {
     if (guidedBacklog.some((item) => item.positionKey === input.positionKey && item.reason === input.reason)) return;
     const item: RepertoireBacklogItem = { ...input, id: createId(), learnerId, status: 'new', createdAt: new Date().toISOString() };
     setGuidedBacklog((items) => [...items, item]);
-    void learnerRepository.saveBacklogItem(item).catch(() => undefined);
+    void learnerRepository.saveBacklogItem(item).catch((error) => reportBackgroundError('repertoire backlog save', error));
   }
 
   async function resolveUncoveredMove(input: { fen: string; from: string; to: string; promotion?: string; positionKey: string; familyKey: string; title: string }) {
@@ -490,13 +491,13 @@ export default function App() {
         lastReviewedAt: now.toISOString()
       };
       setPositionProgress((items) => items.some((item) => item.positionId === next.positionId) ? items.map((item) => item.positionId === next.positionId ? next : item) : [...items, next]);
-      void persistence.upsertPositionProgress(next).catch((error) => setFeedback(error instanceof Error ? error.message : 'Could not save position progress.'));
+      void persistence.upsertPositionProgress(next).catch((error) => setFeedback(getErrorMessage(error, 'Could not save position progress.')));
       if (result.status === 'incorrect') {
         addReviewItem({ id: `review-position-${activeCriticalPosition.id}`, sourceType: 'theme', sourceId: activeCriticalPosition.id, title: `Review ${activeLine?.name ?? 'Alien Gambit'} critical position`, prompt: activeCriticalPosition.prompt, themeTags: activeCriticalPosition.themes, dueAt: next.dueAt, status: 'due' });
       }
       setFeedback(result.status === 'correct' ? `Correct. ${activeCriticalPosition.teachingPoint ?? ''}` : `Try again. ${activeCriticalPosition.expectedMoves.join(' or ')}. ${activeCriticalPosition.hint ?? ''}`);
       const motif = Object.values(repertoireGraph.motifs).find((item) => item.positionKeys.includes(positionKeyBefore));
-      void recordGuidedAttempt({ itemKey: motif?.key ?? `motif:${activeCriticalPosition.id}`, positionKey: positionKeyBefore, dimension: 'tactics', response: move.san, correct: result.status === 'correct', hintUsed: false, revealed: false }).catch(() => undefined);
+      void recordGuidedAttempt({ itemKey: motif?.key ?? `motif:${activeCriticalPosition.id}`, positionKey: positionKeyBefore, dimension: 'tactics', response: move.san, correct: result.status === 'correct', hintUsed: false, revealed: false }).catch((error) => reportBackgroundError('critical-position attempt save', error));
       if (result.status === 'correct') setActiveCriticalPosition(null);
       refresh();
       return true;
@@ -515,7 +516,7 @@ export default function App() {
             : null
         );
         const unit = Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id && item.edgeKeys.includes(expectedEdge?.key ?? ''));
-        void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch(() => undefined);
+        void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch((error) => reportBackgroundError('opening recall save', error));
       } else {
         const mistake = trainer.commonMistake(activeLine.id, moveIndex);
         const accepted = guidedClassification?.kind === 'alternative' || guidedClassification?.kind === 'transposition' || guidedClassification?.kind === 'reasonable';
@@ -536,14 +537,14 @@ export default function App() {
         );
         const unit = Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id && item.startPositionKey === positionKeyBefore)
           ?? Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id);
-        void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: accepted, hintUsed: Boolean(hintText), revealed: false }).catch(() => undefined);
+        void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: accepted, hintUsed: Boolean(hintText), revealed: false }).catch((error) => reportBackgroundError('opening deviation save', error));
         if (guidedClassification?.kind === 'mistake') {
           addGuidedBacklog({ positionKey: positionKeyBefore, reason: 'forgotten-move', title: `Review ${activeLine.name} after ${move.san}` });
         } else if (guidedClassification?.kind === 'uncovered') {
           void resolveUncoveredMove({ fen: snapshot.fen, from, to, promotion, positionKey: positionKeyBefore, familyKey, title: `Review ${activeLine.name} after ${move.san}` });
         }
       }
-      void persistProgress(activeLine, result).catch((error) => setFeedback(error.message));
+      void persistProgress(activeLine, result).catch((error) => setFeedback(getErrorMessage(error, 'Could not save training progress.')));
     }
 
     if (mode === 'game-review' && reviewMode === 'engine') {
@@ -567,7 +568,7 @@ export default function App() {
       setAnalysis(applied.ok ? `Engine replied ${applied.san}.` : 'Engine returned an illegal move for this position.');
       refresh();
     } catch (error) {
-      setAnalysis(error instanceof Error ? error.message : 'Engine failed to respond.');
+      setAnalysis(getErrorMessage(error, 'Engine failed to respond.'));
     }
   }
 
@@ -769,7 +770,7 @@ export default function App() {
     }));
     setStudySubmitted(true);
     const unit = Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine?.id);
-    if (unit) void recordGuidedAttempt({ itemKey: unit.key, positionKey: unit.startPositionKey, dimension: 'understanding', response: selectedStudyChoice, correct, hintUsed: showStudyHint, revealed: false }).catch(() => undefined);
+    if (unit) void recordGuidedAttempt({ itemKey: unit.key, positionKey: unit.startPositionKey, dimension: 'understanding', response: selectedStudyChoice, correct, hintUsed: showStudyHint, revealed: false }).catch((error) => reportBackgroundError('study attempt save', error));
   }
 
   function stepReview(delta: number) {
@@ -785,7 +786,7 @@ export default function App() {
       const score = result.score ? `${result.score.type} ${result.score.value}` : 'no score';
       setAnalysis(`Depth ${result.depth ?? '-'} | ${score} | best ${result.bestMove?.from ?? ''}${result.bestMove?.to ?? ''}`);
     } catch (error) {
-      setAnalysis(error instanceof Error ? error.message : 'Analysis failed.');
+      setAnalysis(getErrorMessage(error, 'Analysis failed.'));
     }
   }
 
@@ -810,7 +811,7 @@ export default function App() {
       const draft = await contentRepository.clonePublishedToDraft();
       setContentDraft(draft); setFeedback('Working draft created from the published repertoire.');
     } catch (error) {
-      setFeedback(error instanceof Error ? error.message : 'Could not create the content draft.');
+      setFeedback(getErrorMessage(error, 'Could not create the content draft.'));
     } finally { setAdminBusy(false); }
   }
 
@@ -818,7 +819,7 @@ export default function App() {
     if (!contentDraft) return;
     setAdminBusy(true);
     try { await contentRepository.saveDraft(contentDraft); setFeedback('Content draft saved.'); }
-    catch (error) { setFeedback(error instanceof Error ? error.message : 'Could not save the content draft.'); }
+    catch (error) { setFeedback(getErrorMessage(error, 'Could not save the content draft.')); }
     finally { setAdminBusy(false); }
   }
 
@@ -827,7 +828,7 @@ export default function App() {
     try {
       const published = await contentRepository.publishDraft();
       setRepertoireGraph(published); setContentDraft(null); setFeedback(`Published repertoire release ${published.release.version}.`); setMode('repertoire');
-    } catch (error) { setFeedback(error instanceof Error ? error.message : 'Could not publish the content draft.'); }
+    } catch (error) { setFeedback(getErrorMessage(error, 'Could not publish the content draft.')); }
     finally { setAdminBusy(false); }
   }
 
