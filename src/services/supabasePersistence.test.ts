@@ -50,6 +50,23 @@ describe('Supabase progress mappers', () => {
     expect(mapProgressFromRow(row)).toEqual(progress);
   });
 
+  it('uses non-null adaptive defaults for a basic opening progress save', () => {
+    expect(mapProgressToRow({
+      userId: 'user-1',
+      lineId: 'vienna-main',
+      side: 'white',
+      status: 'needs-review',
+      correctCount: 0,
+      incorrectCount: 1,
+      nextMoveIndex: 0,
+      updatedAt: '2026-08-30T20:00:00.000Z'
+    })).toMatchObject({
+      streak: 0,
+      mistake_count: 0,
+      theme_weaknesses: []
+    });
+  });
+
   it('round-trips curriculum progress rows', () => {
     const progress = {
       userId: 'user-1',

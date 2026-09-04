@@ -21,9 +21,9 @@ export type TrainingProgressRow = {
   next_move_index: number;
   due_at?: string | null;
   last_reviewed_at?: string | null;
-  streak?: number | null;
-  mistake_count?: number | null;
-  theme_weaknesses?: string[] | null;
+  streak: number;
+  mistake_count: number;
+  theme_weaknesses: string[];
   updated_at: string;
 };
 
@@ -70,9 +70,9 @@ export function mapProgressToRow(progress: TrainingProgress): TrainingProgressRo
     next_move_index: progress.nextMoveIndex,
     due_at: progress.dueAt ?? null,
     last_reviewed_at: progress.lastReviewedAt ?? null,
-    streak: progress.streak ?? null,
-    mistake_count: progress.mistakeCount ?? null,
-    theme_weaknesses: progress.themeWeaknesses ?? null,
+    streak: progress.streak ?? 0,
+    mistake_count: progress.mistakeCount ?? 0,
+    theme_weaknesses: progress.themeWeaknesses ?? [],
     updated_at: progress.updatedAt
   };
 }
