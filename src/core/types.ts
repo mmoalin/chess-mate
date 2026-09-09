@@ -1,6 +1,6 @@
 export type BoardOrientation = 'white' | 'black';
 
-export type GameMode = 'today' | 'repertoire' | 'idea-training' | 'opening-trainer' | 'curriculum' | 'game-review' | 'admin';
+export type GameMode = 'today' | 'repertoire' | 'idea-training' | 'connected-lesson' | 'opening-trainer' | 'curriculum' | 'game-review' | 'admin';
 
 export type MoveAttemptResult =
   | { ok: true; san: string; fen: string }

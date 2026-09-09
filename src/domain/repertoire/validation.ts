@@ -1,6 +1,7 @@
 import { Chess } from 'chess.js';
 import { buildPositionKey } from './positionKey';
 import type { RepertoireGraph } from './types';
+import { validateConnectedLesson } from '../../features/connected/session';
 
 export type ContentValidationIssue = {
   code: string;
@@ -10,6 +11,19 @@ export type ContentValidationIssue = {
 
 export function validateRepertoireGraph(graph: RepertoireGraph): ContentValidationIssue[] {
   const issues: ContentValidationIssue[] = [];
+  for (const [key, lesson] of Object.entries(graph.connectedLessons ?? {})) {
+    if (key !== lesson.key || !graph.openings[lesson.openingFamilyKey]?.lineKeys.includes(lesson.lineKey)) issues.push(issue('lesson-opening-missing', 'Connected lesson must reference its source opening and line.', key));
+    for (const message of validateConnectedLesson(lesson)) issues.push(issue('lesson-invalid', message, key));
+    try {
+      const replay = new Chess();
+      for (const san of lesson.openingMoves) {
+        const from = buildPositionKey(replay.fen());
+        replay.move(san);
+        const to = buildPositionKey(replay.fen());
+        if (!Object.values(graph.edges).some((edge) => edge.from === from && edge.to === to && edge.legacyLineIds.includes(lesson.lineKey))) issues.push(issue('lesson-source-mismatch', 'Lesson replay must follow its source repertoire line.', key));
+      }
+    } catch { issues.push(issue('lesson-source-invalid', 'Lesson replay contains an illegal move.', key)); }
+  }
   const seen = new Set<string>();
   if (!Object.keys(graph.openings).length) issues.push(issue('release-openings-missing', 'A release must contain at least one opening family.'));
   if (!Object.keys(graph.positions).length) issues.push(issue('release-positions-missing', 'A release must contain repertoire positions.'));

@@ -2,11 +2,77 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import type { LearnerRepository } from '../domain/repertoire/repositories';
 import type { LearnerProfile, LearningAttempt, MasteryState, RepertoireBacklogItem, RepertoireSelection } from '../domain/repertoire/types';
 import { GuidedBrowserStore } from './guidedStorage';
+import type { LessonSession } from '../features/connected/types';
+import { createInitialMastery, scheduleReview } from '../domain/repertoire/training';
 
 export const LOCAL_LEARNER_ID = 'local';
 
 export class GuidedLearnerRepository implements LearnerRepository {
+  private lessonWrites: Promise<void> = Promise.resolve();
   constructor(private readonly client: SupabaseClient | null, private readonly store = new GuidedBrowserStore()) {}
+
+  async loadLessonSessions(learnerId: string): Promise<LessonSession[]> {
+    await this.lessonWrites.catch(() => undefined);
+    const local = await this.store.list<LessonSession>('lesson-session:' + learnerId + ':');
+    if (!this.canSync(learnerId)) return local;
+    const { data, error } = await this.client!.from('lesson_sessions').select('*').eq('user_id', learnerId);
+    if (error) { if (local.length) return local; throw error; }
+    const remote = (data ?? []).map((row: any) => row.session as LessonSession).filter((s: LessonSession) => s?.learnerId === learnerId && s.answers && Object.values(s.answers).every((a) => a.learnerId === learnerId));
+    const merged = mergeLatest(local, remote, (s) => s.id);
+    const writes: { key: string; value: unknown }[] = merged.map((session) => ({ key: 'lesson-session:' + learnerId + ':' + session.id, value: session }));
+    // A remote session is written after its answers/mastery. Cache those answer
+    // identities so opening it on a second device cannot schedule them again.
+    for (const session of remote) for (const answer of Object.values(session.answers)) {
+      const key = 'attempt:' + learnerId + ':' + answer.id;
+      if (!await this.store.get(key)) writes.push({ key, value: answer });
+    }
+    await this.store.putMany(writes);
+    return merged;
+  }
+
+  saveLessonSession(session: LessonSession): Promise<void> {
+    const operation = this.lessonWrites.catch(() => undefined).then(async () => {
+      const prefix = session.learnerId + ':';
+      const previousSession = await this.store.get<LessonSession>('lesson-session:' + prefix + session.id);
+      if (previousSession && previousSession.updatedAt > session.updatedAt) { await this.flushLessonSync(session.learnerId); return; }
+      const writes: { key: string; value: unknown }[] = [];
+      const masteries = new Map<string, MasteryState>();
+      for (const attempt of Object.values(session.answers)) {
+        if (attempt.learnerId !== session.learnerId) throw new Error('Lesson answer belongs to another learner.');
+        if (await this.store.get('attempt:' + prefix + attempt.id)) continue;
+        const previous = masteries.get(attempt.itemKey) ?? await this.store.get<MasteryState>('mastery:' + prefix + attempt.itemKey)
+          ?? createInitialMastery({ learnerId: session.learnerId, itemKey: attempt.itemKey, positionKey: attempt.positionKey, now: attempt.createdAt });
+        masteries.set(attempt.itemKey, scheduleReview(previous, attempt));
+        writes.push({ key: 'attempt:' + prefix + attempt.id, value: attempt });
+      }
+      for (const mastery of masteries.values()) writes.push({ key: 'mastery:' + prefix + mastery.itemKey, value: mastery });
+      writes.push({ key: 'lesson-session:' + prefix + session.id, value: session }, { key: 'lesson-pending:' + prefix + session.id, value: session });
+      // Session, first answers, scheduling, and retry marker commit together.
+      await this.store.putMany(writes);
+      await this.flushLessonSync(session.learnerId);
+    });
+    this.lessonWrites = operation;
+    return operation;
+  }
+
+  retryLessonSync(learnerId: string): Promise<void> {
+    const operation = this.lessonWrites.catch(() => undefined).then(() => this.flushLessonSync(learnerId));
+    this.lessonWrites = operation;
+    return operation;
+  }
+
+  private async flushLessonSync(learnerId: string): Promise<void> {
+    if (!this.canSync(learnerId)) return;
+    for (const session of await this.store.list<LessonSession>('lesson-pending:' + learnerId + ':')) {
+      for (const attempt of Object.values(session.answers)) {
+        await upsert(this.client!, 'learning_attempts', attemptToRow(attempt));
+        const mastery = await this.store.get<MasteryState>('mastery:' + learnerId + ':' + attempt.itemKey);
+        if (mastery) await upsert(this.client!, 'guided_mastery', masteryToRow(mastery));
+      }
+      await upsert(this.client!, 'lesson_sessions', { id: session.id, user_id: learnerId, lesson_key: session.lessonKey, session, updated_at: session.updatedAt }, 'user_id,id');
+      await this.store.remove('lesson-pending:' + learnerId + ':' + session.id);
+    }
+  }
 
   async loadProfile(learnerId: string): Promise<LearnerProfile | null> {
     const local = await this.store.get<LearnerProfile>(`profile:${learnerId}`);
@@ -42,7 +108,7 @@ export class GuidedLearnerRepository implements LearnerRepository {
     const local = await this.store.list<MasteryState>(`mastery:${learnerId}:`);
     if (!this.canSync(learnerId)) return local;
     const { data, error } = await this.client!.from('guided_mastery').select('*').eq('user_id', learnerId);
-    if (error) throw error;
+    if (error) { if (local.length) return local; throw error; }
     const merged = mergeLatest(local, (data ?? []).map(masteryFromRow), (item) => item.itemKey);
     await Promise.all(merged.map((item) => this.store.put(`mastery:${learnerId}:${item.itemKey}`, item)));
     return merged;
@@ -91,14 +157,25 @@ export class GuidedLearnerRepository implements LearnerRepository {
       await this.saveSelection({ ...selection, id: crypto.randomUUID(), learnerId, updatedAt: new Date().toISOString() });
     }
     for (const attempt of await this.store.list<LearningAttempt>(`attempt:${LOCAL_LEARNER_ID}:`)) {
+      if (attempt.itemKey.startsWith('lesson:')) continue;
       await this.appendAttempt({ ...attempt, learnerId });
     }
     for (const mastery of await this.store.list<MasteryState>(`mastery:${LOCAL_LEARNER_ID}:`)) {
+      if (mastery.itemKey.startsWith('lesson:')) continue;
       await this.saveMastery({ ...mastery, learnerId, updatedAt: new Date().toISOString() });
     }
     for (const backlog of await this.store.list<RepertoireBacklogItem>(`backlog:${LOCAL_LEARNER_ID}:`)) {
       await this.saveBacklogItem({ ...backlog, id: crypto.randomUUID(), learnerId });
     }
+    for (const session of await this.store.list<LessonSession>('lesson-session:' + LOCAL_LEARNER_ID + ':')) {
+      const marker = 'lesson-import:' + learnerId + ':' + session.id;
+      if (await this.store.get(marker)) continue;
+      const imported = { ...session, id: crypto.randomUUID(), learnerId, answers: Object.fromEntries(Object.entries(session.answers).map(([key, a]) => [key, { ...a, id: crypto.randomUUID(), learnerId }])) };
+      // Keep the import identity even if the network fails after the local commit.
+      await this.store.putMany([{ key: marker, value: imported.id }, { key: 'lesson-session:' + learnerId + ':' + imported.id, value: imported }]);
+      await this.saveLessonSession(imported);
+    }
+    await this.retryLessonSync(learnerId);
   }
 
   private canSync(learnerId: string): boolean {

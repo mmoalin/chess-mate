@@ -12,6 +12,7 @@ export type EngineInfo = {
 export type AnalysisOptions = {
   depth?: number;
   moveTimeMs?: number;
+  timeoutMs?: number;
 };
 
 export type EngineAnalysis = EngineInfo & {
@@ -20,6 +21,8 @@ export type EngineAnalysis = EngineInfo & {
 
 type PendingAnalysis = {
   resolve: (analysis: EngineAnalysis) => void;
+  reject: (reason: Error) => void;
+  timer: ReturnType<typeof setTimeout>;
   latestInfo: EngineInfo;
 };
 
@@ -63,13 +66,17 @@ export class EngineService {
   constructor(private readonly workerFactory = createStockfishWorker) {}
 
   async analyze(fen: string, options: AnalysisOptions = {}): Promise<EngineAnalysis> {
+    if (this.pending) throw new Error('Engine is already analysing a position.');
+    if (new Chess(fen).isGameOver()) return { depth: null, score: null, pv: [], bestMove: null };
     const worker = this.ensureWorker();
     const depth = options.depth ?? 10;
     const moveTimeMs = options.moveTimeMs;
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.pending = {
         resolve,
+        reject,
+        timer: setTimeout(() => this.failPending(new Error('Engine timed out. Try again.')), options.timeoutMs ?? 15000),
         latestInfo: { depth: null, score: null, pv: [] }
       };
 
@@ -96,6 +103,13 @@ export class EngineService {
   }
 
   stop() {
+    this.failPending(new DOMException('Engine request cancelled.', 'AbortError'));
+  }
+
+  private failPending(error: Error) {
+    const pending = this.pending;
+    this.pending = null;
+    if (pending) { clearTimeout(pending.timer); pending.reject(error); }
     this.worker?.postMessage('stop');
     this.worker?.terminate();
     this.worker = null;
@@ -105,7 +119,10 @@ export class EngineService {
   private ensureWorker(): Worker {
     if (!this.worker) {
       this.worker = this.workerFactory();
-      this.worker.onmessage = (event: MessageEvent<string>) => {
+      const worker = this.worker;
+      worker.onerror = () => { if (this.worker === worker) this.failPending(new Error('Stockfish could not start.')); };
+      worker.onmessage = (event: MessageEvent<string>) => {
+        if (this.worker !== worker) return;
         this.handleMessage(String(event.data));
       };
     }
@@ -120,9 +137,10 @@ export class EngineService {
     }
 
     const bestMove = parseBestMove(message);
-    if (bestMove && this.pending) {
+    if (message.startsWith('bestmove ') && this.pending) {
       const pending = this.pending;
       this.pending = null;
+      clearTimeout(pending.timer);
       pending.resolve({ ...pending.latestInfo, bestMove });
     }
   }

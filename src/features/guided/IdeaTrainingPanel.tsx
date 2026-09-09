@@ -2,6 +2,7 @@ import type { ConceptDrill } from '../../domain/repertoire/types';
 import { sessionScore, type IdeaTrainingSession } from './ideaTraining';
 
 type Props = {
+  openingName?: string;
   drill: ConceptDrill;
   session: IdeaTrainingSession;
   onSelectPlan: (choiceId: string) => void;
@@ -22,7 +23,7 @@ export function IdeaTrainingPanel(props: Props) {
   return (
     <section className="dock-panel idea-training" aria-label="Idea training">
       <div className="study-kicker-row"><p className="eyebrow">Plan Lab + Adaptive Sparring</p><span className="study-session-badge">5 min</span></div>
-      <h2>{drill.title}</h2>
+      <p className="analysis">{props.openingName} → Plan → Board decisions</p><h2>{drill.title}</h2>
       <div className="tag-cloud" aria-label="Idea themes">{drill.themes.map((theme) => <span key={theme}>{formatTheme(theme)}</span>)}</div>
 
       {session.stage === 'plan' && <>

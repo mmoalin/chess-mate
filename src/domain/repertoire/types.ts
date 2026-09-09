@@ -1,3 +1,5 @@
+import type { ConnectedLesson } from '../../features/connected/types';
+
 export type PositionKey = string;
 
 export type ContentReleaseStatus = 'draft' | 'published' | 'archived';
@@ -126,6 +128,7 @@ export type ConceptDrill = {
 };
 
 export type RepertoireGraph = {
+  connectedLessons?: Record<string, ConnectedLesson>;
   release: ContentRelease;
   positions: Record<PositionKey, PositionNode>;
   edges: Record<string, MoveEdge>;

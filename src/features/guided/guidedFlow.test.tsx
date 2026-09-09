@@ -2,9 +2,12 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import App from '../../App';
+import { Chess } from 'chess.js';
+import { starterRepertoires } from '../../data/repertoires';
+import { positionKeyToFen } from '../../domain/repertoire/positionKey';
 import { GuidedLearnerRepository, LOCAL_LEARNER_ID } from '../../services/guidedLearnerRepository';
 
-vi.mock('react-chessboard', () => ({ Chessboard: ({ options }: { options: { position: string } }) => <div aria-label="Chess board mock" data-position={options.position} /> }));
+vi.mock('react-chessboard', () => ({ Chessboard: ({ options }: { options: { position: string; onPieceDrop: (move: { sourceSquare: string; targetSquare: string }) => boolean } }) => <div aria-label="Chess board mock" data-position={options.position}><button onClick={() => options.onPieceDrop({ sourceSquare: 'd2', targetSquare: 'd3' })}>Play d3</button><button onClick={() => options.onPieceDrop({ sourceSquare: 'f4', targetSquare: 'e5' })}>Play fxe5</button></div> }));
 
 describe('guided repertoire flow', () => {
   it('captures rating and goal, then builds a position-based repertoire map', async () => {
@@ -26,20 +29,62 @@ describe('guided repertoire flow', () => {
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
     await userEvent.click(screen.getByRole('button', { name: /^Today$/i }));
     expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/One clear next action/i);
-    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Learn one opening idea, then apply it against two different replies/i);
+    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Connect the opening to a plan, linked decisions, and a different opponent reply/i);
   });
 
-  it('starts an idea-first session from Today and checks the plan before board play', async () => {
+  it('retains idea-first practice from the opening and checks the plan before board play', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
-    await userEvent.click(screen.getByRole('button', { name: /^Today$/i }));
-    await userEvent.click(screen.getByRole('button', { name: /Start now/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Practise opening plans/i }));
     expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent(/Plan Lab \+ Adaptive Sparring/i);
     await userEvent.click(screen.getAllByRole('radio')[0]);
     await userEvent.click(screen.getByRole('button', { name: /Check plan/i }));
     expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent(/Plan recognized/i);
     await userEvent.click(screen.getByRole('button', { name: /Test it on the board/i }));
     expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent(/More than one sound answer may be accepted/i);
+  });
+
+  it('connects a line to its model continuation, tactical position and plan lesson', async () => {
+    render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    const line = starterRepertoires.find((item) => item.id === 'white-vienna-main')!;
+    const chess = new Chess();
+    line.movesSan.slice(0, line.modelPositionPly).forEach((move) => chess.move(move));
+    await userEvent.click(screen.getByRole('button', { name: /See the resulting position/i }));
+    expect(screen.getByLabelText('Chess board mock')).toHaveAttribute('data-position', chess.fen());
+    line.middlegameIdeas![0].planMoves!.forEach((move) => chess.move(move));
+    await userEvent.click(screen.getByRole('button', { name: 'Show plan move 3: O-O' }));
+    expect(screen.getByLabelText('Chess board mock')).toHaveAttribute('data-position', chess.fen());
+    expect(screen.getByRole('region', { name: /Feedback/i })).toHaveTextContent('example continuation');
+    await userEvent.click(screen.getByRole('button', { name: /Tactical decision 2/i }));
+    expect(screen.getByLabelText('Chess board mock')).toHaveAttribute('data-position', new Chess(line.criticalPositions![1].fen).fen());
+    await userEvent.click(screen.getByRole('button', { name: /^Hint$/i }));
+    expect(screen.getByText(line.criticalPositions![1].hint!)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: /Practise opening plans/i }));
+    expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent('Vienna');
+  });
+
+  it('restores a tactical decision after a wrong move and resets when returning to line training', async () => {
+    render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Tactical decision 2/i }));
+    const position = screen.getByLabelText('Chess board mock').getAttribute('data-position');
+    await userEvent.click(screen.getByRole('button', { name: 'Play d3' }));
+    expect(screen.getByLabelText('Chess board mock')).toHaveAttribute('data-position', position);
+    expect(screen.getByRole('region', { name: /Feedback/i })).toHaveTextContent('Try again');
+    await userEvent.click(screen.getByRole('button', { name: 'Play fxe5' }));
+    expect(screen.getByRole('region', { name: /Feedback/i })).toHaveTextContent('Correct.');
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
+    expect(screen.getByLabelText('Chess board mock')).toHaveAttribute('data-position', new Chess().fen());
+  });
+
+  it('lets learners choose a specific opening plan from the repertoire', async () => {
+    render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: /^Repertoire$/i }));
+    await userEvent.click(screen.getAllByText('3 plan lessons for this opening')[0]);
+    await userEvent.click(screen.getByRole('button', { name: /Convert initiative into development/i }));
+    expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent('Bring pieces before forcing tactics');
   });
 
   it('restores anonymous onboarding from local storage after remount', async () => {
@@ -60,5 +105,9 @@ describe('guided repertoire flow', () => {
     await userEvent.click(screen.getByRole('button', { name: /Load PGN/i }));
     await userEvent.click(screen.getByRole('button', { name: /^Today$/i }));
     expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/1 game gaps/i);
+    const [gap] = await new GuidedLearnerRepository(null).loadBacklog(LOCAL_LEARNER_ID);
+    await userEvent.click(screen.getByRole('button', { name: /Open saved position/i }));
+    expect(screen.getByLabelText('Chess board mock')).toHaveAttribute('data-position', new Chess(positionKeyToFen(gap.positionKey)).fen());
+    expect(screen.getByRole('region', { name: /Feedback/i })).toHaveTextContent('Saved gap:');
   });
 });

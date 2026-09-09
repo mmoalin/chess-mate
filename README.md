@@ -4,6 +4,17 @@ A browser-based chess learning app focused on opening preparation, short strateg
 
 ## Features
 
+### Connected opening-to-middlegame lessons
+
+- Choose **Learn this opening** for Vienna as White or Caro-Kann as Black.
+- Replay the opening or recall your own moves, identify the structure, choose a plan, and play linked decisions with authored opponent replies.
+- Rewind explicitly to test a different opponent reply, then review your first answers and assistance used.
+- Continue against local Stockfish from the final position; **Return to lesson** restores the lesson ending and its summary.
+- Sessions save locally, resume after refresh, and sync when signed in. Today prioritizes unfinished lessons and exact due checkpoints.
+- Only the first graded answer at each checkpoint per run affects mastery. Retries remain practice; unlisted legal moves are ungraded, and reveals do not earn mastery credit.
+
+Connected content uses schema version 3. Apply `202609090001_connected_lessons.sql` before deploying this version. Older releases remain readable and receive the compatible bundled lessons; draft saving and publishing persist the full version-3 content. No existing progress is reset.
+
 ### Opening training
 
 - Practice complete repertoire lines for White or Black on an interactive drag-and-drop board.

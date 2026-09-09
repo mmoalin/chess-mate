@@ -11,6 +11,20 @@ export function resetGuidedMemoryStoreForTests(): void {
 }
 
 export class GuidedBrowserStore {
+  async putMany(items: { key: string; value: unknown }[]): Promise<void> {
+    if (!globalThis.indexedDB) {
+      for (const item of items) memoryFallback.set(item.key, structuredClone(item.value));
+      return;
+    }
+    const database = await openDatabase();
+    await new Promise<void>((resolve, reject) => {
+      const transaction = database.transaction(STORE_NAME, 'readwrite');
+      for (const item of items) transaction.objectStore(STORE_NAME).put(item);
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => reject(transaction.error);
+      transaction.onabort = () => reject(transaction.error);
+    });
+  }
   async get<T>(key: string): Promise<T | null> {
     if (!globalThis.indexedDB) return (memoryFallback.get(key) as T | undefined) ?? null;
     const database = await openDatabase();

@@ -1,0 +1,52 @@
+import type { LearningAttempt, MasteryDimension, PlanChoice } from '../../domain/repertoire/types';
+
+export type LessonQuestion = { id: string; prompt: string; choices: PlanChoice[]; hint: string };
+export type LessonDecision = {
+  id: string;
+  movesBefore: string[];
+  prompt: string;
+  change: string;
+  hint: string;
+  dimension: MasteryDimension;
+  answers: { moveSan: string; repliesSan: string[]; nextId: string | null; feedback: string }[];
+  mistakes: Record<string, string>;
+};
+export type ConnectedLesson = {
+  key: string;
+  version: number;
+  title: string;
+  openingFamilyKey: string;
+  lineKey: string;
+  side: 'white' | 'black';
+  openingMoves: string[];
+  openingExplanations: string[];
+  modelPositionPly: number;
+  introduction: string;
+  takeaway: string;
+  questions: LessonQuestion[];
+  mainStartId: string;
+  transferStartId: string;
+  transferCheckpointMoves: string[];
+  transferExplanation: string;
+  decisions: Record<string, LessonDecision>;
+};
+export type LessonStage = 'opening' | 'question' | 'main' | 'transfer-intro' | 'transfer' | 'summary' | 'sparring';
+export type LessonSession = {
+  id: string;
+  learnerId: string;
+  lessonKey: string;
+  contentVersion: number;
+  stage: LessonStage;
+  checkpointId: string;
+  moves: string[];
+  answers: Record<string, LearningAttempt>;
+  assistance: Record<string, { hint: boolean; revealed: boolean }>;
+  completedCheckpoints: string[];
+  returnDestination: 'today' | 'repertoire' | 'opening-trainer';
+  reviewCheckpointId?: string;
+  openingRecall: boolean;
+  completedAt?: string;
+  supersededAt?: string;
+  practiceStartMoves?: string[];
+  updatedAt: string;
+};

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { EngineService, parseBestMove, parseInfoLine } from './engineService';
 
 describe('engine output parsing', () => {
@@ -35,5 +35,42 @@ describe('engine output parsing', () => {
     const service = new EngineService(() => worker as unknown as Worker);
     const comparison = await service.compareMove('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', { from: 'd2', to: 'd4' }, { depth: 6 });
     expect(comparison.delta).toBe(-30);
+  });
+});
+
+describe('engine lifecycle', () => {
+  const startFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+  function fake() {
+    const worker = { postMessage: vi.fn(), terminate: vi.fn(), onmessage: null as ((event: MessageEvent<string>) => void) | null, onerror: null as (() => void) | null };
+    return { worker, service: new EngineService(() => worker as unknown as Worker) };
+  }
+  it('rejects overlapping requests and settles cancelled promises', async () => {
+    const { service, worker } = fake();
+    const pending = service.analyze(startFen);
+    const cancelled = expect(pending).rejects.toMatchObject({ name: 'AbortError' });
+    await expect(service.analyze(startFen)).rejects.toThrow('already analysing');
+    service.stop();
+    await cancelled;
+    expect(worker.terminate).toHaveBeenCalled();
+  });
+  it('settles a no-move response and never starts a worker for a terminal position', async () => {
+    const { service, worker } = fake();
+    const pending = service.analyze(startFen);
+    worker.onmessage?.({ data: 'bestmove (none)' } as MessageEvent<string>);
+    expect((await pending).bestMove).toBeNull();
+    const factory = vi.fn();
+    const terminal = new EngineService(factory);
+    expect((await terminal.analyze('7k/6Q1/5K2/8/8/8/8/8 b - - 0 1')).bestMove).toBeNull();
+    expect(factory).not.toHaveBeenCalled();
+  });
+  it('times out and rejects worker startup failures', async () => {
+    vi.useFakeTimers();
+    try {
+      const { service, worker } = fake();
+      const timedOut = expect(service.analyze(startFen, { timeoutMs: 20 })).rejects.toThrow('timed out');
+      await vi.advanceTimersByTimeAsync(21); await timedOut;
+      const failed = expect(service.analyze(startFen)).rejects.toThrow('could not start');
+      worker.onerror?.(); await failed;
+    } finally { vi.useRealTimers(); }
   });
 });

@@ -1007,3 +1007,77 @@ textarea {
 
   .onboarding-fields, .admin-inline, .guided-stats { grid-template-columns: 1fr; }
 }
+/* Keep the board, navigation and lesson viewport stable across desktop modes. */
+.app-shell { align-content: start; }
+[hidden] { display: none !important; }
+.lesson-stages { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 18px; }
+.lesson-stages li { border-radius: 14px; background: #eee9dd; padding: 6px 9px; font-size: 0.76rem; color: #4b5548; }
+.lesson-stages li[aria-current="step"] { background: #245b46; color: white; font-weight: 700; }
+.connected-panel { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
+.connected-panel h2, .connected-panel h3, .connected-panel p { margin: 0; }
+.connected-panel p { line-height: 1.55; }
+.connected-panel .button-row { display: flex; gap: 8px; }
+.connected-panel button { white-space: normal; }
+.lesson-results { list-style: none; padding: 0; display: grid; gap: 10px; }
+.lesson-results li { display: grid; gap: 4px; border-bottom: 1px solid #d5ddce; padding-bottom: 10px; }
+.lesson-results span { color: #46614e; font-size: .85rem; }
+.lesson-history summary { cursor: pointer; font-weight: 700; padding: 10px 0; }
+.lesson-inline-feedback { display: none; }
+@media (max-width: 900px) {
+  .lesson-inline-feedback { display: grid; gap: 6px; background: #edf4ed; border-left: 3px solid #497557; padding: 12px; border-radius: 6px; }
+  .connected-workspace .feedback-strip { display: none; }
+}
+.lesson-history .move-strip { flex-wrap: wrap; max-height: 200px; overflow: auto; }
+.lesson-sync-status, .sync-status { background: #fff3d6; color: #684b19; border-radius: 8px; padding: 10px; font-size: .85rem; }
+.sync-status { position: absolute; bottom: 0; left: 0; right: 0; display: flex; align-items: center; gap: 8px; z-index: 6; }
+@media (max-width: 900px) { .sync-status { position: static; } .connected-workspace .task-dock { min-width: 0; } }
+.workspace { width: 100%; }
+.topbar > div:first-child { min-width: 0; }
+.topbar h1 { font-size: clamp(1.15rem, 2vw, 1.65rem); line-height: 1.25; }
+.account-menu { position: relative; }
+.account-menu summary { cursor: pointer; white-space: nowrap; padding: 11px 14px; border: 1px solid #c9c3b6; border-radius: 8px; background: #fffaf0; }
+.account-menu .account-strip { position: absolute; right: 0; top: 48px; width: min(540px, calc(100vw - 40px)); z-index: 20; box-shadow: 0 12px 32px #1f293326; }
+.account-menu .account-strip:has(.auth-grid) { grid-template-columns: 1fr 1fr; }
+.account-menu .auth-message { grid-column: 1 / -1; }
+.opening-bridge { border: 1px solid #b7d4c5; background: #f1f8f4; border-radius: 10px; padding: 14px; margin-top: 14px; }
+.opening-bridge h3, .saved-positions h3 { margin: 0 0 8px; }
+.opening-bridge p { line-height: 1.5; }
+.learning-actions { display: grid; gap: 8px; }
+.learning-actions button { justify-content: flex-start; text-align: left; padding: 10px 12px; }
+.lesson-directory summary { cursor: pointer; padding: 10px 0; color: #24624f; font-weight: 700; }
+.lesson-directory button, .saved-positions button { margin-top: 8px; }
+.button-row { flex-wrap: wrap; }
+button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px solid #2457a6; outline-offset: 3px; }
+@media (min-width: 901px) {
+  .app-shell { height: 100dvh; min-height: 600px; grid-template-rows: 72px minmax(0, 1fr); padding: 16px 24px; gap: 16px; }
+  .topbar { min-height: 0; height: 72px; }
+  .topbar h1 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .workspace { grid-template-columns: minmax(0, 1fr) minmax(380px, 480px); min-height: 0; height: 100%; }
+  .board-column { position: relative; display: flex; flex-direction: column; align-items: flex-start; min-height: 0; height: 100%; }
+  .board-shell { width: min(100%, max(320px, calc(100dvh - 264px))); flex: 0 0 auto; }
+  .feedback-strip { width: 100%; min-height: 116px; flex: 1; overflow: auto; align-items: flex-start; }
+  .feedback-strip > div:first-child { min-width: 0; }
+  .feedback-strip p { line-height: 1.4; overflow-wrap: anywhere; }
+  .feedback-actions { max-width: 170px; flex: 0 0 150px; }
+  .history-drawer { position: absolute; bottom: 0; left: 0; right: 0; max-height: 220px; overflow: auto; z-index: 5; box-shadow: 0 -6px 24px #1f293326; }
+  .task-dock { position: relative; top: 0; height: 100%; min-height: 0; gap: 10px; }
+  .mode-tabs { order: -2; grid-template-columns: repeat(3, minmax(0, 1fr)); flex: 0 0 auto; }
+  .mode-tabs button { padding: 8px; font-size: 0.85rem; min-height: 40px; }
+  .dashboard-toggle-row { order: -1; flex: 0 0 34px; }
+  .dashboard-panel { position: absolute; top: 96px; left: 0; right: 0; z-index: 8; box-shadow: 0 10px 24px #1f293326; }
+  .task-dock:has(.dashboard-panel)::after { content: ''; order: -1; flex: 0 0 34px; }
+  .dock-panel { flex: 1; min-height: 0; max-height: none; overflow-y: auto; scrollbar-gutter: stable; }
+  .guided-today, .repertoire-map { display: block; }
+  .guided-today > *, .repertoire-map > * { margin-bottom: 12px; }
+  .line-progress { position: static; }
+}
+@media (max-width: 900px) {
+  .board-shell { max-width: 560px; align-self: center; }
+  .account-menu .account-strip { grid-template-columns: 1fr; }
+  .mode-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mode-tabs button { padding: 8px; font-size: 0.8rem; }
+}
+
+@media (max-width: 900px) {
+  .account-menu .account-strip { position: fixed; top: 130px; left: 14px; right: 14px; width: auto; max-height: calc(100dvh - 150px); overflow-y: auto; }
+}

@@ -1,12 +1,12 @@
 import { outgoingEdges } from '../../domain/repertoire/graph';
 import type { MasteryState, OpeningFamily, RepertoireGraph } from '../../domain/repertoire/types';
 
-export function RepertoireMap(props: { graph: RepertoireGraph; selectedKeys: string[]; mastery: MasteryState[]; onTrain: (openingKey: string) => void; onPracticeIdeas: (openingKey: string) => void }) {
+export function RepertoireMap(props: { graph: RepertoireGraph; selectedKeys: string[]; mastery: MasteryState[]; onTrain: (openingKey: string) => void; onPracticeIdeas: (openingKey: string) => void; onConcept: (key: string) => void; onLesson?: (key: string) => void }) {
   const selected = props.selectedKeys.map((key) => props.graph.openings[key]).filter((opening): opening is OpeningFamily => Boolean(opening));
   const uncoveredD4 = !selected.some((opening) => opening.context === 'black-vs-d4');
   return (
     <section className="dock-panel repertoire-map" aria-label="Repertoire map">
-      <p className="eyebrow">Repertoire map</p><h2>Your position branches</h2>
+      <p className="eyebrow">Repertoire map</p><h2>Your openings, plans & tactics</h2><p className="analysis">Choose an opening, understand its plan, then test the decisions it creates.</p>
       {selected.map((opening) => {
         const edges = outgoingEdges(props.graph, opening.rootPositionKey, opening.key);
         const units = Object.values(props.graph.learningUnits).filter((unit) => unit.openingFamilyKey === opening.key);
@@ -16,8 +16,10 @@ export function RepertoireMap(props: { graph: RepertoireGraph; selectedKeys: str
           <div><span>{opening.context === 'white' ? 'White' : opening.context.replace('black-vs-', 'Black vs 1.')}</span><strong>{opening.name}</strong><p>{opening.summary}</p></div>
           <div className="branch-meter" aria-label={`${opening.name} progress`}><span style={{ width: `${units.length ? reliable / units.length * 100 : 0}%` }} /></div>
           <small>{edges.length} first branches · {reliable}/{units.length} reliable units</small>
+          {Object.values(props.graph.connectedLessons ?? {}).filter((lesson) => lesson.openingFamilyKey === opening.key).map((lesson) => <button className="primary-button" key={lesson.key} onClick={() => props.onLesson?.(lesson.key)}>Learn this opening</button>)}
+          {concepts.length > 0 && <details className="lesson-directory"><summary>{concepts.length} plan lessons for this opening</summary>{concepts.map((drill) => <button className="theory-branch-button" type="button" key={drill.key} onClick={() => props.onConcept(drill.key)}><span>{drill.title}</span><small>{drill.principle}</small></button>)}</details>}
           {concepts.length > 0 && <button className="primary-button" type="button" onClick={() => props.onPracticeIdeas(opening.key)}>Practice ideas</button>}
-          <button className="secondary-button" type="button" onClick={() => props.onTrain(opening.key)}>Optional line practice</button>
+          <button className="secondary-button" type="button" onClick={() => props.onTrain(opening.key)}>Explore lines & tactical decisions</button>
         </article>;
       })}
       {uncoveredD4 && <article className="repertoire-map-card coverage-gap"><span>Coverage gap</span><strong>Black vs 1.d4</strong><p>You chose “not sure.” This remains visible until a curated response is available.</p></article>}

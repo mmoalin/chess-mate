@@ -21,7 +21,7 @@ export function ChessBoardUI({ fen, orientation, legalTargets, lastMove, arrows 
   const highlightedSquares = buildSquareStyles(legalTargets, lastMove);
 
   return (
-    <div className="board-shell" aria-label="Chess board" style={{ minWidth: 320, minHeight: 320 }}>
+    <div className="board-shell" aria-label="Chess board">
       <Chessboard
         options={{
           position: fen,

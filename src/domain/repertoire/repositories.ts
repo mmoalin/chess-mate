@@ -1,3 +1,4 @@
+import type { LessonSession } from '../../features/connected/types';
 import type {
   LearnerProfile,
   LearningAttempt,
@@ -17,6 +18,9 @@ export interface ContentRepository {
 }
 
 export interface LearnerRepository {
+  loadLessonSessions(learnerId: string): Promise<LessonSession[]>;
+  saveLessonSession(session: LessonSession): Promise<void>;
+  retryLessonSync(learnerId: string): Promise<void>;
   loadProfile(learnerId: string): Promise<LearnerProfile | null>;
   saveProfile(profile: LearnerProfile): Promise<void>;
   loadSelections(learnerId: string): Promise<RepertoireSelection[]>;
