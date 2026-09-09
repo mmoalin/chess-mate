@@ -2,6 +2,17 @@ import { describe, expect, it } from 'vitest';
 import { GameManager } from './gameManager';
 
 describe('GameManager', () => {
+  it('round-trips a study position PGN and preserves it when a later import fails', () => {
+    const manager = new GameManager('8/8/4k3/8/8/4K3/4P3/8 w - - 0 1');
+    manager.applySanMove('Ke4');
+    const original = manager.snapshot();
+    const restored = new GameManager();
+    expect(restored.loadPgn(original.pgn).ok).toBe(true);
+    expect(restored.snapshot().fen).toBe(original.fen);
+    expect(restored.getReplayPositions()).toHaveLength(2);
+    expect(restored.loadPgn('1. nonsense').ok).toBe(false);
+    expect(restored.snapshot()).toEqual(original);
+  });
   it('accepts legal moves and rejects illegal moves without changing position', () => {
     const manager = new GameManager();
 

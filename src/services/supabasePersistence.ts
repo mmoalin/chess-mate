@@ -1,5 +1,6 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import type { PositionProgress, TrainingProgress } from '../features/openings/types';
+import { GuidedBrowserStore } from './guidedStorage';
 
 export type CurriculumProgress = {
   userId: string;
@@ -144,53 +145,58 @@ export function getSupabaseUnavailableReason(): string | undefined {
 }
 
 export class SupabasePersistence {
-  constructor(private readonly client: SupabaseClient | null) {}
+  constructor(private readonly client: SupabaseClient | null, private readonly store = new GuidedBrowserStore()) {}
+
+  private canSync(userId: string) { return Boolean(this.client && userId !== 'local'); }
 
   isConfigured(): boolean {
     return Boolean(this.client);
   }
 
   async upsertProgress(progress: TrainingProgress): Promise<void> {
-    if (!this.client) return;
+    await this.store.put(`line-progress:${progress.userId}:${progress.lineId}`, progress);
+    if (!this.canSync(progress.userId)) return;
 
-    const { error } = await this.client.from('training_progress').upsert(mapProgressToRow(progress));
+    const { error } = await this.client!.from('training_progress').upsert(mapProgressToRow(progress));
     if (error) throw error;
   }
 
   async loadProgress(userId: string): Promise<TrainingProgress[]> {
-    if (!this.client) return [];
+    if (!this.canSync(userId)) return this.store.list(`line-progress:${userId}:`);
 
-    const { data, error } = await this.client.from('training_progress').select('*').eq('user_id', userId);
+    const { data, error } = await this.client!.from('training_progress').select('*').eq('user_id', userId);
     if (error) throw error;
 
     return (data ?? []).map((row) => mapProgressFromRow(row as TrainingProgressRow));
   }
 
   async upsertCurriculumProgress(progress: CurriculumProgress): Promise<void> {
-    if (!this.client) return;
+    await this.store.put(`curriculum-progress:${progress.userId}:${progress.taskId}`, progress);
+    if (!this.canSync(progress.userId)) return;
 
-    const { error } = await this.client.from('curriculum_progress').upsert(mapCurriculumProgressToRow(progress));
+    const { error } = await this.client!.from('curriculum_progress').upsert(mapCurriculumProgressToRow(progress));
     if (error) throw error;
   }
 
   async loadCurriculumProgress(userId: string): Promise<CurriculumProgress[]> {
-    if (!this.client) return [];
+    if (!this.canSync(userId)) return this.store.list(`curriculum-progress:${userId}:`);
 
-    const { data, error } = await this.client.from('curriculum_progress').select('*').eq('user_id', userId);
+    const { data, error } = await this.client!.from('curriculum_progress').select('*').eq('user_id', userId);
     if (error) throw error;
 
     return (data ?? []).map((row) => mapCurriculumProgressFromRow(row as CurriculumProgressRow));
   }
 
   async upsertPositionProgress(progress: PositionProgress): Promise<void> {
-    if (!this.client) return;
-    const { error } = await this.client.from('position_progress').upsert(mapPositionProgressToRow(progress));
+    await this.store.put(`position-progress:${progress.userId}:${progress.positionId}`, progress);
+    if (!this.canSync(progress.userId)) return;
+    const { error } = await this.client!.from('position_progress').upsert(mapPositionProgressToRow(progress));
     if (error) throw error;
   }
 
   async loadPositionProgress(userId: string): Promise<PositionProgress[]> {
-    if (!this.client) return [];
-    const { data, error } = await this.client.from('position_progress').select('*').eq('user_id', userId);
+    if (!this.canSync(userId)) return this.store.list(`position-progress:${userId}:`);
+    const { data, error } = await this.client!.from('position_progress').select('*').eq('user_id', userId);
     if (error) throw error;
     return (data ?? []).map((row) => mapPositionProgressFromRow(row as PositionProgressRow));
   }

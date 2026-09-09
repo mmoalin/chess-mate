@@ -1,8 +1,11 @@
 import type { User } from '@supabase/supabase-js';
 import { BookOpen, Brain, ChevronLeft, ChevronRight, ClipboardList, Home, List, Map as MapIcon, RotateCcw, Shield } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { ChoiceGroup } from './components/ChoiceGroup';
 import { ChessBoardUI } from './components/ChessBoardUI';
 import { AuthPanel } from './components/AuthPanel';
+import { SavedPositionPanel } from './features/guided/SavedPositionPanel';
+import { moveLabel } from './core/notation';
 import { GameManager } from './core/gameManager';
 import { getErrorMessage, reportBackgroundError } from './core/errors';
 import type { BoardOrientation, GameMode } from './core/types';
@@ -13,15 +16,14 @@ import { buildPositionKey, positionKeyToFen } from './domain/repertoire/position
 import { classifyMove, createInitialMastery, scheduleReview } from './domain/repertoire/training';
 import type { LearnerProfile, LearningAttempt, MasteryState, RepertoireBacklogItem, RepertoireGraph, RepertoireSelection } from './domain/repertoire/types';
 import { calculateModuleProgress, starterCurriculumModules } from './features/curriculum/curriculum';
+import { studyPositions } from './features/curriculum/studyPositions';
 import { getStudyChallenge } from './features/curriculum/studyChallenges';
 import type { CurriculumTaskProgress } from './features/curriculum/types';
 import {
   buildReviewItemFromMistake,
   createLearnerSetup,
   detectOpeningFromHistory,
-  recommendNextActivity,
-  scoreCurriculumAttempt,
-  summarizeLearningProgress
+  scoreCurriculumAttempt
 } from './features/journey/journey';
 import type { CurriculumAttempt, LearnerSetup, ReviewItem } from './features/journey/types';
 import { OpeningTrainer } from './features/openings/openingTrainer';
@@ -33,6 +35,7 @@ import { TodayPanel } from './features/guided/TodayPanel';
 import { IdeaTrainingPanel } from './features/guided/IdeaTrainingPanel';
 import { advanceScenario, beginScenarios, completeScenario, createIdeaTrainingSession, evaluateAuthoredMove, evaluateEngineLoss, submitPlanChoice, type IdeaTrainingSession } from './features/guided/ideaTraining';
 import { EngineService } from './services/engineService';
+import { usePositionAnalysis } from './services/usePositionAnalysis';
 import { GuidedContentRepository, embeddedRepertoireGraph } from './services/guidedContentRepository';
 import { GuidedLearnerRepository, LOCAL_LEARNER_ID } from './services/guidedLearnerRepository';
 import { createSupabaseBrowserClient, getSupabaseUnavailableReason, SupabasePersistence } from './services/supabasePersistence';
@@ -59,7 +62,7 @@ export default function App() {
   const learnerRepository = useMemo(() => new GuidedLearnerRepository(supabaseClient), [supabaseClient]);
   const trainer = useMemo(() => new OpeningTrainer(starterRepertoires), []);
 
-  const [mode, setMode] = useState<GameMode>('opening-trainer');
+  const [mode, setMode] = useState<GameMode>('today');
   const [snapshot, setSnapshot] = useState(managerRef.current.snapshot());
   const [side, setSide] = useState<RepertoireSide>('white');
   const [lineId, setLineId] = useState('white-vienna-main');
@@ -74,6 +77,10 @@ export default function App() {
   const [reviewPly, setReviewPly] = useState(0);
   const [reviewMode, setReviewMode] = useState<'pgn' | 'engine'>('pgn');
   const [analysis, setAnalysis] = useState('Engine analysis appears here.');
+  const engineGeneration = useRef(0);
+  const [engineBusy, setEngineBusy] = useState(false);
+  const [engineAwaitingReply, setEngineAwaitingReply] = useState(false);
+  useEffect(() => { setAnalysis(''); setEngineBusy(false); return () => { engineGeneration.current++; engineRef.current.stop(); }; }, [mode, reviewMode]);
   const [user, setUser] = useState<User | null>(null);
   const [learnerSetup, setLearnerSetup] = useState<LearnerSetup | null>(null);
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
@@ -83,12 +90,13 @@ export default function App() {
   const [selectedStudyChoice, setSelectedStudyChoice] = useState('');
   const [studySubmitted, setStudySubmitted] = useState(false);
   const [showStudyHint, setShowStudyHint] = useState(false);
+  const [studyPractice, setStudyPractice] = useState(false);
+  const [studyMoveFeedback, setStudyMoveFeedback] = useState('');
   const [curriculumAttempts, setCurriculumAttempts] = useState<Record<string, CurriculumAttempt>>({});
   const [reviewDetection, setReviewDetection] = useState<{ lineName: string; matchedPlyCount: number; leftBookAtPly: number | null } | null>(
     null
   );
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
-  const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [planPreview, setPlanPreview] = useState(false);
   const [activeCriticalPosition, setActiveCriticalPosition] = useState<CriticalPosition | null>(null);
   const [positionProgress, setPositionProgress] = useState<PositionProgress[]>([]);
@@ -106,12 +114,81 @@ export default function App() {
   const [lessonSessions, setLessonSessions] = useState<LessonSession[]>([]);
   const [connectedSession, setConnectedSession] = useState<LessonSession | null>(null);
   const [syncStatus, setSyncStatus] = useState('');
+  const [activeGapId, setActiveGapId] = useState<string | null>(null);
+  const [pgnError, setPgnError] = useState('');
+  const [workspaceReady, setWorkspaceReady] = useState<string | null>(null);
+  const dockRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const panel = dockRef.current?.querySelector<HTMLElement>('.dock-panel');
+    if (panel) {
+      panel.scrollTop = 0;
+      if (!document.activeElement?.closest('.board-shell')) {
+        const heading = panel.querySelector<HTMLElement>('h2, h3');
+        if (heading) { heading.tabIndex = -1; heading.focus({ preventScroll: true }); }
+      }
+    }
+    if (dockRef.current) dockRef.current.scrollTop = 0;
+  }, [mode, moduleId, activeTaskIndex, activeGapId, activeCriticalPosition?.id]);
+  const positionAnalysis = usePositionAnalysis(snapshot.fen, [user?.id ?? 'local', mode, reviewMode, lineId, moduleId, activeTaskIndex, activeCriticalPosition?.id, activeConceptKey, activeGapId].join(':'));
 
   const learnerId = user?.id ?? LOCAL_LEARNER_ID;
   const learnerIdentity = useRef(learnerId);
   learnerIdentity.current = learnerId;
   const activeConnectedLesson = connectedSession?.learnerId === learnerId ? repertoireGraph.connectedLessons?.[connectedSession.lessonKey] : undefined;
   const activeConceptDrill = repertoireGraph.conceptDrills?.[activeConceptKey];
+  const trainingContext = useRef('');
+  trainingContext.current = [learnerId, mode, lineId, moduleId, activeTaskIndex, activeConceptKey, activeGapId].join(':');
+  const activeGap = guidedBacklog.find((item) => item.id === activeGapId);
+  const relatedGapLesson = activeGap ? Object.values(repertoireGraph.connectedLessons ?? {}).find((lesson) => lesson.openingFamilyKey === activeGap.openingFamilyKey || repertoireGraph.learningUnits[lesson.lineKey]?.startPositionKey === activeGap.positionKey || starterRepertoires.find((line) => line.id === lesson.lineKey)?.criticalPositions?.some((position) => buildPositionKey(position.fen) === activeGap.positionKey)) : undefined;
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('chess-workspace:' + learnerId) ?? 'null');
+      if (saved && (modes.some((item) => item.id === saved.mode) || saved.mode === 'idea-training')) {
+        const result = managerRef.current.loadPgn(saved.pgn ?? '');
+        if (result.ok) {
+          const board = managerRef.current.snapshot();
+          const replay = managerRef.current.getReplayPositions();
+          const ply = Math.max(0, Math.min(saved.reviewPly ?? replay.length - 1, replay.length - 1));
+          setSnapshot(saved.mode === 'game-review' ? { ...board, fen: replay[ply] } : board);
+          setReviewPly(ply);
+        }
+        setMode(saved.mode); setSide(saved.side === 'black' ? 'black' : 'white');
+        setOrientation(saved.orientation === 'black' ? 'black' : 'white');
+        if (trainer.findLine(saved.lineId)) setLineId(saved.lineId);
+        if (starterCurriculumModules.some((module) => module.id === saved.moduleId)) setModuleId(saved.moduleId);
+        setActiveTaskIndex(Math.max(0, saved.taskIndex ?? 0)); setMoveIndex(Math.max(0, saved.moveIndex ?? 0));
+        setReviewMode(saved.reviewMode === 'engine' ? 'engine' : 'pgn');
+        setEngineAwaitingReply(Boolean(saved.engineAwaitingReply));
+        setPgnInput(saved.pgnInput ?? ''); setReviewDetection(saved.reviewDetection ?? null);
+        setActiveGapId(saved.activeGapId ?? null);
+        const critical = starterRepertoires.flatMap((line) => line.criticalPositions ?? []).find((position) => position.id === saved.criticalId);
+        setActiveCriticalPosition(critical ?? null); setPlanPreview(Boolean(saved.planPreview));
+        setFeedback('Your workspace has been restored.');
+        if (saved.mode === 'idea-training') {
+          const drill = embeddedRepertoireGraph.conceptDrills?.[saved.activeConceptKey];
+          if (drill && saved.ideaSession?.drillKey === drill.key) {
+            setActiveConceptKey(drill.key);
+            setIdeaSession({ ...saved.ideaSession, evaluating: false });
+            if (saved.ideaSession.evaluating) {
+              const scenario = drill.scenarios[saved.ideaSession.scenarioIndex];
+              if (scenario) { loadConceptScenario(drill, saved.ideaSession.scenarioIndex); setFeedback('The interrupted scenario is ready to try again.'); }
+            }
+          } else setMode('repertoire');
+        }
+      } else setMode('today');
+    } catch { setMode('today'); }
+    setWorkspaceReady(learnerId);
+  }, [learnerId, trainer]);
+
+  useEffect(() => {
+    if (!learnerSetup || workspaceReady !== learnerId || mode === 'connected-lesson' || mode === 'admin') return;
+    try { localStorage.setItem('chess-workspace:' + learnerId, JSON.stringify({
+      mode, side, orientation, lineId, moduleId, taskIndex: activeTaskIndex, moveIndex,
+      pgn: managerRef.current.snapshot().pgn, reviewPly, reviewMode, engineAwaitingReply, pgnInput, reviewDetection, activeGapId,
+      criticalId: activeCriticalPosition?.id, planPreview, activeConceptKey, ideaSession
+    })); } catch { /* The workspace remains usable when storage is unavailable. */ }
+  }, [learnerId, workspaceReady, learnerSetup, mode, side, orientation, lineId, moduleId, activeTaskIndex, moveIndex, snapshot.fen, reviewPly, reviewMode, engineAwaitingReply, pgnInput, reviewDetection, activeGapId, activeCriticalPosition, planPreview, activeConceptKey, ideaSession]);
 
   function backgroundSyncError(context: string, error: unknown) {
     reportBackgroundError(context, error);
@@ -154,15 +231,16 @@ export default function App() {
     if (!lesson) return;
     const checkpoint = target.startsWith(lesson.key + '/') ? target.slice(lesson.key.length + 1) : undefined;
     const unfinished = checkpoint ? undefined : lessonSessions.filter((s) => s.learnerId === learnerId && s.lessonKey === lesson.key && !s.reviewCheckpointId && !s.supersededAt).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
-    const destination = mode === 'today' || mode === 'repertoire' ? mode : 'opening-trainer';
+    const destination = mode === 'today' || mode === 'repertoire' || (mode === 'game-review' && activeGap) ? mode : 'opening-trainer';
     engineRef.current.stop();
-    trackLessonSession(saved ?? unfinished ?? createLessonSession(lesson, learnerId, destination, checkpoint));
+    trackLessonSession({ ...(saved ?? unfinished ?? createLessonSession(lesson, learnerId, destination, checkpoint)), returnDestination: destination });
     setMode('connected-lesson');
   }
 
   function exitConnectedLesson(destination: LessonSession['returnDestination']) {
     localStorage.removeItem('connected-active:' + learnerId);
     setMode(destination);
+    if (destination === 'game-review' && activeGapId) startGuidedTarget(activeGapId);
     if (destination === 'opening-trainer' && activeConnectedLesson) startOpening(activeConnectedLesson.openingFamilyKey);
   }
 
@@ -218,9 +296,11 @@ export default function App() {
   }, [contentRepository, learnerId, learnerRepository, user]);
 
   useEffect(() => {
-    if (!user) return;
-    void Promise.all([persistence.loadPositionProgress(user.id), persistence.loadProgress(user.id)]).then(([positions, lines]) => {
+    let active = true;
+    void Promise.all([persistence.loadPositionProgress(learnerId), persistence.loadProgress(learnerId)]).then(([positions, lines]) => {
+      if (!active) return;
       setPositionProgress(positions); setLocalProgress(lines);
+      if (!user) return;
       const now = new Date().toISOString();
       const migrated: MasteryState[] = [];
       for (const progress of positions) {
@@ -240,7 +320,8 @@ export default function App() {
       for (const state of migrated) void learnerRepository.saveMastery(state).catch((error) => backgroundSyncError('migrated mastery save', error));
       if (migrated.length) setGuidedMastery((items) => mergeMastery(items, migrated));
     }).catch((error) => setFeedback(getErrorMessage(error, 'Could not load position progress.')));
-  }, [learnerRepository, persistence, repertoireGraph, user]);
+    return () => { active = false; };
+  }, [learnerRepository, persistence, repertoireGraph, user, learnerId]);
 
   const sideLines = trainer.linesForSide(side);
   const visibleSideLines =
@@ -255,6 +336,22 @@ export default function App() {
   const activeModule = starterCurriculumModules.find((module) => module.id === moduleId) ?? starterCurriculumModules[0];
   const activeTask = activeModule?.tasks[activeTaskIndex] ?? activeModule?.tasks[0];
   const activeStudyChallenge = activeTask ? getStudyChallenge(activeTask) : null;
+  const studyPosition = activeTask ? studyPositions[activeTask.id] : undefined;
+  useEffect(() => {
+    if (mode !== 'curriculum' || !studyPosition) return;
+    managerRef.current.reset(studyPosition.fen); setOrientation(studyPosition.side);
+    setActiveCriticalPosition(null); setPlanPreview(false); setLastMove(null);
+    setStudyPractice(false); setStudyMoveFeedback('');
+    setFeedback(studyPosition.prompt); refresh();
+  }, [mode, activeTask?.id]);
+  useEffect(() => {
+    let active = true;
+    void persistence.loadCurriculumProgress(learnerId).then((items) => {
+      if (!active) return;
+      setCurriculumAttempts(Object.fromEntries(items.map((item) => [item.taskId, { taskId: item.taskId, answer: '', score: item.score, attempts: item.attempts, completed: item.status === 'passed', lastReviewedAt: item.lastReviewedAt, feedback: item.status === 'passed' ? 'Previously completed.' : 'Ready to practise again.' }])));
+    }).catch((error) => backgroundSyncError('study progress load', error));
+    return () => { active = false; };
+  }, [learnerId, persistence]);
   const taskProgress: CurriculumTaskProgress[] = activeModule
     ? activeModule.tasks
         .map((task) => curriculumAttempts[task.id])
@@ -268,20 +365,6 @@ export default function App() {
         }))
     : [];
   const activeModuleProgress = activeModule ? calculateModuleProgress(activeModule, taskProgress) : null;
-  const nextActivity = learnerSetup
-    ? recommendNextActivity({
-        setup: learnerSetup,
-        lines: starterRepertoires,
-        reviewItems,
-        now: new Date().toISOString()
-      })
-    : null;
-  const progressSummary = summarizeLearningProgress({
-    lines: starterRepertoires,
-    progress: localProgress,
-    reviewItems,
-    now: new Date().toISOString()
-  });
   const selectedOpeningKeys = guidedSelections.length
     ? guidedSelections.map((selection) => selection.openingFamilyKey).filter((key) => Boolean(repertoireGraph.openings[key]))
     : ['white-vienna-main', 'black-caro-kann-main'].filter((key) => Boolean(repertoireGraph.openings[key]));
@@ -294,26 +377,10 @@ export default function App() {
     now: new Date().toISOString()
   });
 
+  function reviewMoveLabel(ply: number, san = '') { return moveLabel(ply, san, managerRef.current.getReplayPositions()[0]); }
+
   function refresh() {
     setSnapshot(managerRef.current.snapshot());
-  }
-
-  async function persistProgress(line: RepertoireLine, result: ReturnType<OpeningTrainer['recordMove']>) {
-    if (!user) return;
-
-    const now = new Date().toISOString();
-    const progress: TrainingProgress = {
-      userId: user.id,
-      lineId: line.id,
-      side: line.side,
-      status: result.completed ? 'completed' : result.status === 'incorrect' ? 'needs-review' : 'in-progress',
-      correctCount: result.status === 'correct' ? 1 : 0,
-      incorrectCount: result.status === 'incorrect' ? 1 : 0,
-      nextMoveIndex: result.nextMoveIndex,
-      updatedAt: now
-    };
-
-    await persistence.upsertProgress(progress);
   }
 
   function createLegacySetup() {
@@ -325,14 +392,6 @@ export default function App() {
       lines: starterRepertoires
     });
     return setup;
-  }
-
-  function startLearning() {
-    const setup = createLegacySetup();
-    setLearnerSetup(setup);
-    setMode('opening-trainer');
-    setLineId(trainer.findLine('white-vienna-main') ? 'white-vienna-main' : setup.recommendedWhiteLineId);
-    setFeedback('Start with the idea, then play the first move when you are ready.');
   }
 
   function completeGuidedOnboarding(result: GuidedOnboardingResult) {
@@ -347,7 +406,7 @@ export default function App() {
     for (const selection of selections) void learnerRepository.saveSelection(selection).catch((error) => backgroundSyncError('repertoire selection save', error));
     const first = selections.find((selection) => repertoireGraph.openings[selection.openingFamilyKey]?.side === 'white')?.openingFamilyKey;
     if (first) startOpening(first);
-    setMode('opening-trainer');
+    setMode('today');
     setFeedback('Your repertoire map is ready. Start with the idea, then recall the move from the board.');
   }
 
@@ -395,16 +454,23 @@ export default function App() {
   }
 
   function startGuidedTarget(targetKey: string) {
+    if (targetKey.startsWith('study:')) {
+      const taskId = targetKey.slice(6);
+      const module = starterCurriculumModules.find((item) => item.tasks.some((task) => task.id === taskId));
+      if (module) { selectStudyModule(module.id); selectStudyTask(module.tasks.findIndex((task) => task.id === taskId)); setMode('curriculum'); }
+      return;
+    }
     if (targetKey.startsWith('lesson:') || targetKey.startsWith('session:')) { startConnectedLesson(targetKey); return; }
     const concept = repertoireGraph.conceptDrills?.[targetKey];
     const unit = repertoireGraph.learningUnits[targetKey];
     const gap = guidedBacklog.find((item) => item.id === targetKey);
     if (gap) {
+      setActiveGapId(gap.id); setReviewDetection(null); setPgnError('');
       setPlanPreview(false);
       setMode('game-review'); setReviewMode('pgn'); setActiveCriticalPosition(null);
       managerRef.current.reset(positionKeyToFen(gap.positionKey));
       setLastMove(null); setReviewPly(0);
-      setFeedback('Saved gap: ' + gap.title + '. Inspect this position or use Analyze position, then return to Repertoire to study its plans.');
+      setFeedback('Saved gap: ' + gap.title + '. Try a candidate, analyse it, and save what you learned.');
       refresh();
     } else if (concept) startConceptDrill(concept.key);
     else if (unit) startOpening(unit.openingFamilyKey);
@@ -450,6 +516,8 @@ export default function App() {
     if (!ideaSession || !activeConceptDrill) return;
     const scenario = activeConceptDrill.scenarios[ideaSession.scenarioIndex];
     if (!scenario) return;
+    const context = trainingContext.current;
+    const expectedFen = managerRef.current.snapshot().fen;
     const authored = evaluateAuthoredMove(playedUci, scenario.preferredMovesUci, scenario.acceptableMovesUci);
     let result = authored;
     if (!result) {
@@ -460,6 +528,7 @@ export default function App() {
         result = evaluateEngineLoss(null);
       }
     }
+    if (context !== trainingContext.current || expectedFen !== managerRef.current.snapshot().fen) return;
     setIdeaSession((current) => current ? completeScenario(current, result!) : current);
     setFeedback(`${result.feedback} ${scenario.teachingPoint}`);
     if (result.correct !== null) void recordGuidedAttempt({ itemKey: activeConceptDrill.key, positionKey: buildPositionKey(fen), dimension: 'understanding', response: playedUci, correct: result.correct, hintUsed: ideaSession.hintUsed, revealed: ideaSession.revealed }).catch((error) => backgroundSyncError('idea move save', error));
@@ -475,6 +544,11 @@ export default function App() {
     await Promise.all([learnerRepository.appendAttempt(attempt), learnerRepository.saveMastery(next)]);
   }
 
+  function saveGap(item: RepertoireBacklogItem) {
+    setGuidedBacklog((items) => items.map((existing) => existing.id === item.id ? item : existing));
+    void learnerRepository.saveBacklogItem(item).catch((error) => backgroundSyncError('saved position update', error));
+  }
+
   function addGuidedBacklog(input: Omit<RepertoireBacklogItem, 'id' | 'learnerId' | 'status' | 'createdAt'>) {
     if (guidedBacklog.some((item) => item.positionKey === input.positionKey && item.reason === input.reason)) return;
     const item: RepertoireBacklogItem = { ...input, id: createId(), learnerId, status: 'new', createdAt: new Date().toISOString() };
@@ -483,23 +557,26 @@ export default function App() {
   }
 
   async function resolveUncoveredMove(input: { fen: string; from: string; to: string; promotion?: string; positionKey: string; familyKey: string; title: string }) {
+    const context = trainingContext.current;
+    const expectedFen = managerRef.current.snapshot().fen;
     setFeedback('This move is outside your repertoire. Stockfish is checking whether it is still reasonable…');
     try {
       const comparison = await engineRef.current.compareMove(input.fen, { from: input.from, to: input.to, promotion: input.promotion }, { depth: 6 });
+      if (context !== trainingContext.current || expectedFen !== managerRef.current.snapshot().fen) return;
       const loss = comparison.delta === null ? undefined : Math.max(0, -comparison.delta);
       const classification = classifyMove({ graph: repertoireGraph, positionKey: input.positionKey, playedUci: `${input.from}${input.to}${input.promotion ?? ''}`, openingFamilyKey: input.familyKey, engineCentipawnLoss: loss });
       setFeedback(classification.kind === 'uncovered' ? 'This move is outside your prepared lines. Saved to Today → Saved positions for review.' : classification.message);
-      if (classification.kind !== 'reasonable') addGuidedBacklog({ positionKey: input.positionKey, reason: 'forgotten-move', title: input.title });
+      if (classification.kind !== 'reasonable') addGuidedBacklog({ positionKey: input.positionKey, openingFamilyKey: input.familyKey, reason: 'forgotten-move', title: input.title });
     } catch {
+      if (context !== trainingContext.current || expectedFen !== managerRef.current.snapshot().fen) return;
       setFeedback('This move is outside your prepared lines. Saved to Today → Saved positions for review.');
-      addGuidedBacklog({ positionKey: input.positionKey, reason: 'forgotten-move', title: input.title });
+      addGuidedBacklog({ positionKey: input.positionKey, openingFamilyKey: input.familyKey, reason: 'forgotten-move', title: input.title });
     }
   }
 
   function upsertLocalProgress(line: RepertoireLine, result: ReturnType<OpeningTrainer['recordMove']>) {
-    setLocalProgress((items) => {
-      const existing = items.find((item) => item.lineId === line.id);
-      const next: TrainingProgress = {
+    const existing = localProgress.find((item) => item.lineId === line.id);
+    const next: TrainingProgress = {
         userId: user?.id ?? 'local',
         lineId: line.id,
         side: line.side,
@@ -517,8 +594,8 @@ export default function App() {
         updatedAt: new Date().toISOString()
       };
 
-      return existing ? items.map((item) => (item.lineId === line.id ? next : item)) : [...items, next];
-    });
+      void persistence.upsertProgress(next).catch((error) => backgroundSyncError('training progress save', error));
+      setLocalProgress((items) => existing ? items.map((item) => (item.lineId === line.id ? next : item)) : [...items, next]);
   }
 
   function addReviewItem(item: ReviewItem) {
@@ -526,6 +603,7 @@ export default function App() {
   }
 
   function handleMove(from: string, to: string, promotion?: string) {
+    if (engineBusy || (mode === 'game-review' && reviewMode === 'engine' && engineAwaitingReply) || snapshot.fen !== managerRef.current.snapshot().fen || (mode === 'curriculum' && !studyPractice)) return false;
     if (planPreview) { setFeedback('This position is in review mode. Choose a lesson action or return to the opening line to practise.'); return false; }
     if (mode === 'idea-training' && ideaSession && (ideaSession.stage !== 'scenario' || ideaSession.evaluating || ideaSession.currentResult)) {
       setFeedback('Use the coaching card before making another move.');
@@ -544,6 +622,16 @@ export default function App() {
       return false;
     }
 
+    if (mode === 'curriculum' && studyPosition && activeTask) {
+      const correct = studyPosition.moves.includes(move.san);
+      const message = correct ? 'Correct. ' + studyPosition.explanation : 'Try again. ' + studyPosition.prompt;
+      setStudyMoveFeedback(message); setFeedback(message);
+      if (!correct) managerRef.current.undo();
+      else { setStudyPractice(false); setLastMove({ from, to }); }
+      void recordGuidedAttempt({ itemKey: 'study:' + activeTask.id, positionKey: positionKeyBefore, dimension: 'understanding', response: move.san, correct, hintUsed: true, revealed: true }).catch((error) => backgroundSyncError('study practice save', error));
+      refresh(); return correct;
+    }
+    if (mode === 'game-review') setReviewPly(managerRef.current.getReplayPositions().length - 1);
     setLastMove({ from, to });
 
     if (mode === 'idea-training' && ideaSession?.stage === 'scenario' && activeConceptDrill) {
@@ -564,9 +652,9 @@ export default function App() {
         side: activeLine?.side ?? 'white',
         attempts: (existing?.attempts ?? 0) + 1,
         correctCount: (existing?.correctCount ?? 0) + (result.status === 'correct' ? 1 : 0),
-        hintCount: existing?.hintCount ?? 0,
+        hintCount: (existing?.hintCount ?? 0) + (hintText ? 1 : 0),
         mistakeThemes: result.status === 'incorrect' ? Array.from(new Set([...(existing?.mistakeThemes ?? []), ...activeCriticalPosition.themes])) : existing?.mistakeThemes ?? [],
-        masteryScore: Math.min(100, (existing?.masteryScore ?? 0) + (result.status === 'correct' ? 25 : -10)),
+        masteryScore: Math.max(0, Math.min(100, (existing?.masteryScore ?? 0) + (result.status === 'correct' ? (hintText ? 0 : 25) : -10))),
         dueAt: new Date(now.getTime() + (result.status === 'correct' ? 3 : 1) * 86400000).toISOString(),
         lastReviewedAt: now.toISOString()
       };
@@ -577,9 +665,9 @@ export default function App() {
       }
       setFeedback(result.status === 'correct' ? `Correct. ${activeCriticalPosition.teachingPoint ?? ''}` : `Try again. ${activeCriticalPosition.expectedMoves.join(' or ')}. ${activeCriticalPosition.hint ?? ''}`);
       const motif = Object.values(repertoireGraph.motifs).find((item) => item.positionKeys.includes(positionKeyBefore));
-      void recordGuidedAttempt({ itemKey: motif?.key ?? `motif:${activeCriticalPosition.id}`, positionKey: positionKeyBefore, dimension: 'tactics', response: move.san, correct: result.status === 'correct', hintUsed: false, revealed: false }).catch((error) => backgroundSyncError('critical-position attempt save', error));
+      void recordGuidedAttempt({ itemKey: motif?.key ?? `motif:${activeCriticalPosition.id}`, positionKey: positionKeyBefore, dimension: 'tactics', response: move.san, correct: result.status === 'correct', hintUsed: Boolean(hintText), revealed: hintText.startsWith('Candidate:') }).catch((error) => backgroundSyncError('critical-position attempt save', error));
       if (result.status === 'correct') { setActiveCriticalPosition(null); setPlanPreview(true); }
-      else { managerRef.current.undo(); setLastMove(null); }
+      else { managerRef.current.undo(); setLastMove(null); setHintText('Candidate: ' + activeCriticalPosition.expectedMoves.join(' or ')); }
       refresh();
       return true;
     }
@@ -625,7 +713,6 @@ export default function App() {
           void resolveUncoveredMove({ fen: snapshot.fen, from, to, promotion, positionKey: positionKeyBefore, familyKey, title: `Review ${activeLine.name} after ${move.san}` });
         }
       }
-      void persistProgress(activeLine, result).catch((error) => backgroundSyncError('training progress save', error));
     }
 
     if (mode === 'game-review' && reviewMode === 'engine') {
@@ -638,22 +725,32 @@ export default function App() {
   }
 
   async function playEngineReply() {
+    if (managerRef.current.snapshot().isGameOver) { setEngineAwaitingReply(false); setFeedback('The game has ended. Review the final position or start a new game.'); return; }
+    setEngineAwaitingReply(true);
+    const request = ++engineGeneration.current;
+    const fen = managerRef.current.snapshot().fen;
+    setEngineBusy(true);
     setAnalysis('Engine is thinking...');
     try {
-      const bestMove = await engineRef.current.bestMove(managerRef.current.snapshot().fen, { depth: 6 });
+      const bestMove = await engineRef.current.bestMove(fen, { depth: 6 });
+      if (request !== engineGeneration.current || managerRef.current.snapshot().fen !== fen) return;
       if (!bestMove) {
         setAnalysis('Engine did not return a move.');
         return;
       }
       const applied = managerRef.current.attemptMove(bestMove.from, bestMove.to, bestMove.promotion);
+      if (applied.ok) setEngineAwaitingReply(false);
       setAnalysis(applied.ok ? `Engine replied ${applied.san}.` : 'Engine returned an illegal move for this position.');
+      setReviewPly(managerRef.current.getReplayPositions().length - 1);
       refresh();
     } catch (error) {
-      setAnalysis(getErrorMessage(error, 'Engine failed to respond.'));
-    }
+      if (request === engineGeneration.current) setAnalysis('Engine unavailable. Your position is preserved. Try again.');
+    } finally { if (request === engineGeneration.current) setEngineBusy(false); }
   }
 
   function resetBoard() {
+    engineGeneration.current++; engineRef.current.stop(); setEngineBusy(false); setAnalysis('');
+    setEngineAwaitingReply(false);
     setPlanPreview(false);
     managerRef.current.reset();
     setMoveIndex(0);
@@ -755,6 +852,7 @@ export default function App() {
   }
 
   function switchReviewMode(nextMode: 'pgn' | 'engine') {
+    setActiveGapId(null); setPgnError('');
     setReviewMode(nextMode);
     setReviewDetection(null);
     resetBoard();
@@ -762,6 +860,7 @@ export default function App() {
   }
 
   function startAlienPractice() {
+    engineGeneration.current++; engineRef.current.stop(); setEngineBusy(false); setEngineAwaitingReply(false);
     const line = side === 'black' ? trainer.findLine('black-alien-gambit-defense') : trainer.findLine('white-alien-gambit-main');
     managerRef.current.reset();
     setLineId(line?.id ?? lineId);
@@ -777,21 +876,23 @@ export default function App() {
   }
 
   function revealMove() {
-    if (activeCriticalPosition) { setFeedback('Candidate: ' + activeCriticalPosition.expectedMoves.join(' or ') + '. ' + (activeCriticalPosition.teachingPoint ?? '')); return; }
+    if (activeCriticalPosition) { const text = 'Candidate: ' + activeCriticalPosition.expectedMoves.join(' or ') + '. ' + (activeCriticalPosition.teachingPoint ?? ''); setHintText(text); setFeedback(text); return; }
     const expectedMove = activeLine?.movesSan[moveIndex];
     setFeedback(expectedMove ? `Repertoire move: ${expectedMove}. Play it on the board when you are ready.` : 'This line is complete.');
   }
 
   function loadReviewPgn() {
+    if (!pgnInput.trim()) { setPgnError('Paste a PGN first. Example: 1. e4 e5 2. Nf3 Nc6. Your current board has been kept.'); return; }
     const result = managerRef.current.loadPgn(pgnInput);
     if (!result.ok) {
-      setFeedback(result.reason);
+      setPgnError('This game could not be read. Check the move notation or paste a fresh PGN export. Example: 1. e4 e5 2. Nf3 Nc6. Your current board has been kept.');
       return;
     }
 
+    setActiveGapId(null); setPgnError('');
     setReviewPly(managerRef.current.getReplayPositions().length - 1);
     setFeedback('PGN loaded for review.');
-    const detection = detectOpeningFromHistory(managerRef.current.snapshot().history, starterRepertoires);
+    const detection = managerRef.current.getReplayPositions()[0] === new GameManager().snapshot().fen ? detectOpeningFromHistory(managerRef.current.snapshot().history, starterRepertoires) : null;
     let guidedDetection: ReturnType<typeof matchPgnToRepertoire> | null = null;
     try {
       guidedDetection = matchPgnToRepertoire({ pgn: pgnInput, graph: repertoireGraph, selectedOpeningFamilyKeys: selectedOpeningKeys });
@@ -814,7 +915,7 @@ export default function App() {
         sourceType: 'pgn-position',
         sourceId: detectedLine.id,
         title: `Review ${detectedLine.name} from your PGN`,
-        prompt: `You left the repertoire on move ${detection.leftBookAtPly}. Compare the position to the lesson idea.`,
+        prompt: `You left the repertoire on ${reviewMoveLabel(detection.leftBookAtPly, managerRef.current.snapshot().history[detection.leftBookAtPly - 1])}. Compare the position to the lesson idea.`,
         themeTags: detectedLine.themeTags ?? [],
         dueAt: new Date().toISOString(),
         status: 'due'
@@ -826,11 +927,12 @@ export default function App() {
       addGuidedBacklog({
         positionKey: guidedDetection.lastKnownPositionKey,
         reason,
+        openingFamilyKey: guidedDetection.matchedOpeningFamilyKey ?? undefined,
         title: guidedDetection.divergingSide === 'learner'
-          ? `Recall the repertoire move at ply ${guidedDetection.divergencePly}`
+          ? `Recall the repertoire move before ${reviewMoveLabel(guidedDetection.divergencePly, managerRef.current.snapshot().history[guidedDetection.divergencePly - 1])}`
           : `Cover the opponent response at ply ${guidedDetection.divergencePly}`
       });
-      setFeedback(`Game matched ${guidedDetection.matchedPlyCount} repertoire plies. ${guidedDetection.divergingSide === 'learner' ? 'Your move' : 'The opponent move'} created the first gap.`);
+      setFeedback(`Game follows your repertoire${guidedDetection.matchedPlyCount ? ' through ' + reviewMoveLabel(guidedDetection.matchedPlyCount, managerRef.current.snapshot().history[guidedDetection.matchedPlyCount - 1]) : ''}. ${guidedDetection.divergingSide === 'learner' ? 'Your move' : 'The opponent move'} created the first gap.`);
     }
     refresh();
   }
@@ -872,8 +974,8 @@ export default function App() {
       }
     }));
     setStudySubmitted(true);
-    const unit = Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine?.id);
-    if (unit) void recordGuidedAttempt({ itemKey: unit.key, positionKey: unit.startPositionKey, dimension: 'understanding', response: selectedStudyChoice, correct, hintUsed: showStudyHint, revealed: false }).catch((error) => backgroundSyncError('study attempt save', error));
+    void persistence.upsertCurriculumProgress({ userId: learnerId, moduleId, taskId: activeTask.id, score: correct ? activeTask.maxScore : 0, attempts: previousAttempts + 1, status: correct ? 'passed' : 'needs-review', lastReviewedAt: new Date().toISOString() }).catch((error) => backgroundSyncError('study progress save', error));
+    void recordGuidedAttempt({ itemKey: 'study:' + activeTask.id, positionKey: buildPositionKey(studyPosition?.fen ?? snapshot.fen), dimension: 'understanding', response: selectedStudyChoice, correct, hintUsed: showStudyHint, revealed: false }).catch((error) => backgroundSyncError('study attempt save', error));
   }
 
   function stepReview(delta: number) {
@@ -883,14 +985,7 @@ export default function App() {
   }
 
   async function analyzeCurrentPosition() {
-    setAnalysis('Analyzing current position...');
-    try {
-      const result = await engineRef.current.analyze(snapshot.fen, { depth: 8 });
-      const score = result.score ? `${result.score.type} ${result.score.value}` : 'no score';
-      setAnalysis(`Depth ${result.depth ?? '-'} | ${score} | best ${result.bestMove?.from ?? ''}${result.bestMove?.to ?? ''}`);
-    } catch (error) {
-      setAnalysis(getErrorMessage(error, 'Analysis failed.'));
-    }
+    await positionAnalysis.run();
   }
 
   async function copyGamePgn() {
@@ -936,11 +1031,11 @@ export default function App() {
   }
 
   return (
-    <main className="app-shell">
+    <main className={`app-shell ${!learnerSetup || mode === 'today' || mode === 'repertoire' ? 'overview-workspace' : ''}`}>
       <header className="topbar">
         <div>
           <p className="eyebrow">Chess Opening Trainer</p>
-          <h1>{mode === 'connected-lesson' ? activeConnectedLesson?.title : mode === 'opening-trainer' ? activeLine?.name : mode === 'idea-training' ? activeConceptDrill?.title : mode === 'admin' ? 'Content admin' : modes.find((item) => item.id === mode)?.label}</h1>
+          <h1>{!learnerSetup ? 'Welcome to your chess training' : mode === 'connected-lesson' ? activeConnectedLesson?.title : mode === 'opening-trainer' ? activeLine?.name : mode === 'idea-training' ? activeConceptDrill?.title : mode === 'admin' ? 'Content admin' : modes.find((item) => item.id === mode)?.label}</h1>
         </div>
         <div className="topbar-actions">
           <button
@@ -953,7 +1048,7 @@ export default function App() {
           >
             <List size={18} />
           </button>
-          <button hidden={mode === 'connected-lesson'} className="icon-button" type="button" title="Reset board" onClick={resetBoard}>
+          <button hidden={mode === 'connected-lesson'} className="icon-button" type="button" title="Reset board" onClick={() => { if (mode === 'game-review' && activeGap) startGuidedTarget(activeGap.id); else if (mode === 'curriculum' && studyPosition) { managerRef.current.reset(studyPosition.fen); setStudyPractice(false); setStudyMoveFeedback(''); setFeedback(studyPosition.prompt); refresh(); } else resetBoard(); }}>
             <RotateCcw size={18} />
           </button>
           <details className="account-menu"><summary>{user ? 'Account' : 'Sign in / sync'}</summary><AuthPanel
@@ -966,11 +1061,11 @@ export default function App() {
         </div>
       </header>
       {mode === 'connected-lesson' && activeConnectedLesson && connectedSession ? <ConnectedLessonWorkspace key={learnerId + ':' + connectedSession.id} lesson={activeConnectedLesson} initialSession={connectedSession} repository={learnerRepository} onSessionChange={trackLessonSession} onPersisted={refreshLessonProgress} onExit={exitConnectedLesson} /> : <section className="workspace">
-        <div className="board-column">
+        {learnerSetup && mode !== 'today' && mode !== 'repertoire' && <div className="board-column">
           <ChessBoardUI
             fen={snapshot.fen}
             orientation={orientation}
-            legalTargets={snapshot.legalTargets}
+            legalTargets={engineBusy || (mode === 'game-review' && reviewMode === 'engine' && engineAwaitingReply) || snapshot.fen !== managerRef.current.snapshot().fen || (mode === 'curriculum' && !studyPractice) || planPreview ? {} : snapshot.legalTargets}
             lastMove={lastMove}
             onMoveAttempt={handleMove}
           />
@@ -999,15 +1094,16 @@ export default function App() {
             <div>
               <p className="eyebrow">Feedback</p>
               <p>{feedback}</p>
-              <p className="analysis">{analysis}</p>
+              <p className="analysis" role="status">{mode === 'game-review' && reviewMode === 'engine' ? analysis : positionAnalysis.text}</p>
             </div>
             <div className="feedback-actions">
               <button className="secondary-button" type="button" onClick={copyGamePgn}>
                 Copy PGN
               </button>
-              <button className="secondary-button" type="button" onClick={analyzeCurrentPosition}>
+              <button className="secondary-button" type="button" disabled={positionAnalysis.busy || engineBusy} onClick={analyzeCurrentPosition}>
                 Analyze position
               </button>
+              {positionAnalysis.busy && <button className="secondary-button" onClick={positionAnalysis.stop}>Stop analysis</button>}
             </div>
           </section>
           {syncStatus && <div className="sync-status" role="status"><span>Progress sync: {syncStatus}</span><button className="link-button" onClick={() => setSyncStatus('')}>Dismiss</button></div>}
@@ -1019,15 +1115,14 @@ export default function App() {
                   {snapshot.history.length
                     ? snapshot.history.map((move, index) => {
                         const ply = index + 1;
-                        const moveNumber = Math.floor(index / 2) + 1;
-                        const movePrefix = index % 2 === 0 ? `${moveNumber}.` : `${moveNumber}...`;
+                        const movePrefix = reviewMoveLabel(ply);
 
                         return (
                           <button
                             key={`${move}-${index}`}
                             className={reviewPly === ply ? 'selected' : ''}
                             type="button"
-                            aria-label={`Move ${ply}: ${move}`}
+                            aria-label={`Move ${reviewMoveLabel(ply, move)}`}
                             onClick={() => showHistoryPly(ply)}
                           >
                             <span>{movePrefix}</span>
@@ -1043,56 +1138,14 @@ export default function App() {
               </button>
             </section>
           )}
-        </div>
+        </div>}
 
-        <aside className="task-dock" aria-label="Task dock">
+        <aside ref={dockRef} className="task-dock" aria-label="Task dock">
           {!learnerSetup && (
             <GuidedOnboarding learnerId={learnerId} openings={Object.values(repertoireGraph.openings)} onComplete={completeGuidedOnboarding} />
           )}
 
-          {learnerSetup && nextActivity && (
-            <>
-              {!isDashboardOpen && (
-                <div className="dashboard-toggle-row">
-                  <button className="summary-toggle" type="button" onClick={() => setIsDashboardOpen(true)}>
-                    Show today
-                  </button>
-                </div>
-              )}
-              {isDashboardOpen && (
-                <section className="dock-summary dashboard-panel" aria-label="Today summary">
-                  <div className="dashboard-header">
-                    <p className="eyebrow">Today</p>
-                    <button className="summary-toggle" type="button" onClick={() => setIsDashboardOpen(false)}>
-                      Hide today
-                    </button>
-                  </div>
-                  <div className="dashboard-row">
-                    <div className="recommendation">
-                      <span>Next lesson</span>
-                      <strong>{nextActivity.title}</strong>
-                    </div>
-                    <div className="stat-pills">
-                      <span>{progressSummary.dueReviewCount} due</span>
-                      <span>{progressSummary.masteredLineCount} mastered</span>
-                    </div>
-                  </div>
-                  <div className="dashboard-detail">
-                    <p className="analysis">{progressSummary.todayTarget}</p>
-                    {progressSummary.weakThemes.length > 0 && (
-                      <div className="tag-cloud" aria-label="Weak themes">
-                        {progressSummary.weakThemes.map((theme) => (
-                          <span key={theme}>{theme}</span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </section>
-              )}
-            </>
-          )}
-
-          <nav className="mode-tabs" aria-label="Chess modes">
+          <nav hidden={!learnerSetup} className="mode-tabs" aria-label="Chess modes">
             {modes.map((item) => {
               const Icon = item.icon;
               return (
@@ -1100,7 +1153,7 @@ export default function App() {
                   key={item.id}
                   className={mode === item.id || (mode === 'idea-training' && item.id === 'repertoire') ? 'active' : ''}
                   type="button"
-                  onClick={() => { setPlanPreview(false); setActiveCriticalPosition(null); if (item.id === 'opening-trainer') { setOrientation(side); resetBoard(); } setMode(item.id); }}
+                  onClick={() => { if (item.id === 'game-review' && activeGapId) { startGuidedTarget(activeGapId); return; } setPlanPreview(false); setActiveCriticalPosition(null); if (item.id === 'opening-trainer') { setOrientation(side); resetBoard(); } setMode(item.id); }}
                   title={item.label}
                 >
                   <Icon size={17} />
@@ -1111,9 +1164,9 @@ export default function App() {
             {isContentEditor && <button className={mode === 'admin' ? 'active' : ''} type="button" onClick={() => setMode('admin')} title="Admin"><Shield size={17} />Admin</button>}
           </nav>
 
-          {learnerSetup && mode === 'today' && <TodayPanel next={guidedNextActivity} mastery={guidedMastery} backlog={guidedBacklog} onStart={startGuidedTarget} />}
+          {learnerSetup && mode === 'today' && <TodayPanel next={guidedNextActivity} mastery={guidedMastery} sessions={lessonSessions} lessons={repertoireGraph.connectedLessons} backlog={guidedBacklog} onStart={startGuidedTarget} />}
 
-          {learnerSetup && mode === 'repertoire' && <RepertoireMap graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} onPracticeIdeas={startIdeasForOpening} onConcept={startConceptDrill} onLesson={startConnectedLesson} />}
+          {learnerSetup && mode === 'repertoire' && <RepertoireMap sessions={lessonSessions} graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} onPracticeIdeas={startIdeasForOpening} onConcept={startConceptDrill} onLesson={startConnectedLesson} />}
 
           {learnerSetup && mode === 'idea-training' && activeConceptDrill && ideaSession && (
             <IdeaTrainingPanel
@@ -1325,24 +1378,7 @@ export default function App() {
                     <span className="study-score-badge">Score {curriculumAttempts[activeTask.id]?.score ?? 0}/{activeTask.maxScore}</span>
                   </div>
                   <p className="study-prompt">{activeTask.prompt}</p>
-                  <div className="study-choice-list" role="radiogroup" aria-label="Study choices">
-                    {activeStudyChallenge?.choices.map((choice) => (
-                      <button
-                        key={choice.id}
-                        className={selectedStudyChoice === choice.id ? 'selected' : ''}
-                        type="button"
-                        role="radio"
-                        aria-checked={selectedStudyChoice === choice.id}
-                        onClick={() => {
-                          setSelectedStudyChoice(choice.id);
-                          setStudySubmitted(false);
-                        }}
-                      >
-                        <span>{selectedStudyChoice === choice.id ? '●' : '○'}</span>
-                        {choice.label}
-                      </button>
-                    ))}
-                  </div>
+                  <ChoiceGroup label="Study choices" choices={activeStudyChallenge?.choices ?? []} value={selectedStudyChoice} onChange={(id) => { setSelectedStudyChoice(id); setStudySubmitted(false); }} />
                   <div className="study-actions">
                     <button className="secondary-button" type="button" onClick={() => setShowStudyHint((visible) => !visible)}>
                       {showStudyHint ? 'Hide hint' : 'Need a hint?'}
@@ -1368,15 +1404,12 @@ export default function App() {
                   </div>
                 </div>
               )}
-              {activeLine?.criticalPositions && activeLine.criticalPositions.length > 0 && (
-                <section className="critical-position-card" aria-label="Critical positions">
-                  <p className="eyebrow">Critical position</p>
-                  <p>{activeCriticalPosition?.prompt ?? 'Practice the decision that defines this branch.'}</p>
-                  <button className="secondary-button" type="button" onClick={() => startCriticalPosition(activeLine.criticalPositions![0])}>
-                    {activeCriticalPosition ? 'Restart position' : 'Practice position'}
-                  </button>
-                </section>
-              )}
+              {studyPosition && <section className="critical-position-card" aria-label="Study position practice">
+                <h3>Try the idea on the board</h3><p>{studyPosition.prompt}</p><p className="analysis">Follow the prompt for guided practice. This exercise does not count as an unassisted answer.</p>
+                <button className="secondary-button" onClick={() => { managerRef.current.reset(studyPosition.fen); setStudyPractice(true); setStudyMoveFeedback(''); setFeedback(studyPosition.prompt); setLastMove(null); refresh(); }}>{studyPractice ? 'Restart exercise' : 'Practise this position'}</button>
+                {studyPractice && <p role="status">You play {studyPosition.side}. Tap a piece and its destination, drag, or use the keyboard.</p>}
+                {studyMoveFeedback && <p className="study-feedback" role="status">{studyMoveFeedback}</p>}
+              </section>}
             </section>
           )}
 
@@ -1391,10 +1424,11 @@ export default function App() {
                   Play vs Stockfish
                 </button>
               </div>
-              {reviewMode === 'pgn' ? (
+              {activeGap ? <SavedPositionPanel key={activeGap.id} item={activeGap} lessonTitle={relatedGapLesson?.title} onSave={saveGap} onReset={() => startGuidedTarget(activeGap.id)} onClose={() => setMode('today')} onLesson={() => relatedGapLesson && startConnectedLesson(relatedGapLesson.key)} /> : reviewMode === 'pgn' ? (
                 <>
                   <p>Paste a PGN to replay the game, step through positions, and see where it left your opening repertoire.</p>
-                  <textarea aria-label="PGN input" value={pgnInput} onChange={(event) => setPgnInput(event.target.value)} />
+                  <textarea aria-invalid={Boolean(pgnError)} aria-describedby={pgnError ? 'pgn-error' : undefined} aria-label="PGN input" value={pgnInput} onChange={(event) => { setPgnInput(event.target.value); setPgnError(''); }} />
+                  {pgnError && <p id="pgn-error" role="alert">{pgnError}</p>}
                   <div className="button-row">
                     <button className="secondary-button" type="button" onClick={loadReviewPgn}>
                       Load PGN
@@ -1410,12 +1444,13 @@ export default function App() {
                     <div className="lesson-card">
                       <p className="eyebrow">Opening match</p>
                       <strong>
-                        Matched {reviewDetection.matchedPlyCount} moves in {reviewDetection.lineName}
+                        {reviewDetection.lineName}: matched through {reviewMoveLabel(reviewDetection.matchedPlyCount, snapshot.history[reviewDetection.matchedPlyCount - 1])}
                       </strong>
                       <p>
                         {reviewDetection.leftBookAtPly
-                          ? `Left book on move ${reviewDetection.leftBookAtPly}.`
+                          ? `First different move: ${reviewMoveLabel(reviewDetection.leftBookAtPly, snapshot.history[reviewDetection.leftBookAtPly - 1])}.`
                           : 'You stayed inside the starter repertoire.'}
+                        {reviewDetection.leftBookAtPly && <button className="link-button" onClick={() => showHistoryPly(reviewDetection.leftBookAtPly! - 1)}>Inspect position before the difference</button>}
                       </p>
                     </div>
                   )}
@@ -1423,6 +1458,7 @@ export default function App() {
               ) : (
                 <>
                   <p>Make a move on the board. Stockfish replies automatically, so you can play a complete training game without leaving Review.</p>
+                  {engineAwaitingReply && !engineBusy && <button className="primary-button" onClick={playEngineReply}>Get Stockfish reply</button>}
                   <button className="secondary-button" type="button" onClick={startAlienPractice}>
                     Start Alien Gambit practice
                   </button>

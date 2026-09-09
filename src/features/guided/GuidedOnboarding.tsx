@@ -14,7 +14,7 @@ export function GuidedOnboarding(props: {
 }) {
   const white = useMemo(() => props.openings.filter((opening) => opening.side === 'white'), [props.openings]);
   const blackE4 = useMemo(() => props.openings.filter((opening) => opening.context === 'black-vs-e4'), [props.openings]);
-  const [whiteKeys, setWhiteKeys] = useState<string[]>([white.find((opening) => opening.key === 'white-vienna-main')?.key ?? white[0]?.key].filter(Boolean));
+  const [whiteKeys, setWhiteKeys] = useState<string[]>([white.find((opening) => opening.key === 'white-vienna-main')?.key ?? white[0]?.key ?? ''].filter(Boolean));
   const [blackE4Key, setBlackE4Key] = useState(blackE4.find((opening) => opening.key === 'black-caro-kann-main')?.key ?? blackE4[0]?.key ?? '');
   const [ratingSource, setRatingSource] = useState<LearnerProfile['ratingSource']>('unsure');
   const [ratingValue, setRatingValue] = useState('');
@@ -31,7 +31,7 @@ export function GuidedOnboarding(props: {
       onboardingCompleted: true,
       updatedAt: new Date().toISOString()
     };
-    props.onComplete({ profile, openingFamilyKeys: Array.from(new Set([...whiteKeys, blackE4Key].filter(Boolean))), blackD4Preference: 'not-sure' });
+    props.onComplete({ profile, openingFamilyKeys: Array.from(new Set([...whiteKeys, blackE4Key || blackE4.find((opening) => opening.key === 'black-caro-kann-main')?.key || ''].filter(Boolean))), blackD4Preference: 'not-sure' });
   }
 
   return (

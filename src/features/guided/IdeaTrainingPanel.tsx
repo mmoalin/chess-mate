@@ -1,3 +1,4 @@
+import { ChoiceGroup } from '../../components/ChoiceGroup';
 import type { ConceptDrill } from '../../domain/repertoire/types';
 import { sessionScore, type IdeaTrainingSession } from './ideaTraining';
 
@@ -29,9 +30,7 @@ export function IdeaTrainingPanel(props: Props) {
       {session.stage === 'plan' && <>
         <article className="lesson-card"><strong>{drill.principle}</strong><p>{drill.summary}</p></article>
         <div className="idea-step"><span>1 of 3 · Recognize the plan</span><strong>{drill.planPrompt}</strong></div>
-        <div className="study-choice-list" role="radiogroup" aria-label="Plan choices">
-          {drill.planChoices.map((choice) => <button key={choice.id} className={session.selectedChoiceId === choice.id ? 'selected' : ''} type="button" role="radio" aria-checked={session.selectedChoiceId === choice.id} disabled={session.planSubmitted} onClick={() => props.onSelectPlan(choice.id)}><span>{session.selectedChoiceId === choice.id ? '●' : '○'}</span>{choice.label}</button>)}
-        </div>
+        <ChoiceGroup label="Plan choices" choices={drill.planChoices} value={session.selectedChoiceId} disabled={session.planSubmitted} onChange={props.onSelectPlan} />
         {!session.planSubmitted
           ? <button className="primary-button" type="button" disabled={!session.selectedChoiceId} onClick={props.onCheckPlan}>Check plan</button>
           : <div className={`study-feedback ${session.planCorrect ? 'correct' : 'try-again'}`}><strong>{session.planCorrect ? 'Plan recognized' : 'A useful correction'}</strong><p>{session.planFeedback}</p><button className="primary-button" type="button" onClick={props.onStartScenarios}>Test it on the board</button></div>}

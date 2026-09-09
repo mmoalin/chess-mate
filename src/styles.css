@@ -1022,11 +1022,6 @@ textarea {
 .lesson-results li { display: grid; gap: 4px; border-bottom: 1px solid #d5ddce; padding-bottom: 10px; }
 .lesson-results span { color: #46614e; font-size: .85rem; }
 .lesson-history summary { cursor: pointer; font-weight: 700; padding: 10px 0; }
-.lesson-inline-feedback { display: none; }
-@media (max-width: 900px) {
-  .lesson-inline-feedback { display: grid; gap: 6px; background: #edf4ed; border-left: 3px solid #497557; padding: 12px; border-radius: 6px; }
-  .connected-workspace .feedback-strip { display: none; }
-}
 .lesson-history .move-strip { flex-wrap: wrap; max-height: 200px; overflow: auto; }
 .lesson-sync-status, .sync-status { background: #fff3d6; color: #684b19; border-radius: 8px; padding: 10px; font-size: .85rem; }
 .sync-status { position: absolute; bottom: 0; left: 0; right: 0; display: flex; align-items: center; gap: 8px; z-index: 6; }
@@ -1080,4 +1075,82 @@ button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px
 
 @media (max-width: 900px) {
   .account-menu .account-strip { position: fixed; top: 130px; left: 14px; right: 14px; width: auto; max-height: calc(100dvh - 150px); overflow-y: auto; }
+}
+
+/* The board has one keyboard entry point; arrows navigate the named squares. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.board-square-control, .board-square-content { width: 100%; height: 100%; }
+.board-square-control { position: relative; outline-offset: -4px; }
+.board-square-control:focus-visible { outline: 4px solid #1261b8; z-index: 2; }
+.choice-option { display: flex; align-items: flex-start; gap: 10px; padding: 13px; border: 1px solid #d5ddce; border-radius: 9px; background: #fff; cursor: pointer; line-height: 1.45; text-align: left; }
+.choice-option.selected { background: #eef7f1; border-color: #245b46; }
+.choice-option input { flex: 0 0 auto; width: 17px; height: 17px; margin: 3px 0 0; accent-color: #245b46; }
+.choice-option:has(:focus-visible) { outline: 3px solid #1261b8; outline-offset: 2px; }
+.choice-option:has(:disabled) { cursor: default; }
+.lesson-response { border-left: 4px solid #49785d; background: #edf5ee; padding: 12px; border-radius: 6px; line-height: 1.5; }
+.lesson-response:empty { display: none; }
+.lesson-response:focus { outline: 2px solid #49785d; outline-offset: 2px; }
+.lesson-stage-current { display: none; }
+.connected-panel > h2 { font-size: 1.2rem; }
+@media (min-width: 901px) {
+  .workspace { grid-template-columns: minmax(320px, min(56%, calc(100dvh - 264px))) minmax(380px, 1fr); }
+  .board-shell { width: 100%; }
+  .connected-panel { gap: 14px; }
+  .connected-panel > p { max-width: 70ch; }
+}
+@media (max-width: 900px) {
+  .app-shell:has(.connected-workspace) { height: 100dvh; min-height: 0; display: flex; flex-direction: column; padding: 10px 12px; gap: 8px; overflow: clip; }
+  .app-shell:has(.connected-workspace) .topbar { flex-direction: row; gap: 8px; align-items: center; flex: 0 0 auto; }
+  .app-shell:has(.connected-workspace) .topbar-actions { width: auto; }
+  .app-shell:has(.connected-workspace) .topbar > div:first-child { flex: 1; width: 0; min-width: 0; }
+  .app-shell:has(.connected-workspace) .topbar h1 { font-size: 1rem; }
+  .app-shell:has(.connected-workspace) .topbar .eyebrow { display: none; }
+  .app-shell:has(.connected-workspace) .account-menu summary { padding: 8px; font-size: .75rem; }
+  .connected-workspace { flex: 1; min-height: 0; display: grid; align-items: stretch; grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 8px; overflow: hidden; }
+  .connected-workspace .board-column { display: flex; flex-direction: column; align-items: center; }
+  .connected-workspace .board-shell { width: min(100%, 32dvh, 300px); }
+  .connected-workspace .task-dock { height: 100%; max-height: 100%; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 6px; }
+  .connected-workspace .mode-tabs { flex: 0 0 auto; }
+  .connected-workspace .mode-tabs button { min-height: 40px; }
+  .connected-panel { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 12px; gap: 10px; }
+  .connected-panel > * { flex-shrink: 0; }
+  .connected-panel > .eyebrow, .connected-panel > h2, .lesson-stages { display: none; }
+  .lesson-stage-current { display: block; font-size: .8rem; color: #46614e; }
+  .connected-panel h3 { font-size: 1rem; }
+  .connected-panel .choice-option { padding: 10px; }
+}
+
+/* Overview pages give the next action the full viewport; a board appears for practice. */
+.overview-workspace .workspace { display: block; max-width: 960px; margin: 0 auto; }
+.overview-workspace .board-column, .overview-workspace .topbar-actions > button { display: none; }
+.overview-workspace .task-dock { width: 100%; }
+.overview-workspace .mode-tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.overview-workspace .onboarding-panel { max-height: 100%; overflow: auto; }
+.saved-position-panel, .saved-notes, .lesson-completions { display: grid; gap: 12px; }
+.saved-position-panel h2, .saved-position-panel p, .lesson-completions h3, .lesson-completions p { margin: 0; }
+.saved-notes textarea { min-height: 100px; }
+.reviewed-positions summary { cursor: pointer; padding: 12px 0; }
+@media (max-width: 900px) {
+  .overview-workspace { padding: 12px; }
+  .overview-workspace .mode-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .app-shell:not(.overview-workspace) { height: 100dvh; min-height: 0; display: flex; flex-direction: column; padding: 10px 12px; gap: 8px; overflow: clip; }
+  .app-shell:not(.overview-workspace) .topbar { flex-direction: row; gap: 8px; align-items: center; flex: 0 0 auto; }
+  .app-shell:not(.overview-workspace) .topbar > div:first-child { flex: 1; width: 0; min-width: 0; }
+  .app-shell:not(.overview-workspace) .topbar h1 { font-size: 1rem; }
+  .app-shell:not(.overview-workspace) .topbar .eyebrow { display: none; }
+  .app-shell:not(.overview-workspace) .topbar-actions { width: auto; gap: 4px; }
+  .app-shell:not(.overview-workspace) .account-menu summary { padding: 8px; font-size: .75rem; }
+  .app-shell:not(.overview-workspace) .workspace { flex: 1; min-height: 0; display: grid; align-items: stretch; grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 8px; overflow: hidden; }
+  .app-shell:not(.overview-workspace) .board-column { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .app-shell:not(.overview-workspace) .board-shell { width: min(100%, 32dvh, 300px); }
+  .app-shell:not(.overview-workspace) .feedback-strip { max-height: 110px; width: 100%; overflow: auto; padding: 8px; gap: 6px; font-size: .85rem; }
+  .app-shell:not(.overview-workspace) .feedback-strip .eyebrow { display: none; }
+  .app-shell:not(.overview-workspace) .feedback-strip p { margin: 0; }
+  .app-shell:not(.overview-workspace) .feedback-actions { flex-direction: row; gap: 6px; }
+  .app-shell:not(.overview-workspace) .feedback-actions button { padding: 8px; font-size: .75rem; }
+  .app-shell:not(.overview-workspace) .mobile-line-progress { display: none; }
+  .app-shell:not(.overview-workspace) .task-dock { height: 100%; max-height: 100%; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 6px; }
+  .app-shell:not(.overview-workspace) .mode-tabs { flex: 0 0 auto; }
+  .app-shell:not(.overview-workspace) .dock-panel { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 12px; }
+  .app-shell:not(.overview-workspace) .dock-panel > * { flex-shrink: 0; }
 }

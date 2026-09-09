@@ -197,5 +197,8 @@ export type RepertoireBacklogItem = {
   reason: 'opponent-deviation' | 'forgotten-move' | 'missed-tactic';
   title: string;
   status: 'new' | 'scheduled' | 'resolved';
+  /** Device-local annotations; status continues to sync through the existing backlog schema. */
+  notes?: string;
+  openingFamilyKey?: string;
   createdAt: string;
 };

@@ -190,7 +190,7 @@ export const starterCurriculumModules: CurriculumModule[] = [
         id: 'basic-endgames-opposition',
         type: 'endgame-drill',
         title: 'Win the Opposition',
-        prompt: 'Use kings only to take or yield the opposition at the right moment.',
+        prompt: 'Keep the pawn back and use your king to take the opposition.',
         themes: ['opposition', 'king-activity'],
         maxScore: 10
       },

@@ -21,7 +21,7 @@ export function matchPgnToRepertoire(input: {
   const imported = new Chess();
   imported.loadPgn(input.pgn);
   const moves = imported.history({ verbose: true });
-  const replay = new Chess();
+  const replay = new Chess(imported.getHeaders().FEN);
   let matchedOpeningFamilyKey: string | null = null;
   let matchedPlyCount = 0;
   let lastKnownPositionKey = buildPositionKey(replay.fen());
@@ -53,7 +53,7 @@ export function matchPgnToRepertoire(input: {
       playedUci = uci;
       const family = matchedOpeningFamilyKey ? input.graph.openings[matchedOpeningFamilyKey] : undefined;
       const learnerColor = family?.side;
-      const movingColor = index % 2 === 0 ? 'white' : 'black';
+      const movingColor = move.color === 'w' ? 'white' : 'black';
       divergingSide = learnerColor && movingColor === learnerColor ? 'learner' : 'opponent';
       if (input.graph.positions[after]?.openingFamilyKeys.some((key) => input.selectedOpeningFamilyKeys.includes(key))) {
         transposedAtPly = index + 1;

@@ -16,6 +16,7 @@ describe('guided repertoire flow', () => {
     await userEvent.type(screen.getByRole('spinbutton', { name: /Optional rating/i }), '1450');
     await userEvent.selectOptions(screen.getByRole('combobox', { name: /Training goal/i }), 'tactical-danger');
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /^Repertoire$/i }));
 
     expect(screen.getByRole('region', { name: /Repertoire map/i })).toHaveTextContent(/Vienna/i);
@@ -27,6 +28,7 @@ describe('guided repertoire flow', () => {
   it('shows a single guided next action in Today', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /^Today$/i }));
     expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/One clear next action/i);
     expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Connect the opening to a plan, linked decisions, and a different opponent reply/i);
@@ -35,6 +37,7 @@ describe('guided repertoire flow', () => {
   it('retains idea-first practice from the opening and checks the plan before board play', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Practise opening plans/i }));
     expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent(/Plan Lab \+ Adaptive Sparring/i);
     await userEvent.click(screen.getAllByRole('radio')[0]);
@@ -47,6 +50,7 @@ describe('guided repertoire flow', () => {
   it('connects a line to its model continuation, tactical position and plan lesson', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     const line = starterRepertoires.find((item) => item.id === 'white-vienna-main')!;
     const chess = new Chess();
     line.movesSan.slice(0, line.modelPositionPly).forEach((move) => chess.move(move));
@@ -67,6 +71,7 @@ describe('guided repertoire flow', () => {
   it('restores a tactical decision after a wrong move and resets when returning to line training', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Tactical decision 2/i }));
     const position = screen.getByLabelText('Chess board mock').getAttribute('data-position');
     await userEvent.click(screen.getByRole('button', { name: 'Play d3' }));
@@ -81,6 +86,7 @@ describe('guided repertoire flow', () => {
   it('lets learners choose a specific opening plan from the repertoire', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /^Repertoire$/i }));
     await userEvent.click(screen.getAllByText('3 plan lessons for this opening')[0]);
     await userEvent.click(screen.getByRole('button', { name: /Convert initiative into development/i }));
@@ -90,6 +96,7 @@ describe('guided repertoire flow', () => {
   it('restores anonymous onboarding from local storage after remount', async () => {
     const first = render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     first.unmount();
     render(<App />);
     await waitFor(() => expect(screen.queryByRole('region', { name: /Guided repertoire setup/i })).not.toBeInTheDocument());
@@ -99,6 +106,7 @@ describe('guided repertoire flow', () => {
   it('turns a PGN divergence into a visible game gap', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /^Review$/i }));
     const pgn = screen.getByRole('textbox', { name: /PGN input/i });
     await userEvent.clear(pgn); await userEvent.type(pgn, '1. e4 e5 2. Nc3 Nf6 3. a3');

@@ -42,7 +42,7 @@ export type LessonSession = {
   answers: Record<string, LearningAttempt>;
   assistance: Record<string, { hint: boolean; revealed: boolean }>;
   completedCheckpoints: string[];
-  returnDestination: 'today' | 'repertoire' | 'opening-trainer';
+  returnDestination: 'today' | 'repertoire' | 'opening-trainer' | 'game-review';
   reviewCheckpointId?: string;
   openingRecall: boolean;
   completedAt?: string;

@@ -59,7 +59,7 @@ export class GameManager {
       const imported = new Chess();
       imported.loadPgn(pgn);
 
-      const replay = new Chess();
+      const replay = new Chess(imported.getHeaders().FEN);
       const positions = [replay.fen()];
       for (const san of imported.history()) {
         replay.move(san);

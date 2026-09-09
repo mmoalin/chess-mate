@@ -139,7 +139,7 @@ export class GuidedLearnerRepository implements LearnerRepository {
     if (!this.canSync(learnerId)) return local;
     const { data, error } = await this.client!.from('repertoire_backlog').select('*').eq('user_id', learnerId);
     if (error) throw error;
-    const merged = mergeById(local, (data ?? []).map(backlogFromRow));
+    const merged = mergeById(local, (data ?? []).map((row) => ({ ...local.find((item) => item.id === row.id), ...backlogFromRow(row) })));
     await Promise.all(merged.map((item) => this.store.put(`backlog:${learnerId}:${item.id}`, item)));
     return merged;
   }

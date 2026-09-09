@@ -12,33 +12,20 @@ vi.mock('react-chessboard', () => ({
 }));
 
 describe('App', () => {
-  it('starts with beginner onboarding and lands on the dashboard recommendation', async () => {
+  it('lands on Today with one next action after onboarding', async () => {
     render(<App />);
-
     expect(screen.getByRole('heading', { name: /Set up your training/i })).toBeInTheDocument();
-
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
-
-    expect(screen.queryByRole('heading', { name: /Today/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole('region', { name: /Today summary/i })).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Show today/i })).toBeInTheDocument();
-    expect(screen.queryByText(/Next lesson/i)).not.toBeInTheDocument();
-
-    await userEvent.click(screen.getByRole('button', { name: /Show today/i }));
-
-    expect(screen.getByRole('region', { name: /Today summary/i })).toBeInTheDocument();
-    expect(screen.getByText(/Next lesson/i)).toBeInTheDocument();
-
-    await userEvent.click(screen.getByRole('button', { name: /Hide today/i }));
-
-    expect(screen.queryByRole('region', { name: /Today summary/i })).not.toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Vienna Game: Main Development/i })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Today workspace' })).toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: 'Start now' })).toHaveLength(1);
+    expect(screen.queryByRole('button', { name: /Show today|Hide today/i })).not.toBeInTheDocument();
   });
 
   it('keeps repertoire moves above lesson details in the task dock', async () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
 
     const dock = screen.getByRole('complementary', { name: /Task dock/i });
     const dockText = dock.textContent ?? '';
@@ -48,7 +35,7 @@ describe('App', () => {
     expect(dockText.indexOf('Move')).toBeLessThan(dockText.indexOf('Lesson goal'));
   });
 
-  it('renders the opening trainer as the first workflow', () => {
+  it('shows setup before mounting the interactive board', async () => {
     render(<App />);
 
     expect(screen.getByRole('heading', { name: /Set up your training/i })).toBeInTheDocument();
@@ -59,6 +46,7 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
 
     const dock = screen.getByRole('complementary', { name: /Task dock/i });
     expect(dock).toBeInTheDocument();
@@ -72,6 +60,7 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
 
     expect(screen.queryByRole('region', { name: /Move history/i })).not.toBeInTheDocument();
 
@@ -85,12 +74,13 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Review/i }));
     await userEvent.click(screen.getByRole('button', { name: /Load PGN/i }));
     const finalPosition = screen.getByLabelText('Chess board mock').getAttribute('data-position');
 
     await userEvent.click(screen.getByRole('button', { name: /Show moves/i }));
-    await userEvent.click(screen.getByRole('button', { name: /Move 1: e4/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Move 1.e4/i }));
 
     const selectedPosition = screen.getByLabelText('Chess board mock').getAttribute('data-position');
     expect(selectedPosition).not.toBe(finalPosition);
@@ -101,6 +91,7 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Review/i }));
 
     expect(screen.getByRole('textbox', { name: /PGN input/i })).toHaveValue('1. e4 e5 2. Nf3 Nc6');
@@ -111,6 +102,7 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Review/i }));
     await userEvent.click(screen.getByRole('button', { name: /Play vs Stockfish/i }));
 
@@ -133,6 +125,7 @@ describe('App', () => {
 
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Repertoire move 1: e4/i }));
     await userEvent.click(screen.getByRole('button', { name: /Copy PGN/i }));
 
@@ -145,6 +138,7 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Study/i }));
 
     expect(screen.getByRole('heading', { name: /Opening Principles/i })).toBeInTheDocument();
@@ -156,6 +150,7 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Openings/i }));
     await userEvent.click(screen.getByRole('button', { name: /Hint/i }));
 
@@ -171,6 +166,7 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     const initialPosition = screen.getByLabelText('Chess board mock').getAttribute('data-position');
 
     await userEvent.click(screen.getByRole('button', { name: /Repertoire move 2: e5/i }));
@@ -185,6 +181,7 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Study/i }));
     await userEvent.click(screen.getByRole('radio', { name: /Develop a knight toward the centre/i }));
     await userEvent.click(screen.getByRole('button', { name: /Check answer/i }));
@@ -198,17 +195,19 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /Review/i }));
     await userEvent.click(screen.getByRole('button', { name: /Load PGN/i }));
 
-    expect(screen.getByText(/Matched 2 moves in Vienna Game: Main Development/i)).toBeInTheDocument();
-    expect(screen.getByText(/Left book on move 3/i)).toBeInTheDocument();
+    expect(screen.getByText(/matched through 1…e5/i)).toBeInTheDocument();
+    expect(screen.getByText(/First different move: 2.Nf3/i)).toBeInTheDocument();
   });
 
   it('shows beginner difficulty and middlegame ideas for the default opening line', async () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
 
     expect(screen.getByText(/Beginner/i)).toBeInTheDocument();
     expect(screen.getByRole('region', { name: /Middlegame ideas/i })).toHaveTextContent(
@@ -220,6 +219,7 @@ describe('App', () => {
     render(<App />);
 
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
 
     expect(screen.getByRole('heading', { name: /Vienna Game: Main Development Plan/i })).toBeInTheDocument();
     expect(screen.getByRole('region', { name: /Theory branches/i })).toHaveTextContent(/Vienna Gambit/i);
