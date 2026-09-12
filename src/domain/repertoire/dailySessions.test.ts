@@ -4,12 +4,12 @@ import { embeddedRepertoireGraph } from '../../services/guidedContentRepository'
 import { createInitialMastery } from './training';
 
 describe('daily learning sessions', () => {
-  it('builds a review, learn and apply sequence with the chosen time budget', () => {
+  it('fits real review and focused-learning estimates into the chosen time budget', () => {
     const mastery = createInitialMastery({ learnerId: 'local', itemKey: 'concept:vienna-f4-timing', positionKey: Object.keys(embeddedRepertoireGraph.positions)[0], now: '2026-09-01T00:00:00.000Z' });
     mastery.understanding.status = 'learning'; mastery.understanding.dueAt = '2026-09-02T00:00:00.000Z';
     const session = buildDailySession({ learnerId: 'local', durationMinutes: 10, graph: embeddedRepertoireGraph, selectedOpeningKeys: ['white-vienna-main', 'black-caro-kann-main'], mastery: [mastery], backlog: [], lessonSessions: [], profile: { learnerId: 'local', depth: 'foundation', goal: 'basic-plans', dailyDurationMinutes: 10, onboardingCompleted: true, updatedAt: '2026-09-01T00:00:00.000Z' }, now: '2026-09-12T10:00:00.000Z' });
-    expect(session.targets.map((target) => target.phase)).toEqual(['review', 'learn', 'apply']);
-    expect(session.targets.map((target) => target.estimatedMinutes)).toEqual([3, 4, 3]);
+    expect(session.targets.map((target) => target.phase)).toEqual(['review', 'learn']);
+    expect(session.targets.map((target) => target.estimatedMinutes)).toEqual([5, 3]);
     expect(session.targets[0]).toMatchObject({ kind: 'concept-drill', contentKey: 'concept:vienna-f4-timing' });
   });
 

@@ -12,6 +12,7 @@ export type PgnDivergence = {
   transposedAtPly?: number;
   recommendedAction: 'schedule-recall' | 'add-opponent-response' | 'schedule-tactic' | 'none';
   ambiguousOpeningFamilyKeys: string[];
+  coverageEnded: boolean;
 };
 
 export function matchPgnToRepertoire(input: {
@@ -35,10 +36,11 @@ export function matchPgnToRepertoire(input: {
   const movingColor = divergencePly ? (moves[divergencePly - 1]?.color === 'w' ? 'white' : 'black') : null;
   const divergingSide = family && movingColor ? (family.side === movingColor ? 'learner' : 'opponent') : null;
   const transposedAtPly = best?.transposedAtPly;
+  const coverageEnded = Boolean(best?.coverageEnded);
 
   const motifAtLastPosition = Object.values(input.graph.motifs).some((motif) => motif.positionKeys.includes(lastKnownPositionKey));
   const recommendedAction =
-    divergencePly === null
+    divergencePly === null || coverageEnded
       ? 'none'
       : motifAtLastPosition
         ? 'schedule-tactic'
@@ -54,20 +56,21 @@ export function matchPgnToRepertoire(input: {
     divergingSide,
     playedUci,
     transposedAtPly,
+    coverageEnded,
     recommendedAction,
     ambiguousOpeningFamilyKeys: bestScore > 0 ? candidates.filter((candidate) => candidate.matchedPlyCount === bestScore).map((candidate) => candidate.familyKey) : []
   };
 
   function matchFamily(familyKey: string) {
     const replay = new Chess(startFen);
-    let matchedPlyCount = 0; let lastKnownPositionKey = buildPositionKey(replay.fen()); let divergencePly: number | null = null; let transposedAtPly: number | undefined;
+    let matchedPlyCount = 0; let lastKnownPositionKey = buildPositionKey(replay.fen()); let divergencePly: number | null = null; let transposedAtPly: number | undefined; let coverageEnded = false;
     for (let index = 0; index < moves.length; index += 1) {
       const before = buildPositionKey(replay.fen()); const move = moves[index]; const uci = `${move.from}${move.to}${move.promotion ?? ''}`;
       const edge = Object.values(input.graph.edges).find((candidate) => candidate.from === before && candidate.uci === uci && candidate.openingFamilyKeys.includes(familyKey));
       replay.move(move.san); const after = buildPositionKey(replay.fen());
       if (edge && divergencePly === null) { matchedPlyCount += 1; lastKnownPositionKey = after; if (edge.classification === 'transposition') transposedAtPly = index + 1; }
-      else if (divergencePly === null) { divergencePly = index + 1; if (input.graph.positions[after]?.openingFamilyKeys.includes(familyKey)) { transposedAtPly = index + 1; lastKnownPositionKey = after; } }
+      else if (divergencePly === null) { coverageEnded = matchedPlyCount > 0 && !Object.values(input.graph.edges).some((candidate) => candidate.from === before && candidate.openingFamilyKeys.includes(familyKey)); divergencePly = index + 1; if (input.graph.positions[after]?.openingFamilyKeys.includes(familyKey)) { transposedAtPly = index + 1; lastKnownPositionKey = after; } }
     }
-    return { familyKey, matchedPlyCount, lastKnownPositionKey, divergencePly, transposedAtPly };
+    return { familyKey, matchedPlyCount, lastKnownPositionKey, divergencePly, transposedAtPly, coverageEnded };
   }
 }

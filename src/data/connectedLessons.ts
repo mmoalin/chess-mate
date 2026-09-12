@@ -1,9 +1,10 @@
 import { starterRepertoires } from './repertoires';
+import { caroEndgame, viennaEndgame } from './endgameJourneys';
 import type { ConnectedLesson, LessonDecision, LessonQuestion } from '../features/connected/types';
 
 const line = (key: string) => starterRepertoires.find((item) => item.id === key)!;
 const question = (id: string, prompt: string, hint: string, choices: [string, boolean, string][]): LessonQuestion => ({
-  id, prompt, hint, choices: choices.map(([label, correct, feedback], index) => ({ id: String(index), label, correct, feedback }))
+  id, prompt, hint, choices: choices.map(([label, correct, feedback], index) => ({ id: String(index), label, correct, feedback })).sort((a, b) => (Number(a.id) + 2) % 3 - (Number(b.id) + 2) % 3)
 });
 function path(prefix: string[], items: { id: string; move: string; reply?: string[]; prompt: string; change: string; hint: string; feedback: string; tactical?: boolean; mistakes?: Record<string, string> }[]) {
   let moves = [...prefix];
@@ -25,6 +26,7 @@ const caroMoves = caro.movesSan.slice(0, caro.modelPositionPly);
 export const starterConnectedLessons: ConnectedLesson[] = [
   {
     key: 'lesson:vienna-development', version: 1, title: 'Vienna: turn initiative into a plan',
+    endgame: viennaEndgame,
     openingFamilyKey: vienna.id, lineKey: vienna.id, side: 'white', openingMoves: viennaMoves,
     modelPositionPly: viennaMoves.length,
     openingExplanations: ['Claim central space.', 'Black also occupies the centre.', 'Develop while keeping the f-pawn free.', 'Black puts pressure on e4.', 'Challenge e5; this makes king safety more urgent.', 'Black responds in the centre.', 'Resolve the pawn contact before making another attacking move.', 'Black captures e4 and centralizes the knight.', 'Develop a defender and improve coordination.', 'Black prepares to castle; White must complete development too.'],
@@ -33,13 +35,13 @@ export const starterConnectedLessons: ConnectedLesson[] = [
     questions: [
       question('structure', 'What is the most useful feature to recognize here?', 'Compare the e5 pawn, the missing f-pawn, and the undeveloped bishop.', [
         ['White has central space, but the open lines also make king safety urgent.', true, 'The e5 pawn restricts Black, while the missing f-pawn makes a king left on e1 more vulnerable.'],
-        ['White can attack without developing the bishop.', false, 'The bishop and king still need attention before the open lines become an asset.'],
-        ['The position is a closed pawn chain with no immediate contact.', false, 'The central exchange and Black knight on e4 make concrete moves important.']
+        ['White should recover the e4 pawn before making a developing move.', false, 'The bishop and king still need attention before the open lines become an asset.'],
+        ['White should advance e5 again before Black can blockade it.', false, 'The central exchange and Black knight on e4 make concrete moves important.']
       ]),
       question('plan', 'Which plan makes your initiative sustainable?', 'Bring another piece into play and connect the rooks.', [
         ['Develop the bishop, castle, then support the centre with d4.', true, 'This connects king safety, development, and a defended central presence.'],
-        ['Push the g-pawn immediately.', false, 'More pawn moves do not solve the undeveloped bishop or exposed king.'],
-        ['Chase the knight with the queen before developing.', false, 'Queen moves give Black time while your own pieces remain uncoordinated.']
+        ['Prepare g4 to dislodge the central knight before developing.', false, 'More pawn moves do not solve the undeveloped bishop or exposed king.'],
+        ['Bring the queen to e2 and postpone castling to defend e5.', false, 'Queen moves give Black time while your own pieces remain uncoordinated.']
       ])
     ],
     mainStartId: 'develop', transferStartId: 'transfer-recapture',
@@ -60,6 +62,7 @@ export const starterConnectedLessons: ConnectedLesson[] = [
   },
   {
     key: 'lesson:caro-active', version: 1, title: 'Caro-Kann: stay solid and active',
+    endgame: caroEndgame,
     openingFamilyKey: caro.id, lineKey: caro.id, side: 'black', openingMoves: caroMoves,
     modelPositionPly: caroMoves.length,
     openingExplanations: ['White occupies e4.', 'Support a central challenge with ...c6.', 'White takes more central space.', 'Contest the centre with ...d5.', 'White develops a defender.', 'Clarify the centre.', 'White recaptures with a piece.', 'Develop the bishop before closing its diagonal with ...e6.', 'White challenges the bishop.', 'Retreat while keeping the bishop outside the pawn chain.', 'White threatens h5 to chase the bishop.', 'Give the bishop a retreat on h7.'],
@@ -68,13 +71,13 @@ export const starterConnectedLessons: ConnectedLesson[] = [
     questions: [
       question('structure', 'What distinguishes this Caro-Kann position?', 'Where is the light-squared bishop compared with your e-pawn?', [
         ['The light bishop is outside the pawn shell, but White can chase it with h5.', true, 'Its active placement is valuable, and ...h6 has prepared h7 as a retreat.'],
-        ['The bishop is trapped behind an e6 pawn.', false, 'Your e-pawn is still on e7 and the bishop is already on g6.'],
-        ['Black should ignore all kingside pawn moves.', false, 'h5 attacks the bishop directly; concrete threats interrupt long-term plans.']
+        ['The centre is fixed, so the bishop can stay on g6 without a retreat.', false, 'Your e-pawn is still on e7 and the bishop is already on g6.'],
+        ['The bishop exchange should be postponed until after Black castles.', false, 'h5 attacks the bishop directly; concrete threats interrupt long-term plans.']
       ]),
       question('plan', 'How should Black connect defence to counterplay?', 'Solve the bishop threat, then ask what development prepares.', [
         ['Keep the bishop safe, finish development, and challenge d4 with ...c5.', true, 'Each step prepares the next: piece safety, coordination, king safety, then central play.'],
-        ['Keep pushing flank pawns instead of developing.', false, 'Pawn moves alone leave your king and minor pieces unready for central play.'],
-        ['Accept a permanently passive position.', false, 'The solid structure should support an active central break.']
+        ['Prepare a queenside pawn expansion before committing the knights.', false, 'Pawn moves alone leave your king and minor pieces unready for central play.'],
+        ['Keep the c-pawn on c6 and concentrate on defending d5.', false, 'The solid structure should support an active central break.']
       ])
     ],
     mainStartId: 'bishop-retreat', transferStartId: 'transfer-exchange', transferCheckpointMoves: caroMoves,
@@ -98,3 +101,10 @@ export const starterConnectedLessons: ConnectedLesson[] = [
     }
   }
 ];
+
+// Positional comparisons describe concrete features; engine results remain separate.
+starterConnectedLessons[0].decisions.develop.comparisons = {
+  Bc4: 'Bc4 develops toward f7, but c4 is attacked by the d5 pawn. Calculate …dxc4 before treating this as interchangeable with Be2.',
+  Be2: 'Be2 clears f1 for castling without placing the bishop on a square attacked by d5.',
+  d4: 'd4 supports e5 and opens the c1 bishop. The f1 bishop and king still need attention; compare Black’s forcing replies.'
+};

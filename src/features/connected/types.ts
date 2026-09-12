@@ -1,4 +1,5 @@
 import type { LearningAttempt, MasteryDimension, PlanChoice } from '../../domain/repertoire/types';
+import type { EndgameJourney, JourneyProgress } from './endgameJourney';
 
 export type LessonQuestion = { id: string; prompt: string; choices: PlanChoice[]; hint: string };
 export type LessonDecision = {
@@ -10,6 +11,7 @@ export type LessonDecision = {
   dimension: MasteryDimension;
   answers: { moveSan: string; repliesSan: string[]; nextId: string | null; feedback: string }[];
   mistakes: Record<string, string>;
+  comparisons?: Record<string, string>;
 };
 export type ConnectedLesson = {
   key: string;
@@ -29,6 +31,7 @@ export type ConnectedLesson = {
   transferCheckpointMoves: string[];
   transferExplanation: string;
   decisions: Record<string, LessonDecision>;
+  endgame?: EndgameJourney;
 };
 export type LessonStage = 'opening' | 'question' | 'main' | 'transfer-intro' | 'transfer' | 'summary' | 'sparring';
 export type LessonSession = {
@@ -40,7 +43,7 @@ export type LessonSession = {
   checkpointId: string;
   moves: string[];
   answers: Record<string, LearningAttempt>;
-  assistance: Record<string, { hint: boolean; revealed: boolean }>;
+  assistance: Record<string, { hint: boolean; revealed: boolean; analysis?: boolean }>;
   completedCheckpoints: string[];
   returnDestination: 'today' | 'repertoire' | 'opening-trainer' | 'game-review';
   reviewCheckpointId?: string;
@@ -48,5 +51,12 @@ export type LessonSession = {
   completedAt?: string;
   supersededAt?: string;
   practiceStartMoves?: string[];
+  learningMode?: 'guided' | 'independent';
+  reflections?: Record<string, { move: string; plan: string; reply: string }>;
+  practiceLimit?: number;
+  practiceReturnMoves?: string[];
+  practiceReflection?: string;
+  practiceReview?: { moves: string[]; startMoves: string[]; limit?: number; reflection?: string };
+  journey?: JourneyProgress;
   updatedAt: string;
 };

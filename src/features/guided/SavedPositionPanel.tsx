@@ -10,7 +10,7 @@ export function SavedPositionPanel({ item, lessonTitle, onSave, onLesson, onRese
   return <section className="saved-position-panel" aria-label="Saved gap review">
     <p className="eyebrow">{item.status === 'resolved' ? 'Reviewed position' : 'Saved position'}</p>
     <h2>{item.title}</h2>
-    <p>{item.reason === 'opponent-deviation' ? 'Your opponent chose a different response.' : item.reason === 'missed-tactic' ? 'Revisit the tactical opportunity.' : 'Recall the repertoire choice.'} Try a candidate on the board, then analyse the resulting position.</p>
+    <p>{item.reason === 'opponent-deviation' ? 'Your opponent chose a different response.' : item.reason === 'missed-tactic' ? 'Revisit the tactical opportunity.' : 'Compare your choice with the stored repertoire.'} Try a candidate on the board, then analyse the resulting position.</p>
     <button className="secondary-button" onClick={onReset}>Return to saved position</button>
     <label className="saved-notes">Candidate move and plan<textarea aria-label="Candidate move and plan" value={notes} onChange={(event) => { setNotes(event.target.value); setSaved(false); }} /></label>
     <p className="analysis">Notes are saved on this device.</p>

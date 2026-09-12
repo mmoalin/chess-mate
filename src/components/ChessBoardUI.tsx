@@ -9,7 +9,7 @@ type Props = {
   legalTargets: Record<string, string[]>;
   lastMove?: { from: string; to: string } | null;
   arrows?: { startSquare: string; endSquare: string; color: string }[];
-  onMoveAttempt: (from: string, to: string, promotion?: string) => boolean;
+  onMoveAttempt: (from: string, to: string, promotion?: string) => boolean | { accepted: boolean; message: string };
 };
 type Interaction = {
   chess: Chess; selected: string; focused: string; helpId: string;
@@ -47,9 +47,10 @@ export function ChessBoardUI({ fen, orientation, legalTargets, lastMove, arrows 
   useEffect(() => { setSelected(''); }, [fen]);
   useEffect(() => { setFocused(orientation === 'white' ? 'e2' : 'e7'); setSelected(''); }, [orientation]);
   function attempt(from: string, to: string) {
-    const accepted = onMoveAttempt(from, to, promotionForMove(fen, from, to));
+    const result = onMoveAttempt(from, to, promotionForMove(fen, from, to));
+    const accepted = typeof result === 'boolean' ? result : result.accepted;
     setSelected('');
-    setAnnouncement(accepted ? `${from} to ${to}.` : 'That move is unavailable. Select a piece and try again.');
+    setAnnouncement(typeof result === 'object' ? result.message : accepted ? `${from} to ${to}.` : 'This move was not played. Check the exercise feedback, then try again.');
     return accepted;
   }
   function select(square: string) {

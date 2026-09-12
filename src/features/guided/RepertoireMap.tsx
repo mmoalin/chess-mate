@@ -1,9 +1,10 @@
+import { StructureGuide } from '../connected/StructureGuide';
 import { LessonProgress } from './LessonProgress';
 import type { LessonSession } from '../connected/types';
 import { outgoingEdges } from '../../domain/repertoire/graph';
 import type { MasteryState, OpeningFamily, RepertoireGraph } from '../../domain/repertoire/types';
 
-export function RepertoireMap(props: { sessions?: LessonSession[]; graph: RepertoireGraph; selectedKeys: string[]; mastery: MasteryState[]; onTrain: (openingKey: string) => void; onPracticeIdeas: (openingKey: string) => void; onConcept: (key: string) => void; onLesson?: (key: string) => void }) {
+export function RepertoireMap(props: { sessions?: LessonSession[]; graph: RepertoireGraph; selectedKeys: string[]; mastery: MasteryState[]; onTrain: (openingKey: string) => void; onPracticeIdeas: (openingKey: string) => void; onConcept: (key: string) => void; onLesson?: (key: string) => void; onLine?: (key: string) => void }) {
   const selected = props.selectedKeys.map((key) => props.graph.openings[key]).filter((opening): opening is OpeningFamily => Boolean(opening));
   const uncoveredD4 = !selected.some((opening) => opening.context === 'black-vs-d4');
   return (
@@ -16,6 +17,7 @@ export function RepertoireMap(props: { sessions?: LessonSession[]; graph: Repert
         const concepts = Object.values(props.graph.conceptDrills ?? {}).filter((drill) => drill.openingFamilyKey === opening.key);
         return <article className="repertoire-map-card" key={opening.key}>
           <div><span>{opening.context === 'white' ? 'White' : opening.context.replace('black-vs-', 'Black vs 1.')}</span><strong>{opening.name}</strong><p>{opening.summary}</p></div>
+          <StructureGuide lineKey={opening.key} lesson={Object.values(props.graph.connectedLessons ?? {}).find((lesson) => lesson.openingFamilyKey === opening.key)} onLesson={props.onLesson} onLine={props.onLine} />
           <LessonProgress sessions={props.sessions?.filter((s) => props.graph.connectedLessons?.[s.lessonKey]?.openingFamilyKey === opening.key)} lessons={props.graph.connectedLessons ?? {}} onOpen={(key) => props.onLesson?.(key)} />
           <div className="branch-meter" aria-label={`${opening.name} progress`}><span style={{ width: `${units.length ? reliable / units.length * 100 : 0}%` }} /></div>
           <small>{edges.length} first branches · {reliable}/{units.length} reliable units</small>

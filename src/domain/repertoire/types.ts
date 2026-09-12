@@ -211,7 +211,7 @@ export type ActivityTarget = {
 
 export type ActivityOutcome = {
   targetId: string;
-  status: 'completed' | 'skipped';
+  status: 'completed' | 'skipped' | 'partial';
   correct: number;
   total: number;
   assistanceUsed: number;

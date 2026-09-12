@@ -1,9 +1,10 @@
+import { FULL_LESSON_MINUTES, CHECKPOINT_MINUTES, PLAN_LAB_MINUTES } from '../../features/connected/learningPresentation';
 import type { LessonSession } from '../../features/connected/types';
 import { starterCurriculumModules } from '../../features/curriculum/curriculum';
 import type { ActivityOutcome, ActivityTarget, DailyDuration, DailySession, LearnerProfile, MasteryDimension, MasteryState, RepertoireBacklogItem, RepertoireGraph } from './types';
 import { hasCheckpoint } from '../../features/connected/session';
 
-const budgets: Record<DailyDuration, [number, number, number]> = { 5: [1, 3, 1], 10: [3, 4, 3], 20: [5, 10, 5] };
+const budgets: Record<DailyDuration, [number, number, number]> = { 5: [3, 3, 5], 10: [3, 3, 5], 20: [3, 12, 5] };
 type PlannedTarget = Omit<ActivityTarget, 'attemptId'>;
 
 export function buildDailySession(input: {
@@ -24,14 +25,16 @@ export function buildDailySession(input: {
   const unfinished = input.lessonSessions.filter((session) => !session.completedAt && !session.supersededAt && lessons.some((lesson) => lesson.key === session.lessonKey)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
   const unstarted = lessons.find((lesson) => !input.lessonSessions.some((session) => session.lessonKey === lesson.key && session.completedAt && !session.reviewCheckpointId));
   const lesson = unfinished ? lessons.find((item) => item.key === unfinished.lessonKey) : unstarted;
-  if (lesson) targets.push({ id: `daily:learn:${unfinished ? 'session:' + unfinished.id : lesson.key}`, kind: 'connected-lesson', phase: 'learn', contentKey: unfinished ? 'session:' + unfinished.id : lesson.key, title: unfinished ? `Continue ${lesson.title}` : lesson.title, reason: 'Connect opening moves to a practical middlegame plan.', estimatedMinutes: learnMinutes, contentVersion: lesson.version, openingFamilyKey: lesson.openingFamilyKey, learnerSide: lesson.side });
+  const focused = lesson && !unfinished && input.durationMinutes < 20;
+  const focusCheckpoint = lesson ? [...lesson.questions.map((q) => q.id), ...Object.keys(lesson.decisions)].find((id) => !input.mastery.some((m) => m.itemKey === lesson.key + '/' + id && (m.understanding.status !== 'unseen' || m.tactics.status !== 'unseen'))) ?? lesson.mainStartId : '';
+  if (lesson) targets.push({ id: `daily:learn:${unfinished ? 'session:' + unfinished.id : lesson.key}`, kind: 'connected-lesson', phase: 'learn', contentKey: unfinished ? 'session:' + unfinished.id : focused ? lesson.key + '/' + focusCheckpoint : lesson.key, title: unfinished ? `Continue ${lesson.title}` : focused ? `${lesson.title} · one checkpoint` : lesson.title, reason: focused ? 'One focused decision; the full lesson remains available in Repertoire.' : 'Connect opening moves to a practical middlegame plan.', estimatedMinutes: focused || unfinished?.reviewCheckpointId ? CHECKPOINT_MINUTES : FULL_LESSON_MINUTES, contentVersion: lesson.version, openingFamilyKey: lesson.openingFamilyKey, learnerSide: lesson.side });
   else {
     const unit = preferredUnits(input).find((item) => !input.mastery.some((state) => state.itemKey === item.key && state.recall.status === 'reliable'));
     if (unit) targets.push({ id: `daily:learn:${unit.key}`, kind: 'opening-unit', phase: 'learn', contentKey: unit.key, title: unit.title, reason: 'Recall the next short section of your repertoire.', estimatedMinutes: learnMinutes, contentVersion: input.graph.release.version, openingFamilyKey: unit.openingFamilyKey, positionKey: unit.startPositionKey, learnerSide: input.graph.openings[unit.openingFamilyKey]?.side, dimension: 'recall' });
   }
 
   const focusOpening = targets.find((target) => target.openingFamilyKey)?.openingFamilyKey ?? input.selectedOpeningKeys[0];
-  const concepts = Object.values(input.graph.conceptDrills ?? {}).filter((drill) => drill.openingFamilyKey === focusOpening && depthRank(drill.depth) <= depthRank(input.profile?.depth ?? 'foundation'));
+  const concepts = Object.values(input.graph.conceptDrills ?? {}).filter((drill) => drill.openingFamilyKey === focusOpening && depthRank(drill.depth) <= depthRank(input.profile?.depth ?? 'foundation')).sort((a, b) => depthRank(b.depth) - depthRank(a.depth));
   const concept = orderConcepts(concepts, input.profile?.goal).find((drill) => !targets.some((target) => target.contentKey === drill.key));
   if (concept) targets.push({ id: `daily:apply:${concept.key}`, kind: 'concept-drill', phase: 'apply', contentKey: concept.key, title: concept.title, reason: 'Apply the same opening idea against a different reply.', estimatedMinutes: applyMinutes, contentVersion: input.graph.release.version, openingFamilyKey: concept.openingFamilyKey, learnerSide: input.graph.openings[concept.openingFamilyKey]?.side, dimension: 'understanding' });
   else {
@@ -40,7 +43,11 @@ export function buildDailySession(input: {
   }
 
   const now = input.now;
-  const stableTargets = targets.map((target) => ({ ...target, attemptId: crypto.randomUUID() }));
+  let remaining = input.durationMinutes;
+  const fitted = targets.filter((target) => { if (target.estimatedMinutes > remaining) return false; remaining -= target.estimatedMinutes; return true; });
+  // An unfinished full lesson remains accessible even when the selected budget is short.
+  if (!fitted.length && targets.length) fitted.push(targets[0]);
+  const stableTargets = fitted.map((target) => ({ ...target, attemptId: crypto.randomUUID() }));
   return { id: crypto.randomUUID(), learnerId: input.learnerId, durationMinutes: input.durationMinutes, contentVersion: input.graph.release.version, targets: stableTargets, outcomes: [], currentIndex: 0, status: stableTargets.length ? 'active' : 'completed', createdAt: now, updatedAt: now, completedAt: stableTargets.length ? undefined : now };
 }
 
@@ -59,7 +66,7 @@ function targetForMastery(graph: RepertoireGraph, state: MasteryState, dimension
   const lesson = Object.values(graph.connectedLessons ?? {}).find((item) => state.itemKey.startsWith(item.key + '/') && hasCheckpoint(item, state.itemKey.slice(item.key.length + 1)));
   if (lesson) return { id: `daily:review:${state.itemKey}:${dimension}`, kind: 'connected-lesson', phase: 'review', contentKey: state.itemKey, title: `Review: ${lesson.title}`, reason: 'This exact lesson decision is due.', estimatedMinutes: minutes, contentVersion: lesson.version, openingFamilyKey: lesson.openingFamilyKey, positionKey: state.positionKey, learnerSide: lesson.side, dimension };
   const concept = graph.conceptDrills?.[state.itemKey];
-  if (concept) return { id: `daily:review:${state.itemKey}:${dimension}`, kind: 'concept-drill', phase: 'review', contentKey: concept.key, title: `Review: ${concept.title}`, reason: 'This plan is due for active recall.', estimatedMinutes: minutes, contentVersion: graph.release.version, openingFamilyKey: concept.openingFamilyKey, positionKey: state.positionKey, learnerSide: graph.openings[concept.openingFamilyKey]?.side, dimension };
+  if (concept) return { id: `daily:review:${state.itemKey}:${dimension}`, kind: 'concept-drill', phase: 'review', contentKey: concept.key, title: `Review: ${concept.title}`, reason: 'This plan is due for active recall.', estimatedMinutes: PLAN_LAB_MINUTES, contentVersion: graph.release.version, openingFamilyKey: concept.openingFamilyKey, positionKey: state.positionKey, learnerSide: graph.openings[concept.openingFamilyKey]?.side, dimension };
   const unit = graph.learningUnits[state.itemKey] ?? Object.values(graph.learningUnits).find((item) => state.itemKey === `legacy-unit:${item.lineKey}:${item.order}`);
   if (unit) return { id: `daily:review:${unit.key}:${dimension}`, kind: 'opening-unit', phase: 'review', contentKey: unit.key, title: `Review: ${unit.title}`, reason: 'Recall this exact section from its starting position.', estimatedMinutes: minutes, contentVersion: graph.release.version, openingFamilyKey: unit.openingFamilyKey, positionKey: unit.startPositionKey, learnerSide: graph.openings[unit.openingFamilyKey]?.side, dimension };
   if (state.itemKey.startsWith('study:')) return { id: `daily:review:${state.itemKey}:${dimension}`, kind: 'study', phase: 'review', contentKey: state.itemKey, title: 'Review a Study decision', reason: 'This transferable idea is due.', estimatedMinutes: minutes, contentVersion: graph.release.version, positionKey: state.positionKey, dimension };

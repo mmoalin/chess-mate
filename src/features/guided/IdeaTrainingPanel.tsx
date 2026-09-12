@@ -4,6 +4,7 @@ import { sessionScore, type IdeaTrainingSession } from './ideaTraining';
 
 type Props = {
   openingName?: string;
+  depth?: 'foundation' | 'standard' | 'deep';
   drill: ConceptDrill;
   session: IdeaTrainingSession;
   onSelectPlan: (choiceId: string) => void;
@@ -28,7 +29,7 @@ export function IdeaTrainingPanel(props: Props) {
       <div className="tag-cloud" aria-label="Idea themes">{drill.themes.map((theme) => <span key={theme}>{formatTheme(theme)}</span>)}</div>
 
       {session.stage === 'plan' && <>
-        <article className="lesson-card"><strong>{drill.principle}</strong><p>{drill.summary}</p></article>
+        {(!props.depth || props.depth === 'foundation' || session.planSubmitted) ? <article className="lesson-card"><strong>{drill.principle}</strong><p>{drill.summary}</p></article> : <p className="analysis">Choose from the position first. The plan explanation appears after your answer.</p>}
         <div className="idea-step"><span>1 of 3 · Recognize the plan</span><strong>{drill.planPrompt}</strong></div>
         <ChoiceGroup label="Plan choices" choices={drill.planChoices} value={session.selectedChoiceId} disabled={session.planSubmitted} onChange={props.onSelectPlan} />
         {!session.planSubmitted

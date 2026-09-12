@@ -4,16 +4,21 @@ A browser-based chess learning app focused on opening preparation, short strateg
 
 ## Features
 
-### Connected opening-to-middlegame lessons
+### Connected opening, middlegame and endgame lessons
 
 - Choose **Learn this opening** for Vienna as White or Caro-Kann as Black.
 - Replay the opening or recall your own moves, identify the structure, choose a plan, and play linked decisions with authored opponent replies.
 - Rewind explicitly to test a different opponent reply, then review your first answers and assistance used.
-- Continue against local Stockfish from the final position; **Return to lesson** restores the lesson ending and its summary.
+- In Standard or Deep mode, choose a move, explain its purpose, and predict a legal reply before seeing feedback. A short diagnostic offers an exact decision without repeating the full lesson.
+- Explore an alternative on an isolated board and compare it with the lesson example and local Stockfish suggestion. Replay each candidate's replies, then return to the unchanged checkpoint.
+- Follow optional Caro-Kann and Vienna journeys through central exchanges, pawn transformations, rook activity, and king endings. These are explicitly labelled authored training examples; before/after pawn diagrams and exact checkpoint reviews connect the ideas.
+- Practise a four-move plan against local Stockfish, retain your continuation and reflection, or use unrestricted **Play from here**. **Return to lesson** restores the original summary position.
 - Sessions save locally, resume after refresh, and sync when signed in. Today prioritizes unfinished lessons and exact due checkpoints.
 - Only the first graded answer at each checkpoint per run affects mastery. Retries remain practice; unlisted legal moves are ungraded, and reveals do not earn mastery credit.
 
 Connected content uses schema version 3. Apply `202609090001_connected_lessons.sql` before deploying this version. Older releases remain readable and receive the compatible bundled lessons; draft saving and publishing persist the full version-3 content. No existing progress is reset.
+
+The usability update adds optional JSON fields to that schema; it needs no additional migration. See [implementation coverage and validation](docs/usability-implementation-2026-09-12.md) for the review backlog, content boundaries, and checks.
 
 ### Opening training
 
@@ -24,6 +29,7 @@ Connected content uses schema version 3. Apply `202609090001_connected_lessons.s
 - Filter lines by themes including development, initiative, king safety, pawn chains, open files, weak squares, and counterplay.
 - Learn with move explanations, common-mistake guidance, strategic summaries, hints, and move reveals.
 - Explore optional theory branches after learning their beginner parent lines.
+- Compare pawn structures, breaks, piece placement, counterplay, exchanges and related endings from each opening's structure guide. Related lines distinguish identical positions from shared pawn layouts.
 - Study practical middlegame plans, candidate continuations, and warnings for each repertoire.
 - Drill critical positions from supplied FENs with position-specific feedback.
 - Turn opening mistakes into due review items and track recurring weak themes.
@@ -54,7 +60,7 @@ Lessons include explaining moves, finding themes, choosing plans, calculating li
 - Paste and import standard PGN.
 - Replay games with previous/next controls or by clicking moves in the history drawer.
 - Detect the closest built-in opening and report how long the game remained in the repertoire.
-- Identify the ply where the game left known theory and add it to the review queue.
+- Distinguish a deviation from the stored repertoire from reaching the end of its coverage. Uncovered continuation links to a middlegame plan without creating an unsupported recall error; a line difference is not automatically an evaluated mistake.
 - Copy the current game as PGN for use in another chess tool.
 
 ### Stockfish tools
@@ -68,6 +74,7 @@ Lessons include explaining moves, finding themes, choosing plans, calculating li
 
 - A resumable 5, 10, or 20-minute daily routine that moves through due review, focused learning, practical application, and a recap.
 - Stable daily activity targets that reopen exact lesson checkpoints, opening units, Study tasks, tactics, Plan Labs, and saved positions.
+- Activity completion requires its result; untouched work cannot count as completed. Recaps distinguish completed, partial and skipped activities, while short sessions schedule focused checkpoints with consistent time estimates.
 - Seven-day activity and separate recall, understanding, and tactics progress, with editable goals, depth, duration, and opening selections.
 - Beginner onboarding built around a focused ten-minute study routine.
 - Recommended next activities based on learner setup and due reviews.

@@ -93,7 +93,7 @@ export default function App() {
   const [studyPractice, setStudyPractice] = useState(false);
   const [studyMoveFeedback, setStudyMoveFeedback] = useState('');
   const [curriculumAttempts, setCurriculumAttempts] = useState<Record<string, CurriculumAttempt>>({});
-  const [reviewDetection, setReviewDetection] = useState<{ lineName: string; matchedPlyCount: number; leftBookAtPly: number | null } | null>(
+  const [reviewDetection, setReviewDetection] = useState<{ lineName: string; matchedPlyCount: number; leftBookAtPly: number | null; coverageEnded?: boolean; lessonKey?: string } | null>(
     null
   );
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -233,11 +233,15 @@ export default function App() {
     const saved = target.startsWith('session:') ? lessonSessions.find((s) => s.id === target.slice(8) && s.learnerId === learnerId) : undefined;
     const lesson = saved ? repertoireGraph.connectedLessons?.[saved.lessonKey] : Object.values(repertoireGraph.connectedLessons ?? {}).find((l) => target === l.key || target.startsWith(l.key + '/'));
     if (!lesson) return;
-    const checkpoint = target.startsWith(lesson.key + '/') ? target.slice(lesson.key.length + 1) : undefined;
-    const unfinished = checkpoint ? undefined : lessonSessions.filter((s) => s.learnerId === learnerId && s.lessonKey === lesson.key && !s.reviewCheckpointId && !s.supersededAt).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
+    const journeyTarget = target === lesson.key + '/journey';
+    const checkpoint = !journeyTarget && target.startsWith(lesson.key + '/') ? target.slice(lesson.key.length + 1) : undefined;
+    const unfinished = lessonSessions.filter((s) => s.learnerId === learnerId && s.lessonKey === lesson.key && !s.supersededAt && (checkpoint
+      ? s.reviewCheckpointId === checkpoint && (!s.completedAt || (currentDailyTarget(dailySession)?.contentKey === target && s.completedAt >= dailySession!.createdAt))
+      : !s.reviewCheckpointId)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
     const destination = mode === 'today' || mode === 'repertoire' || (mode === 'game-review' && activeGap) ? mode : 'opening-trainer';
     engineRef.current.stop();
-    trackLessonSession({ ...(saved ?? unfinished ?? createLessonSession(lesson, learnerId, destination, checkpoint)), returnDestination: destination });
+    const next = saved ?? unfinished ?? createLessonSession(lesson, learnerId, destination, checkpoint);
+    trackLessonSession({ ...next, returnDestination: destination, ...(journeyTarget && lesson.endgame ? { journey: { ...(next.journey ?? { step: 0 }), active: true } } : {}) });
     setMode('connected-lesson');
   }
 
@@ -435,10 +439,37 @@ export default function App() {
     return false;
   }
 
-  function finishDaily(status: 'completed' | 'skipped') {
-    if (!dailySession) return;
+  function dailyActivityMatches() {
     const target = currentDailyTarget(dailySession);
-    const outcome = outcomeForCurrentActivity(status, target?.title);
+    if (!target) return false;
+    if (target.kind === 'connected-lesson') return mode === 'connected-lesson' && Boolean(connectedSession && (target.contentKey === 'session:' + connectedSession.id || (!connectedSession.reviewCheckpointId && target.contentKey === connectedSession.lessonKey) || target.contentKey === connectedSession.lessonKey + '/' + connectedSession.reviewCheckpointId));
+    if (target.kind === 'concept-drill') return mode === 'idea-training' && activeConceptKey === target.contentKey;
+    if (target.kind === 'study') return mode === 'curriculum' && target.contentKey === 'study:' + activeTask?.id;
+    if (target.kind === 'saved-position') return mode === 'game-review' && activeGapId === target.contentKey;
+    if (target.kind === 'opening-unit') return mode === 'opening-trainer' && activeLearningUnitKey === target.contentKey;
+    return target.kind === 'tactic' && mode === 'opening-trainer' && target.contentKey === 'motif:' + activeCriticalPosition?.id;
+  }
+
+  function dailyActivityComplete() {
+    const target = currentDailyTarget(dailySession);
+    if (!target || !dailySession || !dailyActivityMatches()) return false;
+    if (target.kind === 'connected-lesson') return Boolean(connectedSession?.completedAt);
+    if (target.kind === 'concept-drill') return mode === 'idea-training' && ideaSession?.drillKey === target.contentKey && ideaSession.stage === 'summary';
+    if (target.kind === 'study') return mode === 'curriculum' && target.contentKey === 'study:' + activeTask?.id && Boolean(activeTask && curriculumAttempts[activeTask.id]?.lastReviewedAt >= dailySession.createdAt);
+    if (target.kind === 'saved-position') return mode === 'game-review' && activeGapId === target.contentKey && activeGap?.status === 'resolved';
+    if (target.kind === 'opening-unit') {
+      const unit = repertoireGraph.learningUnits[target.contentKey];
+      return mode === 'opening-trainer' && activeLearningUnitKey === target.contentKey && Boolean(unit && buildPositionKey(snapshot.fen) === unit.endPositionKey && guidedMastery.some((m) => m.itemKey === target.contentKey && (m.recall.lastReviewedAt ?? '') >= dailySession.createdAt));
+    }
+    return target.kind === 'tactic' && guidedMastery.some((m) => m.itemKey === target.contentKey && (m.tactics.lastReviewedAt ?? '') >= dailySession.createdAt);
+  }
+
+  function finishDaily(status: 'completed' | 'skipped') {
+    if (!dailySession || (status === 'completed' && !dailyActivityComplete())) return;
+    const target = currentDailyTarget(dailySession);
+    const result = outcomeForCurrentActivity('completed', target?.title);
+    if (mode === 'connected-lesson') localStorage.removeItem('connected-active:' + learnerId);
+    const outcome = status === 'skipped' ? { ...result, status: result.total > 0 ? 'partial' as const : 'skipped' as const, takeaway: `${target?.title ?? 'This activity'} is saved for later.` } : result;
     const next = finishDailyActivity(dailySession, outcome, new Date().toISOString());
     saveDaily(next);
     const following = currentDailyTarget(next);
@@ -448,7 +479,7 @@ export default function App() {
 
   function outcomeForCurrentActivity(status: 'completed' | 'skipped', title?: string) {
     if (status === 'skipped') return { status, correct: 0, total: 0, assistanceUsed: 0, takeaway: `${title ?? 'This activity'} remains available for a later session.` } as const;
-    if (mode === 'connected-lesson' && connectedSession) { const answers = Object.values(connectedSession.answers); return { status, correct: answers.filter((answer) => answer.correct).length, total: answers.length, assistanceUsed: Object.values(connectedSession.assistance).filter((item) => item.hint || item.revealed).length, takeaway: activeConnectedLesson?.takeaway } as const; }
+    if (mode === 'connected-lesson' && connectedSession) { const answers = Object.values(connectedSession.answers); return { status, correct: answers.filter((answer) => answer.correct).length, total: answers.length, assistanceUsed: Object.values(connectedSession.assistance).filter((item) => item.hint || item.revealed || item.analysis).length, takeaway: activeConnectedLesson?.takeaway } as const; }
     if (mode === 'idea-training' && ideaSession && activeConceptDrill) { const results = [ideaSession.planCorrect, ...ideaSession.scenarioResults.map((item) => item.correct)].filter((value) => value !== null); return { status, correct: results.filter(Boolean).length, total: results.length, assistanceUsed: Number(ideaSession.hintUsed || ideaSession.revealed), takeaway: activeConceptDrill.principle } as const; }
     if (mode === 'curriculum' && activeTask) { const attempt = curriculumAttempts[activeTask.id]; return { status, correct: attempt?.completed ? 1 : 0, total: attempt ? 1 : 0, assistanceUsed: Number(showStudyHint), takeaway: activeStudyChallenge?.teachingPoint } as const; }
     return { status, correct: 0, total: 0, assistanceUsed: Number(Boolean(hintText)), takeaway: lessonCard?.principle ?? feedback } as const;
@@ -990,19 +1021,20 @@ export default function App() {
     }
     const matchedFamilies = guidedDetection?.ambiguousOpeningFamilyKeys ?? [];
     const matchedOpening = guidedDetection?.matchedOpeningFamilyKey ? repertoireGraph.openings[guidedDetection.matchedOpeningFamilyKey] : undefined;
-    setReviewDetection(guidedDetection && guidedDetection.matchedPlyCount ? { lineName: matchedFamilies.length > 1 ? `Ambiguous match: ${matchedFamilies.map((key) => repertoireGraph.openings[key]?.name).filter(Boolean).join(' or ')}` : matchedOpening?.name ?? 'Selected repertoire', matchedPlyCount: guidedDetection.matchedPlyCount, leftBookAtPly: guidedDetection.divergencePly } : null);
-    if (guidedDetection?.divergencePly && guidedDetection.matchedOpeningFamilyKey) {
-      const reason = guidedDetection.recommendedAction === 'schedule-tactic' ? 'missed-tactic'
-        : guidedDetection.divergingSide === 'learner' ? 'forgotten-move' : 'opponent-deviation';
+    setReviewDetection(guidedDetection && guidedDetection.matchedPlyCount ? { lineName: matchedFamilies.length > 1 ? `Ambiguous match: ${matchedFamilies.map((key) => repertoireGraph.openings[key]?.name).filter(Boolean).join(' or ')}` : matchedOpening?.name ?? 'Selected repertoire', matchedPlyCount: guidedDetection.matchedPlyCount, leftBookAtPly: guidedDetection.divergencePly, coverageEnded: guidedDetection.coverageEnded, lessonKey: Object.values(repertoireGraph.connectedLessons ?? {}).find((l) => l.openingFamilyKey === matchedOpening?.key)?.key } : null);
+    if (guidedDetection?.coverageEnded) {
+      setFeedback('You reached the end of this stored line. Choose a middlegame plan; the next move has not been classified as a mistake.');
+    } else if (guidedDetection?.divergencePly && guidedDetection.matchedOpeningFamilyKey) {
+      const reason = guidedDetection.divergingSide === 'learner' ? 'forgotten-move' : 'opponent-deviation';
       addGuidedBacklog({
         positionKey: guidedDetection.lastKnownPositionKey,
         reason,
         openingFamilyKey: guidedDetection.matchedOpeningFamilyKey ?? undefined,
         title: guidedDetection.divergingSide === 'learner'
-          ? `Recall the repertoire move before ${reviewMoveLabel(guidedDetection.divergencePly, managerRef.current.snapshot().history[guidedDetection.divergencePly - 1])}`
+          ? `Compare the repertoire choice before ${reviewMoveLabel(guidedDetection.divergencePly, managerRef.current.snapshot().history[guidedDetection.divergencePly - 1])}`
           : `Cover the opponent response at ${reviewMoveLabel(guidedDetection.divergencePly, managerRef.current.snapshot().history[guidedDetection.divergencePly - 1])}`
       });
-      setFeedback(`As ${reviewLearnerSide}, this game follows ${matchedOpening?.name ?? 'your repertoire'} through ${reviewMoveLabel(guidedDetection.matchedPlyCount, managerRef.current.snapshot().history[guidedDetection.matchedPlyCount - 1])}. ${guidedDetection.divergingSide === 'learner' ? 'Your move' : "The opponent's move"} created the first gap.`);
+      setFeedback(`As ${reviewLearnerSide}, this game follows ${matchedOpening?.name ?? 'your repertoire'} through ${reviewMoveLabel(guidedDetection.matchedPlyCount, managerRef.current.snapshot().history[guidedDetection.matchedPlyCount - 1])}. ${guidedDetection.divergingSide === 'learner' ? 'Your move' : "The opponent's move"} differed from the stored line. This is a repertoire difference, not an evaluated mistake.`);
     } else if (guidedDetection?.matchedPlyCount) setFeedback(`As ${reviewLearnerSide}, the game stayed inside ${matchedOpening?.name ?? 'your selected repertoire'}.`);
     else setFeedback(`No ${reviewLearnerSide} repertoire match was found. The game is loaded and no review item was created.`);
     refresh();
@@ -1131,8 +1163,8 @@ export default function App() {
           /></details>
         </div>
       </header>
-      {learnerSetup && dailySession?.status === 'active' && mode !== 'today' && <DailySessionBar session={dailySession} onComplete={() => finishDaily('completed')} onSkip={() => finishDaily('skipped')} onSave={() => setMode('today')} />}
-      {mode === 'connected-lesson' && activeConnectedLesson && connectedSession ? <ConnectedLessonWorkspace key={learnerId + ':' + connectedSession.id} lesson={activeConnectedLesson} initialSession={connectedSession} repository={learnerRepository} onSessionChange={trackLessonSession} onPersisted={refreshLessonProgress} onExit={exitConnectedLesson} /> : <section className="workspace">
+      {learnerSetup && dailySession?.status === 'active' && mode !== 'today' && <DailySessionBar session={dailySession} canComplete={dailyActivityComplete()} active={dailyActivityMatches()} onResume={() => startDaily(dailySession)} onComplete={() => finishDaily('completed')} onSkip={() => finishDaily('skipped')} onSave={() => mode === 'connected-lesson' ? exitConnectedLesson('today') : setMode('today')} />}
+      {mode === 'connected-lesson' && activeConnectedLesson && connectedSession ? <ConnectedLessonWorkspace key={learnerId + ':' + connectedSession.id} lesson={activeConnectedLesson} initialSession={connectedSession} depth={effectiveProfile.depth} repository={learnerRepository} onSessionChange={trackLessonSession} onPersisted={refreshLessonProgress} onExit={exitConnectedLesson} /> : <section className="workspace">
         {learnerSetup && mode !== 'today' && mode !== 'repertoire' && <div className="board-column">
           <ChessBoardUI
             fen={snapshot.fen}
@@ -1238,10 +1270,11 @@ export default function App() {
 
           {learnerSetup && mode === 'today' && <TodayPanel dailySession={dailySession} preview={dailyPreview} profile={effectiveProfile} openings={Object.values(repertoireGraph.openings)} selectedOpeningKeys={selectedOpeningKeys} mastery={guidedMastery} sessions={lessonSessions} lessons={repertoireGraph.connectedLessons} backlog={guidedBacklog} onStart={startGuidedTarget} onStartSession={() => startDaily()} onContinueSession={() => dailySession && startDaily(dailySession)} onDuration={setDailyDuration} onPreferences={updatePreferences} />}
 
-          {learnerSetup && mode === 'repertoire' && <RepertoireMap sessions={lessonSessions} graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} onPracticeIdeas={startIdeasForOpening} onConcept={startConceptDrill} onLesson={startConnectedLesson} />}
+          {learnerSetup && mode === 'repertoire' && <RepertoireMap onLine={(key) => { const line = trainer.findLine(key); if (line) { startOpening(line.parentLineId ?? key); setLineId(key); } }} sessions={lessonSessions} graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} onPracticeIdeas={startIdeasForOpening} onConcept={startConceptDrill} onLesson={startConnectedLesson} />}
 
           {learnerSetup && mode === 'idea-training' && activeConceptDrill && ideaSession && (
             <IdeaTrainingPanel
+              depth={effectiveProfile.depth}
               openingName={repertoireGraph.openings[activeConceptDrill.openingFamilyKey]?.name}
               drill={activeConceptDrill}
               session={ideaSession}
@@ -1523,11 +1556,12 @@ export default function App() {
                         {reviewDetection.lineName}: matched through {reviewMoveLabel(reviewDetection.matchedPlyCount, snapshot.history[reviewDetection.matchedPlyCount - 1])}
                       </strong>
                       <p>
-                        {reviewDetection.leftBookAtPly
+                        {reviewDetection.coverageEnded ? 'End of stored coverage. Continue with a middlegame plan.' : reviewDetection.leftBookAtPly
                           ? `First different move: ${reviewMoveLabel(reviewDetection.leftBookAtPly, snapshot.history[reviewDetection.leftBookAtPly - 1])}.`
                           : 'You stayed inside the starter repertoire.'}
                         {reviewDetection.leftBookAtPly && <button className="link-button" onClick={() => showHistoryPly(reviewDetection.leftBookAtPly! - 1)}>Inspect position before the difference</button>}
                       </p>
+                      {reviewDetection.lessonKey && <button className="primary-button" onClick={() => startConnectedLesson(reviewDetection.lessonKey + '/structure')}>Choose a middlegame plan</button>}
                     </div>
                   )}
                 </>

@@ -180,6 +180,13 @@ function rowsToGraph(release: ReleaseRow, rows: Record<string, any[]>): Repertoi
 }
 
 function withStarterConcepts(graph: RepertoireGraph): RepertoireGraph {
+  // Add optional journeys only to the matching bundled lesson revision. Authored
+  // remote journeys and edited lessons remain authoritative.
+  graph = { ...graph, connectedLessons: Object.fromEntries(Object.entries(graph.connectedLessons ?? {}).map(([key, lesson]) => {
+    const bundled = starterConnectedLessons.find((item) => item.key === key && item.version === lesson.version && item.title === lesson.title && JSON.stringify(item.openingMoves) === JSON.stringify(lesson.openingMoves));
+    return [key, !lesson.endgame && bundled?.endgame ? { ...lesson, endgame: bundled.endgame } : lesson];
+  })) };
+
   if (graph.release.schemaVersion < 3 && !Object.keys(graph.connectedLessons ?? {}).length) {
     graph = { ...graph, connectedLessons: Object.fromEntries(starterConnectedLessons.filter((lesson) => graph.openings[lesson.openingFamilyKey]?.lineKeys.includes(lesson.lineKey)).map((lesson) => [lesson.key, lesson])) };
   }

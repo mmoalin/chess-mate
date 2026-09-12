@@ -1203,3 +1203,75 @@ button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px
   .app-shell:has(.daily-session-bar) .connected-panel,
   .app-shell:has(.daily-session-bar) .dock-panel { padding-bottom: 88px; }
 }
+
+
+/* Learning controls occupy real layout space so they never cover a decision. */
+.daily-session-bar { position: static; transform: none; width: 100%; max-width: 1440px; margin: 0 auto; box-shadow: none; flex: 0 0 auto; }
+.daily-session-bar > small { grid-column: 1 / -1; color: #526054; line-height: 1.4; }
+.daily-session-bar > div:first-child strong { white-space: normal; }
+.app-shell:has(.daily-session-bar) .dock-panel { padding-bottom: 16px; }
+.challenge-toggle { display: flex; gap: 9px; align-items: center; padding: 10px; border: 1px solid #c9d9ce; border-radius: 8px; font-size: .85rem; background: #f4f8f3; }
+.challenge-toggle input { width: 18px; height: 18px; flex-shrink: 0; accent-color: #245b46; }
+.reasoning-card, .next-connection { display: grid; gap: 12px; padding: 16px; border: 1px solid #a5c4b2; border-radius: 10px; background: #f1f7f3; }
+.reasoning-card label { display: grid; gap: 6px; font-weight: 600; }
+.reasoning-card textarea, .reasoning-card input { width: 100%; padding: 10px; border: 1px solid #9faea5; border-radius: 6px; background: #fff; color: #243226; }
+.reasoning-card textarea { min-height: 78px; resize: vertical; }
+.reasoning-card h3, .reasoning-card h4, .next-connection h3, .next-connection p { margin: 0; }
+.assistance-note { font-size: .82rem; color: #58665d; line-height: 1.5; }
+.candidate-panel, .journey-panel { display: flex; flex-direction: column; gap: 14px; }
+.candidate-panel h2, .candidate-panel h3, .candidate-panel p { margin: 0; line-height: 1.5; }
+.candidate-panel h2 { font-size: 1.2rem; }
+.candidate-results:focus { outline: 2px solid #7ba78c; outline-offset: 3px; }
+.candidate-panel > *, .journey-panel > * { flex-shrink: 0; }
+.candidate-results { display: grid; gap: 12px; }
+.candidate-results .move-strip { flex-wrap: wrap; }
+.candidate-results h3 { margin-top: 0; }
+.lesson-results small { display: block; color: #526054; margin-top: 6px; line-height: 1.5; }
+.structure-guide { border-top: 1px solid #d4dcd3; padding-top: 10px; }
+.structure-guide summary, .journey-context summary { cursor: pointer; font-weight: 700; padding: 8px 0; color: #245b46; }
+.structure-overview { display: grid; grid-template-columns: 144px minmax(0, 1fr); gap: 18px; align-items: center; margin: 12px 0; }
+.pawn-structure { margin: 0; max-width: 180px; width: 100%; }
+.pawn-structure figcaption { font-size: .75rem; color: #526054; margin-bottom: 8px; }
+.pawn-mini-board { display: grid; grid-template-columns: repeat(8, 1fr); aspect-ratio: 1; border: 1px solid #a2ac93; overflow: hidden; border-radius: 4px; }
+.pawn-mini-board > span { aspect-ratio: 1; display: grid; place-items: center; line-height: 1; }
+.pawn-mini-board .light { background: #eee8d5; }
+.pawn-mini-board .dark { background: #879577; }
+.pawn-mini-board .white-pawn { color: white; text-shadow: 0 1px 1px #000, 1px 0 1px #000, -1px 0 1px #000; font-size: 1.15rem; }
+.pawn-mini-board .black-pawn { color: #142117; font-size: 1.15rem; }
+.structure-facts { display: grid; gap: 6px; line-height: 1.5; }
+.structure-facts dt { font-weight: 700; margin-top: 8px; font-size: .85rem; }
+.structure-facts dd { margin: 0; color: #526054; }
+.structure-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.connection-links { display: grid; gap: 8px; margin: 14px 0; }
+.connection-links button { min-height: 44px; padding: 10px; border-radius: 8px; text-align: left; border: 1px solid #b6cbbd; background: #f2f8f3; color: #245b46; font-weight: 700; }
+.journey-context p, .journey-moves { line-height: 1.6; }
+.step-caption { font-size: .8rem; font-weight: 700; color: #45644f; }
+@media (min-width: 901px) {
+  .app-shell:has(.daily-session-bar) { grid-template-rows: 72px auto minmax(0, 1fr); }
+  .app-shell:has(.daily-session-bar) .board-shell { max-height: calc(100dvh - 275px); width: auto; max-width: 100%; }
+}
+@media (max-width: 900px) {
+  .daily-session-bar { border-radius: 8px; padding: 8px; }
+  .daily-session-bar button { min-height: 40px; font-size: .75rem; padding: 6px; }
+  .daily-session-bar > small { font-size: .72rem; }
+  .app-shell:has(.daily-session-bar) .board-shell { width: min(100%, 25dvh, 250px); }
+  .candidate-panel, .journey-panel { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; }
+  .structure-overview { grid-template-columns: 110px minmax(0, 1fr); gap: 12px; }
+  .structure-overview h3 { font-size: 1rem; }
+  .structure-overview p { font-size: .85rem; }
+  .pawn-mini-board .white-pawn, .pawn-mini-board .black-pawn { font-size: .95rem; }
+}
+
+.focused-lesson > h2, .focused-lesson > .lesson-stages { display: none; }
+
+.daily-session-paused { grid-template-columns: minmax(0, 1fr) auto; }
+.journey-panel h3:focus { outline: 2px solid #7ba78c; outline-offset: 4px; }
+
+.journey-panel > h2 { font-size: 1.15rem; line-height: 1.35; margin: 0; }
+.journey-panel > h3, .journey-panel > p, .journey-panel .step-caption { margin: 0; }
+.training-example-note { font-size: .8rem; color: #526054; }
+@media (max-width: 900px) {
+  .daily-session-paused { display: none; }
+  .app-shell:has(.daily-session-paused) .board-shell { width: min(100%, 32dvh, 300px); }
+  .journey-panel, .candidate-panel { gap: 10px; }
+}
