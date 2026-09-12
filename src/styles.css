@@ -882,6 +882,9 @@ textarea {
 
 .guided-onboarding { display: grid; gap: 0.9rem; max-height: min(76vh, 760px); overflow: auto; }
 .guided-onboarding fieldset { border: 0; margin: 0; padding: 0; }
+.setup-customization { border: 1px solid #d8d1c2; border-radius: 10px; padding: 10px 12px; }
+.setup-customization summary { cursor: pointer; color: #245b46; font-weight: 800; }
+.setup-customization[open] { display: grid; gap: .9rem; }
 .guided-onboarding legend { font-size: 0.8rem; font-weight: 800; margin-bottom: 0.5rem; }
 .choice-grid { display: grid; gap: 0.45rem; }
 .choice-grid label { align-items: flex-start; background: #f8fafc; border: 1px solid rgba(15, 23, 42, 0.12); border-radius: 10px; cursor: pointer; display: flex; gap: 0.6rem; padding: 0.65rem; }
@@ -1127,6 +1130,40 @@ button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px
 .overview-workspace .mode-tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .overview-workspace .onboarding-panel { max-height: 100%; overflow: auto; }
 .saved-position-panel, .saved-notes, .lesson-completions { display: grid; gap: 12px; }
+.today-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.today-heading h2, .today-heading p { margin: 0; }
+.time-badge { background: #e7f2ec; border-radius: 999px; color: #245b46; flex: 0 0 auto; font-size: .8rem; font-weight: 800; padding: 7px 11px; }
+.duration-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.duration-picker button { border: 1px solid #c9c3b6; border-radius: 8px; min-height: 40px; background: #fff; color: #243226; font-weight: 700; }
+.duration-picker button.selected { border-color: #245b46; background: #e7f2ec; color: #164a38; }
+.session-preview { list-style: none; display: grid; gap: 8px; margin: 0; padding: 0; }
+.session-preview li { display: grid; grid-template-columns: 62px 1fr; gap: 10px; border: 1px solid #e1ded4; border-radius: 9px; padding: 10px; }
+.session-preview li.current { border-color: #245b46; background: #f1f8f4; }
+.session-preview li > span { color: #2457a6; font-size: .68rem; font-weight: 900; text-transform: uppercase; }
+.session-preview li div { display: grid; gap: 3px; }
+.session-preview small { color: #64748b; line-height: 1.35; }
+.session-start { width: 100%; }
+.progress-story { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+.progress-story div { background: #f1f5f9; border-radius: 8px; display: grid; gap: 2px; padding: 9px; text-align: center; }
+.progress-story span { font-size: .68rem; color: #52606d; }
+.reliability-note { border-left: 3px solid #8aab9a; padding-left: 10px; }
+.daily-recap { display: grid; gap: 8px; border: 1px solid #b7d4c5; border-radius: 12px; background: #f1f8f4; padding: 16px; }
+.daily-recap h3, .daily-recap p { margin: 0; }
+.recap-mark { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: #245b46; color: white; font-size: 1.25rem; font-weight: 900; }
+.training-preferences summary { cursor: pointer; font-weight: 800; padding: 12px 0; }
+.preferences-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.preferences-grid fieldset { grid-column: 1 / -1; border: 1px solid #e1ded4; border-radius: 8px; padding: 12px; }
+.preference-check { display: flex; align-items: center; gap: 8px; padding: 5px 0; }
+.review-queue { display: grid; gap: 7px; border-bottom: 1px solid #e1ded4; padding-bottom: 12px; }
+.review-queue h3, .review-queue p { margin: 0; }
+.daily-session-bar { position: fixed; z-index: 30; left: 50%; bottom: 14px; transform: translateX(-50%); width: min(920px, calc(100vw - 28px)); display: grid; grid-template-columns: minmax(180px, 1fr) minmax(100px, 220px) auto; align-items: center; gap: 12px; border: 1px solid #b7d4c5; border-radius: 12px; background: rgba(255,252,246,.98); box-shadow: 0 12px 36px #1f293340; padding: 10px 12px; }
+.daily-session-bar > div:first-child { display: grid; gap: 2px; min-width: 0; }
+.daily-session-bar > div:first-child span { color: #2457a6; font-size: .68rem; font-weight: 900; text-transform: uppercase; }
+.daily-session-bar > div:first-child strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.daily-session-meter { height: 6px; border-radius: 999px; overflow: hidden; background: #dce5df; }
+.daily-session-meter span { display: block; height: 100%; background: #245b46; }
+.daily-session-bar .button-row { justify-content: flex-end; }
+.daily-session-bar button { min-height: 36px; padding: 6px 10px; font-size: .75rem; }
 .saved-position-panel h2, .saved-position-panel p, .lesson-completions h3, .lesson-completions p { margin: 0; }
 .saved-notes textarea { min-height: 100px; }
 .reviewed-positions summary { cursor: pointer; padding: 12px 0; }
@@ -1153,4 +1190,16 @@ button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px
   .app-shell:not(.overview-workspace) .mode-tabs { flex: 0 0 auto; }
   .app-shell:not(.overview-workspace) .dock-panel { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 12px; }
   .app-shell:not(.overview-workspace) .dock-panel > * { flex-shrink: 0; }
+  .progress-story { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .preferences-grid { grid-template-columns: 1fr; }
+  .preferences-grid fieldset { grid-column: auto; }
+  .daily-session-bar { bottom: 6px; grid-template-columns: minmax(0, 1fr) auto; gap: 5px 8px; padding: 6px 8px; }
+  .daily-session-bar > div:first-child span { display: none; }
+  .daily-session-bar > div:first-child strong { font-size: .72rem; }
+  .daily-session-meter { grid-column: 2; grid-row: 1; width: 52px; }
+  .daily-session-bar .button-row { grid-column: 1 / -1; display: grid; grid-template-columns: 1.15fr 1fr .9fr; gap: 5px; }
+  .daily-session-bar .link-button { grid-column: auto; }
+  .daily-session-bar button { min-height: 30px; padding: 4px 5px; font-size: .62rem; line-height: 1.15; }
+  .app-shell:has(.daily-session-bar) .connected-panel,
+  .app-shell:has(.daily-session-bar) .dock-panel { padding-bottom: 88px; }
 }

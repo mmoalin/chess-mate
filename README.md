@@ -66,6 +66,9 @@ Lessons include explaining moves, finding themes, choosing plans, calculating li
 
 ### Progress and recommendations
 
+- A resumable 5, 10, or 20-minute daily routine that moves through due review, focused learning, practical application, and a recap.
+- Stable daily activity targets that reopen exact lesson checkpoints, opening units, Study tasks, tactics, Plan Labs, and saved positions.
+- Seven-day activity and separate recall, understanding, and tactics progress, with editable goals, depth, duration, and opening selections.
 - Beginner onboarding built around a focused ten-minute study routine.
 - Recommended next activities based on learner setup and due reviews.
 - A Today dashboard with the next lesson, due-review count, mastered-line count, daily target, and weak themes.
@@ -81,7 +84,7 @@ Lessons include explaining moves, finding themes, choosing plans, calculating li
 - Row-level security policies that restrict learners to their own records.
 - Continue using the app locally when Supabase is not configured.
 
-The persistence layer includes curriculum and settings support, although those areas are not yet fully connected to the current interface.
+Curriculum progress, daily sessions, and training preferences persist locally for guests and sync for signed-in learners. Apply `202609120001_daily_sessions.sql` after the connected-lessons migration before deploying this version.
 
 ### Board and interface
 

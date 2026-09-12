@@ -1,6 +1,7 @@
 import type { LessonSession } from '../../features/connected/types';
 import type {
   LearnerProfile,
+  DailySession,
   LearningAttempt,
   MasteryState,
   RepertoireBacklogItem,
@@ -18,6 +19,8 @@ export interface ContentRepository {
 }
 
 export interface LearnerRepository {
+  loadDailySessions(learnerId: string): Promise<DailySession[]>;
+  saveDailySession(session: DailySession): Promise<void>;
   loadLessonSessions(learnerId: string): Promise<LessonSession[]>;
   saveLessonSession(session: LessonSession): Promise<void>;
   retryLessonSync(learnerId: string): Promise<void>;
@@ -25,6 +28,7 @@ export interface LearnerRepository {
   saveProfile(profile: LearnerProfile): Promise<void>;
   loadSelections(learnerId: string): Promise<RepertoireSelection[]>;
   saveSelection(selection: RepertoireSelection): Promise<void>;
+  removeSelection(learnerId: string, openingFamilyKey: string): Promise<void>;
   loadMastery(learnerId: string): Promise<MasteryState[]>;
   saveMastery(mastery: MasteryState): Promise<void>;
   appendAttempt(attempt: LearningAttempt): Promise<void>;

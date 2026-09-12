@@ -12,6 +12,7 @@ vi.mock('react-chessboard', () => ({ Chessboard: ({ options }: { options: { posi
 describe('guided repertoire flow', () => {
   it('captures rating and goal, then builds a position-based repertoire map', async () => {
     render(<App />);
+    await userEvent.click(screen.getByText('Customize repertoire and training level'));
     await userEvent.selectOptions(screen.getByRole('combobox', { name: /Rating source/i }), 'lichess');
     await userEvent.type(screen.getByRole('spinbutton', { name: /Optional rating/i }), '1450');
     await userEvent.selectOptions(screen.getByRole('combobox', { name: /Training goal/i }), 'tactical-danger');
@@ -25,13 +26,26 @@ describe('guided repertoire flow', () => {
     expect(profile).toMatchObject({ ratingSource: 'lichess', ratingValue: 1450, depth: 'standard', goal: 'tactical-danger' });
   });
 
-  it('shows a single guided next action in Today', async () => {
+  it('shows a bounded guided session in Today', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
     await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /^Today$/i }));
-    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/One clear next action/i);
-    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Connect the opening to a plan, linked decisions, and a different opponent reply/i);
+    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Your guided practice/i);
+    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Connect opening moves to a practical middlegame plan/i);
+    expect(screen.getByRole('button', { name: 'Start session' })).toBeInTheDocument();
+  });
+
+  it('moves through a daily routine and ends with a recap', async () => {
+    render(<App />);
+    await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
+    await userEvent.click(screen.getByRole('button', { name: 'Start session' }));
+    expect(screen.getByRole('region', { name: 'Daily session progress' })).toHaveTextContent('learn');
+    await userEvent.click(screen.getByRole('button', { name: 'Complete & continue' }));
+    expect(screen.getByRole('region', { name: 'Daily session progress' })).toHaveTextContent('apply');
+    await userEvent.click(screen.getByRole('button', { name: 'Complete & continue' }));
+    expect(screen.getByRole('region', { name: 'Today workspace' })).toHaveTextContent('Daily session complete');
+    expect(screen.getByText('Nice work. You can stop here.')).toBeInTheDocument();
   });
 
   it('retains idea-first practice from the opening and checks the plan before board play', async () => {
@@ -112,7 +126,7 @@ describe('guided repertoire flow', () => {
     await userEvent.clear(pgn); await userEvent.type(pgn, '1. e4 e5 2. Nc3 Nf6 3. a3');
     await userEvent.click(screen.getByRole('button', { name: /Load PGN/i }));
     await userEvent.click(screen.getByRole('button', { name: /^Today$/i }));
-    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/1 game gaps/i);
+    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Recall the repertoire move before 3.a3/i);
     const [gap] = await new GuidedLearnerRepository(null).loadBacklog(LOCAL_LEARNER_ID);
     await userEvent.click(screen.getByRole('button', { name: /Open saved position/i }));
     expect(screen.getByLabelText('Chess board mock')).toHaveAttribute('data-position', new Chess(positionKeyToFen(gap.positionKey)).fen());

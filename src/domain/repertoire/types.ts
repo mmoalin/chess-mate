@@ -9,6 +9,8 @@ export type MoveEdgeClassification = 'main' | 'alternative' | 'transposition' | 
 export type GuidanceKind = 'idea' | 'cue' | 'fallback' | 'mistake';
 export type MasteryDimension = 'recall' | 'understanding' | 'tactics';
 export type MasteryStatus = 'unseen' | 'learning' | 'due' | 'reliable';
+export type DailyDuration = 5 | 10 | 20;
+export type ActivityKind = 'connected-lesson' | 'opening-unit' | 'concept-drill' | 'study' | 'tactic' | 'saved-position';
 
 export type ContentRelease = {
   id: string;
@@ -186,8 +188,49 @@ export type LearnerProfile = {
   ratingValue?: number;
   depth: LearnerDepth;
   goal: 'basic-plans' | 'tactical-danger' | 'sharp-gambits' | 'deep-repertoire';
+  dailyDurationMinutes?: DailyDuration;
   onboardingCompleted: boolean;
   updatedAt: string;
+};
+
+export type ActivityTarget = {
+  id: string;
+  attemptId: string;
+  kind: ActivityKind;
+  phase: 'review' | 'learn' | 'apply';
+  contentKey: string;
+  title: string;
+  reason: string;
+  estimatedMinutes: number;
+  contentVersion: number;
+  openingFamilyKey?: string;
+  positionKey?: PositionKey;
+  learnerSide?: 'white' | 'black';
+  dimension?: MasteryDimension;
+};
+
+export type ActivityOutcome = {
+  targetId: string;
+  status: 'completed' | 'skipped';
+  correct: number;
+  total: number;
+  assistanceUsed: number;
+  takeaway?: string;
+  completedAt: string;
+};
+
+export type DailySession = {
+  id: string;
+  learnerId: string;
+  durationMinutes: DailyDuration;
+  contentVersion: number;
+  targets: ActivityTarget[];
+  outcomes: ActivityOutcome[];
+  currentIndex: number;
+  status: 'active' | 'completed';
+  createdAt: string;
+  updatedAt: string;
+  completedAt?: string;
 };
 
 export type RepertoireBacklogItem = {

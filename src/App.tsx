@@ -10,11 +10,11 @@ import { GameManager } from './core/gameManager';
 import { getErrorMessage, reportBackgroundError } from './core/errors';
 import type { BoardOrientation, GameMode } from './core/types';
 import { starterRepertoires } from './data/repertoires';
-import { recommendGuidedNextActivity } from './domain/repertoire/recommendations';
+import { buildDailySession, currentDailyTarget, finishDailyActivity } from './domain/repertoire/dailySessions';
 import { matchPgnToRepertoire } from './domain/repertoire/pgn';
 import { buildPositionKey, positionKeyToFen } from './domain/repertoire/positionKey';
 import { classifyMove, createInitialMastery, scheduleReview } from './domain/repertoire/training';
-import type { LearnerProfile, LearningAttempt, MasteryState, RepertoireBacklogItem, RepertoireGraph, RepertoireSelection } from './domain/repertoire/types';
+import type { DailyDuration, DailySession, LearnerProfile, LearningAttempt, MasteryState, RepertoireBacklogItem, RepertoireGraph, RepertoireSelection } from './domain/repertoire/types';
 import { calculateModuleProgress, starterCurriculumModules } from './features/curriculum/curriculum';
 import { studyPositions } from './features/curriculum/studyPositions';
 import { getStudyChallenge } from './features/curriculum/studyChallenges';
@@ -22,7 +22,6 @@ import type { CurriculumTaskProgress } from './features/curriculum/types';
 import {
   buildReviewItemFromMistake,
   createLearnerSetup,
-  detectOpeningFromHistory,
   scoreCurriculumAttempt
 } from './features/journey/journey';
 import type { CurriculumAttempt, LearnerSetup, ReviewItem } from './features/journey/types';
@@ -33,6 +32,7 @@ import { GuidedOnboarding, type GuidedOnboardingResult } from './features/guided
 import { RepertoireMap } from './features/guided/RepertoireMap';
 import { TodayPanel } from './features/guided/TodayPanel';
 import { IdeaTrainingPanel } from './features/guided/IdeaTrainingPanel';
+import { DailySessionBar } from './features/guided/DailySessionBar';
 import { advanceScenario, beginScenarios, completeScenario, createIdeaTrainingSession, evaluateAuthoredMove, evaluateEngineLoss, submitPlanChoice, type IdeaTrainingSession } from './features/guided/ideaTraining';
 import { EngineService } from './services/engineService';
 import { usePositionAnalysis } from './services/usePositionAnalysis';
@@ -105,7 +105,11 @@ export default function App() {
   const [guidedSelections, setGuidedSelections] = useState<RepertoireSelection[]>([]);
   const [guidedMastery, setGuidedMastery] = useState<MasteryState[]>([]);
   const guidedMasteryRef = useRef<MasteryState[]>([]);
+  const recordedAttemptIds = useRef(new Set<string>());
   const [guidedBacklog, setGuidedBacklog] = useState<RepertoireBacklogItem[]>([]);
+  const [dailySession, setDailySession] = useState<DailySession | null>(null);
+  const [activeLearningUnitKey, setActiveLearningUnitKey] = useState('');
+  const [reviewLearnerSide, setReviewLearnerSide] = useState<'white' | 'black'>('white');
   const [isContentEditor, setIsContentEditor] = useState(false);
   const [contentDraft, setContentDraft] = useState<RepertoireGraph | null>(null);
   const [adminBusy, setAdminBusy] = useState(false);
@@ -278,11 +282,14 @@ export default function App() {
     const prepare = user ? learnerRepository.sync?.(user.id) ?? Promise.resolve() : Promise.resolve();
     void prepare.then(() => Promise.all([
       learnerRepository.loadProfile(learnerId), learnerRepository.loadSelections(learnerId),
-      learnerRepository.loadMastery(learnerId), learnerRepository.loadBacklog(learnerId), learnerRepository.loadLessonSessions(learnerId)
-    ])).then(([profile, selections, mastery, backlog, sessions]) => {
+      learnerRepository.loadMastery(learnerId), learnerRepository.loadBacklog(learnerId), learnerRepository.loadLessonSessions(learnerId), learnerRepository.loadDailySessions(learnerId), learnerRepository.loadAttempts(learnerId)
+    ])).then(([profile, selections, mastery, backlog, sessions, dailySessions, attempts]) => {
       if (!active) return;
       setGuidedProfile(profile); setGuidedSelections(selections); setGuidedMastery(mastery); setGuidedBacklog(backlog);
       setLessonSessions((current) => mergeLessonSessions(current, sessions));
+      recordedAttemptIds.current = new Set(attempts.map((attempt) => attempt.id));
+      const recent = [...dailySessions].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
+      setDailySession(recent?.status === 'active' || recent?.completedAt?.slice(0, 10) === new Date().toISOString().slice(0, 10) ? recent : null);
       if (profile?.onboardingCompleted) setLearnerSetup((current) => current ?? createLegacySetup());
     }).catch((error) => backgroundSyncError('guided progress load', error));
     if (user) {
@@ -368,15 +375,8 @@ export default function App() {
   const selectedOpeningKeys = guidedSelections.length
     ? guidedSelections.map((selection) => selection.openingFamilyKey).filter((key) => Boolean(repertoireGraph.openings[key]))
     : ['white-vienna-main', 'black-caro-kann-main'].filter((key) => Boolean(repertoireGraph.openings[key]));
-  const guidedNextActivity = recommendGuidedNextActivity({
-    graph: repertoireGraph,
-    selectedOpeningKeys,
-    mastery: guidedMastery,
-    backlog: guidedBacklog,
-    lessonSessions: lessonSessions.filter((session) => session.learnerId === learnerId),
-    now: new Date().toISOString()
-  });
-
+  const effectiveProfile: LearnerProfile = guidedProfile ?? { learnerId, depth: 'foundation', goal: 'basic-plans', dailyDurationMinutes: 10, onboardingCompleted: true, updatedAt: new Date(0).toISOString() };
+  const dailyPreview = useMemo(() => buildDailySession({ learnerId, durationMinutes: effectiveProfile.dailyDurationMinutes ?? 10, graph: repertoireGraph, selectedOpeningKeys, mastery: guidedMastery, backlog: guidedBacklog, lessonSessions: lessonSessions.filter((session) => session.learnerId === learnerId), profile: effectiveProfile, now: new Date().toISOString() }), [learnerId, effectiveProfile.dailyDurationMinutes, effectiveProfile.depth, effectiveProfile.goal, repertoireGraph, selectedOpeningKeys.join('|'), guidedMastery, guidedBacklog, lessonSessions]);
   function reviewMoveLabel(ply: number, san = '') { return moveLabel(ply, san, managerRef.current.getReplayPositions()[0]); }
 
   function refresh() {
@@ -410,7 +410,64 @@ export default function App() {
     setFeedback('Your repertoire map is ready. Start with the idea, then recall the move from the board.');
   }
 
+  function saveDaily(next: DailySession) {
+    setDailySession(next);
+    void learnerRepository.saveDailySession(next).catch((error) => backgroundSyncError('daily session save', error));
+  }
+
+  function startDaily(next = dailyPreview) {
+    const target = currentDailyTarget(next);
+    if (target && !dailyTargetAvailable(target.kind, target.contentKey)) {
+      const recovered = finishDailyActivity(next, { status: 'skipped', correct: 0, total: 0, assistanceUsed: 0, takeaway: 'This activity changed or is no longer available, so it was safely replaced by the next item.' }, new Date().toISOString());
+      saveDaily(recovered); startDaily(recovered); return;
+    }
+    saveDaily(next);
+    if (target) startGuidedTarget(target.contentKey); else setMode('today');
+  }
+
+  function dailyTargetAvailable(kind: string, key: string) {
+    if (kind === 'connected-lesson') return key.startsWith('session:') ? lessonSessions.some((session) => session.id === key.slice(8)) : Object.values(repertoireGraph.connectedLessons ?? {}).some((lesson) => key === lesson.key || key.startsWith(lesson.key + '/'));
+    if (kind === 'opening-unit') return Boolean(repertoireGraph.learningUnits[key]);
+    if (kind === 'concept-drill') return Boolean(repertoireGraph.conceptDrills?.[key]);
+    if (kind === 'study') return starterCurriculumModules.some((module) => module.tasks.some((task) => `study:${task.id}` === key));
+    if (kind === 'tactic') return Boolean(repertoireGraph.motifs[key]);
+    if (kind === 'saved-position') return guidedBacklog.some((item) => item.id === key);
+    return false;
+  }
+
+  function finishDaily(status: 'completed' | 'skipped') {
+    if (!dailySession) return;
+    const target = currentDailyTarget(dailySession);
+    const outcome = outcomeForCurrentActivity(status, target?.title);
+    const next = finishDailyActivity(dailySession, outcome, new Date().toISOString());
+    saveDaily(next);
+    const following = currentDailyTarget(next);
+    if (following) startGuidedTarget(following.contentKey);
+    else setMode('today');
+  }
+
+  function outcomeForCurrentActivity(status: 'completed' | 'skipped', title?: string) {
+    if (status === 'skipped') return { status, correct: 0, total: 0, assistanceUsed: 0, takeaway: `${title ?? 'This activity'} remains available for a later session.` } as const;
+    if (mode === 'connected-lesson' && connectedSession) { const answers = Object.values(connectedSession.answers); return { status, correct: answers.filter((answer) => answer.correct).length, total: answers.length, assistanceUsed: Object.values(connectedSession.assistance).filter((item) => item.hint || item.revealed).length, takeaway: activeConnectedLesson?.takeaway } as const; }
+    if (mode === 'idea-training' && ideaSession && activeConceptDrill) { const results = [ideaSession.planCorrect, ...ideaSession.scenarioResults.map((item) => item.correct)].filter((value) => value !== null); return { status, correct: results.filter(Boolean).length, total: results.length, assistanceUsed: Number(ideaSession.hintUsed || ideaSession.revealed), takeaway: activeConceptDrill.principle } as const; }
+    if (mode === 'curriculum' && activeTask) { const attempt = curriculumAttempts[activeTask.id]; return { status, correct: attempt?.completed ? 1 : 0, total: attempt ? 1 : 0, assistanceUsed: Number(showStudyHint), takeaway: activeStudyChallenge?.teachingPoint } as const; }
+    return { status, correct: 0, total: 0, assistanceUsed: Number(Boolean(hintText)), takeaway: lessonCard?.principle ?? feedback } as const;
+  }
+
+  function updatePreferences(profile: LearnerProfile, openingKeys: string[]) {
+    setGuidedProfile(profile);
+    void learnerRepository.saveProfile(profile).catch((error) => backgroundSyncError('preferences save', error));
+    const now = profile.updatedAt;
+    for (const selection of guidedSelections.filter((item) => !openingKeys.includes(item.openingFamilyKey))) void learnerRepository.removeSelection(learnerId, selection.openingFamilyKey).catch((error) => backgroundSyncError('repertoire preference removal', error));
+    const next = openingKeys.map((openingFamilyKey) => guidedSelections.find((item) => item.openingFamilyKey === openingFamilyKey) ?? { id: createId(), learnerId, openingFamilyKey, preferredEdges: {}, updatedAt: now });
+    setGuidedSelections(next);
+    for (const selection of next) void learnerRepository.saveSelection({ ...selection, updatedAt: now }).catch((error) => backgroundSyncError('repertoire preference save', error));
+  }
+
+  function setDailyDuration(duration: DailyDuration) { updatePreferences({ ...effectiveProfile, dailyDurationMinutes: duration, updatedAt: new Date().toISOString() }, selectedOpeningKeys); }
+
   function startOpening(openingKey: string) {
+    setActiveLearningUnitKey('');
     const opening = repertoireGraph.openings[openingKey];
     if (!opening) return;
     const line = opening.lineKeys.map((key) => trainer.findLine(key)).find(Boolean);
@@ -418,6 +475,15 @@ export default function App() {
       setThemeFilter('all'); setSide(line.side); setOrientation(line.side); setLineId(line.id); resetBoard();
     }
     setMode('opening-trainer');
+  }
+
+  function startLearningUnit(unitKey: string) {
+    const unit = repertoireGraph.learningUnits[unitKey];
+    const line = unit ? trainer.findLine(unit.lineKey) : undefined;
+    if (!unit || !line) return;
+    setActiveLearningUnitKey(unit.key); setThemeFilter('all'); setSide(line.side); setOrientation(line.side); setLineId(line.id);
+    const firstEdge = repertoireGraph.edges[unit.edgeKeys[0]];
+    setMoveIndex(firstEdge?.order ?? 0); managerRef.current.reset(positionKeyToFen(unit.startPositionKey)); setLastMove(null); setFeedback(`Review ${unit.title}. Play your side; opponent replies are automatic.`); refresh(); setMode('opening-trainer');
   }
 
   function loadConceptScenario(drill: NonNullable<typeof activeConceptDrill>, index: number) {
@@ -473,7 +539,7 @@ export default function App() {
       setFeedback('Saved gap: ' + gap.title + '. Try a candidate, analyse it, and save what you learned.');
       refresh();
     } else if (concept) startConceptDrill(concept.key);
-    else if (unit) startOpening(unit.openingFamilyKey);
+    else if (unit) startLearningUnit(unit.key);
     else if (repertoireGraph.openings[targetKey]) startOpening(targetKey);
     else if (repertoireGraph.motifs[targetKey]) {
       const legacyId = targetKey.replace(/^motif:/, '');
@@ -536,12 +602,19 @@ export default function App() {
 
   async function recordGuidedAttempt(input: Omit<LearningAttempt, 'id' | 'learnerId' | 'createdAt'>) {
     const now = new Date().toISOString();
-    const attempt: LearningAttempt = { ...input, id: createId(), learnerId, createdAt: now };
+    const target = currentDailyTarget(dailySession);
+    const belongsToTarget = target && (target.contentKey === input.itemKey || target.contentKey === `study:${input.itemKey.replace(/^study:/, '')}` || (target.kind === 'opening-unit' && target.contentKey === input.itemKey));
+    const attemptId = belongsToTarget ? target.attemptId : createId();
+    if (recordedAttemptIds.current.has(attemptId)) return;
+    recordedAttemptIds.current.add(attemptId);
+    const attempt: LearningAttempt = { ...input, id: attemptId, learnerId, createdAt: now };
     const previous = guidedMasteryRef.current.find((item) => item.itemKey === input.itemKey) ?? createInitialMastery({ learnerId, itemKey: input.itemKey, positionKey: input.positionKey, now });
-    const next = scheduleReview(previous, attempt);
+    const eligibleForMastery = previous[input.dimension].status === 'unseen' || previous[input.dimension].dueAt <= now;
+    const next = eligibleForMastery ? scheduleReview(previous, attempt) : previous;
     guidedMasteryRef.current = guidedMasteryRef.current.some((item) => item.itemKey === next.itemKey) ? guidedMasteryRef.current.map((item) => item.itemKey === next.itemKey ? next : item) : [...guidedMasteryRef.current, next];
     setGuidedMastery((items) => items.some((item) => item.itemKey === next.itemKey) ? items.map((item) => item.itemKey === next.itemKey ? next : item) : [...items, next]);
-    await Promise.all([learnerRepository.appendAttempt(attempt), learnerRepository.saveMastery(next)]);
+    try { await Promise.all([learnerRepository.appendAttempt(attempt), ...(eligibleForMastery ? [learnerRepository.saveMastery(next)] : [])]); }
+    catch (error) { recordedAttemptIds.current.delete(attemptId); throw error; }
   }
 
   function saveGap(item: RepertoireBacklogItem) {
@@ -684,8 +757,24 @@ export default function App() {
             ? { title: 'Why this move?', principle: explanation.principle, summary: explanation.summary }
             : null
         );
-        const unit = Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id && item.edgeKeys.includes(expectedEdge?.key ?? ''));
-        void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch((error) => backgroundSyncError('opening recall save', error));
+        const unit = activeLearningUnitKey ? repertoireGraph.learningUnits[activeLearningUnitKey] : Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id && item.edgeKeys.includes(expectedEdge?.key ?? ''));
+        if (unit && activeLearningUnitKey && expectedEdge) {
+          let nextStep = unit.edgeKeys.indexOf(expectedEdge.key) + 1;
+          let lastApplied = { from, to };
+          while (nextStep < unit.edgeKeys.length) {
+            const edge = repertoireGraph.edges[unit.edgeKeys[nextStep]];
+            const position = repertoireGraph.positions[edge.from];
+            if (!edge || position?.sideToMove === activeLine.side) break;
+            const reply = managerRef.current.attemptMove(edge.uci.slice(0, 2), edge.uci.slice(2, 4), edge.uci.slice(4) || undefined);
+            if (!reply.ok) break;
+            lastApplied = { from: edge.uci.slice(0, 2), to: edge.uci.slice(2, 4) };
+            nextStep += 1;
+          }
+          const complete = nextStep >= unit.edgeKeys.length;
+          setLastMove(lastApplied); setMoveIndex(complete ? (repertoireGraph.edges[unit.edgeKeys.at(-1)!]?.order ?? moveIndex) + 1 : repertoireGraph.edges[unit.edgeKeys[nextStep]]?.order ?? result.nextMoveIndex);
+          setFeedback(complete ? `${unit.title} complete. Mark the activity complete when you are ready.` : `Correct. The opponent replied automatically; your next move is ready.`);
+          if (complete) void recordGuidedAttempt({ itemKey: unit.key, positionKey: unit.startPositionKey, dimension: 'recall', response: managerRef.current.snapshot().history.join(' '), correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch((error) => backgroundSyncError('opening unit result save', error));
+        } else void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch((error) => backgroundSyncError('opening recall save', error));
       } else {
         const mistake = trainer.commonMistake(activeLine.id, moveIndex);
         const accepted = guidedClassification?.kind === 'alternative' || guidedClassification?.kind === 'transposition' || guidedClassification?.kind === 'reasonable';
@@ -704,7 +793,7 @@ export default function App() {
             ? { title: 'Common mistake', principle: mistake.principle, summary: mistake.summary }
             : null
         );
-        const unit = Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id && item.startPositionKey === positionKeyBefore)
+        const unit = (activeLearningUnitKey ? repertoireGraph.learningUnits[activeLearningUnitKey] : undefined) ?? Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id && item.startPositionKey === positionKeyBefore)
           ?? Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id);
         void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: accepted, hintUsed: Boolean(hintText), revealed: false }).catch((error) => backgroundSyncError('opening deviation save', error));
         if (guidedClassification?.kind === 'mistake') {
@@ -752,6 +841,7 @@ export default function App() {
     engineGeneration.current++; engineRef.current.stop(); setEngineBusy(false); setAnalysis('');
     setEngineAwaitingReply(false);
     setPlanPreview(false);
+    setActiveLearningUnitKey('');
     managerRef.current.reset();
     setMoveIndex(0);
     setReviewPly(0);
@@ -892,36 +982,16 @@ export default function App() {
     setActiveGapId(null); setPgnError('');
     setReviewPly(managerRef.current.getReplayPositions().length - 1);
     setFeedback('PGN loaded for review.');
-    const detection = managerRef.current.getReplayPositions()[0] === new GameManager().snapshot().fen ? detectOpeningFromHistory(managerRef.current.snapshot().history, starterRepertoires) : null;
     let guidedDetection: ReturnType<typeof matchPgnToRepertoire> | null = null;
     try {
-      guidedDetection = matchPgnToRepertoire({ pgn: pgnInput, graph: repertoireGraph, selectedOpeningFamilyKeys: selectedOpeningKeys });
+      guidedDetection = matchPgnToRepertoire({ pgn: pgnInput, graph: repertoireGraph, selectedOpeningFamilyKeys: selectedOpeningKeys.filter((key) => repertoireGraph.openings[key]?.side === reviewLearnerSide) });
     } catch {
       guidedDetection = null;
     }
-    const detectedLine = starterRepertoires.find((line) => line.id === detection?.lineId);
-    setReviewDetection(
-      detection && detectedLine
-        ? {
-            lineName: detectedLine.name,
-            matchedPlyCount: detection.matchedPlyCount,
-            leftBookAtPly: detection.leftBookAtPly
-          }
-        : null
-    );
-    if (detection?.leftBookAtPly && detectedLine) {
-      addReviewItem({
-        id: `review-pgn-${detectedLine.id}-${detection.leftBookAtPly}`,
-        sourceType: 'pgn-position',
-        sourceId: detectedLine.id,
-        title: `Review ${detectedLine.name} from your PGN`,
-        prompt: `You left the repertoire on ${reviewMoveLabel(detection.leftBookAtPly, managerRef.current.snapshot().history[detection.leftBookAtPly - 1])}. Compare the position to the lesson idea.`,
-        themeTags: detectedLine.themeTags ?? [],
-        dueAt: new Date().toISOString(),
-        status: 'due'
-      });
-    }
-    if (guidedDetection?.divergencePly) {
+    const matchedFamilies = guidedDetection?.ambiguousOpeningFamilyKeys ?? [];
+    const matchedOpening = guidedDetection?.matchedOpeningFamilyKey ? repertoireGraph.openings[guidedDetection.matchedOpeningFamilyKey] : undefined;
+    setReviewDetection(guidedDetection && guidedDetection.matchedPlyCount ? { lineName: matchedFamilies.length > 1 ? `Ambiguous match: ${matchedFamilies.map((key) => repertoireGraph.openings[key]?.name).filter(Boolean).join(' or ')}` : matchedOpening?.name ?? 'Selected repertoire', matchedPlyCount: guidedDetection.matchedPlyCount, leftBookAtPly: guidedDetection.divergencePly } : null);
+    if (guidedDetection?.divergencePly && guidedDetection.matchedOpeningFamilyKey) {
       const reason = guidedDetection.recommendedAction === 'schedule-tactic' ? 'missed-tactic'
         : guidedDetection.divergingSide === 'learner' ? 'forgotten-move' : 'opponent-deviation';
       addGuidedBacklog({
@@ -930,10 +1000,11 @@ export default function App() {
         openingFamilyKey: guidedDetection.matchedOpeningFamilyKey ?? undefined,
         title: guidedDetection.divergingSide === 'learner'
           ? `Recall the repertoire move before ${reviewMoveLabel(guidedDetection.divergencePly, managerRef.current.snapshot().history[guidedDetection.divergencePly - 1])}`
-          : `Cover the opponent response at ply ${guidedDetection.divergencePly}`
+          : `Cover the opponent response at ${reviewMoveLabel(guidedDetection.divergencePly, managerRef.current.snapshot().history[guidedDetection.divergencePly - 1])}`
       });
-      setFeedback(`Game follows your repertoire${guidedDetection.matchedPlyCount ? ' through ' + reviewMoveLabel(guidedDetection.matchedPlyCount, managerRef.current.snapshot().history[guidedDetection.matchedPlyCount - 1]) : ''}. ${guidedDetection.divergingSide === 'learner' ? 'Your move' : 'The opponent move'} created the first gap.`);
-    }
+      setFeedback(`As ${reviewLearnerSide}, this game follows ${matchedOpening?.name ?? 'your repertoire'} through ${reviewMoveLabel(guidedDetection.matchedPlyCount, managerRef.current.snapshot().history[guidedDetection.matchedPlyCount - 1])}. ${guidedDetection.divergingSide === 'learner' ? 'Your move' : "The opponent's move"} created the first gap.`);
+    } else if (guidedDetection?.matchedPlyCount) setFeedback(`As ${reviewLearnerSide}, the game stayed inside ${matchedOpening?.name ?? 'your selected repertoire'}.`);
+    else setFeedback(`No ${reviewLearnerSide} repertoire match was found. The game is loaded and no review item was created.`);
     refresh();
   }
 
@@ -1060,6 +1131,7 @@ export default function App() {
           /></details>
         </div>
       </header>
+      {learnerSetup && dailySession?.status === 'active' && mode !== 'today' && <DailySessionBar session={dailySession} onComplete={() => finishDaily('completed')} onSkip={() => finishDaily('skipped')} onSave={() => setMode('today')} />}
       {mode === 'connected-lesson' && activeConnectedLesson && connectedSession ? <ConnectedLessonWorkspace key={learnerId + ':' + connectedSession.id} lesson={activeConnectedLesson} initialSession={connectedSession} repository={learnerRepository} onSessionChange={trackLessonSession} onPersisted={refreshLessonProgress} onExit={exitConnectedLesson} /> : <section className="workspace">
         {learnerSetup && mode !== 'today' && mode !== 'repertoire' && <div className="board-column">
           <ChessBoardUI
@@ -1164,7 +1236,7 @@ export default function App() {
             {isContentEditor && <button className={mode === 'admin' ? 'active' : ''} type="button" onClick={() => setMode('admin')} title="Admin"><Shield size={17} />Admin</button>}
           </nav>
 
-          {learnerSetup && mode === 'today' && <TodayPanel next={guidedNextActivity} mastery={guidedMastery} sessions={lessonSessions} lessons={repertoireGraph.connectedLessons} backlog={guidedBacklog} onStart={startGuidedTarget} />}
+          {learnerSetup && mode === 'today' && <TodayPanel dailySession={dailySession} preview={dailyPreview} profile={effectiveProfile} openings={Object.values(repertoireGraph.openings)} selectedOpeningKeys={selectedOpeningKeys} mastery={guidedMastery} sessions={lessonSessions} lessons={repertoireGraph.connectedLessons} backlog={guidedBacklog} onStart={startGuidedTarget} onStartSession={() => startDaily()} onContinueSession={() => dailySession && startDaily(dailySession)} onDuration={setDailyDuration} onPreferences={updatePreferences} />}
 
           {learnerSetup && mode === 'repertoire' && <RepertoireMap sessions={lessonSessions} graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} onPracticeIdeas={startIdeasForOpening} onConcept={startConceptDrill} onLesson={startConnectedLesson} />}
 
@@ -1426,7 +1498,11 @@ export default function App() {
               </div>
               {activeGap ? <SavedPositionPanel key={activeGap.id} item={activeGap} lessonTitle={relatedGapLesson?.title} onSave={saveGap} onReset={() => startGuidedTarget(activeGap.id)} onClose={() => setMode('today')} onLesson={() => relatedGapLesson && startConnectedLesson(relatedGapLesson.key)} /> : reviewMode === 'pgn' ? (
                 <>
+                  <section className="review-queue" aria-label="Due practice"><h3>Due practice</h3>{guidedMastery.filter((item) => [item.recall, item.understanding, item.tactics].some((dimension) => dimension.status !== 'unseen' && dimension.dueAt <= new Date().toISOString())).slice(0, 4).map((item) => <button className="theory-branch-button" key={item.itemKey} onClick={() => startGuidedTarget(item.itemKey)}>{item.itemKey.replace(/^(unit:|concept:|study:|motif:)/, '').replaceAll('-', ' ')}</button>)}{!guidedMastery.some((item) => [item.recall, item.understanding, item.tactics].some((dimension) => dimension.status !== 'unseen' && dimension.dueAt <= new Date().toISOString())) && <p className="analysis">Nothing is due right now.</p>}</section>
+                  <section className="review-queue" aria-label="Saved positions"><h3>Saved positions</h3>{guidedBacklog.filter((item) => item.status !== 'resolved').map((item) => <button className="theory-branch-button" key={item.id} onClick={() => startGuidedTarget(item.id)}>{item.title}</button>)}{guidedBacklog.every((item) => item.status === 'resolved') && <p className="analysis">No saved positions awaiting review.</p>}</section>
+                  <h3>Import a game</h3>
                   <p>Paste a PGN to replay the game, step through positions, and see where it left your opening repertoire.</p>
+                  <div className="segmented-control" role="group" aria-label="Your colour in this game"><button className={reviewLearnerSide === 'white' ? 'selected' : ''} onClick={() => setReviewLearnerSide('white')}>I played White</button><button className={reviewLearnerSide === 'black' ? 'selected' : ''} onClick={() => setReviewLearnerSide('black')}>I played Black</button></div>
                   <textarea aria-invalid={Boolean(pgnError)} aria-describedby={pgnError ? 'pgn-error' : undefined} aria-label="PGN input" value={pgnInput} onChange={(event) => { setPgnInput(event.target.value); setPgnError(''); }} />
                   {pgnError && <p id="pgn-error" role="alert">{pgnError}</p>}
                   <div className="button-row">

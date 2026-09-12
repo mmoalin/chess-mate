@@ -41,7 +41,7 @@ describe('usability regression flows', () => {
     mastery.understanding.status = 'learning';
     await repository.saveMastery(mastery);
     render(<App />); await click(/Start learning/i);
-    await screen.findByText('Review a weak position'); await click('Start now');
+    await screen.findByText('Review a Study decision'); await click('Start session');
     expect(screen.getByRole('heading', { name: 'Basic Endgames' })).toBeInTheDocument();
     expect(fen()).toBe('8/8/4k3/8/8/4K3/4P3/8 w - - 0 1');
   });
@@ -112,7 +112,7 @@ describe('usability regression flows', () => {
     await new GuidedLearnerRepository(null).saveLessonSession({ ...createLessonSession(lesson, 'local', 'today'), stage: 'summary', completedAt: new Date().toISOString() });
     render(<App />); await click(/Start learning/i);
     await screen.findByRole('heading', { name: '1 lesson completed' });
-    expect(screen.getByText('reliable').parentElement).toHaveTextContent('0');
+    expect(screen.getByText('reliable recall').parentElement).toHaveTextContent('0/0');
     await click('Repertoire'); expect(screen.getByRole('heading', { name: '1 lesson completed' })).toBeInTheDocument();
   });
 });

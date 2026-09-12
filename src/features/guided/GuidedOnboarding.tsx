@@ -28,6 +28,7 @@ export function GuidedOnboarding(props: {
       ratingValue: Number.isFinite(parsedRating) && parsedRating >= 100 ? parsedRating : undefined,
       depth: deriveDepth(parsedRating, goal),
       goal,
+      dailyDurationMinutes: 10,
       onboardingCompleted: true,
       updatedAt: new Date().toISOString()
     };
@@ -38,7 +39,9 @@ export function GuidedOnboarding(props: {
     <section className="dock-summary onboarding-panel guided-onboarding" aria-label="Guided repertoire setup">
       <p className="eyebrow">Build your repertoire</p>
       <h2>Set up your training repertoire</h2>
-      <p>We will turn these choices into a short map of positions, plans, tactics, and reviews.</p>
+      <p>Start with the Vienna as White and the Caro-Kann against 1.e4. Your first 10-minute session will review, teach one idea, and let you apply it.</p>
+      <details className="setup-customization">
+      <summary>Customize repertoire and training level</summary>
 
       <fieldset>
         <legend>As White</legend>
@@ -84,6 +87,7 @@ export function GuidedOnboarding(props: {
           <option value="sharp-gambits">Learn sharper and gambit lines</option><option value="deep-repertoire">Build a deeper repertoire</option>
         </select>
       </label>
+      </details>
       <button className="primary-button" type="button" disabled={whiteKeys.length === 0} onClick={submit}>Start learning</button>
     </section>
   );

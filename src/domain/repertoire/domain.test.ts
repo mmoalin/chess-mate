@@ -50,6 +50,14 @@ describe('guided repertoire domain', () => {
     expect(result.recommendedAction).toBe('schedule-tactic');
   });
 
+  it('chooses the strongest family match instead of the first shared opening move', () => {
+    const graph = compileLegacyLines(starterRepertoires);
+    const result = matchPgnToRepertoire({ pgn: '1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6', graph, selectedOpeningFamilyKeys: ['white-alien-gambit-main', 'black-caro-kann-main'] });
+    expect(result.matchedOpeningFamilyKey).toBe('black-caro-kann-main');
+    expect(result.matchedPlyCount).toBe(10);
+    expect(result.divergencePly).toBeNull();
+  });
+
   it('creates the same key for a transposed position', () => {
     const a = new Chess();
     ['Nf3', 'Nf6', 'g3', 'g6'].forEach((move) => a.move(move));

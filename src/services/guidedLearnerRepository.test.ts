@@ -1,7 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { describe, expect, it, vi } from 'vitest';
 import { createInitialMastery } from '../domain/repertoire/training';
-import type { LearnerProfile, LearningAttempt, RepertoireBacklogItem, RepertoireSelection } from '../domain/repertoire/types';
+import type { DailySession, LearnerProfile, LearningAttempt, RepertoireBacklogItem, RepertoireSelection } from '../domain/repertoire/types';
 import type { GuidedBrowserStore } from './guidedStorage';
 import { GuidedLearnerRepository, LOCAL_LEARNER_ID } from './guidedLearnerRepository';
 
@@ -14,14 +14,16 @@ describe('GuidedLearnerRepository offline mode', () => {
     const attempt: LearningAttempt = { id: 'attempt-1', learnerId: LOCAL_LEARNER_ID, itemKey: 'unit-1', positionKey: 'position-1', dimension: 'recall', response: 'e4', correct: true, hintUsed: false, revealed: false, createdAt: now };
     const mastery = createInitialMastery({ learnerId: LOCAL_LEARNER_ID, itemKey: 'unit-1', positionKey: 'position-1', now });
     const backlog: RepertoireBacklogItem = { id: 'gap-1', learnerId: LOCAL_LEARNER_ID, positionKey: 'position-1', reason: 'opponent-deviation', title: 'Cover ...a6', status: 'new', createdAt: now };
+    const daily: DailySession = { id: 'daily-1', learnerId: LOCAL_LEARNER_ID, durationMinutes: 10, contentVersion: 1, targets: [], outcomes: [], currentIndex: 0, status: 'completed', createdAt: now, updatedAt: now, completedAt: now };
 
-    await repository.saveProfile(profile); await repository.saveSelection(selection); await repository.appendAttempt(attempt); await repository.appendAttempt(attempt); await repository.saveMastery(mastery); await repository.saveBacklogItem(backlog);
+    await repository.saveProfile(profile); await repository.saveSelection(selection); await repository.appendAttempt(attempt); await repository.appendAttempt(attempt); await repository.saveMastery(mastery); await repository.saveBacklogItem(backlog); await repository.saveDailySession(daily);
 
     expect(await repository.loadProfile(LOCAL_LEARNER_ID)).toEqual(profile);
     expect(await repository.loadSelections(LOCAL_LEARNER_ID)).toEqual([selection]);
     expect(await repository.loadAttempts(LOCAL_LEARNER_ID)).toEqual([attempt]);
     expect(await repository.loadMastery(LOCAL_LEARNER_ID)).toEqual([mastery]);
     expect(await repository.loadBacklog(LOCAL_LEARNER_ID)).toEqual([backlog]);
+    expect(await repository.loadDailySessions(LOCAL_LEARNER_ID)).toEqual([daily]);
   });
 
   it('surfaces Supabase read errors instead of treating them as empty data', async () => {

@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { LearnerRepository } from '../domain/repertoire/repositories';
-import type { LearnerProfile, LearningAttempt, MasteryState, RepertoireBacklogItem, RepertoireSelection } from '../domain/repertoire/types';
+import type { DailySession, LearnerProfile, LearningAttempt, MasteryState, RepertoireBacklogItem, RepertoireSelection } from '../domain/repertoire/types';
 import { GuidedBrowserStore } from './guidedStorage';
 import type { LessonSession } from '../features/connected/types';
 import { createInitialMastery, scheduleReview } from '../domain/repertoire/training';
@@ -10,6 +10,22 @@ export const LOCAL_LEARNER_ID = 'local';
 export class GuidedLearnerRepository implements LearnerRepository {
   private lessonWrites: Promise<void> = Promise.resolve();
   constructor(private readonly client: SupabaseClient | null, private readonly store = new GuidedBrowserStore()) {}
+
+  async loadDailySessions(learnerId: string): Promise<DailySession[]> {
+    const local = await this.store.list<DailySession>('daily-session:' + learnerId + ':');
+    if (!this.canSync(learnerId)) return local;
+    const { data, error } = await this.client!.from('daily_sessions').select('*').eq('user_id', learnerId);
+    if (error) { if (local.length) return local; throw error; }
+    const remote = (data ?? []).map((row: any) => row.session as DailySession).filter((session: DailySession) => session?.learnerId === learnerId);
+    const merged = mergeLatest(local, remote, (session) => session.id);
+    await Promise.all(merged.map((session) => this.store.put(`daily-session:${learnerId}:${session.id}`, session)));
+    return merged;
+  }
+
+  async saveDailySession(session: DailySession): Promise<void> {
+    await this.store.put(`daily-session:${session.learnerId}:${session.id}`, session);
+    if (this.canSync(session.learnerId)) await upsert(this.client!, 'daily_sessions', { id: session.id, user_id: session.learnerId, status: session.status, session, updated_at: session.updatedAt }, 'user_id,id');
+  }
 
   async loadLessonSessions(learnerId: string): Promise<LessonSession[]> {
     await this.lessonWrites.catch(() => undefined);
@@ -104,6 +120,14 @@ export class GuidedLearnerRepository implements LearnerRepository {
     if (this.canSync(selection.learnerId)) await upsert(this.client!, 'repertoire_selections', selectionToRow(selection), 'user_id,opening_family_key');
   }
 
+  async removeSelection(learnerId: string, openingFamilyKey: string): Promise<void> {
+    await this.store.remove(`selection:${learnerId}:${openingFamilyKey}`);
+    if (this.canSync(learnerId)) {
+      const { error } = await this.client!.from('repertoire_selections').delete().eq('user_id', learnerId).eq('opening_family_key', openingFamilyKey);
+      if (error) throw error;
+    }
+  }
+
   async loadMastery(learnerId: string): Promise<MasteryState[]> {
     const local = await this.store.list<MasteryState>(`mastery:${learnerId}:`);
     if (!this.canSync(learnerId)) return local;
@@ -152,7 +176,12 @@ export class GuidedLearnerRepository implements LearnerRepository {
   async sync(learnerId: string): Promise<void> {
     if (!this.canSync(learnerId)) return;
     const localProfile = await this.store.get<LearnerProfile>(`profile:${LOCAL_LEARNER_ID}`);
-    if (localProfile) await this.saveProfile({ ...localProfile, learnerId, updatedAt: new Date().toISOString() });
+    const profileMarker = 'profile-import:' + learnerId;
+    if (localProfile && !await this.store.get(profileMarker)) {
+      const existing = await this.loadProfile(learnerId);
+      if (!existing) await this.saveProfile({ ...localProfile, learnerId, updatedAt: new Date().toISOString() });
+      await this.store.put(profileMarker, true);
+    }
     for (const selection of await this.store.list<RepertoireSelection>(`selection:${LOCAL_LEARNER_ID}:`)) {
       await this.saveSelection({ ...selection, id: crypto.randomUUID(), learnerId, updatedAt: new Date().toISOString() });
     }
@@ -175,6 +204,13 @@ export class GuidedLearnerRepository implements LearnerRepository {
       await this.store.putMany([{ key: marker, value: imported.id }, { key: 'lesson-session:' + learnerId + ':' + imported.id, value: imported }]);
       await this.saveLessonSession(imported);
     }
+    for (const session of await this.store.list<DailySession>('daily-session:' + LOCAL_LEARNER_ID + ':')) {
+      const marker = 'daily-import:' + learnerId + ':' + session.id;
+      if (await this.store.get(marker)) continue;
+      const imported = { ...session, id: crypto.randomUUID(), learnerId, updatedAt: new Date().toISOString() };
+      await this.saveDailySession(imported);
+      await this.store.put(marker, imported.id);
+    }
     await this.retryLessonSync(learnerId);
   }
 
@@ -188,16 +224,16 @@ async function upsert(client: SupabaseClient, table: string, row: Record<string,
   if (error) throw error;
 }
 
-function profileToRow(item: LearnerProfile) { return { user_id: item.learnerId, rating_source: item.ratingSource ?? null, rating_value: item.ratingValue ?? null, depth: item.depth, goal: item.goal, onboarding_completed: item.onboardingCompleted, updated_at: item.updatedAt }; }
-function profileFromRow(row: any): LearnerProfile { return { learnerId: row.user_id, ratingSource: row.rating_source ?? undefined, ratingValue: row.rating_value ?? undefined, depth: row.depth, goal: row.goal, onboardingCompleted: row.onboarding_completed, updatedAt: row.updated_at }; }
+function profileToRow(item: LearnerProfile) { return { user_id: item.learnerId, rating_source: item.ratingSource ?? null, rating_value: item.ratingValue ?? null, depth: item.depth, goal: item.goal, daily_duration_minutes: item.dailyDurationMinutes ?? 10, onboarding_completed: item.onboardingCompleted, updated_at: item.updatedAt }; }
+function profileFromRow(row: any): LearnerProfile { return { learnerId: row.user_id, ratingSource: row.rating_source ?? undefined, ratingValue: row.rating_value ?? undefined, depth: row.depth, goal: row.goal, dailyDurationMinutes: row.daily_duration_minutes === 5 || row.daily_duration_minutes === 20 ? row.daily_duration_minutes : 10, onboardingCompleted: row.onboarding_completed, updatedAt: row.updated_at }; }
 function selectionToRow(item: RepertoireSelection) { return { id: item.id, user_id: item.learnerId, opening_family_key: item.openingFamilyKey, preferred_edges: item.preferredEdges, updated_at: item.updatedAt }; }
 function selectionFromRow(row: any): RepertoireSelection { return { id: row.id, learnerId: row.user_id, openingFamilyKey: row.opening_family_key, preferredEdges: row.preferred_edges ?? {}, updatedAt: row.updated_at }; }
 function masteryToRow(item: MasteryState) { return { user_id: item.learnerId, item_key: item.itemKey, position_key: item.positionKey, recall: item.recall, understanding: item.understanding, tactics: item.tactics, updated_at: item.updatedAt }; }
 function masteryFromRow(row: any): MasteryState { return { learnerId: row.user_id, itemKey: row.item_key, positionKey: row.position_key, recall: row.recall, understanding: row.understanding, tactics: row.tactics, updatedAt: row.updated_at }; }
 function attemptToRow(item: LearningAttempt) { return { id: item.id, user_id: item.learnerId, item_key: item.itemKey, position_key: item.positionKey, dimension: item.dimension, response: item.response, correct: item.correct, hint_used: item.hintUsed, revealed: item.revealed, created_at: item.createdAt }; }
 function attemptFromRow(row: any): LearningAttempt { return { id: row.id, learnerId: row.user_id, itemKey: row.item_key, positionKey: row.position_key, dimension: row.dimension, response: row.response, correct: row.correct, hintUsed: row.hint_used, revealed: row.revealed, createdAt: row.created_at }; }
-function backlogToRow(item: RepertoireBacklogItem) { return { id: item.id, user_id: item.learnerId, position_key: item.positionKey, reason: item.reason, title: item.title, status: item.status, created_at: item.createdAt }; }
-function backlogFromRow(row: any): RepertoireBacklogItem { return { id: row.id, learnerId: row.user_id, positionKey: row.position_key, reason: row.reason, title: row.title, status: row.status, createdAt: row.created_at }; }
+function backlogToRow(item: RepertoireBacklogItem) { return { id: item.id, user_id: item.learnerId, position_key: item.positionKey, opening_family_key: item.openingFamilyKey ?? null, reason: item.reason, title: item.title, status: item.status, created_at: item.createdAt }; }
+function backlogFromRow(row: any): RepertoireBacklogItem { return { id: row.id, learnerId: row.user_id, positionKey: row.position_key, openingFamilyKey: row.opening_family_key ?? undefined, reason: row.reason, title: row.title, status: row.status, createdAt: row.created_at }; }
 
 function mergeById<T extends { id: string }>(a: T[], b: T[]): T[] { return Array.from(new Map([...a, ...b].map((item) => [item.id, item])).values()); }
 function mergeLatest<T extends { updatedAt: string }>(a: T[], b: T[], key: (item: T) => string): T[] {

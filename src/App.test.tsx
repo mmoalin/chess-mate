@@ -17,7 +17,7 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: /Set up your training/i })).toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
     expect(screen.getByRole('region', { name: 'Today workspace' })).toBeInTheDocument();
-    expect(screen.getAllByRole('button', { name: 'Start now' })).toHaveLength(1);
+    expect(screen.getAllByRole('button', { name: 'Start session' })).toHaveLength(1);
     expect(screen.queryByRole('button', { name: /Show today|Hide today/i })).not.toBeInTheDocument();
   });
 
