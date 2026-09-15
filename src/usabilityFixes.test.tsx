@@ -32,7 +32,7 @@ describe('usability regression flows', () => {
     second.unmount(); render(<App />);
     await screen.findByRole('region', { name: 'Idea training' });
     expect(fen()).toBe(before);
-    expect(screen.getByRole('region', { name: 'Feedback' })).toHaveTextContent('interrupted scenario');
+    expect(screen.getByRole('region', { name: 'Idea training' })).toHaveTextContent('interrupted scenario');
   });
   it('returns a due Study review to its own module and task', async () => {
     const repository = new GuidedLearnerRepository(null);
@@ -48,10 +48,9 @@ describe('usability regression flows', () => {
   it('preserves an unanswered engine turn across reload and provides a working retry', async () => {
     vi.spyOn(EngineService.prototype, 'bestMove').mockRejectedValueOnce(new Error('Offline')).mockResolvedValue({ from: 'e7', to: 'e5' });
     const first = render(<App />); await click(/Start learning/i); await click('Review'); await click('Play vs Stockfish'); await click('Play e4');
-    await screen.findByRole('button', { name: 'Get Stockfish reply' }); const awaiting = fen();
+    await screen.findByRole('button', { name: 'Retry engine reply' }); const awaiting = fen();
     first.unmount(); render(<App />);
-    await screen.findByRole('button', { name: 'Get Stockfish reply' }); expect(fen()).toBe(awaiting);
-    await click('Get Stockfish reply');
+    // Reload resumes the pending turn automatically; failure still offers Retry.
     await waitFor(() => expect(screen.getByRole('region', { name: 'Feedback' })).toHaveTextContent('Engine replied e5'));
     expect(fen()).not.toBe(awaiting);
   });

@@ -1,0 +1,151 @@
+- main:
+  - paragraph: Chess Opening Trainer
+  - 'heading "Vienna: turn initiative into a plan" [level=1]'
+  - generic "Sign in / sync"
+  - region "Daily session progress":
+    - generic: learn · about 3 min
+    - strong: "1 of 2: Vienna: turn initiative into a plan · one checkpoint"
+    - generic "0 of 2 activities finished or skipped"
+    - button "Complete & continue" [disabled]
+    - button "Skip for today"
+    - button "Save & finish later"
+    - generic: Finish this activity’s checkpoints to continue. You can save or skip at any time.
+  - region "Connected lesson workspace":
+    - generic "Chess board":
+      - paragraph: Arrow keys move one square. Enter or Space selects a piece and its destination. Escape cancels. You can also tap two squares or drag a piece.
+      - generic: "8"
+      - button "a8, Black rook":
+        - button [disabled]:
+      - button "b8, Black knight":
+        - button [disabled]:
+      - button "c8, Black bishop":
+        - button [disabled]:
+      - button "d8, Black queen":
+        - button [disabled]:
+      - button "e8, Black king":
+        - button [disabled]:
+      - button "f8, empty"
+      - button "g8, empty"
+      - button "h8, Black rook":
+        - button [disabled]:
+      - generic: "7"
+      - button "a7, Black pawn":
+        - button [disabled]:
+      - button "b7, Black pawn":
+        - button [disabled]:
+      - button "c7, Black pawn":
+        - button [disabled]:
+      - button "d7, empty"
+      - button "e7, Black bishop":
+        - button [disabled]:
+      - button "f7, Black pawn":
+        - button [disabled]:
+      - button "g7, Black pawn":
+        - button [disabled]:
+      - button "h7, Black pawn":
+        - button [disabled]:
+      - generic: "6"
+      - button "a6, empty"
+      - button "b6, empty"
+      - button "c6, empty"
+      - button "d6, empty"
+      - button "e6, empty"
+      - button "f6, empty"
+      - button "g6, empty"
+      - button "h6, empty"
+      - generic: "5"
+      - button "a5, empty"
+      - button "b5, empty"
+      - button "c5, empty"
+      - button "d5, Black pawn":
+        - button [disabled]:
+      - button "e5, White pawn":
+        - button [disabled]:
+      - button "f5, empty"
+      - button "g5, empty"
+      - button "h5, empty"
+      - generic: "4"
+      - button "a4, empty"
+      - button "b4, empty"
+      - button "c4, empty"
+      - button "d4, empty"
+      - button "e4, Black knight":
+        - button [disabled]:
+      - button "f4, empty"
+      - button "g4, empty"
+      - button "h4, empty"
+      - generic: "3"
+      - button "a3, empty"
+      - button "b3, empty"
+      - button "c3, White knight":
+        - button [disabled]:
+      - button "d3, empty"
+      - button "e3, empty"
+      - button "f3, White knight":
+        - button [disabled]:
+      - button "g3, empty"
+      - button "h3, empty"
+      - generic: "2"
+      - button "a2, White pawn":
+        - button [disabled]:
+      - button "b2, White pawn":
+        - button [disabled]:
+      - button "c2, White pawn":
+        - button [disabled]:
+      - button "d2, White pawn":
+        - button [disabled]:
+      - button "e2, empty"
+      - button "f2, empty"
+      - button "g2, White pawn":
+        - button [disabled]:
+      - button "h2, White pawn":
+        - button [disabled]:
+      - generic: a
+      - generic: "1"
+      - button "a1, White rook":
+        - button [disabled]:
+      - generic: b
+      - button "b1, empty"
+      - generic: c
+      - button "c1, White bishop":
+        - button [disabled]:
+      - generic: d
+      - button "d1, White queen":
+        - button [disabled]:
+      - generic: e
+      - button "e1, White king":
+        - button [disabled]:
+      - generic: f
+      - button "f1, White bishop":
+        - button [disabled]:
+      - generic: g
+      - button "g1, empty"
+      - generic: h
+      - button "h1, White rook":
+        - button [disabled]:
+      - status
+      - status
+    - complementary "Connected lesson":
+      - navigation "Lesson navigation":
+        - button "Today"
+        - button "Repertoire"
+        - button "Save & leave lesson"
+      - paragraph: Vienna · White · about 3 min
+      - heading "What is the most useful feature to recognize here?" [active] [level=3]
+      - paragraph: The pawn exchange has changed the centre. Your e5 pawn gives space, but the king and bishop still need attention. Build a position that can support an attack.
+      - radiogroup "Lesson choices":
+        - radio "White should recover the e4 pawn before making a developing move." [disabled]
+        - generic: White should recover the e4 pawn before making a developing move.
+        - radio "White should advance e5 again before Black can blockade it." [disabled]
+        - generic: White should advance e5 again before Black can blockade it.
+        - radio "White has central space, but the open lines also make king safety urgent." [disabled]
+        - generic: White has central space, but the open lines also make king safety urgent.
+      - region "Lesson feedback":
+        - paragraph: Consider the position, then choose your answer.
+      - button "Finish checkpoint"
+      - button "Hint"
+      - button "Reveal candidate"
+      - paragraph: Analysis marks this checkpoint as assisted. Hints and candidate reveals are separate choices.
+      - button "Analyse position"
+      - button "Copy PGN"
+      - generic "Inspect move history"

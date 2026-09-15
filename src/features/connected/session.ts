@@ -83,7 +83,18 @@ export function answerQuestion(session: LessonSession, lesson: ConnectedLesson, 
   if (session.stage !== 'question' || !choice) return { session, feedback: '', correct: false };
   let next = grade(session, choiceId, choice.correct, 'understanding');
   if (choice.correct) next = solved(next);
-  return { session: touch(next), feedback: choice.feedback, correct: choice.correct };
+  return { session: touch({ ...next, submittedChoices: { ...next.submittedChoices, [session.checkpointId]: choiceId } }), feedback: choice.feedback, correct: choice.correct };
+}
+
+export function restoredQuestionChoice(session: LessonSession, lesson: ConnectedLesson): string {
+  if (session.stage !== 'question') return '';
+  const question = lesson.questions.find((item) => item.id === session.checkpointId);
+  const submitted = session.submittedChoices?.[session.checkpointId];
+  if (question?.choices.some((choice) => choice.id === submitted)) return submitted!;
+  // Older sessions only retained the first answer. A solved retry must show the
+  // accepted choice rather than restoring the original incorrect selection.
+  if (session.completedCheckpoints.includes(session.checkpointId)) return question?.choices.find((choice) => choice.correct)?.id ?? '';
+  return session.answers[session.checkpointId]?.response ?? '';
 }
 export function nextQuestion(session: LessonSession, lesson: ConnectedLesson): LessonSession {
   if (!session.completedCheckpoints.includes(session.checkpointId)) return session;

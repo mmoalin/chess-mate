@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Chess } from 'chess.js';
 import { ConnectedLessonWorkspace } from './ConnectedLessonWorkspace';
 import { starterConnectedLessons } from '../../data/connectedLessons';
-import { createLessonSession, positionAfter } from './session';
+import { answerQuestion, assist, createLessonSession, positionAfter, startQuestions } from './session';
 import type { LessonSession } from './types';
 import { GuidedLearnerRepository } from '../../services/guidedLearnerRepository';
 import { EngineService } from '../../services/engineService';
@@ -21,6 +21,28 @@ function show(initialSession: LessonSession, lesson = vienna) {
   return { ...view, onSessionChange, repository };
 }
 describe('connected lesson interface', () => {
+  it.each(['wrong', 'corrected', 'correct', 'assisted', 'legacy-corrected'])('restores a %s question without regrading it', async (kind) => {
+    const question = vienna.questions[0];
+    const wrong = question.choices.find((choice) => !choice.correct)!;
+    const right = question.choices.find((choice) => choice.correct)!;
+    let session = startQuestions(createLessonSession(vienna, 'local', 'today'), vienna);
+    if (kind === 'assisted') session = assist(session, true);
+    session = answerQuestion(session, vienna, kind === 'wrong' || kind.includes('corrected') ? wrong.id : right.id).session;
+    const firstAnswer = session.answers[question.id];
+    if (kind.includes('corrected')) session = answerQuestion(session, vienna, right.id).session;
+    if (kind === 'legacy-corrected') delete session.submittedChoices;
+    const repository = new GuidedLearnerRepository(null);
+    await repository.saveLessonSession(session);
+    const restored = (await repository.loadLessonSessions('local')).find((item) => item.id === session.id)!;
+    const result = show(restored);
+    const expected = kind === 'wrong' ? wrong : right;
+    expect(screen.getByRole('radio', { name: expected.label })).toBeChecked();
+    expect(screen.getByRole('region', { name: 'Lesson feedback' })).toHaveTextContent(expected.feedback);
+    expect(screen.getByRole('radio', { name: expected.label }).hasAttribute('disabled')).toBe(kind !== 'wrong');
+    expect(restored.answers[question.id]).toEqual(firstAnswer);
+    expect(result.onSessionChange).not.toHaveBeenCalled();
+    if (kind === 'assisted') expect(restored.assistance[question.id].revealed).toBe(true);
+  });
   for (const lesson of starterConnectedLessons) it('finishes both branches and hands the exact position to Stockfish for ' + lesson.side, async () => {
     const reply = vi.spyOn(EngineService.prototype, 'bestMove').mockImplementation(async (fen) => {
       const move = new Chess(fen).moves({ verbose: true })[0]; return { from: move.from, to: move.to };

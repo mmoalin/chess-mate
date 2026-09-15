@@ -1254,7 +1254,7 @@ button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px
   .daily-session-bar { border-radius: 8px; padding: 8px; }
   .daily-session-bar button { min-height: 40px; font-size: .75rem; padding: 6px; }
   .daily-session-bar > small { font-size: .72rem; }
-  .app-shell:has(.daily-session-bar) .board-shell { width: min(100%, 25dvh, 250px); }
+  .app-shell:has(.daily-session-bar) .board-shell { width: min(100%, 34dvh, 300px); }
   .candidate-panel, .journey-panel { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; }
   .structure-overview { grid-template-columns: 110px minmax(0, 1fr); gap: 12px; }
   .structure-overview h3 { font-size: 1rem; }
@@ -1265,6 +1265,27 @@ button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px
 .focused-lesson > h2, .focused-lesson > .lesson-stages { display: none; }
 
 .daily-session-paused { grid-template-columns: minmax(0, 1fr) auto; }
+.daily-session-options { min-width: 0; }
+.daily-session-options summary, .position-tools summary, .plan-reminder summary { cursor: pointer; padding: 10px; min-height: 44px; font-weight: 600; }
+.daily-session-options[open] { flex-basis: 100%; }
+.daily-session-options small { display: block; margin-top: 8px; color: #526054; }
+.daily-session-options > .button-row { margin-top: 8px; }
+.idea-step h3 { margin: 0; font-size: 1rem; line-height: 1.45; }
+.idea-step h3:focus, .study-feedback:focus { outline: 2px solid #245b46; outline-offset: 2px; }
+.opening-recovery { display: grid; gap: 8px; margin-top: 8px; }
+.opening-recovery p { font-size: .85rem; }
+.position-tools { border-top: 1px solid #d4dcd3; margin-top: 8px; }
+@media (max-width: 900px) {
+  .daily-session-bar > .button-row { grid-template-columns: 1fr 1fr; }
+  .daily-session-options[open] { grid-column: 1 / -1; }
+  .daily-session-options > .button-row { grid-template-columns: 1fr 1fr; }
+  .app-shell:not(.overview-workspace) .mode-tabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+  .app-shell:not(.overview-workspace) .mode-tabs button { min-width: 0; min-height: 44px; padding: 4px 2px; font-size: .68rem; white-space: normal; }
+  .app-shell:not(.overview-workspace) .mode-tabs svg { display: none; }
+  .idea-training > .study-kicker-row, .idea-training > .analysis, .idea-training > h2, .idea-training > .tag-cloud { display: none; }
+  .idea-workspace .idea-training .lesson-card { margin-top: 8px; }
+  .idea-workspace .idea-training { gap: 10px; }
+}
 .journey-panel h3:focus { outline: 2px solid #7ba78c; outline-offset: 4px; }
 
 .journey-panel > h2 { font-size: 1.15rem; line-height: 1.35; margin: 0; }

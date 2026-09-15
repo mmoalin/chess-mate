@@ -1,4 +1,5 @@
 import { ChoiceGroup } from '../../components/ChoiceGroup';
+import { useEffect, useRef, type ReactNode } from 'react';
 import type { ConceptDrill } from '../../domain/repertoire/types';
 import { sessionScore, type IdeaTrainingSession } from './ideaTraining';
 
@@ -16,29 +17,42 @@ type Props = {
   onRetryScenario: () => void;
   onRestart: () => void;
   onLinePractice: () => void;
+  boardTools?: ReactNode;
+  notice?: string;
 };
 
 export function IdeaTrainingPanel(props: Props) {
   const { drill, session } = props;
   const scenario = drill.scenarios[session.scenarioIndex];
+  const panelRef = useRef<HTMLElement>(null);
+  const promptRef = useRef<HTMLHeadingElement>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (panelRef.current) panelRef.current.scrollTop = 0;
+    promptRef.current?.focus({ preventScroll: true });
+  }, [session.stage, session.scenarioIndex]);
+  useEffect(() => {
+    if (session.currentResult || session.planSubmitted) resultRef.current?.focus();
+  }, [session.currentResult, session.planSubmitted]);
 
   return (
-    <section className="dock-panel idea-training" aria-label="Idea training">
+    <section ref={panelRef} className="dock-panel idea-training" aria-label="Idea training">
+      {props.notice && <p role="status">{props.notice}</p>}
       <div className="study-kicker-row"><p className="eyebrow">Plan Lab + Adaptive Sparring</p><span className="study-session-badge">5 min</span></div>
       <p className="analysis">{props.openingName} → Plan → Board decisions</p><h2>{drill.title}</h2>
       <div className="tag-cloud" aria-label="Idea themes">{drill.themes.map((theme) => <span key={theme}>{formatTheme(theme)}</span>)}</div>
 
       {session.stage === 'plan' && <>
-        {(!props.depth || props.depth === 'foundation' || session.planSubmitted) ? <article className="lesson-card"><strong>{drill.principle}</strong><p>{drill.summary}</p></article> : <p className="analysis">Choose from the position first. The plan explanation appears after your answer.</p>}
-        <div className="idea-step"><span>1 of 3 · Recognize the plan</span><strong>{drill.planPrompt}</strong></div>
+        <div className="idea-step"><span>1 of 3 · Recognize the plan</span><h3 ref={promptRef} tabIndex={-1}>{drill.planPrompt}</h3></div>
+        {(!props.depth || props.depth === 'foundation' || session.planSubmitted) ? <details className="plan-reminder"><summary>Plan reminder</summary><article className="lesson-card"><strong>{drill.principle}</strong><p>{drill.summary}</p></article></details> : <p className="analysis">Choose from the position first. The plan explanation appears after your answer.</p>}
         <ChoiceGroup label="Plan choices" choices={drill.planChoices} value={session.selectedChoiceId} disabled={session.planSubmitted} onChange={props.onSelectPlan} />
         {!session.planSubmitted
           ? <button className="primary-button" type="button" disabled={!session.selectedChoiceId} onClick={props.onCheckPlan}>Check plan</button>
-          : <div className={`study-feedback ${session.planCorrect ? 'correct' : 'try-again'}`}><strong>{session.planCorrect ? 'Plan recognized' : 'A useful correction'}</strong><p>{session.planFeedback}</p><button className="primary-button" type="button" onClick={props.onStartScenarios}>Test it on the board</button></div>}
+          : <div ref={resultRef} tabIndex={-1} className={`study-feedback ${session.planCorrect ? 'correct' : 'try-again'}`}><strong>{session.planCorrect ? 'Plan recognized' : 'A useful correction'}</strong><p>{session.planFeedback}</p><button className="primary-button" type="button" onClick={props.onStartScenarios}>Test it on the board</button></div>}
       </>}
 
       {session.stage === 'scenario' && scenario && <>
-        <div className="idea-step"><span>{session.scenarioIndex + 2} of {drill.scenarios.length + 1} · Decision point</span><strong>{scenario.prompt}</strong></div>
+        <div className="idea-step"><span>{session.scenarioIndex + 2} of {drill.scenarios.length + 1} · Decision point</span><h3 ref={promptRef} tabIndex={-1}>{scenario.prompt}</h3></div>
         <article className="position-change-card"><span>What changed?</span><p>{scenario.change}</p></article>
         <p className="analysis">Play a move on the board. More than one sound answer may be accepted.</p>
         <div className="button-row">
@@ -48,7 +62,7 @@ export function IdeaTrainingPanel(props: Props) {
         {session.hintUsed && <p className="study-hint">Cue: {scenario.hint}</p>}
         {session.revealed && <p className="study-hint">Candidate: {formatUci(scenario.preferredMovesUci[0])}. Find it on the board when ready.</p>}
         {session.evaluating && <p role="status" className="analysis">Checking how the move fits the idea…</p>}
-        {session.currentResult && <div className={`study-feedback ${session.currentResult.correct ? 'correct' : 'try-again'}`}>
+        {session.currentResult && <div ref={resultRef} tabIndex={-1} className={`study-feedback ${session.currentResult.correct ? 'correct' : 'try-again'}`}>
           <strong>{formatOutcome(session.currentResult.outcome)}</strong>
           <p>{session.currentResult.feedback} {scenario.teachingPoint}</p>
           <p><b>Watch for:</b> {scenario.watchFor}</p>
@@ -60,6 +74,7 @@ export function IdeaTrainingPanel(props: Props) {
       </>}
 
       {session.stage === 'summary' && <Summary drill={drill} session={session} onRestart={props.onRestart} onLinePractice={props.onLinePractice} />}
+      {props.boardTools && <details className="position-tools"><summary>Position tools</summary>{props.boardTools}</details>}
     </section>
   );
 }

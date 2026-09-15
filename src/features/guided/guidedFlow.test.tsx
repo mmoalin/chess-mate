@@ -46,6 +46,7 @@ describe('guided repertoire flow', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Check answer' }));
     await userEvent.click(screen.getByRole('button', { name: 'Finish checkpoint' }));
     expect(screen.getByRole('button', { name: 'Complete & continue' })).toBeEnabled();
+    await userEvent.click(screen.getByText('Session options'));
     await userEvent.click(screen.getByRole('button', { name: 'Save & finish later' }));
     await userEvent.click(screen.getByRole('button', { name: 'Continue session' }));
     expect(screen.getByRole('heading', { name: 'Checkpoint complete' })).toBeInTheDocument();
@@ -53,6 +54,7 @@ describe('guided repertoire flow', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Complete & continue' }));
     expect(screen.getByRole('region', { name: 'Daily session progress' })).toHaveTextContent('apply');
     expect(screen.getByRole('button', { name: 'Complete & continue' })).toBeDisabled();
+    await userEvent.click(screen.getByText('Session options'));
     await userEvent.click(screen.getByRole('button', { name: 'Skip for today' }));
     expect(screen.getByRole('region', { name: 'Today workspace' })).toHaveTextContent('Daily session complete');
     expect(screen.getByText('Nice work. You can stop here.')).toBeInTheDocument();

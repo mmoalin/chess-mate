@@ -52,6 +52,12 @@ const modes: Array<{ id: GameMode; label: string; icon: React.ComponentType<{ si
   { id: 'game-review', label: 'Review', icon: ClipboardList },
 ];
 
+type BoardWorkspace = {
+  pgn: string; displayFen: string; ply: number; orientation: BoardOrientation;
+  feedback: string; lastMove: { from: string; to: string } | null;
+  engineAwaitingReply: boolean; studyPractice: boolean; studyMoveFeedback: string;
+};
+
 export default function App() {
   const managerRef = useRef(new GameManager());
   const engineRef = useRef(new EngineService());
@@ -62,13 +68,17 @@ export default function App() {
   const learnerRepository = useMemo(() => new GuidedLearnerRepository(supabaseClient), [supabaseClient]);
   const trainer = useMemo(() => new OpeningTrainer(starterRepertoires), []);
 
-  const [mode, setMode] = useState<GameMode>('today');
+  const [mode, updateMode] = useState<GameMode>('today');
+  const boardWorkspaces = useRef<Record<string, BoardWorkspace>>({});
+  const boardOwner = useRef('');
   const [snapshot, setSnapshot] = useState(managerRef.current.snapshot());
   const [side, setSide] = useState<RepertoireSide>('white');
   const [lineId, setLineId] = useState('white-vienna-main');
   const [themeFilter, setThemeFilter] = useState('all');
   const [moduleId, setModuleId] = useState(starterCurriculumModules[0]?.id ?? '');
   const [moveIndex, setMoveIndex] = useState(0);
+  const [openingRetry, setOpeningRetry] = useState<{ pgn: string; moveIndex: number; expectedMove: string; exploring: boolean } | null>(null);
+  const [openingRetryPractice, setOpeningRetryPractice] = useState(false);
   const [feedback, setFeedback] = useState('Choose a repertoire line and play the highlighted sequence.');
   const [lessonCard, setLessonCard] = useState<{ title: string; principle: string; summary: string } | null>(null);
   const [lastMove, setLastMove] = useState<{ from: string; to: string } | null>(null);
@@ -148,6 +158,8 @@ export default function App() {
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem('chess-workspace:' + learnerId) ?? 'null');
+      boardWorkspaces.current = saved?.boardWorkspaces ?? {};
+      boardOwner.current = '';
       if (saved && (modes.some((item) => item.id === saved.mode) || saved.mode === 'idea-training')) {
         const result = managerRef.current.loadPgn(saved.pgn ?? '');
         if (result.ok) {
@@ -157,11 +169,13 @@ export default function App() {
           setSnapshot(saved.mode === 'game-review' ? { ...board, fen: replay[ply] } : board);
           setReviewPly(ply);
         }
-        setMode(saved.mode); setSide(saved.side === 'black' ? 'black' : 'white');
+        updateMode(saved.mode); setSide(saved.side === 'black' ? 'black' : 'white');
+        boardOwner.current = saved.mode === 'game-review' ? (saved.activeGapId ? 'gap:' + saved.activeGapId : 'review:' + (saved.reviewMode === 'engine' ? 'engine' : 'pgn')) : saved.mode === 'curriculum' ? 'study:' + (starterCurriculumModules.find((item) => item.id === saved.moduleId)?.tasks[saved.taskIndex ?? 0]?.id ?? '') : '';
         setOrientation(saved.orientation === 'black' ? 'black' : 'white');
         if (trainer.findLine(saved.lineId)) setLineId(saved.lineId);
         if (starterCurriculumModules.some((module) => module.id === saved.moduleId)) setModuleId(saved.moduleId);
         setActiveTaskIndex(Math.max(0, saved.taskIndex ?? 0)); setMoveIndex(Math.max(0, saved.moveIndex ?? 0));
+        setOpeningRetry(saved.openingRetry ?? null); setOpeningRetryPractice(Boolean(saved.openingRetryPractice));
         setReviewMode(saved.reviewMode === 'engine' ? 'engine' : 'pgn');
         setEngineAwaitingReply(Boolean(saved.engineAwaitingReply));
         setPgnInput(saved.pgnInput ?? ''); setReviewDetection(saved.reviewDetection ?? null);
@@ -178,21 +192,22 @@ export default function App() {
               const scenario = drill.scenarios[saved.ideaSession.scenarioIndex];
               if (scenario) { loadConceptScenario(drill, saved.ideaSession.scenarioIndex); setFeedback('The interrupted scenario is ready to try again.'); }
             }
-          } else setMode('repertoire');
+          } else updateMode('repertoire');
         }
-      } else setMode('today');
-    } catch { setMode('today'); }
+      } else updateMode('today');
+    } catch { boardWorkspaces.current = {}; boardOwner.current = ''; updateMode('today'); }
     setWorkspaceReady(learnerId);
   }, [learnerId, trainer]);
 
   useEffect(() => {
     if (!learnerSetup || workspaceReady !== learnerId || mode === 'connected-lesson' || mode === 'admin') return;
+    rememberBoardWorkspace();
     try { localStorage.setItem('chess-workspace:' + learnerId, JSON.stringify({
       mode, side, orientation, lineId, moduleId, taskIndex: activeTaskIndex, moveIndex,
       pgn: managerRef.current.snapshot().pgn, reviewPly, reviewMode, engineAwaitingReply, pgnInput, reviewDetection, activeGapId,
-      criticalId: activeCriticalPosition?.id, planPreview, activeConceptKey, ideaSession
+      criticalId: activeCriticalPosition?.id, planPreview, activeConceptKey, ideaSession, boardWorkspaces: boardWorkspaces.current, openingRetry, openingRetryPractice
     })); } catch { /* The workspace remains usable when storage is unavailable. */ }
-  }, [learnerId, workspaceReady, learnerSetup, mode, side, orientation, lineId, moduleId, activeTaskIndex, moveIndex, snapshot.fen, reviewPly, reviewMode, engineAwaitingReply, pgnInput, reviewDetection, activeGapId, activeCriticalPosition, planPreview, activeConceptKey, ideaSession]);
+  }, [learnerId, workspaceReady, learnerSetup, mode, side, orientation, lineId, moduleId, activeTaskIndex, moveIndex, snapshot.fen, reviewPly, reviewMode, engineAwaitingReply, pgnInput, reviewDetection, activeGapId, activeCriticalPosition, planPreview, activeConceptKey, ideaSession, feedback, studyPractice, studyMoveFeedback, openingRetry, openingRetryPractice]);
 
   function backgroundSyncError(context: string, error: unknown) {
     reportBackgroundError(context, error);
@@ -350,6 +365,9 @@ export default function App() {
   const studyPosition = activeTask ? studyPositions[activeTask.id] : undefined;
   useEffect(() => {
     if (mode !== 'curriculum' || !studyPosition) return;
+    const key = 'study:' + activeTask.id;
+    if (restoreBoardWorkspace(key)) return;
+    boardOwner.current = key;
     managerRef.current.reset(studyPosition.fen); setOrientation(studyPosition.side);
     setActiveCriticalPosition(null); setPlanPreview(false); setLastMove(null);
     setStudyPractice(false); setStudyMoveFeedback('');
@@ -386,6 +404,57 @@ export default function App() {
   function refresh() {
     setSnapshot(managerRef.current.snapshot());
   }
+
+  function currentBoardKey() {
+    return mode === 'game-review' ? (activeGapId ? 'gap:' + activeGapId : 'review:' + reviewMode)
+      : mode === 'curriculum' ? 'study:' + activeTask.id : '';
+  }
+
+  function rememberBoardWorkspace() {
+    const key = currentBoardKey();
+    if (!key || boardOwner.current !== key || workspaceReady !== learnerId) return;
+    // Use the rendered snapshot: a destination handler may already have loaded
+    // another position into the manager before requesting navigation.
+    boardWorkspaces.current[key] = { pgn: snapshot.pgn, displayFen: snapshot.fen, ply: reviewPly, orientation, feedback, lastMove, engineAwaitingReply, studyPractice, studyMoveFeedback };
+  }
+
+  function restoreBoardWorkspace(key: string) {
+    const saved = boardWorkspaces.current[key];
+    if (!saved || typeof saved.pgn !== 'string' || !managerRef.current.loadPgn(saved.pgn).ok) return false;
+    boardOwner.current = key;
+    const board = managerRef.current.snapshot();
+    const positions = managerRef.current.getReplayPositions();
+    const selected = positions[saved.ply] === saved.displayFen ? saved.ply : positions.lastIndexOf(saved.displayFen);
+    const ply = selected >= 0 ? selected : positions.length - 1;
+    setSnapshot({ ...board, fen: positions[ply], legalTargets: ply === positions.length - 1 ? board.legalTargets : {} });
+    setReviewPly(ply); setOrientation(saved.orientation); setLastMove(saved.lastMove);
+    setFeedback(saved.feedback); setEngineAwaitingReply(key === 'review:engine' && saved.engineAwaitingReply);
+    setStudyPractice(saved.studyPractice); setStudyMoveFeedback(saved.studyMoveFeedback);
+    return true;
+  }
+
+  function openReviewBoard(next: 'pgn' | 'engine', gapId: string | null = null) {
+    const key = gapId ? 'gap:' + gapId : 'review:' + next;
+    if (restoreBoardWorkspace(key)) return;
+    boardOwner.current = key;
+    managerRef.current.reset(); setReviewPly(0); setLastMove(null); setEngineAwaitingReply(false);
+    setOrientation(next === 'pgn' ? reviewLearnerSide : 'white');
+    setFeedback(next === 'pgn' ? 'Load a PGN to review a game.' : 'Make a move on the board. Stockfish will reply automatically.');
+    refresh();
+  }
+
+  function setMode(next: GameMode) {
+    if (next === mode) { updateMode(next); return; }
+    rememberBoardWorkspace();
+    engineGeneration.current++; engineRef.current.stop(); setEngineBusy(false); setAnalysis('');
+    boardOwner.current = '';
+    if (next === 'game-review') openReviewBoard(reviewMode, activeGapId);
+    updateMode(next);
+  }
+
+  useEffect(() => {
+    if (workspaceReady === learnerId && mode === 'game-review' && reviewMode === 'engine' && !activeGapId && engineAwaitingReply && !engineBusy) void playEngineReply();
+  }, [mode, reviewMode, workspaceReady]);
 
   function createLegacySetup() {
     const setup = createLearnerSetup({
@@ -562,9 +631,11 @@ export default function App() {
     const unit = repertoireGraph.learningUnits[targetKey];
     const gap = guidedBacklog.find((item) => item.id === targetKey);
     if (gap) {
+      rememberBoardWorkspace();
       setActiveGapId(gap.id); setReviewDetection(null); setPgnError('');
       setPlanPreview(false);
       setMode('game-review'); setReviewMode('pgn'); setActiveCriticalPosition(null);
+      boardOwner.current = 'gap:' + gap.id;
       managerRef.current.reset(positionKeyToFen(gap.positionKey));
       setLastMove(null); setReviewPly(0);
       setFeedback('Saved gap: ' + gap.title + '. Try a candidate, analyse it, and save what you learned.');
@@ -707,6 +778,7 @@ export default function App() {
   }
 
   function handleMove(from: string, to: string, promotion?: string) {
+    if (mode === 'opening-trainer' && openingRetry && !openingRetry.exploring) return false;
     if (engineBusy || (mode === 'game-review' && reviewMode === 'engine' && engineAwaitingReply) || snapshot.fen !== managerRef.current.snapshot().fen || (mode === 'curriculum' && !studyPractice)) return false;
     if (planPreview) { setFeedback('This position is in review mode. Choose a lesson action or return to the opening line to practise.'); return false; }
     if (mode === 'idea-training' && ideaSession && (ideaSession.stage !== 'scenario' || ideaSession.evaluating || ideaSession.currentResult)) {
@@ -737,6 +809,11 @@ export default function App() {
     }
     if (mode === 'game-review') setReviewPly(managerRef.current.getReplayPositions().length - 1);
     setLastMove({ from, to });
+
+    if (mode === 'opening-trainer' && openingRetry?.exploring) {
+      setFeedback(`${move.san}. Exploration only. Retry this move to return to the repertoire decision.`);
+      refresh(); return true;
+    }
 
     if (mode === 'idea-training' && ideaSession?.stage === 'scenario' && activeConceptDrill) {
       setIdeaSession({ ...ideaSession, evaluating: true });
@@ -778,8 +855,9 @@ export default function App() {
 
     if (mode === 'opening-trainer' && activeLine) {
       const result = trainer.recordMove(activeLine.id, moveIndex, move.san);
-      upsertLocalProgress(activeLine, result);
+      if (!openingRetryPractice) upsertLocalProgress(activeLine, result);
       if (result.status === 'correct') {
+        setOpeningRetryPractice(false);
         const explanation = trainer.moveExplanation(activeLine.id, moveIndex);
         setMoveIndex(result.nextMoveIndex);
         setFeedback(result.completed ? `${activeLine.name} completed.` : `Correct: ${move.san}. Next move ready.`);
@@ -804,10 +882,11 @@ export default function App() {
           const complete = nextStep >= unit.edgeKeys.length;
           setLastMove(lastApplied); setMoveIndex(complete ? (repertoireGraph.edges[unit.edgeKeys.at(-1)!]?.order ?? moveIndex) + 1 : repertoireGraph.edges[unit.edgeKeys[nextStep]]?.order ?? result.nextMoveIndex);
           setFeedback(complete ? `${unit.title} complete. Mark the activity complete when you are ready.` : `Correct. The opponent replied automatically; your next move is ready.`);
-          if (complete) void recordGuidedAttempt({ itemKey: unit.key, positionKey: unit.startPositionKey, dimension: 'recall', response: managerRef.current.snapshot().history.join(' '), correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch((error) => backgroundSyncError('opening unit result save', error));
-        } else void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch((error) => backgroundSyncError('opening recall save', error));
+          if (complete && !openingRetryPractice) void recordGuidedAttempt({ itemKey: unit.key, positionKey: unit.startPositionKey, dimension: 'recall', response: managerRef.current.snapshot().history.join(' '), correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch((error) => backgroundSyncError('opening unit result save', error));
+        } else if (!openingRetryPractice) void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: true, hintUsed: Boolean(hintText), revealed: feedback.startsWith('Repertoire move:') }).catch((error) => backgroundSyncError('opening recall save', error));
       } else {
-        const mistake = trainer.commonMistake(activeLine.id, moveIndex);
+        setOpeningRetry({ pgn: snapshot.pgn, moveIndex, expectedMove: result.expectedMove ?? '', exploring: false });
+        const explanation = trainer.moveExplanation(activeLine.id, moveIndex);
         const accepted = guidedClassification?.kind === 'alternative' || guidedClassification?.kind === 'transposition' || guidedClassification?.kind === 'reasonable';
         setFeedback(accepted ? guidedClassification.message : guidedClassification?.message ?? `Try again. Repertoire move: ${result.expectedMove ?? 'none'}.`);
         addReviewItem(
@@ -820,13 +899,13 @@ export default function App() {
           })
         );
         setLessonCard(
-          mistake
-            ? { title: 'Common mistake', principle: mistake.principle, summary: mistake.summary }
+          explanation
+            ? { title: 'The repertoire idea', principle: explanation.principle, summary: explanation.summary }
             : null
         );
         const unit = (activeLearningUnitKey ? repertoireGraph.learningUnits[activeLearningUnitKey] : undefined) ?? Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id && item.startPositionKey === positionKeyBefore)
           ?? Object.values(repertoireGraph.learningUnits).find((item) => item.lineKey === activeLine.id);
-        void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: accepted, hintUsed: Boolean(hintText), revealed: false }).catch((error) => backgroundSyncError('opening deviation save', error));
+        if (!openingRetryPractice) void recordGuidedAttempt({ itemKey: unit?.key ?? `legacy:${activeLine.id}:${moveIndex}`, positionKey: positionKeyBefore, dimension: 'recall', response: move.san, correct: accepted, hintUsed: Boolean(hintText), revealed: false }).catch((error) => backgroundSyncError('opening deviation save', error));
         if (guidedClassification?.kind === 'mistake') {
           addGuidedBacklog({ positionKey: positionKeyBefore, reason: 'forgotten-move', title: `Review ${activeLine.name} after ${move.san}` });
         } else if (guidedClassification?.kind === 'uncovered') {
@@ -869,6 +948,7 @@ export default function App() {
   }
 
   function resetBoard() {
+    setOpeningRetry(null); setOpeningRetryPractice(false);
     engineGeneration.current++; engineRef.current.stop(); setEngineBusy(false); setAnalysis('');
     setEngineAwaitingReply(false);
     setPlanPreview(false);
@@ -903,6 +983,7 @@ export default function App() {
   }
 
   function showRepertoireMove(targetMoveIndex: number) {
+    setOpeningRetry(null); setOpeningRetryPractice(false);
     setPlanPreview(false);
     if (!activeLine) return;
 
@@ -973,11 +1054,13 @@ export default function App() {
   }
 
   function switchReviewMode(nextMode: 'pgn' | 'engine') {
+    if (nextMode === reviewMode && !activeGapId) return;
+    rememberBoardWorkspace();
+    engineGeneration.current++; engineRef.current.stop(); setEngineBusy(false); setAnalysis('');
     setActiveGapId(null); setPgnError('');
     setReviewMode(nextMode);
-    setReviewDetection(null);
-    resetBoard();
-    setFeedback(nextMode === 'pgn' ? 'Load a PGN to review a game.' : 'Make a move on the board. Stockfish will reply automatically.');
+    setPlanPreview(false); setActiveCriticalPosition(null);
+    openReviewBoard(nextMode);
   }
 
   function startAlienPractice() {
@@ -999,7 +1082,17 @@ export default function App() {
   function revealMove() {
     if (activeCriticalPosition) { const text = 'Candidate: ' + activeCriticalPosition.expectedMoves.join(' or ') + '. ' + (activeCriticalPosition.teachingPoint ?? ''); setHintText(text); setFeedback(text); return; }
     const expectedMove = activeLine?.movesSan[moveIndex];
+    if (openingRetry) retryOpeningMove();
     setFeedback(expectedMove ? `Repertoire move: ${expectedMove}. Play it on the board when you are ready.` : 'This line is complete.');
+  }
+
+  function retryOpeningMove() {
+    if (!openingRetry || !managerRef.current.loadPgn(openingRetry.pgn).ok) return;
+    engineGeneration.current++; engineRef.current.stop(); setEngineBusy(false); setAnalysis('');
+    setMoveIndex(openingRetry.moveIndex); setReviewPly(managerRef.current.getReplayPositions().length - 1);
+    setOpeningRetry(null); setOpeningRetryPractice(true); setLastMove(null); setLessonCard(null);
+    setFeedback('Try the repertoire move again. Your first answer remains recorded; this retry is practice.');
+    refresh();
   }
 
   function loadReviewPgn() {
@@ -1041,6 +1134,7 @@ export default function App() {
   }
 
   function selectStudyModule(nextModuleId: string) {
+    rememberBoardWorkspace();
     setModuleId(nextModuleId);
     setActiveTaskIndex(0);
     setSelectedStudyChoice('');
@@ -1049,6 +1143,7 @@ export default function App() {
   }
 
   function selectStudyTask(index: number) {
+    rememberBoardWorkspace();
     setActiveTaskIndex(index);
     setSelectedStudyChoice('');
     setStudySubmitted(false);
@@ -1134,7 +1229,7 @@ export default function App() {
   }
 
   return (
-    <main className={`app-shell ${!learnerSetup || mode === 'today' || mode === 'repertoire' ? 'overview-workspace' : ''}`}>
+    <main className={`app-shell ${mode === 'idea-training' ? 'idea-workspace' : ''} ${!learnerSetup || mode === 'today' || mode === 'repertoire' ? 'overview-workspace' : ''}`}>
       <header className="topbar">
         <div>
           <p className="eyebrow">Chess Opening Trainer</p>
@@ -1169,7 +1264,7 @@ export default function App() {
           <ChessBoardUI
             fen={snapshot.fen}
             orientation={orientation}
-            legalTargets={engineBusy || (mode === 'game-review' && reviewMode === 'engine' && engineAwaitingReply) || snapshot.fen !== managerRef.current.snapshot().fen || (mode === 'curriculum' && !studyPractice) || planPreview ? {} : snapshot.legalTargets}
+            legalTargets={engineBusy || (mode === 'game-review' && reviewMode === 'engine' && engineAwaitingReply) || (mode === 'opening-trainer' && openingRetry && !openingRetry.exploring) || snapshot.fen !== managerRef.current.snapshot().fen || (mode === 'curriculum' && !studyPractice) || planPreview ? {} : snapshot.legalTargets}
             lastMove={lastMove}
             onMoveAttempt={handleMove}
           />
@@ -1194,10 +1289,11 @@ export default function App() {
               </div>
             </section>
           )}
-          <section className="feedback-strip" aria-label="Feedback">
+          {mode !== 'idea-training' && <section className="feedback-strip" aria-label="Feedback">
             <div>
               <p className="eyebrow">Feedback</p>
               <p>{feedback}</p>
+              {mode === 'opening-trainer' && openingRetry && <div className="opening-recovery"><p>{openingRetry.exploring ? 'Exploration is ungraded.' : 'Your move is recorded. Retry from the previous position or explore this continuation.'}</p><div className="button-row"><button className="primary-button" onClick={retryOpeningMove}>Retry this move</button>{!openingRetry.exploring && <button className="secondary-button" onClick={() => { setOpeningRetry({ ...openingRetry, exploring: true }); setFeedback('Explore either side without grading. Retry this move returns to the original decision.'); }}>Explore this continuation</button>}</div></div>}
               <p className="analysis" role="status">{mode === 'game-review' && reviewMode === 'engine' ? analysis : positionAnalysis.text}</p>
             </div>
             <div className="feedback-actions">
@@ -1208,8 +1304,9 @@ export default function App() {
                 Analyze position
               </button>
               {positionAnalysis.busy && <button className="secondary-button" onClick={positionAnalysis.stop}>Stop analysis</button>}
+              {mode === 'game-review' && reviewMode === 'engine' && engineAwaitingReply && !engineBusy && <button className="secondary-button" onClick={() => void playEngineReply()}>Retry engine reply</button>}
             </div>
-          </section>
+          </section>}
           {syncStatus && <div className="sync-status" role="status"><span>Progress sync: {syncStatus}</span><button className="link-button" onClick={() => setSyncStatus('')}>Dismiss</button></div>}
           {isHistoryOpen && (
             <section className="history-drawer" aria-label="Move history">
@@ -1287,6 +1384,8 @@ export default function App() {
               onRetryScenario={retryIdeaScenario}
               onRestart={() => startConceptDrill(activeConceptDrill.key)}
               onLinePractice={() => startOpening(activeConceptDrill.openingFamilyKey)}
+              notice={feedback.startsWith('The interrupted scenario') ? feedback : undefined}
+              boardTools={<><div className="button-row"><button className="secondary-button" onClick={copyGamePgn}>Copy PGN</button><button className="secondary-button" disabled={positionAnalysis.busy} onClick={analyzeCurrentPosition}>Analyze position</button>{positionAnalysis.busy && <button onClick={positionAnalysis.stop}>Stop analysis</button>}</div><p role="status">{positionAnalysis.text}</p></>}
             />
           )}
 
@@ -1468,7 +1567,7 @@ export default function App() {
                     type="button"
                     onClick={() => selectStudyTask(activeModule.tasks.indexOf(task))}
                   >
-                    <span>{curriculumAttempts[task.id]?.completed ? '✓' : activeModule.tasks.indexOf(task) + 1}</span>
+                    <span>{curriculumAttempts[task.id]?.completed ? '✓' : activeModule.tasks.indexOf(task) + 1}</span>{' '}
                     <strong>{task.title}</strong>
                   </button>
                 ))}

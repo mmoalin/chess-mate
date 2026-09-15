@@ -1,0 +1,216 @@
+- main:
+  - paragraph: Chess Opening Trainer
+  - 'heading "Vienna Game: Main Development Plan" [level=1]'
+  - button "Show moves":
+  - button "Reset board":
+  - generic "Sign in / sync"
+  - generic "Chess board":
+    - paragraph: Arrow keys move one square. Enter or Space selects a piece and its destination. Escape cancels. You can also tap two squares or drag a piece.
+    - generic: "8"
+    - button "a8, Black rook":
+      - button [disabled]:
+    - button "b8, Black knight":
+      - button:
+    - button "c8, Black bishop":
+      - button [disabled]:
+    - button "d8, Black queen":
+      - button:
+    - button "e8, Black king":
+      - button:
+    - button "f8, Black bishop":
+      - button:
+    - button "g8, Black knight":
+      - button:
+    - button "h8, Black rook":
+      - button [disabled]:
+    - generic: "7"
+    - button "a7, Black pawn":
+      - button:
+    - button "b7, Black pawn":
+      - button:
+    - button "c7, Black pawn":
+      - button:
+    - button "d7, Black pawn":
+      - button:
+    - button "e7, empty"
+    - button "f7, Black pawn":
+      - button:
+    - button "g7, Black pawn":
+      - button:
+    - button "h7, Black pawn":
+      - button:
+    - generic: "6"
+    - button "a6, empty"
+    - button "b6, empty"
+    - button "c6, empty"
+    - button "d6, empty"
+    - button "e6, empty"
+    - button "f6, empty"
+    - button "g6, empty"
+    - button "h6, empty"
+    - generic: "5"
+    - button "a5, empty"
+    - button "b5, empty"
+    - button "c5, empty"
+    - button "d5, empty"
+    - button "e5, Black pawn":
+      - button [disabled]:
+    - button "f5, empty"
+    - button "g5, empty"
+    - button "h5, empty"
+    - generic: "4"
+    - button "a4, empty"
+    - button "b4, empty"
+    - button "c4, empty"
+    - button "d4, empty"
+    - button "e4, White pawn":
+      - button [disabled]:
+    - button "f4, empty"
+    - button "g4, empty"
+    - button "h4, empty"
+    - generic: "3"
+    - button "a3, White pawn":
+      - button [disabled]:
+    - button "b3, empty"
+    - button "c3, empty" [active]
+    - button "d3, empty"
+    - button "e3, empty"
+    - button "f3, empty"
+    - button "g3, empty"
+    - button "h3, empty"
+    - generic: "2"
+    - button "a2, empty"
+    - button "b2, White pawn":
+      - button [disabled]:
+    - button "c2, White pawn":
+      - button [disabled]:
+    - button "d2, White pawn":
+      - button [disabled]:
+    - button "e2, empty"
+    - button "f2, White pawn":
+      - button [disabled]:
+    - button "g2, White pawn":
+      - button [disabled]:
+    - button "h2, White pawn":
+      - button [disabled]:
+    - generic: a
+    - generic: "1"
+    - button "a1, White rook":
+      - button [disabled]:
+    - generic: b
+    - button "b1, White knight":
+      - button [disabled]:
+    - generic: c
+    - button "c1, White bishop":
+      - button [disabled]:
+    - generic: d
+    - button "d1, White queen":
+      - button [disabled]:
+    - generic: e
+    - button "e1, White king":
+      - button [disabled]:
+    - generic: f
+    - button "f1, White bishop":
+      - button [disabled]:
+    - generic: g
+    - button "g1, White knight":
+      - button [disabled]:
+    - generic: h
+    - button "h1, White rook":
+      - button [disabled]:
+    - status
+    - status: Choose a piece that can move in this position.
+  - region "Feedback":
+    - paragraph: Feedback
+    - paragraph: "Repertoire move: Nc3. Play it on the board when you are ready."
+    - status
+    - button "Copy PGN"
+    - button "Analyze position"
+  - complementary "Task dock":
+    - navigation "Chess modes":
+      - button "Today":
+        - text: Today
+      - button "Repertoire":
+        - text: Repertoire
+      - button "Train openings":
+        - text: Train openings
+      - button "Study":
+        - text: Study
+      - button "Review":
+        - text: Review
+    - paragraph: Repertoire
+    - generic: Beginner
+    - button "White"
+    - button "Black"
+    - combobox "Repertoire line":
+      - 'option "Alien Gambit: f7 Attack"'
+      - 'option "Vienna Game: Main Development Plan" [selected]'
+      - 'option "London System: Solid Middlegame Setup"'
+      - 'option "Alien Gambit: No ...h6"'
+      - 'option "Vienna Gambit: Queen Pressure Branch"'
+      - 'option "London System: Meet ...Qb6"'
+    - region "Opening to middlegame":
+      - button "Learn this opening"
+      - paragraph: From these moves to a playable plan
+      - heading "What comes after the opening?" [level=3]
+      - paragraph: Move the bishop first, castle, and use the open f-file and central lead to build kingside pressure.
+      - button "See the resulting position"
+      - button "Practise opening plans"
+      - button "Tactical decision 1 · Initiative / Center Control"
+      - button "Tactical decision 2 · Calculation / Center Control"
+    - region "Repertoire moves":
+      - generic: Move
+      - strong: 3 / 10
+      - 'button "Repertoire move 1: e4"': e4
+      - 'button "Repertoire move 2: e5"': e5
+      - 'button "Repertoire move 3: Nc3"': Nc3
+      - 'button "Repertoire move 4: Nf6"': Nf6
+      - 'button "Repertoire move 5: f4"': f4
+      - 'button "Repertoire move 6: d5"': d5
+      - 'button "Repertoire move 7: fxe5"': fxe5
+      - 'button "Repertoire move 8: Nxe4"': Nxe4
+      - 'button "Repertoire move 9: Nf3"': Nf3
+      - 'button "Repertoire move 10: Be7"': Be7
+    - text: Strategic theme
+    - combobox "Strategic theme":
+      - option "All themes" [selected]
+      - option "Development"
+      - option "Forcing Moves"
+      - option "Initiative"
+      - option "King Safety"
+      - option "Minor Piece Quality"
+      - option "Open Files"
+      - option "Pawn Break"
+      - option "Pawn Chain"
+      - option "Weak Squares"
+    - generic "Strategic themes":
+      - generic: Development
+      - generic: King Safety
+      - generic: Open Files
+      - generic: Initiative
+    - paragraph: Develop the queen knight early, use f4 to create initiative, then catch up on development before attacking.
+    - region "Theory branches":
+      - paragraph: Build on this
+      - 'button "Vienna Gambit: Queen Pressure Branch This sharper Vienna branch asks White to prove compensation with quick queen pressure and fast development."':
+        - generic: "Vienna Gambit: Queen Pressure Branch"
+        - generic: This sharper Vienna branch asks White to prove compensation with quick queen pressure and fast development.
+    - region "Middlegame ideas":
+      - paragraph: Middlegame ideas
+      - article:
+        - strong: Build the attack after development
+        - paragraph: Move the bishop first, castle, and use the open f-file and central lead to build kingside pressure.
+        - generic: Be2 -> Nc6 -> O-O
+        - generic "Build the attack after development continuation":
+          - 'button "Show plan move 1: Be2"': 1. Be2
+          - 'button "Show plan move 2: Nc6"': 2. Nc6
+          - 'button "Show plan move 3: O-O"': 3. O-O
+        - text: Click through this example from the opening’s model position.
+        - paragraph: The f-pawn push is only useful if e4 stays defended and the king gets safe quickly.
+    - paragraph: Lesson goal
+    - strong: Understand the first structure before memorizing
+    - paragraph: "Target position: reach move 3 with central control, development, and a clear next move."
+    - button "Hint"
+    - button "Reveal"
+    - paragraph: Common mistake
+    - strong: avoid drift
+    - paragraph: Early queen moves usually give Black easy developing tempi.

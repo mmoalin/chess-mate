@@ -105,7 +105,8 @@ describe('learning experience integrity', () => {
     expect(screen.queryByRole('button', { name: 'Complete & continue' })).not.toBeInTheDocument();
     await click('Return to daily activity'); await click('Go to model position');
     await userEvent.click(screen.getByRole('radio', { name: vienna.questions[0].choices.find((choice) => !choice.correct)!.label }));
-    await click('Check answer'); await click('Skip for today'); await click('Skip for today');
+    await click('Check answer'); await userEvent.click(screen.getByText('Session options')); await click('Skip for today');
+    await userEvent.click(screen.getByText('Session options')); await click('Skip for today');
     expect(screen.getByText(/0 activities completed.*1 partially practised.*1 skipped/)).toBeInTheDocument();
   });
 

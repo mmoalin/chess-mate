@@ -43,6 +43,8 @@ export type LessonSession = {
   checkpointId: string;
   moves: string[];
   answers: Record<string, LearningAttempt>;
+  /** Latest submitted choice for presentation; answers retains first-attempt grading. */
+  submittedChoices?: Record<string, string>;
   assistance: Record<string, { hint: boolean; revealed: boolean; analysis?: boolean }>;
   completedCheckpoints: string[];
   returnDestination: 'today' | 'repertoire' | 'opening-trainer' | 'game-review';

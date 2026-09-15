@@ -8,7 +8,7 @@ import { EngineService } from '../../services/engineService';
 import { usePositionAnalysis } from '../../services/usePositionAnalysis';
 import type { LearnerRepository } from '../../domain/repertoire/repositories';
 import type { ConnectedLesson, LessonSession } from './types';
-import { answerQuestion, assist, analyseAssist, beginTransfer, createLessonSession, enableRecall, nextQuestion, playLessonMove, positionAfter, replayOpening, startQuestions } from './session';
+import { answerQuestion, assist, analyseAssist, beginTransfer, createLessonSession, enableRecall, nextQuestion, playLessonMove, positionAfter, replayOpening, restoredQuestionChoice, startQuestions } from './session';
 
 type Props = {
   lesson: ConnectedLesson;
@@ -25,12 +25,16 @@ export function ConnectedLessonWorkspace(props: Props) {
   const current = useRef(session);
   const callbacks = useRef(props);
   callbacks.current = props;
-  const [feedback, setFeedback] = useState(props.initialSession.stage === 'summary' ? '' : props.initialSession.stage === 'opening' ? 'Follow the opening, then connect the position to a plan.' : 'Consider the position, then choose your answer.');
+  const [feedback, setFeedback] = useState(() => {
+    const choice = restoredQuestionChoice(props.initialSession, lesson);
+    return lesson.questions.find((question) => question.id === props.initialSession.checkpointId)?.choices.find((item) => item.id === choice)?.feedback
+      ?? (props.initialSession.stage === 'summary' ? '' : props.initialSession.stage === 'opening' ? 'Follow the opening, then connect the position to a plan.' : 'Consider the position, then choose your answer.');
+  });
   const [syncError, setSyncError] = useState('');
   const [analysis, setAnalysis] = useState('');
   const [engineError, setEngineError] = useState('');
   const [busy, setBusy] = useState(false);
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState(() => restoredQuestionChoice(props.initialSession, lesson));
   const [exploration, setExploration] = useState<{ candidate?: string } | null>(null);
   const [pending, setPending] = useState<{ from: string; to: string; promotion?: string; san: string } | null>(null);
   const [plan, setPlan] = useState('');
@@ -96,7 +100,14 @@ export function ConnectedLessonWorkspace(props: Props) {
     window.addEventListener('online', retry);
     return () => { mounted.current = false; generation.current += 1; engine.current.stop(); window.removeEventListener('online', retry); };
   }, [repository]);
-  useEffect(() => { setSelected(''); }, [session.checkpointId]);
+  useEffect(() => {
+    const choice = restoredQuestionChoice(current.current, lesson);
+    setSelected(choice);
+    if (current.current.stage === 'question') {
+      const question = lesson.questions.find((item) => item.id === current.current.checkpointId);
+      setFeedback(question?.choices.find((item) => item.id === choice)?.feedback ?? 'Consider the position, then choose your answer.');
+    }
+  }, [session.checkpointId, session.stage, lesson]);
 
   async function requestEngineReply() {
     if (busy || inspectPly !== null) return;

@@ -1,0 +1,9 @@
+$ vitest run "--maxWorkers=2"
+
+ RUN  v4.1.9 C:/Dev/CodexApps/chess
+
+
+ Test Files  29 passed (29)
+      Tests  175 passed (175)
+   Start at  01:34:37
+   Duration  105.01s (transform 1.98s, setup 7.28s, import 31.86s, tests 107.10s, environment 47.32s)
