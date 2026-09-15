@@ -1,0 +1,9 @@
+$ vitest run "src/features/connected/ContinuationJourneyWorkspace.test.tsx" "src/features/connected/continuationJourney.test.ts" "src/domain/repertoire/dailySessions.test.ts" "--maxWorkers=2"
+
+ RUN  v4.1.9 C:/Dev/CodexApps/chess
+
+
+ Test Files  3 passed (3)
+      Tests  29 passed (29)
+   Start at  00:13:46
+   Duration  19.05s (transform 1.47s, setup 785ms, import 7.93s, tests 13.42s, environment 4.85s)

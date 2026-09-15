@@ -179,12 +179,20 @@ function rowsToGraph(release: ReleaseRow, rows: Record<string, any[]>): Repertoi
   return graph;
 }
 
+function canonicalContent(value: unknown): string {
+  const sort = (item: any): any => Array.isArray(item) ? item.map(sort) : item && typeof item === 'object' ? Object.fromEntries(Object.keys(item).sort().map((key) => [key, sort(item[key])])) : item;
+  return JSON.stringify(sort(value));
+}
+
 function withStarterConcepts(graph: RepertoireGraph): RepertoireGraph {
   // Add optional journeys only to the matching bundled lesson revision. Authored
   // remote journeys and edited lessons remain authoritative.
   graph = { ...graph, connectedLessons: Object.fromEntries(Object.entries(graph.connectedLessons ?? {}).map(([key, lesson]) => {
     const bundled = starterConnectedLessons.find((item) => item.key === key && item.version === lesson.version && item.title === lesson.title && JSON.stringify(item.openingMoves) === JSON.stringify(lesson.openingMoves));
-    return [key, !lesson.endgame && bundled?.endgame ? { ...lesson, endgame: bundled.endgame } : lesson];
+    const withEndgame = !lesson.endgame && bundled?.endgame ? { ...lesson, endgame: bundled.endgame } : lesson;
+    // Add only to an unchanged bundled base. JSONB can reorder object keys.
+    const base = (value: typeof lesson) => { const { endgame: _endgame, continuation: _continuation, ...rest } = value; return canonicalContent(rest); };
+    return [key, !lesson.continuation && bundled?.continuation && base(lesson) === base(bundled) ? { ...withEndgame, continuation: bundled.continuation } : withEndgame];
   })) };
 
   if (graph.release.schemaVersion < 3 && !Object.keys(graph.connectedLessons ?? {}).length) {

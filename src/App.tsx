@@ -1,4 +1,5 @@
 import type { User } from '@supabase/supabase-js';
+import { openContinuation } from './features/connected/continuationJourney';
 import { BookOpen, Brain, ChevronLeft, ChevronRight, ClipboardList, Home, List, Map as MapIcon, RotateCcw, Shield } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChoiceGroup } from './components/ChoiceGroup';
@@ -249,14 +250,16 @@ export default function App() {
     const lesson = saved ? repertoireGraph.connectedLessons?.[saved.lessonKey] : Object.values(repertoireGraph.connectedLessons ?? {}).find((l) => target === l.key || target.startsWith(l.key + '/'));
     if (!lesson) return;
     const journeyTarget = target === lesson.key + '/journey';
-    const checkpoint = !journeyTarget && target.startsWith(lesson.key + '/') ? target.slice(lesson.key.length + 1) : undefined;
+    const continuationTarget = target === lesson.key + '/continuation';
+    const checkpoint = !journeyTarget && !continuationTarget && target.startsWith(lesson.key + '/') ? target.slice(lesson.key.length + 1) : undefined;
     const unfinished = lessonSessions.filter((s) => s.learnerId === learnerId && s.lessonKey === lesson.key && !s.supersededAt && (checkpoint
       ? s.reviewCheckpointId === checkpoint && (!s.completedAt || (currentDailyTarget(dailySession)?.contentKey === target && s.completedAt >= dailySession!.createdAt))
       : !s.reviewCheckpointId)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
     const destination = mode === 'today' || mode === 'repertoire' || (mode === 'game-review' && activeGap) ? mode : 'opening-trainer';
     engineRef.current.stop();
     const next = saved ?? unfinished ?? createLessonSession(lesson, learnerId, destination, checkpoint);
-    trackLessonSession({ ...next, returnDestination: destination, ...(journeyTarget && lesson.endgame ? { journey: { ...(next.journey ?? { step: 0 }), active: true } } : {}) });
+    const opened = continuationTarget && lesson.continuation ? openContinuation(next, lesson.continuation) : next;
+    trackLessonSession({ ...opened, returnDestination: destination, ...(journeyTarget && lesson.endgame ? { journey: { ...(next.journey ?? { step: 0 }), active: true }, continuation: next.continuation ? { ...next.continuation, active: false } : undefined } : {}) });
     setMode('connected-lesson');
   }
 
@@ -522,7 +525,7 @@ export default function App() {
   function dailyActivityComplete() {
     const target = currentDailyTarget(dailySession);
     if (!target || !dailySession || !dailyActivityMatches()) return false;
-    if (target.kind === 'connected-lesson') return Boolean(connectedSession?.completedAt);
+    if (target.kind === 'connected-lesson') return target.lessonCheckpointId ? Boolean(connectedSession?.completedCheckpoints.includes(target.lessonCheckpointId)) : Boolean(connectedSession?.completedAt);
     if (target.kind === 'concept-drill') return mode === 'idea-training' && ideaSession?.drillKey === target.contentKey && ideaSession.stage === 'summary';
     if (target.kind === 'study') return mode === 'curriculum' && target.contentKey === 'study:' + activeTask?.id && Boolean(activeTask && curriculumAttempts[activeTask.id]?.lastReviewedAt >= dailySession.createdAt);
     if (target.kind === 'saved-position') return mode === 'game-review' && activeGapId === target.contentKey && activeGap?.status === 'resolved';
@@ -548,7 +551,12 @@ export default function App() {
 
   function outcomeForCurrentActivity(status: 'completed' | 'skipped', title?: string) {
     if (status === 'skipped') return { status, correct: 0, total: 0, assistanceUsed: 0, takeaway: `${title ?? 'This activity'} remains available for a later session.` } as const;
-    if (mode === 'connected-lesson' && connectedSession) { const answers = Object.values(connectedSession.answers); return { status, correct: answers.filter((answer) => answer.correct).length, total: answers.length, assistanceUsed: Object.values(connectedSession.assistance).filter((item) => item.hint || item.revealed || item.analysis).length, takeaway: activeConnectedLesson?.takeaway } as const; }
+    if (mode === 'connected-lesson' && connectedSession) {
+      const checkpoint = currentDailyTarget(dailySession)?.lessonCheckpointId;
+      const answers = Object.entries(connectedSession.answers).filter(([key]) => !checkpoint || key === checkpoint).map(([, answer]) => answer);
+      const assistance = Object.entries(connectedSession.assistance).filter(([key]) => !checkpoint || key === checkpoint).map(([, value]) => value);
+      return { status, correct: answers.filter((answer) => answer.correct).length, total: answers.length, assistanceUsed: assistance.filter((item) => item.hint || item.revealed || item.analysis).length, takeaway: activeConnectedLesson?.continuation?.steps.find((step) => 'continuation:' + step.id === checkpoint)?.takeaway ?? activeConnectedLesson?.takeaway } as const;
+    }
     if (mode === 'idea-training' && ideaSession && activeConceptDrill) { const results = [ideaSession.planCorrect, ...ideaSession.scenarioResults.map((item) => item.correct)].filter((value) => value !== null); return { status, correct: results.filter(Boolean).length, total: results.length, assistanceUsed: Number(ideaSession.hintUsed || ideaSession.revealed), takeaway: activeConceptDrill.principle } as const; }
     if (mode === 'curriculum' && activeTask) { const attempt = curriculumAttempts[activeTask.id]; return { status, correct: attempt?.completed ? 1 : 0, total: attempt ? 1 : 0, assistanceUsed: Number(showStudyHint), takeaway: activeStudyChallenge?.teachingPoint } as const; }
     return { status, correct: 0, total: 0, assistanceUsed: Number(Boolean(hintText)), takeaway: lessonCard?.principle ?? feedback } as const;

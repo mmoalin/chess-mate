@@ -2,8 +2,24 @@ import { describe, expect, it } from 'vitest';
 import { GuidedContentRepository } from './guidedContentRepository';
 import { embeddedRepertoireGraph } from './guidedContentRepository';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { GuidedBrowserStore } from './guidedStorage';
 
 describe('GuidedContentRepository', () => {
+  it('supplements an unchanged cached Caro-Kann while preserving remote edits and authored journeys', async () => {
+    const store = new GuidedBrowserStore();
+    const key = 'lesson:caro-active';
+    const graph = structuredClone(embeddedRepertoireGraph);
+    delete graph.connectedLessons![key].continuation;
+    await store.put('content:published', graph);
+    expect((await new GuidedContentRepository(null, store).loadPublished()).connectedLessons![key].continuation).toEqual(embeddedRepertoireGraph.connectedLessons![key].continuation);
+    graph.connectedLessons![key].decisions.break.prompt = 'A custom remotely authored prompt.';
+    await store.put('content:published', graph);
+    expect((await new GuidedContentRepository(null, store).loadPublished()).connectedLessons![key].continuation).toBeUndefined();
+    graph.connectedLessons![key].continuation = structuredClone(embeddedRepertoireGraph.connectedLessons![key].continuation!);
+    graph.connectedLessons![key].continuation!.title = 'An editor’s journey';
+    await store.put('content:published', graph);
+    expect((await new GuidedContentRepository(null, store).loadPublished()).connectedLessons![key].continuation!.title).toBe('An editor’s journey');
+  });
   it('serves a validated embedded published release when Supabase is unavailable', async () => {
     const graph = await new GuidedContentRepository(null).loadPublished();
     expect(graph.release.status).toBe('published');

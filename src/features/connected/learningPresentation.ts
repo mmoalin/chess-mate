@@ -9,6 +9,8 @@ export function answerTitle(lesson: ConnectedLesson, key: string): string {
   if (Number.isInteger(ply) && lesson.openingMoves[ply]) return `${Math.floor(ply / 2) + 1}${ply % 2 ? '…' : '.'}${lesson.openingMoves[ply]} · ${lesson.openingExplanations[ply]}`;
   const endgame = lesson.endgame?.steps.find((step) => 'endgame:' + step.id === key);
   if (endgame) return endgame.title;
+  const continuation = lesson.continuation?.steps.find((step) => 'continuation:' + step.id === key);
+  if (continuation) return continuation.title;
   return lesson.questions.find((q) => q.id === key)?.prompt ?? lesson.decisions[key]?.prompt ?? key;
 }
 

@@ -23,6 +23,8 @@ export function recommendGuidedNextActivity(input: {
   const sessions = input.lessonSessions ?? [];
   const unfinished = sessions.filter((s) => !s.completedAt && !s.supersededAt && lessons.some((l) => l.key === s.lessonKey)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
   if (unfinished) return { kind: 'connected-lesson', targetKey: 'session:' + unfinished.id, title: 'Continue ' + lessons.find((l) => l.key === unfinished.lessonKey)!.title, reason: 'Resume your saved lesson at the same position and checkpoint.' };
+  const continuing = sessions.filter((session) => !session.supersededAt && !session.reviewCheckpointId && session.continuation && !session.continuation.finished && lessons.some((lesson) => lesson.key === session.lessonKey && lesson.continuation?.id === session.continuation?.journeyId)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
+  if (continuing) return { kind: 'connected-lesson', targetKey: continuing.lessonKey + '/continuation', title: 'Continue the Caro-Kann journey', reason: 'Resume your saved continuation from the main line into the ending.' };
   const dueLesson = input.mastery.flatMap((state) => [state.recall, state.understanding, state.tactics].map((dimension) => ({ state, dimension })))
     .filter(({ state, dimension }) => lessons.some((lesson) => state.itemKey.startsWith(lesson.key + '/') && hasCheckpoint(lesson, state.itemKey.slice(lesson.key.length + 1))) && dimension.status !== 'unseen' && dimension.dueAt <= input.now)
     .sort((a, b) => a.dimension.dueAt.localeCompare(b.dimension.dueAt))[0];

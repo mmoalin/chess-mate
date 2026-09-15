@@ -1291,7 +1291,22 @@ button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px
 .journey-panel > h2 { font-size: 1.15rem; line-height: 1.35; margin: 0; }
 .journey-panel > h3, .journey-panel > p, .journey-panel .step-caption { margin: 0; }
 .training-example-note { font-size: .8rem; color: #526054; }
+.continuation-replay .move-strip { display: flex; flex-wrap: wrap; gap: 6px; }
+.continuation-replay .move-strip button { min-height: 40px; }
+.continuation-panel .lesson-results li { display: flex; flex-direction: column; align-items: stretch; }
+.continuation-panel .lesson-results p { margin: 4px 0; }
+.continuation-panel .lesson-response { display: grid; gap: 10px; }
+.continuation-panel .lesson-response p, .continuation-panel .lesson-response h4 { margin: 0; }
 @media (max-width: 900px) {
+  .continuation-panel { padding: 12px; gap: 8px; }
+  .continuation-panel > .eyebrow { display: none; }
+  .continuation-panel > h2 { font-size: .95rem; }
+  .continuation-active > h2 { display: none; }
+  .continuation-panel > .button-row { flex-wrap: nowrap; }
+  .continuation-panel > .training-example-note { font-size: .72rem; }
+  .continuation-panel > .button-row button { font-size: .78rem; padding: 8px; min-height: 40px; white-space: normal; }
+  .continuation-panel .reasoning-card { padding: 10px; gap: 10px; }
+  .continuation-panel .lesson-response { padding: 10px; }
   .daily-session-paused { display: none; }
   .app-shell:has(.daily-session-paused) .board-shell { width: min(100%, 32dvh, 300px); }
   .journey-panel, .candidate-panel { gap: 10px; }

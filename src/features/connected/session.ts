@@ -3,6 +3,7 @@ import { buildPositionKey } from '../../domain/repertoire/positionKey';
 import type { MasteryDimension } from '../../domain/repertoire/types';
 import type { ConnectedLesson, LessonSession } from './types';
 import { validateJourney } from './endgameJourney';
+import { continuationKey, openContinuation, validateContinuation } from './continuationJourney';
 
 export function positionAfter(moves: string[]): Chess {
   const chess = new Chess();
@@ -11,6 +12,7 @@ export function positionAfter(moves: string[]): Chess {
 }
 export function checkpointKey(lessonKey: string, checkpoint: string): string { return lessonKey + '/' + checkpoint; }
 export function hasCheckpoint(lesson: ConnectedLesson, id: string): boolean {
+  if (lesson.continuation?.steps.some((step) => continuationKey(step.id) === id)) return true;
   if (lesson.endgame?.steps.some((step) => 'endgame:' + step.id === id)) return true;
   if (lesson.decisions[id] || lesson.questions.some((q) => q.id === id)) return true;
   if (!/^opening:\d+$/.test(id)) return false;
@@ -26,6 +28,8 @@ export function createLessonSession(lesson: ConnectedLesson, learnerId: string, 
   if (reviewCheckpointId) {
     if (!hasCheckpoint(lesson, reviewCheckpointId)) throw new Error('This lesson checkpoint is no longer available.');
     session.checkpointId = reviewCheckpointId;
+    const continuationStep = lesson.continuation?.steps.findIndex((step) => continuationKey(step.id) === reviewCheckpointId) ?? -1;
+    if (continuationStep >= 0) { session.stage = 'summary'; return openContinuation(session, lesson.continuation!, continuationStep); }
     const journeyStep = lesson.endgame?.steps.findIndex((step) => 'endgame:' + step.id === reviewCheckpointId) ?? -1;
     if (journeyStep >= 0) { session.stage = 'summary'; session.journey = { active: true, step: journeyStep }; return session; }
     if (reviewCheckpointId.startsWith('opening:')) {
@@ -144,6 +148,7 @@ export function playLessonMove(session: LessonSession, lesson: ConnectedLesson, 
 export function validateConnectedLesson(lesson: ConnectedLesson): string[] {
   const errors: string[] = [];
   if (lesson.endgame) errors.push(...validateJourney(lesson.endgame));
+  errors.push(...validateContinuation(lesson));
   const check = (condition: boolean, message: string) => { if (!condition) errors.push(message); };
   try {
     check(Number.isInteger(lesson.version) && lesson.version > 0, 'Lesson needs a positive content version.');

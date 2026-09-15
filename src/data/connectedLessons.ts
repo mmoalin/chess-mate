@@ -1,5 +1,6 @@
 import { starterRepertoires } from './repertoires';
 import { caroEndgame, viennaEndgame } from './endgameJourneys';
+import { createCaroContinuation } from './caroContinuation';
 import type { ConnectedLesson, LessonDecision, LessonQuestion } from '../features/connected/types';
 
 const line = (key: string) => starterRepertoires.find((item) => item.id === key)!;
@@ -103,6 +104,8 @@ export const starterConnectedLessons: ConnectedLesson[] = [
 ];
 
 // Positional comparisons describe concrete features; engine results remain separate.
+const caroBreak = starterConnectedLessons[1].decisions.break;
+starterConnectedLessons[1].continuation = createCaroContinuation([...caroBreak.movesBefore, caroBreak.answers[0].moveSan, ...caroBreak.answers[0].repliesSan]);
 starterConnectedLessons[0].decisions.develop.comparisons = {
   Bc4: 'Bc4 develops toward f7, but c4 is attacked by the d5 pawn. Calculate …dxc4 before treating this as interchangeable with Be2.',
   Be2: 'Be2 clears f1 for castling without placing the bishop on a square attacked by d5.',

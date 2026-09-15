@@ -4,8 +4,14 @@ import type { ConnectedLesson, LessonSession } from './types';
 import { journeyPosition, submitJourney } from './endgameJourney';
 import { PawnStructure } from './PawnStructure';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { ContinuationJourneyWorkspace } from './ContinuationJourneyWorkspace';
 
-export function EndgameJourneyWorkspace({ lesson, session, saveFeedback, onUpdate, onReturn }: { lesson: ConnectedLesson; session: LessonSession; saveFeedback?: ReactNode; onUpdate: (session: LessonSession) => void; onReturn: () => void }) {
+type JourneyWorkspaceProps = { lesson: ConnectedLesson; session: LessonSession; saveFeedback?: ReactNode; onUpdate: (session: LessonSession) => void; onReturn: () => void; onLeave?: () => void };
+export function EndgameJourneyWorkspace(props: JourneyWorkspaceProps) {
+  return props.session.continuation?.active && props.lesson.continuation
+    ? <ContinuationJourneyWorkspace {...props} /> : <SeparateEndgameWorkspace {...props} />;
+}
+function SeparateEndgameWorkspace({ lesson, session, saveFeedback, onUpdate, onReturn }: JourneyWorkspaceProps) {
   const journey = lesson.endgame!;
   const progress = session.journey!;
   const index = Math.min(progress.step, journey.steps.length - 1);

@@ -1,5 +1,6 @@
 import type { LearningAttempt, MasteryDimension, PlanChoice } from '../../domain/repertoire/types';
 import type { EndgameJourney, JourneyProgress } from './endgameJourney';
+import type { ContinuationJourney, ContinuationProgress } from './continuationJourney';
 
 export type LessonQuestion = { id: string; prompt: string; choices: PlanChoice[]; hint: string };
 export type LessonDecision = {
@@ -32,6 +33,7 @@ export type ConnectedLesson = {
   transferExplanation: string;
   decisions: Record<string, LessonDecision>;
   endgame?: EndgameJourney;
+  continuation?: ContinuationJourney;
 };
 export type LessonStage = 'opening' | 'question' | 'main' | 'transfer-intro' | 'transfer' | 'summary' | 'sparring';
 export type LessonSession = {
@@ -60,5 +62,6 @@ export type LessonSession = {
   practiceReflection?: string;
   practiceReview?: { moves: string[]; startMoves: string[]; limit?: number; reflection?: string };
   journey?: JourneyProgress;
+  continuation?: ContinuationProgress;
   updatedAt: string;
 };

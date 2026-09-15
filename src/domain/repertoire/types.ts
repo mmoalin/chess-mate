@@ -199,6 +199,8 @@ export type ActivityTarget = {
   kind: ActivityKind;
   phase: 'review' | 'learn' | 'apply';
   contentKey: string;
+  /** A bounded checkpoint when resuming an existing multi-step lesson session. */
+  lessonCheckpointId?: string;
   title: string;
   reason: string;
   estimatedMinutes: number;
