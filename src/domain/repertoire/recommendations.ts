@@ -1,6 +1,8 @@
 import type { LearningUnit, MasteryState, RepertoireBacklogItem, RepertoireGraph } from './types';
 import type { LessonSession } from '../../features/connected/types';
 import { hasCheckpoint } from '../../features/connected/session';
+import { nextCourseContinuation, orderedLessons } from '../../features/connected/course';
+import { continuationKey } from '../../features/connected/continuationJourney';
 
 export type GuidedNextActivity =
   | { kind: 'connected-lesson'; targetKey: string; title: string; reason: string }
@@ -19,16 +21,18 @@ export function recommendGuidedNextActivity(input: {
   now: string;
   lessonSessions?: LessonSession[];
 }): GuidedNextActivity {
-  const lessons = Object.values(input.graph.connectedLessons ?? {}).filter((lesson) => input.selectedOpeningKeys.includes(lesson.openingFamilyKey));
+  const lessons = orderedLessons(input.graph, input.selectedOpeningKeys);
   const sessions = input.lessonSessions ?? [];
   const unfinished = sessions.filter((s) => !s.completedAt && !s.supersededAt && lessons.some((l) => l.key === s.lessonKey)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
   if (unfinished) return { kind: 'connected-lesson', targetKey: 'session:' + unfinished.id, title: 'Continue ' + lessons.find((l) => l.key === unfinished.lessonKey)!.title, reason: 'Resume your saved lesson at the same position and checkpoint.' };
   const continuing = sessions.filter((session) => !session.supersededAt && !session.reviewCheckpointId && session.continuation && !session.continuation.finished && lessons.some((lesson) => lesson.key === session.lessonKey && lesson.continuation?.id === session.continuation?.journeyId)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
-  if (continuing) return { kind: 'connected-lesson', targetKey: continuing.lessonKey + '/continuation', title: 'Continue the Caro-Kann journey', reason: 'Resume your saved continuation from the main line into the ending.' };
+  if (continuing) return { kind: 'connected-lesson', targetKey: continuing.lessonKey + '/continuation', title: 'Continue ' + lessons.find((lesson) => lesson.key === continuing.lessonKey)!.continuation!.title, reason: 'Resume your saved continuation from the main line into the ending.' };
   const dueLesson = input.mastery.flatMap((state) => [state.recall, state.understanding, state.tactics].map((dimension) => ({ state, dimension })))
     .filter(({ state, dimension }) => lessons.some((lesson) => state.itemKey.startsWith(lesson.key + '/') && hasCheckpoint(lesson, state.itemKey.slice(lesson.key.length + 1))) && dimension.status !== 'unseen' && dimension.dueAt <= input.now)
     .sort((a, b) => a.dimension.dueAt.localeCompare(b.dimension.dueAt))[0];
   if (dueLesson) return { kind: 'connected-lesson', targetKey: dueLesson.state.itemKey, title: 'Review a lesson decision', reason: 'Revisit this exact checkpoint with its opening context.' };
+  const continuation = nextCourseContinuation(lessons, sessions, input.mastery);
+  if (continuation) return { kind: 'connected-lesson', targetKey: continuation.lesson.key + '/' + continuationKey(continuation.step.id), title: continuation.step.title, reason: 'Follow this opening through one decision toward the ending.' };
   const unstarted = lessons.find((lesson) => !sessions.some((s) => s.lessonKey === lesson.key && s.completedAt && !s.reviewCheckpointId));
   if (unstarted) return { kind: 'connected-lesson', targetKey: unstarted.key, title: unstarted.title, reason: 'Connect the opening to a plan, linked decisions, and a different opponent reply.' };
   const due = input.mastery

@@ -5,9 +5,9 @@ import { validateRepertoireGraph } from '../../domain/repertoire/validation';
 import { advanceScenario, beginScenarios, completeScenario, createIdeaTrainingSession, evaluateAuthoredMove, evaluateEngineLoss, sessionScore, submitPlanChoice } from './ideaTraining';
 
 describe('idea-first training', () => {
-  it('ships six valid decision drills across Vienna and Caro-Kann', () => {
-    expect(starterConceptDrills).toHaveLength(6);
-    expect(new Set(starterConceptDrills.map((drill) => drill.openingFamilyKey))).toEqual(new Set(['white-vienna-main', 'black-caro-kann-main']));
+  it('ships valid decision drills across Vienna, Queen’s Gambit and Caro-Kann', () => {
+    expect(starterConceptDrills).toHaveLength(18);
+    expect(new Set(starterConceptDrills.map((drill) => drill.openingFamilyKey))).toEqual(new Set(['white-vienna-main', 'black-caro-kann-main', 'white-queens-gambit-main']));
     expect(validateRepertoireGraph(embeddedRepertoireGraph).filter((issue) => issue.code.startsWith('concept-'))).toEqual([]);
   });
 
@@ -34,4 +34,3 @@ describe('idea-first training', () => {
     expect(evaluateEngineLoss(null)).toMatchObject({ outcome: 'unrated', correct: null });
   });
 });
-

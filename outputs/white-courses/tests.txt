@@ -1,0 +1,12 @@
+
+> chess-opening-trainer@0.1.0 test
+> vitest run --maxWorkers=1 --testTimeout=60000
+
+
+ RUN  v4.1.9 C:/Dev/CodexApps/chess
+
+
+ Test Files  32 passed (32)
+      Tests  252 passed (252)
+   Start at  13:43:03
+   Duration  255.34s (transform 2.34s, setup 4.08s, import 44.46s, tests 171.21s, environment 27.29s)

@@ -1,7 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { starterRepertoires } from '../data/repertoires';
-import { starterConceptDrills } from '../data/conceptDrills';
-import { starterConnectedLessons } from '../data/connectedLessons';
+import { legacyStarterRepertoires, starterRepertoires } from '../data/repertoires';
+import { legacyStarterConceptDrills, starterConceptDrills } from '../data/conceptDrills';
+import { legacyStarterConnectedLessons, starterConnectedLessons } from '../data/connectedLessons';
 import { compileLegacyLines } from '../domain/repertoire/graph';
 import type { ContentRepository } from '../domain/repertoire/repositories';
 import type { RepertoireGraph } from '../domain/repertoire/types';
@@ -14,6 +14,11 @@ export const embeddedRepertoireGraph = compileLegacyLines(starterRepertoires);
 embeddedRepertoireGraph.conceptDrills = Object.fromEntries(starterConceptDrills.map((drill) => [drill.key, drill]));
 embeddedRepertoireGraph.connectedLessons = Object.fromEntries(starterConnectedLessons.map((lesson) => [lesson.key, lesson]));
 embeddedRepertoireGraph.release.schemaVersion = 3;
+embeddedRepertoireGraph.release.version = 2;
+export const legacyEmbeddedRepertoireGraph = compileLegacyLines(legacyStarterRepertoires);
+legacyEmbeddedRepertoireGraph.conceptDrills = Object.fromEntries(legacyStarterConceptDrills.map((drill) => [drill.key, drill]));
+legacyEmbeddedRepertoireGraph.connectedLessons = Object.fromEntries(legacyStarterConnectedLessons.map((lesson) => [lesson.key, lesson]));
+legacyEmbeddedRepertoireGraph.release.schemaVersion = 3;
 
 export class GuidedContentRepository implements ContentRepository {
   constructor(private readonly client: SupabaseClient | null, private readonly store = new GuidedBrowserStore()) {}
@@ -184,21 +189,36 @@ function canonicalContent(value: unknown): string {
   return JSON.stringify(sort(value));
 }
 
-function withStarterConcepts(graph: RepertoireGraph): RepertoireGraph {
-  // Add optional journeys only to the matching bundled lesson revision. Authored
-  // remote journeys and edited lessons remain authoritative.
-  graph = { ...graph, connectedLessons: Object.fromEntries(Object.entries(graph.connectedLessons ?? {}).map(([key, lesson]) => {
-    const bundled = starterConnectedLessons.find((item) => item.key === key && item.version === lesson.version && item.title === lesson.title && JSON.stringify(item.openingMoves) === JSON.stringify(lesson.openingMoves));
-    const withEndgame = !lesson.endgame && bundled?.endgame ? { ...lesson, endgame: bundled.endgame } : lesson;
-    // Add only to an unchanged bundled base. JSONB can reorder object keys.
-    const base = (value: typeof lesson) => { const { endgame: _endgame, continuation: _continuation, ...rest } = value; return canonicalContent(rest); };
-    return [key, !lesson.continuation && bundled?.continuation && base(lesson) === base(bundled) ? { ...withEndgame, continuation: bundled.continuation } : withEndgame];
-  })) };
-
-  if (graph.release.schemaVersion < 3 && !Object.keys(graph.connectedLessons ?? {}).length) {
-    graph = { ...graph, connectedLessons: Object.fromEntries(starterConnectedLessons.filter((lesson) => graph.openings[lesson.openingFamilyKey]?.lineKeys.includes(lesson.lineKey)).map((lesson) => [lesson.key, lesson])) };
+export function withStarterConcepts(original: RepertoireGraph): RepertoireGraph {
+  // The in-memory bundle is already compiled and verified by the content tests.
+  // Avoid replaying every course whenever a local-only learner opens the app.
+  if (original === embeddedRepertoireGraph) return original;
+  // Recognize the complete source graph, not merely a release id or title. An
+  // editor may keep both while changing a move, annotation, or family membership.
+  const core = (graph: RepertoireGraph) => canonicalContent({ positions: graph.positions, edges: graph.edges, openings: graph.openings, learningUnits: graph.learningUnits, guidance: graph.guidance, motifs: graph.motifs, deviationPolicies: graph.deviationPolicies });
+  const known = [legacyEmbeddedRepertoireGraph, embeddedRepertoireGraph].some((graph) => core(graph) === core(original));
+  const graph = structuredClone(known ? { ...embeddedRepertoireGraph, release: original.release, connectedLessons: original.connectedLessons ?? {}, conceptDrills: original.conceptDrills ?? {} } : original);
+  graph.connectedLessons ??= {};
+  graph.conceptDrills ??= {};
+  for (const bundled of starterConnectedLessons) {
+    if (!graph.openings[bundled.openingFamilyKey]?.lineKeys.includes(bundled.lineKey)) continue;
+    const lesson = graph.connectedLessons[bundled.key];
+    if (!lesson) {
+      if (known || original.release.schemaVersion < 3) graph.connectedLessons[bundled.key] = structuredClone(bundled);
+      continue;
+    }
+    const base = (value: typeof lesson) => { const { endgame: _e, continuation: _c, courseOrder: _o, structureGuide: _g, ...rest } = value; return canonicalContent(rest); };
+    if (base(lesson) !== base(bundled)) continue;
+    // Existing authored optional content is always authoritative.
+    graph.connectedLessons[bundled.key] = { ...lesson, endgame: lesson.endgame ?? bundled.endgame, continuation: lesson.continuation ?? bundled.continuation, courseOrder: lesson.courseOrder ?? bundled.courseOrder, structureGuide: lesson.structureGuide ?? bundled.structureGuide };
   }
-  if (Object.keys(graph.conceptDrills ?? {}).length) return graph;
-  const compatible = starterConceptDrills.filter((drill) => Boolean(graph.openings[drill.openingFamilyKey]));
-  return { ...graph, conceptDrills: Object.fromEntries(compatible.map((drill) => [drill.key, drill])) };
+  for (const bundled of starterConceptDrills) {
+    if (!graph.openings[bundled.openingFamilyKey]) continue;
+    const existing = graph.conceptDrills[bundled.key];
+    const previous = legacyStarterConceptDrills.find((drill) => drill.key === bundled.key);
+    if (known && (!existing || canonicalContent(existing) === canonicalContent(previous))) graph.conceptDrills[bundled.key] = structuredClone(bundled);
+    else if (!Object.keys(original.conceptDrills ?? {}).length && previous && !existing) graph.conceptDrills[bundled.key] = structuredClone(previous);
+  }
+  // Never return a partial upgrade with dangling or incompatible source paths.
+  return validateRepertoireGraph(graph).length ? original : graph;
 }

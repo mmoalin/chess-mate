@@ -1,6 +1,8 @@
 import { starterRepertoires } from './repertoires';
 import { caroEndgame, viennaEndgame } from './endgameJourneys';
 import { createCaroContinuation } from './caroContinuation';
+import { whiteCourseLessons } from './whiteOpeningCourses';
+import { createQueensGambitContinuation, createViennaContinuation } from './whiteContinuations';
 import type { ConnectedLesson, LessonDecision, LessonQuestion } from '../features/connected/types';
 
 const line = (key: string) => starterRepertoires.find((item) => item.id === key)!;
@@ -111,3 +113,10 @@ starterConnectedLessons[0].decisions.develop.comparisons = {
   Be2: 'Be2 clears f1 for castling without placing the bishop on a square attacked by d5.',
   d4: 'd4 supports e5 and opens the c1 bishop. The f1 bishop and king still need attention; compare Black’s forcing replies.'
 };
+// Snapshot the pre-expansion bundle for conservative cached/remote upgrades.
+export const legacyStarterConnectedLessons = structuredClone(starterConnectedLessons);
+starterConnectedLessons[0].courseOrder = 0;
+starterConnectedLessons[0].continuation = createViennaContinuation(starterConnectedLessons[0]);
+starterConnectedLessons.push(...whiteCourseLessons);
+const queenMain = starterConnectedLessons.find((lesson) => lesson.key === 'lesson:queens-gambit-qgd')!;
+queenMain.continuation = createQueensGambitContinuation(queenMain);

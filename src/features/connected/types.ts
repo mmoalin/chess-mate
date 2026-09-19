@@ -3,6 +3,7 @@ import type { EndgameJourney, JourneyProgress } from './endgameJourney';
 import type { ContinuationJourney, ContinuationProgress } from './continuationJourney';
 
 export type LessonQuestion = { id: string; prompt: string; choices: PlanChoice[]; hint: string };
+export type StructureGuideContent = { title: string; breaks: string; pieces: string; counterplay: string; exchanges: string; ending: string };
 export type LessonDecision = {
   id: string;
   movesBefore: string[];
@@ -21,6 +22,8 @@ export type ConnectedLesson = {
   openingFamilyKey: string;
   lineKey: string;
   side: 'white' | 'black';
+  courseOrder?: number;
+  structureGuide?: StructureGuideContent;
   openingMoves: string[];
   openingExplanations: string[];
   modelPositionPly: number;

@@ -6,13 +6,14 @@ A browser-based chess learning app focused on opening preparation, short strateg
 
 ### Connected opening, middlegame and endgame lessons
 
-- Choose **Learn this opening** for Vienna as White or Caro-Kann as Black.
+- Open **Repertoire → Course chapters** for Vienna or Queen’s Gambit as White, or Caro-Kann as Black. Chapters have distinct titles, saved progress, and branch-specific structure guides.
 - Replay the opening or recall your own moves, identify the structure, choose a plan, and play linked decisions with authored opponent replies.
 - Rewind explicitly to test a different opponent reply, then review your first answers and assistance used.
 - In Standard or Deep mode, choose a move, explain its purpose, and predict a legal reply before seeing feedback. A short diagnostic offers an exact decision without repeating the full lesson.
 - Explore an alternative on an isolated board and compare it with the lesson example and local Stockfish suggestion. Replay each candidate's replies, then return to the unchanged checkpoint.
 - Follow optional Caro-Kann and Vienna journeys through central exchanges, pawn transformations, rook activity, and king endings. These are explicitly labelled authored training examples; before/after pawn diagrams and exact checkpoint reviews connect the ideas.
-- Caro-Kann also offers **Follow this position into an ending**: six decisions on one continuous, annotated line from the main lesson’s `…c5` to a rook ending. Compare alternatives, explain structural choices and predict strong replies, with separate feedback for each component. Replay every connecting move, resume saved answers and practise two-minute checkpoints through Today. The original separate endgame exercises remain available.
+- Vienna, Queen’s Gambit and Caro-Kann offer **Follow this position into an ending**: six decisions on a continuous, annotated line from the main lesson to a rook ending. Compare alternatives, explain structural choices and predict strong replies, with separate feedback for each component. Replay every connecting move, resume saved answers and practise two-minute checkpoints through Today. The original separate endgame exercises remain available.
+- Vienna has five core chapters covering the central counterattack, accepted gambit, …d6, early …Nc6, and the Bc4 setup against 2…Nc6. Queen’s Gambit has six: Declined Exchange, Accepted, Exchange Slav, Tarrasch, Chigorin, and Albin. Both include recognition drills for unusual early replies. The existing Vienna Qf3 branch remains optional theory.
 - Practise a four-move plan against local Stockfish, retain your continuation and reflection, or use unrestricted **Play from here**. **Return to lesson** restores the original summary position.
 - Sessions save locally, resume after refresh, and sync when signed in. Today prioritizes unfinished lessons and exact due checkpoints.
 - Only the first graded answer at each checkpoint per run affects mastery. Retries remain practice; unlisted legal moves are ungraded, and reveals do not earn mastery credit.
@@ -20,6 +21,8 @@ A browser-based chess learning app focused on opening preparation, short strateg
 Connected content uses schema version 3. Apply `202609090001_connected_lessons.sql` before deploying this version. Older releases remain readable and receive the compatible bundled lessons; draft saving and publishing persist the full version-3 content. No existing progress is reset.
 
 The usability update adds optional JSON fields to that schema; it needs no additional migration. See [implementation coverage and validation](docs/usability-implementation-2026-09-12.md) for the review backlog, content boundaries, and checks.
+
+The [White course expansion](docs/white-opening-courses-2026-09-19.md) also uses optional JSON fields, with no new migration. Unchanged starter releases receive complete branch dependencies; edited source graphs remain authoritative. Existing Vienna and Caro-Kann progress is preserved.
 
 ### Opening training
 
@@ -35,10 +38,11 @@ The usability update adds optional JSON fields to that schema; it needs no addit
 - Drill critical positions from supplied FENs with position-specific feedback.
 - Turn opening mistakes into due review items and track recurring weak themes.
 
-The starter repertoire contains 12 lines covering:
+The starter repertoire contains 22 lines covering:
 
 - Alien Gambit plans for White and defensive responses for Black.
 - Vienna Game and Vienna Gambit.
+- Queen’s Gambit Declined, Accepted, Exchange Slav, Tarrasch, Chigorin, and Albin.
 - London System and the `...Qb6` branch.
 - Open Sicilian and Sicilian Dragon.
 - Classical Caro-Kann and Caro-Kann Advance.

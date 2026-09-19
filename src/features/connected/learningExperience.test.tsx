@@ -153,7 +153,7 @@ describe('learning experience integrity', () => {
     expect(screen.getByRole('heading', { name: caro.endgame!.steps[1].title })).toBeInTheDocument();
   });
 
-  for (const lesson of starterConnectedLessons) it('validates and persists the complete endgame journey for ' + lesson.side, async () => {
+  for (const lesson of starterConnectedLessons.filter((item) => item.endgame)) it('validates and persists the complete endgame journey for ' + lesson.side, async () => {
     const journey = lesson.endgame!;
     expect(validateJourney(journey)).toEqual([]);
     let session = createLessonSession(lesson, 'local', 'today');

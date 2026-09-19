@@ -4,6 +4,7 @@ import { starterCurriculumModules } from '../../features/curriculum/curriculum';
 import type { ActivityOutcome, ActivityTarget, DailyDuration, DailySession, LearnerProfile, MasteryDimension, MasteryState, RepertoireBacklogItem, RepertoireGraph } from './types';
 import { hasCheckpoint } from '../../features/connected/session';
 import { CONTINUATION_MINUTES, continuationKey } from '../../features/connected/continuationJourney';
+import { nextCourseContinuation, orderedLessons } from '../../features/connected/course';
 
 const budgets: Record<DailyDuration, [number, number, number]> = { 5: [3, 3, 5], 10: [3, 3, 5], 20: [3, 12, 5] };
 type PlannedTarget = Omit<ActivityTarget, 'attemptId'>;
@@ -22,22 +23,18 @@ export function buildDailySession(input: {
   if (dueTarget) targets.push(dueTarget);
   else if (gap) targets.push({ id: `daily:gap:${gap.id}`, kind: 'saved-position', phase: 'review', contentKey: gap.id, title: gap.title, reason: 'Review a position saved from one of your games.', estimatedMinutes: reviewMinutes, contentVersion: input.graph.release.version, openingFamilyKey: gap.openingFamilyKey, positionKey: gap.positionKey });
 
-  const lessons = Object.values(input.graph.connectedLessons ?? {}).filter((lesson) => input.selectedOpeningKeys.includes(lesson.openingFamilyKey));
+  const lessons = orderedLessons(input.graph, input.selectedOpeningKeys);
   const unfinished = input.lessonSessions.filter((session) => !session.completedAt && !session.supersededAt && lessons.some((lesson) => lesson.key === session.lessonKey)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
   const unstarted = lessons.find((lesson) => !input.lessonSessions.some((session) => session.lessonKey === lesson.key && session.completedAt && !session.reviewCheckpointId));
-  const lesson = unfinished ? lessons.find((item) => item.key === unfinished.lessonKey) : unstarted;
+  const availableContinuation = nextCourseContinuation(lessons, input.lessonSessions, input.mastery);
+  const lesson = unfinished ? lessons.find((item) => item.key === unfinished.lessonKey) : availableContinuation ? undefined : unstarted;
   const focused = lesson && !unfinished && input.durationMinutes < 20;
   const focusCheckpoint = lesson ? [...lesson.questions.map((q) => q.id), ...Object.keys(lesson.decisions)].find((id) => !input.mastery.some((m) => m.itemKey === lesson.key + '/' + id && (m.understanding.status !== 'unseen' || m.tactics.status !== 'unseen'))) ?? lesson.mainStartId : '';
   const continuingStep = unfinished?.continuation?.active && !unfinished.continuation.finished && lesson?.continuation?.id === unfinished.continuation.journeyId ? lesson.continuation.steps[unfinished.continuation.step] : undefined;
   if (lesson) targets.push({ id: `daily:learn:${unfinished ? 'session:' + unfinished.id : lesson.key}`, kind: 'connected-lesson', phase: 'learn', contentKey: unfinished ? 'session:' + unfinished.id : focused ? lesson.key + '/' + focusCheckpoint : lesson.key, lessonCheckpointId: continuingStep ? continuationKey(continuingStep.id) : undefined, title: continuingStep?.title ?? (unfinished ? `Continue ${lesson.title}` : focused ? `${lesson.title} · one checkpoint` : lesson.title), reason: continuingStep ? 'Resume this two-minute decision with your saved candidate and reply.' : focused ? 'One focused decision; the full lesson remains available in Repertoire.' : 'Connect opening moves to a practical middlegame plan.', estimatedMinutes: continuingStep || unfinished?.reviewCheckpointId?.startsWith('continuation:') ? CONTINUATION_MINUTES : focused || unfinished?.reviewCheckpointId ? CHECKPOINT_MINUTES : FULL_LESSON_MINUTES, contentVersion: lesson.version, openingFamilyKey: lesson.openingFamilyKey, learnerSide: lesson.side });
   else {
-    const continuation = lessons.flatMap((item) => {
-      const sessions = input.lessonSessions.filter((session) => session.lessonKey === item.key && !session.supersededAt);
-      if (!sessions.some((session) => (session.completedAt && !session.reviewCheckpointId) || session.continuation)) return [];
-      const step = item.continuation?.steps.find((step) => !sessions.some((session) => session.completedCheckpoints.includes(continuationKey(step.id))) && !input.mastery.some((state) => state.itemKey === item.key + '/' + continuationKey(step.id) && state.understanding.status !== 'unseen'));
-      return step ? [{ lesson: item, step }] : [];
-    })[0];
-    if (continuation) targets.push({ id: `daily:learn:${continuation.lesson.key}/${continuationKey(continuation.step.id)}`, kind: 'connected-lesson', phase: 'learn', contentKey: continuation.lesson.key + '/' + continuationKey(continuation.step.id), title: continuation.step.title, reason: 'Follow the same Caro-Kann position through one decision toward the ending.', estimatedMinutes: CONTINUATION_MINUTES, contentVersion: continuation.lesson.version, openingFamilyKey: continuation.lesson.openingFamilyKey, learnerSide: continuation.lesson.side, dimension: 'understanding' });
+    const continuation = availableContinuation;
+    if (continuation) targets.push({ id: `daily:learn:${continuation.lesson.key}/${continuationKey(continuation.step.id)}`, kind: 'connected-lesson', phase: 'learn', contentKey: continuation.lesson.key + '/' + continuationKey(continuation.step.id), title: continuation.step.title, reason: `Follow ${continuation.lesson.title} through one decision toward the ending.`, estimatedMinutes: CONTINUATION_MINUTES, contentVersion: continuation.lesson.version, openingFamilyKey: continuation.lesson.openingFamilyKey, learnerSide: continuation.lesson.side, dimension: 'understanding' });
     else {
       const unit = preferredUnits(input).find((item) => !input.mastery.some((state) => state.itemKey === item.key && state.recall.status === 'reliable'));
       if (unit) targets.push({ id: `daily:learn:${unit.key}`, kind: 'opening-unit', phase: 'learn', contentKey: unit.key, title: unit.title, reason: 'Recall the next short section of your repertoire.', estimatedMinutes: learnMinutes, contentVersion: input.graph.release.version, openingFamilyKey: unit.openingFamilyKey, positionKey: unit.startPositionKey, learnerSide: input.graph.openings[unit.openingFamilyKey]?.side, dimension: 'recall' });

@@ -61,7 +61,7 @@ export function ContinuationJourneyWorkspace({ lesson, session, saveFeedback, on
   const retry = () => change({ candidate: undefined, choice: undefined, prediction: undefined, reflection: undefined,
     submitted: false, result: undefined, error: undefined, inspectionPly: undefined });
 
-  return <section className="workspace connected-workspace" aria-label="Continuous Caro-Kann journey">
+  return <section className="workspace connected-workspace" aria-label={`Continuous journey: ${journey.title}`}>
     <div className="board-column"><ChessBoardUI fen={board.fen()} orientation={lesson.side} legalTargets={targets} onMoveAttempt={(from, to, promotion) => {
       if (!progress.started || inspection || progress.candidate || progress.submitted || progress.finished) return false;
       try {
@@ -78,10 +78,10 @@ export function ContinuationJourneyWorkspace({ lesson, session, saveFeedback, on
       <h2>{journey.title}</h2>
       <p className="training-example-note">Original illustrative continuation · every position is replayable.</p>
       {!progress.started && !inspection ? <>
-        <h3 ref={heading} tabIndex={-1}>Continue from the main line after …c5</h3>
+        <h3 ref={heading} tabIndex={-1}>Continue from the main line after {journey.openingPrefix.length % 2 === 0 ? '…' : ''}{journey.openingPrefix.at(-1)}</h3>
         <p>{journey.introduction}</p>
-        <p>{index ? `This review opens decision ${index + 1}. Replay the earlier moves below to see how it was reached.` : 'Six decisions · about 12 minutes. Save at any point; daily reviews use one two-minute checkpoint.'}</p>
-        <button className="primary-button" onClick={() => change({ started: true })}>{index ? 'Open this decision' : 'Continue from …c5'}</button>
+        <p>{index ? `This review opens decision ${index + 1}. Replay the earlier moves below to see how it was reached.` : `${journey.steps.length} decisions · about ${journey.steps.length * 2} minutes. Save at any point; daily reviews use one two-minute checkpoint.`}</p>
+        <button className="primary-button" onClick={() => change({ started: true })}>{index ? 'Open this decision' : `Continue from ${journey.openingPrefix.length % 2 === 0 ? '…' : ''}${journey.openingPrefix.at(-1)}`}</button>
       </> : inspection ? <>
         <h3 ref={heading} tabIndex={-1}>Replay · {progress.inspectionPly === 0 ? 'Starting position' : moveLabel(progress.inspectionPly!, history[progress.inspectionPly! - 1].san)}</h3>
         <p>{progress.inspectionPly ? history[progress.inspectionPly - 1].note : 'Every move starts from the normal chess starting position.'}</p>
@@ -98,10 +98,10 @@ export function ContinuationJourneyWorkspace({ lesson, session, saveFeedback, on
             candidate: progress.latestResults[item.id].candidate, choice: progress.latestResults[item.id].choice, prediction: progress.latestResults[item.id].prediction,
             reflection: progress.latestResults[item.id].reflection, result: progress.latestResults[item.id], submitted: true, inspectionPly: undefined })}>Review decision: {item.title}</button>
         </li>)}</ol>
-        <p>The original d-pawn and several pieces have been exchanged. Black’s b-pawn is now on c6. Compare the pawn targets with the activity of both rooks; the final check still needs an answer.</p>
+        <p>{journey.steps.at(-1)?.takeaway}</p>
         <button className="primary-button" onClick={onReturn}>Back to the opening</button>
       </> : <>
-        <p className="step-caption">Decision {index + 1} of {journey.steps.length} · You play Black · about 2 minutes</p>
+        <p className="step-caption">Decision {index + 1} of {journey.steps.length} · You play {lesson.side === 'white' ? 'White' : 'Black'} · about 2 minutes</p>
         <h3 ref={heading} tabIndex={-1}>{step.title}</h3>
         {step.bridge.length > 0 && <details className="journey-context"><summary>How we reached this decision · {step.bridge.length} connecting moves</summary><p>The main example continues with these moves. Select any move in the replay below to inspect its position.</p><ol>{step.bridge.map((item, i) => <li key={i}>{item.san}: {item.note}</li>)}</ol></details>}
         <p>{step.prompt}</p>

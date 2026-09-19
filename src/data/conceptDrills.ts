@@ -1,8 +1,9 @@
 import type { ConceptDrill } from '../domain/repertoire/types';
+import { whiteCourseDrills, whiteRecognitionDrills } from './whiteOpeningCourses';
 
 const choice = (id: string, label: string, correct: boolean, feedback: string) => ({ id, label, correct, feedback });
 
-export const starterConceptDrills: ConceptDrill[] = [
+export const legacyStarterConceptDrills: ConceptDrill[] = [
   {
     key: 'concept:vienna-f4-timing', openingFamilyKey: 'white-vienna-main', title: 'Time the f-pawn break',
     principle: 'Challenge e5 when the centre is stable',
@@ -95,3 +96,20 @@ export const starterConceptDrills: ConceptDrill[] = [
     ]
   }
 ];
+export const starterConceptDrills: ConceptDrill[] = [...structuredClone(legacyStarterConceptDrills), ...whiteCourseDrills, ...whiteRecognitionDrills];
+// Correct older assessments exposed by the branch verification. Keep the legacy
+// snapshot intact so a published starter release can be recognized conservatively.
+const centreReply = starterConceptDrills[1].scenarios[1];
+Object.assign(centreReply, {
+  prompt: 'Black develops with …Nc6. Resolve the central contact before continuing development.',
+  change: 'The f-pawn can capture e5 with an attack on the f6 knight.',
+  preferredMovesUci: ['f4e5'], acceptableMovesUci: [],
+  hint: 'Remove e5 and inspect the knight recapture.',
+  teachingPoint: 'fxe5 uses the central contact. After …Nxe5, d4 attacks the knight and prepares e5.'
+});
+const bishopDevelopment = starterConceptDrills[2].scenarios[1];
+bishopDevelopment.preferredMovesUci = ['f1e2'];
+bishopDevelopment.teachingPoint = 'Be2 develops safely and prepares castling. Bc4? would place the bishop where …dxc4 can capture it.';
+starterConceptDrills[2].scenarios[0].teachingPoint = 'Nf3 develops and reinforces e5. It does not attack the knight on e4; development and central control are the point.';
+starterConceptDrills[2].scenarios[0].prompt = 'Black’s knight centralizes. Develop a piece that reinforces your advanced e5 pawn.';
+starterConceptDrills[2].scenarios[0].hint = 'The king knight can develop toward the centre and support e5.';

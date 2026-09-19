@@ -110,14 +110,14 @@ describe('continuous journey interactions', () => {
   it('opens the new journey from the structure guide and restores it after leaving Today', async () => {
     const view = render(<App />);
     await click('Start learning'); await click('Repertoire');
-    const guide = screen.getByRole('navigation', { name: /Caro-Kann: Classical Active Structure learning connections/ });
+    const guide = screen.getByRole('navigation', { name: /Caro-Kann: stay solid and active learning connections/ });
     await userEvent.click(within(guide).getByRole('button', { name: 'Follow this position into an ending', hidden: true }));
     await click('Continue from …c5'); await click('Play cxd4');
     await click('Save & leave');
     await waitFor(async () => expect((await new GuidedLearnerRepository(null).loadLessonSessions('local')).some((session) => session.continuation?.candidate === 'cxd4')).toBe(true));
     view.unmount(); render(<App />);
     await click('Repertoire');
-    const reopened = screen.getByRole('navigation', { name: /Caro-Kann: Classical Active Structure learning connections/ });
+    const reopened = screen.getByRole('navigation', { name: /Caro-Kann: stay solid and active learning connections/ });
     await userEvent.click(within(reopened).getByRole('button', { name: 'Follow this position into an ending', hidden: true }));
     expect(screen.getByText('Your candidate: cxd4')).toBeInTheDocument();
   });

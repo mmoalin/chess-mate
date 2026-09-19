@@ -23,6 +23,6 @@ describe('connected lesson recommendations', () => {
     const review = { ...createLessonSession(lesson, 'local', 'today', 'develop'), completedAt: now };
     expect(recommendGuidedNextActivity({ ...input, mastery: [], lessonSessions: [old, review] }).targetKey).toBe(lesson.key);
     const completed = { ...createLessonSession(lesson, 'local', 'today'), completedAt: now };
-    expect(recommendGuidedNextActivity({ ...input, mastery: [], lessonSessions: [completed] }).kind).toBe('concept-drill');
+    expect(recommendGuidedNextActivity({ ...input, mastery: [], lessonSessions: [completed] }).targetKey).toBe(lesson.key + '/continuation:consolidate');
   });
 });

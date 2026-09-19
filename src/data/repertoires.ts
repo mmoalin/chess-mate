@@ -1,6 +1,7 @@
 import type { RepertoireLine } from '../features/openings/types';
+import { whiteCourseLines } from './whiteOpeningCourses';
 
-export const starterRepertoires: RepertoireLine[] = [
+export const legacyStarterRepertoires: RepertoireLine[] = [
   {
     id: 'white-alien-gambit-main',
     side: 'white',
@@ -340,3 +341,4 @@ export const starterRepertoires: RepertoireLine[] = [
     ]
   }
 ];
+export const starterRepertoires: RepertoireLine[] = [...legacyStarterRepertoires, ...whiteCourseLines];
