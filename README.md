@@ -6,7 +6,7 @@ A browser-based chess learning app focused on opening preparation, short strateg
 
 ### Connected opening, middlegame and endgame lessons
 
-- Open **Repertoire → Course chapters** for Vienna or Queen’s Gambit as White, or Caro-Kann as Black. Chapters have distinct titles, saved progress, and branch-specific structure guides.
+- Open **Repertoire → Course chapters** for Alien Gambit, Vienna or Queen’s Gambit as White, or Caro-Kann as Black. Chapters have distinct titles, saved progress, and branch-specific structure guides.
 - Replay the opening or recall your own moves, identify the structure, choose a plan, and play linked decisions with authored opponent replies.
 - Rewind explicitly to test a different opponent reply, then review your first answers and assistance used.
 - In Standard or Deep mode, choose a move, explain its purpose, and predict a legal reply before seeing feedback. A short diagnostic offers an exact decision without repeating the full lesson.
@@ -14,6 +14,7 @@ A browser-based chess learning app focused on opening preparation, short strateg
 - Follow optional Caro-Kann and Vienna journeys through central exchanges, pawn transformations, rook activity, and king endings. These are explicitly labelled authored training examples; before/after pawn diagrams and exact checkpoint reviews connect the ideas.
 - Vienna, Queen’s Gambit and Caro-Kann offer **Follow this position into an ending**: six decisions on a continuous, annotated line from the main lesson to a rook ending. Compare alternatives, explain structural choices and predict strong replies, with separate feedback for each component. Replay every connecting move, resume saved answers and practise two-minute checkpoints through Today. The original separate endgame exercises remain available.
 - Vienna has five core chapters covering the central counterattack, accepted gambit, …d6, early …Nc6, and the Bc4 setup against 2…Nc6. Queen’s Gambit has six: Declined Exchange, Accepted, Exchange Slav, Tarrasch, Chigorin, and Albin. Both include recognition drills for unusual early replies. The existing Vienna Qf3 branch remains optional theory.
+- Alien Gambit has five core chapters: the accepted sacrifice, immediate …c5, active …Bf5 after acceptance, and development against …Bf5 or …Nbd7 without …h6. Its six-checkpoint journey reaches an imbalanced ending. The course explicitly teaches the sacrifice as unsound against accurate defense, with practical attacking chances rather than a forced win. See [Alien content, engine evidence and release instructions](docs/alien-gambit-course-2026-09-19.md).
 - Practise a four-move plan against local Stockfish, retain your continuation and reflection, or use unrestricted **Play from here**. **Return to lesson** restores the original summary position.
 - Sessions save locally, resume after refresh, and sync when signed in. Today prioritizes unfinished lessons and exact due checkpoints.
 - Only the first graded answer at each checkpoint per run affects mastery. Retries remain practice; unlisted legal moves are ungraded, and reveals do not earn mastery credit.
@@ -38,7 +39,7 @@ The [White course expansion](docs/white-opening-courses-2026-09-19.md) also uses
 - Drill critical positions from supplied FENs with position-specific feedback.
 - Turn opening mistakes into due review items and track recurring weak themes.
 
-The starter repertoire contains 22 lines covering:
+The starter repertoire contains 25 lines covering:
 
 - Alien Gambit plans for White and defensive responses for Black.
 - Vienna Game and Vienna Gambit.

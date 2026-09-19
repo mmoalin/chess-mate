@@ -74,7 +74,7 @@ export function ContinuationJourneyWorkspace({ lesson, session, saveFeedback, on
     <aside className="task-dock"><section className={`dock-panel journey-panel continuation-panel ${progress.started ? 'continuation-active' : ''}`}>
       {saveFeedback}
       <div className="button-row"><button className="secondary-button" onClick={onReturn}>Return to opening lesson</button>{onLeave && <button className="link-button" onClick={onLeave}>Save & leave</button>}</div>
-      <p className="eyebrow">One game · opening to rook ending</p>
+      <p className="eyebrow">One game · opening to ending</p>
       <h2>{journey.title}</h2>
       <p className="training-example-note">Original illustrative continuation · every position is replayable.</p>
       {!progress.started && !inspection ? <>

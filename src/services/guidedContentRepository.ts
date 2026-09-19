@@ -1,7 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { legacyStarterRepertoires, starterRepertoires } from '../data/repertoires';
-import { legacyStarterConceptDrills, starterConceptDrills } from '../data/conceptDrills';
-import { legacyStarterConnectedLessons, starterConnectedLessons } from '../data/connectedLessons';
+import { legacyStarterRepertoires, preAlienStarterRepertoires, starterRepertoires } from '../data/repertoires';
+import { legacyStarterConceptDrills, preAlienStarterConceptDrills, starterConceptDrills } from '../data/conceptDrills';
+import { legacyStarterConnectedLessons, preAlienStarterConnectedLessons, starterConnectedLessons } from '../data/connectedLessons';
 import { compileLegacyLines } from '../domain/repertoire/graph';
 import type { ContentRepository } from '../domain/repertoire/repositories';
 import type { RepertoireGraph } from '../domain/repertoire/types';
@@ -14,7 +14,12 @@ export const embeddedRepertoireGraph = compileLegacyLines(starterRepertoires);
 embeddedRepertoireGraph.conceptDrills = Object.fromEntries(starterConceptDrills.map((drill) => [drill.key, drill]));
 embeddedRepertoireGraph.connectedLessons = Object.fromEntries(starterConnectedLessons.map((lesson) => [lesson.key, lesson]));
 embeddedRepertoireGraph.release.schemaVersion = 3;
-embeddedRepertoireGraph.release.version = 2;
+embeddedRepertoireGraph.release.version = 3;
+export const preAlienEmbeddedRepertoireGraph = compileLegacyLines(preAlienStarterRepertoires);
+preAlienEmbeddedRepertoireGraph.conceptDrills = Object.fromEntries(preAlienStarterConceptDrills.map((drill) => [drill.key, drill]));
+preAlienEmbeddedRepertoireGraph.connectedLessons = Object.fromEntries(preAlienStarterConnectedLessons.map((lesson) => [lesson.key, lesson]));
+preAlienEmbeddedRepertoireGraph.release.schemaVersion = 3;
+preAlienEmbeddedRepertoireGraph.release.version = 2;
 export const legacyEmbeddedRepertoireGraph = compileLegacyLines(legacyStarterRepertoires);
 legacyEmbeddedRepertoireGraph.conceptDrills = Object.fromEntries(legacyStarterConceptDrills.map((drill) => [drill.key, drill]));
 legacyEmbeddedRepertoireGraph.connectedLessons = Object.fromEntries(legacyStarterConnectedLessons.map((lesson) => [lesson.key, lesson]));
@@ -196,7 +201,7 @@ export function withStarterConcepts(original: RepertoireGraph): RepertoireGraph 
   // Recognize the complete source graph, not merely a release id or title. An
   // editor may keep both while changing a move, annotation, or family membership.
   const core = (graph: RepertoireGraph) => canonicalContent({ positions: graph.positions, edges: graph.edges, openings: graph.openings, learningUnits: graph.learningUnits, guidance: graph.guidance, motifs: graph.motifs, deviationPolicies: graph.deviationPolicies });
-  const known = [legacyEmbeddedRepertoireGraph, embeddedRepertoireGraph].some((graph) => core(graph) === core(original));
+  const known = [legacyEmbeddedRepertoireGraph, preAlienEmbeddedRepertoireGraph, embeddedRepertoireGraph].some((graph) => core(graph) === core(original));
   const graph = structuredClone(known ? { ...embeddedRepertoireGraph, release: original.release, connectedLessons: original.connectedLessons ?? {}, conceptDrills: original.conceptDrills ?? {} } : original);
   graph.connectedLessons ??= {};
   graph.conceptDrills ??= {};

@@ -3,7 +3,7 @@ import type { AnnotatedMove, ContinuationJourney, ContinuationStep } from '../fe
 
 const annotated = (pairs: [string, string][]): AnnotatedMove[] => pairs.map(([san, note]) => ({ san, note }));
 type Decision = { id: string; title: string; hint: string; takeaway: string; bridge: [string, string][]; main: [string, string][]; alternative: [move: string, reason: string, reply: string, feedback: string]; mainReason: string };
-function journey(lesson: ConnectedLesson, sourceCheckpointId: string, id: string, title: string, decisions: Decision[]): ContinuationJourney {
+export function journey(lesson: ConnectedLesson, sourceCheckpointId: string, id: string, title: string, decisions: Decision[]): ContinuationJourney {
   const source = lesson.decisions[sourceCheckpointId];
   return {
     id, title, sourceCheckpointId,

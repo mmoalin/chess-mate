@@ -27,9 +27,9 @@ describe('GuidedContentRepository', () => {
     expect(graph.openings['black-caro-kann-main']).toBeDefined();
     expect(Object.keys(graph.deviationPolicies).length).toBeGreaterThan(0);
     expect(Object.values(graph.motifs).some((motif) => motif.key.includes('vienna'))).toBe(true);
-    expect(Object.keys(graph.conceptDrills)).toHaveLength(18);
+    expect(Object.keys(graph.conceptDrills)).toHaveLength(24);
     expect(graph.release.schemaVersion).toBe(3);
-    expect(Object.keys(graph.connectedLessons ?? {})).toHaveLength(12);
+    expect(Object.keys(graph.connectedLessons ?? {})).toHaveLength(17);
   });
 
   it('requires Supabase for shared draft creation', async () => {
@@ -48,7 +48,7 @@ describe('GuidedContentRepository', () => {
     }) } as unknown as SupabaseClient;
     const repository = new GuidedContentRepository(client);
     await repository.saveDraft(graph);
-    expect(tables.get('connected_lessons')).toHaveLength(12);
+    expect(tables.get('connected_lessons')).toHaveLength(17);
     expect((await repository.loadPublished()).connectedLessons).toEqual(graph.connectedLessons);
   });
 });

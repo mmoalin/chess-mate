@@ -7,7 +7,7 @@ export const moves = (text: string) => text.split(/\s+/).filter(Boolean);
 export function boardAfter(sequence: string[]) { const board = new Chess(); sequence.forEach((san) => board.move(san)); return board; }
 type TeachingMove = [san: string, explanation: string];
 export type CourseChapter = {
-  slug: string; family: 'vienna' | 'queens-gambit'; title: string; eco: string; order: number;
+  slug: string; family: 'vienna' | 'queens-gambit' | 'alien-gambit'; title: string; eco: string; order: number; lineKey?: string;
   opening: TeachingMove[]; main: TeachingMove[]; transferAfter: number; transfer: TeachingMove[];
   structure: StructureGuideContent; plan: string; misconception: string; correction: string;
   mistake: { decision: number; san: string; explanation: string };
@@ -15,7 +15,7 @@ export type CourseChapter = {
 
 export function buildChapter(chapter: CourseChapter): { line: RepertoireLine; lesson: ConnectedLesson; drill: ConceptDrill } {
   const family = `white-${chapter.family}-main`;
-  const lineKey = chapter.slug === 'qgd' ? family : `white-${chapter.family}-${chapter.slug}`;
+  const lineKey = chapter.lineKey ?? (chapter.slug === 'qgd' ? family : `white-${chapter.family}-${chapter.slug}`);
   const openingMoves = chapter.opening.map(([san]) => san);
   const decisions: Record<string, LessonDecision> = {};
   function path(prefix: string[], items: TeachingMove[], transfer: boolean) {
@@ -66,7 +66,7 @@ export function buildChapter(chapter: CourseChapter): { line: RepertoireLine; le
     moveExplanations: chapter.opening.map(([, summary], moveIndex) => ({ moveIndex, summary, principle: 'Understand the position' })),
     middlegameIdeas: [{ title: chapter.structure.title, summary: chapter.plan, themes: ['pawn-structure', 'development'], warning: chapter.structure.counterplay }],
     criticalPositions: [{ id: `${lineKey}:model`, lineId: lineKey, ply: openingMoves.length, fen: boardAfter(openingMoves).fen(), prompt: decisions['decision-1'].prompt, expectedMoves: [chapter.main[0][0]], themes: ['development'], hint: decisions['decision-1'].hint, teachingPoint: chapter.plan }],
-    deviationPolicies: [{ ply: 1, category: 'new-branch', guidance: chapter.family === 'vienna' ? 'This course starts after 1.e4 e5. Other first replies are outside its coverage; a different opening is not a mistake.' : 'This course covers 1.d4 d5 2.c4. Indian defenses and the Dutch are outside this course. A move order that reaches a covered position can transpose back.' }]
+    deviationPolicies: [{ ply: 1, category: 'new-branch', guidance: chapter.family === 'alien-gambit' ? 'This course reaches the Alien setup through 1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nf6 5.Ng5. Other Caro-Kann branches and other first replies are outside this course; they are not mistakes.' : chapter.family === 'vienna' ? 'This course starts after 1.e4 e5. Other first replies are outside its coverage; a different opening is not a mistake.' : 'This course covers 1.d4 d5 2.c4. Indian defenses and the Dutch are outside this course. A move order that reaches a covered position can transpose back.' }]
   };
   const drill: ConceptDrill = {
     key: `concept:${chapter.family}-${chapter.slug}`, openingFamilyKey: family, title: chapter.title + ' · apply the plan',

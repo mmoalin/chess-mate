@@ -48,5 +48,11 @@ export function lessonForPosition(graph: RepertoireGraph, input: { familyKey?: s
   const best = Math.max(0, ...scored.map((item) => item.score));
   const matches = scored.filter((item) => item.score === best && best > 0);
   if (matches.length === 1) return matches[0].lesson;
+  // A main lesson's transfer can also introduce a dedicated chapter's opening.
+  // Prefer that complete branch over its incidental appearance in another lesson.
+  const completeBranches = matches.filter(({ lesson, score }) => score >= lesson.openingMoves.length);
+  const branchDepth = Math.max(0, ...completeBranches.map(({ lesson }) => lesson.openingMoves.length));
+  const specific = completeBranches.filter(({ lesson }) => lesson.openingMoves.length === branchDepth);
+  if (specific.length === 1) return specific[0].lesson;
   return input.familyKey ? lessons.find((lesson) => lesson.lineKey === lesson.openingFamilyKey) ?? lessons[0] : undefined;
 }

@@ -2,6 +2,8 @@ import { starterRepertoires } from './repertoires';
 import { caroEndgame, viennaEndgame } from './endgameJourneys';
 import { createCaroContinuation } from './caroContinuation';
 import { whiteCourseLessons } from './whiteOpeningCourses';
+import { alienCourseLessons } from './alienOpeningCourses';
+import { createAlienContinuation } from './alienContinuation';
 import { createQueensGambitContinuation, createViennaContinuation } from './whiteContinuations';
 import type { ConnectedLesson, LessonDecision, LessonQuestion } from '../features/connected/types';
 
@@ -120,3 +122,6 @@ starterConnectedLessons[0].continuation = createViennaContinuation(starterConnec
 starterConnectedLessons.push(...whiteCourseLessons);
 const queenMain = starterConnectedLessons.find((lesson) => lesson.key === 'lesson:queens-gambit-qgd')!;
 queenMain.continuation = createQueensGambitContinuation(queenMain);
+export const preAlienStarterConnectedLessons = structuredClone(starterConnectedLessons);
+starterConnectedLessons.push(...alienCourseLessons);
+alienCourseLessons[0].continuation = createAlienContinuation(alienCourseLessons[0]);
