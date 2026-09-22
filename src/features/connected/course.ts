@@ -2,11 +2,21 @@ import { Chess } from 'chess.js';
 import { buildPositionKey } from '../../domain/repertoire/positionKey';
 import type { MasteryState, RepertoireGraph } from '../../domain/repertoire/types';
 import { continuationKey } from './continuationJourney';
-import type { ConnectedLesson, LessonSession } from './types';
+import type { ConnectedLesson, CourseMetadata, LessonSession } from './types';
+
+export function courseCatalog(graph: RepertoireGraph): Record<string, CourseMetadata> {
+  return Object.fromEntries(Object.values(graph.connectedLessons ?? {}).filter(lesson => lesson.course && graph.openings[lesson.openingFamilyKey])
+    .map(lesson => [lesson.openingFamilyKey, lesson.course!]));
+}
+
+export function mainCourseLesson(graph: RepertoireGraph, familyKey: string): ConnectedLesson | undefined {
+  const declared = courseCatalog(graph)[familyKey]?.mainLessonKey;
+  return (declared ? graph.connectedLessons?.[declared] : undefined) ?? Object.values(graph.connectedLessons ?? {}).find(lesson => lesson.openingFamilyKey === familyKey && lesson.lineKey === familyKey);
+}
 
 export function orderedLessons(graph: RepertoireGraph, families = Object.keys(graph.openings)): ConnectedLesson[] {
   return Object.values(graph.connectedLessons ?? {}).filter((lesson) => families.includes(lesson.openingFamilyKey))
-    .sort((a, b) => families.indexOf(a.openingFamilyKey) - families.indexOf(b.openingFamilyKey) || (a.courseOrder ?? 0) - (b.courseOrder ?? 0) || Number(a.lineKey !== a.openingFamilyKey) - Number(b.lineKey !== b.openingFamilyKey) || a.key.localeCompare(b.key));
+    .sort((a, b) => Number(Boolean(a.optional)) - Number(Boolean(b.optional)) || families.indexOf(a.openingFamilyKey) - families.indexOf(b.openingFamilyKey) || (a.courseOrder ?? 0) - (b.courseOrder ?? 0) || Number(a.lineKey !== a.openingFamilyKey) - Number(b.lineKey !== b.openingFamilyKey) || a.key.localeCompare(b.key));
 }
 
 export function nextCourseContinuation(lessons: ConnectedLesson[], sessions: LessonSession[], mastery: MasteryState[]) {
@@ -35,8 +45,8 @@ function lessonPositions(lesson: ConnectedLesson) {
 }
 
 /** Match the deepest covered position, including transposed move orders. Shared positions use the main chapter. */
-export function lessonForPosition(graph: RepertoireGraph, input: { familyKey?: string; positionKey?: string; pgn?: string }): ConnectedLesson | undefined {
-  const lessons = orderedLessons(graph, input.familyKey ? [input.familyKey] : undefined);
+export function lessonForPosition(graph: RepertoireGraph, input: { familyKey?: string; positionKey?: string; pgn?: string; side?: 'white' | 'black' }): ConnectedLesson | undefined {
+  const lessons = orderedLessons(graph, input.familyKey ? [input.familyKey] : undefined).filter(lesson => !input.side || lesson.side === input.side);
   const positions = new Set<string>(input.positionKey ? [input.positionKey] : []);
   if (input.pgn) {
     const game = new Chess(); game.loadPgn(input.pgn);
@@ -46,6 +56,7 @@ export function lessonForPosition(graph: RepertoireGraph, input: { familyKey?: s
   }
   const scored = lessons.map((lesson) => ({ lesson, score: Math.max(0, ...[...positions].map((key) => lessonPositions(lesson).get(key) ?? 0)) }));
   const best = Math.max(0, ...scored.map((item) => item.score));
+  if (!best) return undefined;
   const matches = scored.filter((item) => item.score === best && best > 0);
   if (matches.length === 1) return matches[0].lesson;
   // A main lesson's transfer can also introduce a dedicated chapter's opening.
@@ -54,5 +65,5 @@ export function lessonForPosition(graph: RepertoireGraph, input: { familyKey?: s
   const branchDepth = Math.max(0, ...completeBranches.map(({ lesson }) => lesson.openingMoves.length));
   const specific = completeBranches.filter(({ lesson }) => lesson.openingMoves.length === branchDepth);
   if (specific.length === 1) return specific[0].lesson;
-  return input.familyKey ? lessons.find((lesson) => lesson.lineKey === lesson.openingFamilyKey) ?? lessons[0] : undefined;
+  return input.familyKey ? lessons.find(lesson => lesson.key === mainCourseLesson(graph, input.familyKey!)?.key) ?? lessons[0] : undefined;
 }

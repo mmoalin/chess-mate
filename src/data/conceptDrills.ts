@@ -1,6 +1,7 @@
 import type { ConceptDrill } from '../domain/repertoire/types';
 import { whiteCourseDrills, whiteRecognitionDrills } from './whiteOpeningCourses';
 import { alienCourseDrills } from './alienOpeningCourses';
+import { blackCourseDrills } from './blackOpeningCourses';
 
 const choice = (id: string, label: string, correct: boolean, feedback: string) => ({ id, label, correct, feedback });
 
@@ -116,3 +117,4 @@ starterConceptDrills[2].scenarios[0].prompt = 'Black’s knight centralizes. Dev
 starterConceptDrills[2].scenarios[0].hint = 'The king knight can develop toward the centre and support e5.';
 export const preAlienStarterConceptDrills = structuredClone(starterConceptDrills);
 starterConceptDrills.push(...alienCourseDrills);
+starterConceptDrills.push(...blackCourseDrills);

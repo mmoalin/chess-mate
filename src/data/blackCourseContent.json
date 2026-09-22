@@ -1,0 +1,4828 @@
+{
+  "black-caro-kann-main/advance": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "e5",
+        "note": "White moves the pawn from e4 to e5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bf5",
+        "note": "Black develops the bishop from c8 to f5. From f5, it attacks the pawn on c2."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Be2",
+        "note": "White develops the bishop from f1 to e2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c6 to c5. From c5, it attacks the pawn on d4."
+      },
+      {
+        "san": "O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      }
+    ],
+    "main": [
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the pawn on e5 and the pawn on d4."
+      },
+      {
+        "san": "c3",
+        "note": "White moves the pawn from c2 to c3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bg6",
+        "note": "Black moves the bishop from f5 to g6. From g6, it attacks the knight on b1."
+      },
+      {
+        "san": "a3",
+        "note": "White moves the pawn from a2 to a3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. From d4, it attacks the pawn on c3."
+      },
+      {
+        "san": "cxd4",
+        "note": "White captures the pawn on d4 with the pawn from c3. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nge7",
+        "note": "Black develops the knight from g8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Be3",
+        "note": "White develops the bishop from c1 to e3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. From d4, it attacks the bishop on e3."
+      },
+      {
+        "san": "Nxd4",
+        "note": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. From d4, it attacks the knight on c6 and the pawn on e6 and the bishop on f5."
+      },
+      {
+        "san": "Nxd4",
+        "note": "Black captures the knight on d4 with the knight from c6. Recount the material and check the possible recaptures. From d4, it attacks the pawn on c2 and the bishop on e2."
+      }
+    ],
+    "mistake": {
+      "san": "Qf6",
+      "note": "Qf6 allows exf6 Nxf6 Kh1. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 630
+    }
+  },
+  "black-caro-kann-main/advance-h4": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "e5",
+        "note": "White moves the pawn from e4 to e5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bf5",
+        "note": "Black develops the bishop from c8 to f5. From f5, it attacks the pawn on c2."
+      },
+      {
+        "san": "h4",
+        "note": "White moves the pawn from h2 to h4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "h5",
+        "note": "Black moves the pawn from h7 to h5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the bishop on f5."
+      }
+    ],
+    "main": [
+      {
+        "san": "Bxd3",
+        "note": "Black captures the bishop on d3 with the bishop from f5. Recount the material and check the possible recaptures. From d3, it attacks the pawn on c2."
+      },
+      {
+        "san": "Qxd3",
+        "note": "White captures the bishop on d3 with the queen from d1. Recount the material and check the possible recaptures. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Qa5+",
+        "note": "Black moves the queen from d8 to a5. From a5, it attacks the pawn on a2 and the king on e1. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Nbd2",
+        "note": "White develops the knight from b1 to d2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nh6",
+        "note": "Black develops the knight from g8 to h6. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "cxd3",
+        "note": "White captures the bishop on d3 with the pawn from c2. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "Ne7",
+        "note": "Black develops the knight from g8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "mistake": {
+      "san": "Qd6",
+      "note": "Qd6 allows exd6 Bxd3 cxd3. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 613
+    }
+  },
+  "black-caro-kann-main/exchange": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "exd5",
+        "note": "White captures the pawn on d5 with the pawn from e4. Recount the material and check the possible recaptures. From d5, it attacks the pawn on c6."
+      },
+      {
+        "san": "cxd5",
+        "note": "Black captures the pawn on d5 with the pawn from c6. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the pawn on h7."
+      }
+    ],
+    "main": [
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the pawn on d4."
+      },
+      {
+        "san": "c3",
+        "note": "White moves the pawn from c2 to c3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bf4",
+        "note": "White develops the bishop from c1 to f4. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bg4",
+        "note": "Black develops the bishop from c8 to g4. From g4, it attacks the queen on d1."
+      },
+      {
+        "san": "Qb3",
+        "note": "White moves the queen from d1 to b3. From b3, it attacks the pawn on b7 and the pawn on d5."
+      },
+      {
+        "san": "Qd7",
+        "note": "Black moves the queen from d8 to d7. Check the opponent’s forcing moves before relying on the new queen placement."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Ne2",
+        "note": "White develops the knight from g1 to e2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nb4",
+        "note": "Black moves the knight from c6 to b4. From b4, it attacks the bishop on d3 and the pawn on a2 and the pawn on c2."
+      },
+      {
+        "san": "Bb5+",
+        "note": "White moves the bishop from d3 to b5. From b5, it attacks the king on e8. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Bd7",
+        "note": "Black develops the bishop from c8 to d7. From d7, it attacks the bishop on b5."
+      }
+    ],
+    "mistake": {
+      "san": "Bf5",
+      "note": "Bf5 allows Bxf5 e5 dxe5. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 473
+    }
+  },
+  "black-caro-kann-main/panov": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "exd5",
+        "note": "White captures the pawn on d5 with the pawn from e4. Recount the material and check the possible recaptures. From d5, it attacks the pawn on c6."
+      },
+      {
+        "san": "cxd5",
+        "note": "Black captures the pawn on d5 with the pawn from c6. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c4",
+        "note": "White moves the pawn from c2 to c4. From c4, it attacks the pawn on d5."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "main": [
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "cxd5",
+        "note": "White captures the pawn on d5 with the pawn from c4. Recount the material and check the possible recaptures. From d5, it attacks the pawn on e6."
+      },
+      {
+        "san": "Nxd5",
+        "note": "Black captures the pawn on d5 with the knight from f6. Recount the material and check the possible recaptures. From d5, it attacks the knight on c3."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the pawn on h7."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the pawn on d4."
+      },
+      {
+        "san": "O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "a3",
+        "note": "White moves the pawn from a2 to a3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "cxd5",
+        "note": "White captures the pawn on d5 with the pawn from c4. Recount the material and check the possible recaptures. From d5, it attacks the pawn on e6."
+      },
+      {
+        "san": "exd5",
+        "note": "Black captures the pawn on d5 with the pawn from e6. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      }
+    ],
+    "mistake": {
+      "san": "Bc5",
+      "note": "Bc5 allows dxc5 Nc6 Be3. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 395
+    }
+  },
+  "black-caro-kann-main/fantasy": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "f3",
+        "note": "White moves the pawn from f2 to f3. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "Qb6",
+        "note": "Black moves the queen from d8 to b6. From b6, it attacks the pawn on d4 and the pawn on b2."
+      },
+      {
+        "san": "Na4",
+        "note": "White moves the knight from c3 to a4. From a4, it attacks the queen on b6."
+      },
+      {
+        "san": "Qc7",
+        "note": "Black moves the queen from b6 to c7. From c7, it attacks the pawn on h2."
+      },
+      {
+        "san": "Nc3",
+        "note": "White moves the knight from a4 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "Nd7",
+        "note": "Black develops the knight from b8 to d7. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "dxe4",
+        "note": "Black captures the pawn on e4 with the pawn from d5. Recount the material and check the possible recaptures. From e4, it attacks the bishop on d3 and the pawn on f3."
+      },
+      {
+        "san": "fxe4",
+        "note": "White captures the pawn on e4 with the pawn from f3. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Qxd4",
+        "note": "Black captures the pawn on d4 with the queen from d8. Recount the material and check the possible recaptures. From d4, it attacks the pawn on e4 and the bishop on d3 and the pawn on b2 and the knight on g1."
+      }
+    ],
+    "mistake": {
+      "san": "Bf5",
+      "note": "Bf5 allows exf5 g6 Nh3. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 402
+    }
+  },
+  "black-caro-kann-main/two-knights": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      }
+    ],
+    "main": [
+      {
+        "san": "dxe4",
+        "note": "Black captures the pawn on e4 with the pawn from d5. Recount the material and check the possible recaptures. From e4, it attacks the knight on f3."
+      },
+      {
+        "san": "Nxe4",
+        "note": "White captures the pawn on e4 with the knight from c3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the knight on e4."
+      },
+      {
+        "san": "Nxf6+",
+        "note": "White captures the knight on f6 with the knight from e4. Recount the material and check the possible recaptures. From f6, it attacks the king on e8 and the pawn on h7. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "exf6",
+        "note": "Black captures the knight on f6 with the pawn from e7. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bd6",
+        "note": "Black develops the bishop from f8 to d6. From d6, it attacks the pawn on h2."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Ng5",
+        "note": "White moves the knight from f3 to g5. From g5, it attacks the pawn on f7 and the pawn on h7 and the pawn on e4."
+      },
+      {
+        "san": "e5",
+        "note": "Black moves the pawn from e7 to e5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "h4",
+        "note": "White moves the pawn from h2 to h4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the knight on g5."
+      }
+    ],
+    "mistake": {
+      "san": "Na6",
+      "note": "Na6 allows exd5 cxd5 Bb5+. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 133
+    }
+  },
+  "black-sicilian-basic/main": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the pawn on c5."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxd4",
+        "note": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "a6",
+        "note": "Black moves the pawn from a7 to a6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Be2",
+        "note": "White develops the bishop from f1 to e2. From e2, it attacks the pawn on a6."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      }
+    ],
+    "main": [
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "f4",
+        "note": "White moves the pawn from f2 to f4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "a4",
+        "note": "White moves the pawn from a2 to a4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the knight on d4."
+      },
+      {
+        "san": "Be3",
+        "note": "White develops the bishop from c1 to e3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Qc7",
+        "note": "Black moves the queen from d8 to c7. Check the opponent’s forcing moves before relying on the new queen placement."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "a4",
+        "note": "White moves the pawn from a2 to a4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "Be3",
+        "note": "White develops the bishop from c1 to e3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the knight on d4."
+      }
+    ],
+    "mistake": {
+      "san": "Nh5",
+      "note": "Nh5 allows Bxh5 g6 Be2. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 420
+    },
+    "journey": [
+      {
+        "id": "coordinate",
+        "bridge": [
+          {
+            "san": "Kh1",
+            "note": "White moves the king from g1 to h1. King activity must be balanced against checks and exposed squares."
+          }
+        ],
+        "main": [
+          {
+            "san": "Nxd4",
+            "note": "Black captures the knight on d4 with the knight from c6. Recount the material and check the possible recaptures. From d4, it attacks the pawn on c2 and the bishop on e2."
+          },
+          {
+            "san": "Bxd4",
+            "note": "White captures the knight on d4 with the bishop from e3. Recount the material and check the possible recaptures. From d4, it attacks the knight on f6."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Nxd4",
+            "note": "Black captures the knight on d4 with the knight from c6. Recount the material and check the possible recaptures. From d4, it attacks the pawn on c2 and the bishop on e2.",
+            "reply": "Bxd4",
+            "replyNote": "White captures the knight on d4 with the bishop from e3. Recount the material and check the possible recaptures. From d4, it attacks the knight on f6."
+          },
+          {
+            "move": "Bd7",
+            "note": "Black develops the bishop from c8 to d7. Compare its new squares with the opponent’s central pawn breaks.",
+            "reply": "Nb3",
+            "replyNote": "White moves the knight from d4 to b3. Compare its new squares with the opponent’s central pawn breaks."
+          }
+        ]
+      },
+      {
+        "id": "counterplay",
+        "bridge": [
+          {
+            "san": "e5",
+            "note": "Black moves the pawn from e6 to e5. From e5, it attacks the bishop on d4 and the pawn on f4."
+          },
+          {
+            "san": "Be3",
+            "note": "White moves the bishop from d4 to e3. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "exf4",
+            "note": "Black captures the pawn on f4 with the pawn from e5. Recount the material and check the possible recaptures. From f4, it attacks the bishop on e3."
+          },
+          {
+            "san": "Bxf4",
+            "note": "White captures the pawn on f4 with the bishop from e3. Recount the material and check the possible recaptures. From f4, it attacks the pawn on d6."
+          }
+        ],
+        "main": [
+          {
+            "san": "Be6",
+            "note": "Black develops the bishop from c8 to e6. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Qd3",
+            "note": "White moves the queen from d1 to d3. From d3, it attacks the pawn on a6 and the pawn on d6."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Be6",
+            "note": "Black develops the bishop from c8 to e6. Compare its new squares with the opponent’s central pawn breaks.",
+            "reply": "Qd3",
+            "replyNote": "White moves the queen from d1 to d3. From d3, it attacks the pawn on a6 and the pawn on d6."
+          },
+          {
+            "move": "Bd7",
+            "note": "Black develops the bishop from c8 to d7. From d7, it attacks the pawn on a4.",
+            "reply": "Qd4",
+            "replyNote": "White moves the queen from d1 to d4. From d4, it attacks the pawn on d6 and the knight on f6."
+          }
+        ]
+      },
+      {
+        "id": "structure",
+        "bridge": [
+          {
+            "san": "Nd7",
+            "note": "Black moves the knight from f6 to d7. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Rac1",
+            "note": "White moves the rook from a1 to c1. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "san": "Ne5",
+            "note": "Black moves the knight from d7 to e5. From e5, it attacks the queen on d3."
+          },
+          {
+            "san": "Qd2",
+            "note": "White moves the queen from d3 to d2. From d2, it attacks the pawn on d6."
+          }
+        ],
+        "main": [
+          {
+            "san": "Rfe8",
+            "note": "Black moves the rook from f8 to e8. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "san": "Nd5",
+            "note": "White moves the knight from c3 to d5. From d5, it attacks the queen on c7 and the bishop on e7."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Rfe8",
+            "note": "Black moves the rook from f8 to e8. Check the file and possible entry squares before exchanging rooks.",
+            "reply": "Nd5",
+            "replyNote": "White moves the knight from c3 to d5. From d5, it attacks the queen on c7 and the bishop on e7."
+          },
+          {
+            "move": "h6",
+            "note": "Black moves the pawn from h7 to h6. Check which squares this irreversible pawn move leaves behind.",
+            "reply": "Nd5",
+            "replyNote": "White moves the knight from c3 to d5. From d5, it attacks the queen on c7 and the bishop on e7."
+          }
+        ]
+      },
+      {
+        "id": "improve",
+        "bridge": [
+          {
+            "san": "Bxd5",
+            "note": "Black captures the knight on d5 with the bishop from e6. Recount the material and check the possible recaptures. From d5, it attacks the pawn on e4."
+          },
+          {
+            "san": "Qxd5",
+            "note": "White captures the bishop on d5 with the queen from d2. Recount the material and check the possible recaptures. From d5, it attacks the pawn on b7 and the pawn on f7 and the pawn on d6 and the knight on e5."
+          },
+          {
+            "san": "Bf6",
+            "note": "Black moves the bishop from e7 to f6. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "c3",
+            "note": "White moves the pawn from c2 to c3. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Qc6",
+            "note": "Black moves the queen from c7 to c6. From c6, it attacks the queen on d5 and the pawn on a4 and the pawn on c3."
+          },
+          {
+            "san": "Qxc6",
+            "note": "White captures the queen on c6 with the queen from d5. Recount the material and check the possible recaptures. From c6, it attacks the rook on e8 and the pawn on b7 and the pawn on a6 and the pawn on d6."
+          }
+        ],
+        "main": [
+          {
+            "san": "Nxc6",
+            "note": "Black captures the queen on c6 with the knight from e5. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Bf3",
+            "note": "White moves the bishop from e2 to f3. Compare its new squares with the opponent’s central pawn breaks."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Nxc6",
+            "note": "Black captures the queen on c6 with the knight from e5. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks.",
+            "reply": "Bf3",
+            "replyNote": "White moves the bishop from e2 to f3. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "move": "bxc6",
+            "note": "Black captures the queen on c6 with the pawn from b7. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind.",
+            "reply": "g4",
+            "replyNote": "White moves the pawn from g2 to g4. Check which squares this irreversible pawn move leaves behind."
+          }
+        ]
+      },
+      {
+        "id": "simplify",
+        "bridge": [
+          {
+            "san": "Be5",
+            "note": "Black moves the bishop from f6 to e5. From e5, it attacks the bishop on f4 and the pawn on c3."
+          },
+          {
+            "san": "g3",
+            "note": "White moves the pawn from g2 to g3. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Na5",
+            "note": "Black moves the knight from c6 to a5. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Rcd1",
+            "note": "White moves the rook from c1 to d1. From d1, it attacks the pawn on d6."
+          },
+          {
+            "san": "Kf8",
+            "note": "Black moves the king from g8 to f8. King activity must be balanced against checks and exposed squares."
+          },
+          {
+            "san": "Rd5",
+            "note": "White moves the rook from d1 to d5. From d5, it attacks the pawn on d6 and the knight on a5 and the bishop on e5."
+          }
+        ],
+        "main": [
+          {
+            "san": "Nc4",
+            "note": "Black moves the knight from a5 to c4. From c4, it attacks the pawn on b2."
+          },
+          {
+            "san": "Rb1",
+            "note": "White moves the rook from f1 to b1. Check the file and possible entry squares before exchanging rooks."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Nc4",
+            "note": "Black moves the knight from a5 to c4. From c4, it attacks the pawn on b2.",
+            "reply": "Rb1",
+            "replyNote": "White moves the rook from f1 to b1. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "move": "Nb3",
+            "note": "Black moves the knight from a5 to b3. Compare its new squares with the opponent’s central pawn breaks.",
+            "reply": "Bxe5",
+            "replyNote": "White captures the bishop on e5 with the bishop from f4. Recount the material and check the possible recaptures. From e5, it attacks the pawn on g7 and the pawn on d6."
+          }
+        ]
+      },
+      {
+        "id": "ending-activity",
+        "bridge": [
+          {
+            "san": "Nb6",
+            "note": "Black moves the knight from c4 to b6. From b6, it attacks the rook on d5 and the pawn on a4."
+          },
+          {
+            "san": "Rxd6",
+            "note": "White captures the pawn on d6 with the rook from d5. Recount the material and check the possible recaptures. From d6, it attacks the knight on b6."
+          },
+          {
+            "san": "Nxa4",
+            "note": "Black captures the pawn on a4 with the knight from b6. Recount the material and check the possible recaptures. From a4, it attacks the pawn on c3 and the pawn on b2."
+          },
+          {
+            "san": "Rd5",
+            "note": "White moves the rook from d6 to d5. From d5, it attacks the bishop on e5."
+          },
+          {
+            "san": "Bxf4",
+            "note": "Black captures the bishop on f4 with the bishop from e5. Recount the material and check the possible recaptures. From f4, it attacks the pawn on g3."
+          },
+          {
+            "san": "gxf4",
+            "note": "White captures the bishop on f4 with the pawn from g3. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "main": [
+          {
+            "san": "Rad8",
+            "note": "Black moves the rook from a8 to d8. From d8, it attacks the rook on d5."
+          },
+          {
+            "san": "Rd4",
+            "note": "White moves the rook from d5 to d4. From d4, it attacks the rook on d8 and the knight on a4."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Rad8",
+            "note": "Black moves the rook from a8 to d8. From d8, it attacks the rook on d5.",
+            "reply": "Rd4",
+            "replyNote": "White moves the rook from d5 to d4. From d4, it attacks the rook on d8 and the knight on a4."
+          },
+          {
+            "move": "Red8",
+            "note": "Black moves the rook from e8 to d8. From d8, it attacks the rook on d5.",
+            "reply": "Rd4",
+            "replyNote": "White moves the rook from d5 to d4. From d4, it attacks the rook on d8 and the knight on a4."
+          }
+        ]
+      }
+    ]
+  },
+  "black-sicilian-basic/english": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the pawn on c5."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxd4",
+        "note": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "a6",
+        "note": "Black moves the pawn from a7 to a6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Be3",
+        "note": "White develops the bishop from c1 to e3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "f3",
+        "note": "White moves the pawn from f2 to f3. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "b5",
+        "note": "Black moves the pawn from b7 to b5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "g4",
+        "note": "White moves the pawn from g2 to g4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "b4",
+        "note": "Black moves the pawn from b5 to b4. From b4, it attacks the knight on c3."
+      },
+      {
+        "san": "Nce2",
+        "note": "White moves the knight from c3 to e2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e5",
+        "note": "Black moves the pawn from e6 to e5. From e5, it attacks the knight on d4."
+      },
+      {
+        "san": "Nf5",
+        "note": "White moves the knight from d4 to f5. From f5, it attacks the pawn on g7 and the pawn on d6."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d6 to d5. From d5, it attacks the pawn on e4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Qd2",
+        "note": "White moves the queen from d1 to d2. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "Nbd7",
+        "note": "Black develops the knight from b8 to d7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "O-O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "Bb7",
+        "note": "Black develops the bishop from c8 to b7. From b7, it attacks the pawn on e4."
+      }
+    ],
+    "mistake": {
+      "san": "Ng4",
+      "note": "Ng4 allows fxg4 Be7 a4. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 364
+    }
+  },
+  "black-sicilian-basic/bg5": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the pawn on c5."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxd4",
+        "note": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "a6",
+        "note": "Black moves the pawn from a7 to a6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bg5",
+        "note": "White develops the bishop from c1 to g5. From g5, it attacks the knight on f6."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "f4",
+        "note": "White moves the pawn from f2 to f4. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Qf3",
+        "note": "White moves the queen from d1 to f3. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "Qc7",
+        "note": "Black moves the queen from d8 to c7. From c7, it attacks the knight on c3."
+      },
+      {
+        "san": "f5",
+        "note": "White moves the pawn from f4 to f5. From f5, it attacks the pawn on e6."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the bishop on g5."
+      },
+      {
+        "san": "Bh4",
+        "note": "White moves the bishop from g5 to h4. From h4, it attacks the knight on f6."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the knight on d4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Qd2",
+        "note": "White moves the queen from d1 to d2. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "Nbd7",
+        "note": "Black develops the knight from b8 to d7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "g4",
+        "note": "White moves the pawn from g2 to g4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the bishop on g5."
+      }
+    ],
+    "mistake": {
+      "san": "Nh5",
+      "note": "Nh5 allows Bxd8 Nxf4 Bg5. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 606
+    }
+  },
+  "black-sicilian-basic/bc4": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the pawn on c5."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxd4",
+        "note": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "a6",
+        "note": "Black moves the pawn from a7 to a6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bc4",
+        "note": "White develops the bishop from f1 to c4. From c4, it attacks the pawn on f7 and the pawn on a6."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bb3",
+        "note": "White moves the bishop from c4 to b3. From b3, it attacks the pawn on e6."
+      }
+    ],
+    "main": [
+      {
+        "san": "b5",
+        "note": "Black moves the pawn from b7 to b5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "a4",
+        "note": "White moves the pawn from a2 to a4. From a4, it attacks the pawn on b5."
+      },
+      {
+        "san": "b4",
+        "note": "Black moves the pawn from b5 to b4. From b4, it attacks the knight on c3."
+      },
+      {
+        "san": "Na2",
+        "note": "White moves the knight from c3 to a2. From a2, it attacks the pawn on b4."
+      },
+      {
+        "san": "Bb7",
+        "note": "Black develops the bishop from c8 to b7. From b7, it attacks the pawn on e4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Be3",
+        "note": "White develops the bishop from c1 to e3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "f3",
+        "note": "White moves the pawn from f2 to f3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      }
+    ],
+    "mistake": {
+      "san": "Nh5",
+      "note": "Nh5 allows Qxh5 Nc6 Nxc6. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 432
+    }
+  },
+  "black-sicilian-basic/f4": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the pawn on c5."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxd4",
+        "note": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "a6",
+        "note": "Black moves the pawn from a7 to a6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "f4",
+        "note": "White moves the pawn from f2 to f4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White moves the knight from d4 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "main": [
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the pawn on a6."
+      },
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "b5",
+        "note": "Black moves the pawn from b7 to b5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Qe1",
+        "note": "White moves the queen from d1 to e1. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "Bb7",
+        "note": "Black develops the bishop from c8 to b7. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Be3",
+        "note": "White develops the bishop from c1 to e3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "b5",
+        "note": "Black moves the pawn from b7 to b5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the pawn on b5."
+      },
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "mistake": {
+      "san": "Nd5",
+      "note": "Nd5 allows exd5 Be7 Be3. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 460
+    }
+  },
+  "black-sicilian-basic/g3": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the pawn on c5."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxd4",
+        "note": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "a6",
+        "note": "Black moves the pawn from a7 to a6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "g3",
+        "note": "White moves the pawn from g2 to g3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bg2",
+        "note": "White develops the bishop from f1 to g2. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "main": [
+      {
+        "san": "Qc7",
+        "note": "Black moves the queen from d8 to c7. From c7, it attacks the knight on c3."
+      },
+      {
+        "san": "g4",
+        "note": "White moves the pawn from g3 to g4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "h4",
+        "note": "White moves the pawn from h2 to h4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the knight on d4."
+      },
+      {
+        "san": "g5",
+        "note": "White moves the pawn from g4 to g5. From g5, it attacks the knight on f6 and the pawn on h6."
+      },
+      {
+        "san": "hxg5",
+        "note": "Black captures the pawn on g5 with the pawn from h6. Recount the material and check the possible recaptures. From g5, it attacks the pawn on h4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Be3",
+        "note": "White develops the bishop from c1 to e3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the knight on d4."
+      },
+      {
+        "san": "Nxc6",
+        "note": "White captures the knight on c6 with the knight from d4. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "bxc6",
+        "note": "Black captures the knight on c6 with the pawn from b7. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "mistake": {
+      "san": "Nh5",
+      "note": "Nh5 allows Qxh5 Nc6 Nxc6. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 413
+    }
+  },
+  "black-sicilian-basic/alapin": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "c3",
+        "note": "White moves the pawn from c2 to c3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "e5",
+        "note": "White moves the pawn from e4 to e5. From e5, it attacks the knight on f6."
+      },
+      {
+        "san": "Nd5",
+        "note": "Black moves the knight from f6 to d5. From d5, it attacks the pawn on c3."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the pawn on c5."
+      }
+    ],
+    "main": [
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. From d4, it attacks the pawn on c3."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. From f3, it attacks the pawn on d4."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. From d6, it attacks the pawn on e5."
+      },
+      {
+        "san": "exd6",
+        "note": "White captures the pawn on d6 with the pawn from e5. Recount the material and check the possible recaptures. From d6, it attacks the pawn on e7."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nxd4",
+        "note": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. From d4, it attacks the knight on c6."
+      },
+      {
+        "san": "Qxd6",
+        "note": "Black captures the pawn on d6 with the queen from d8. Recount the material and check the possible recaptures. From d6, it attacks the pawn on h2."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "cxd4",
+        "note": "White captures the pawn on d4 with the pawn from c3. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. From d6, it attacks the pawn on e5."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the pawn on e5 and the pawn on d4."
+      }
+    ],
+    "mistake": {
+      "san": "Nf6",
+      "note": "Nf6 allows exf6 cxd4 cxd4. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 405
+    }
+  },
+  "black-sicilian-basic/closed": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "g3",
+        "note": "White moves the pawn from g2 to g3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "g6",
+        "note": "Black moves the pawn from g7 to g6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bg2",
+        "note": "White develops the bishop from f1 to g2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bg7",
+        "note": "Black develops the bishop from f8 to g7. From g7, it attacks the knight on c3."
+      },
+      {
+        "san": "d3",
+        "note": "White moves the pawn from d2 to d3. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nge2",
+        "note": "White develops the knight from g1 to e2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Rb8",
+        "note": "Black moves the rook from a8 to b8. Check the file and possible entry squares before exchanging rooks."
+      },
+      {
+        "san": "a4",
+        "note": "White moves the pawn from a2 to a4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "a6",
+        "note": "Black moves the pawn from a7 to a6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nd5",
+        "note": "White moves the knight from c3 to d5. From d5, it attacks the pawn on e7."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. From e6, it attacks the knight on d5."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "mistake": {
+      "san": "d5",
+      "note": "d5 allows Nxd5 Nf6 Ne3. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 142
+    }
+  },
+  "black-sicilian-basic/grand-prix": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "f4",
+        "note": "White moves the pawn from f2 to f4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "g6",
+        "note": "Black moves the pawn from g7 to g6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bg7",
+        "note": "Black develops the bishop from f8 to g7. From g7, it attacks the knight on c3."
+      },
+      {
+        "san": "Bc4",
+        "note": "White develops the bishop from f1 to c4. From c4, it attacks the pawn on f7."
+      }
+    ],
+    "main": [
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "e5",
+        "note": "White moves the pawn from e4 to e5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the bishop on c4."
+      },
+      {
+        "san": "Bb5",
+        "note": "White moves the bishop from c4 to b5. From b5, it attacks the knight on c6."
+      },
+      {
+        "san": "Ne7",
+        "note": "Black develops the knight from g8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the pawn on c5."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. From d4, it attacks the knight on c3."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "Nge7",
+        "note": "Black develops the knight from g8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d3",
+        "note": "White moves the pawn from d2 to d3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      }
+    ],
+    "mistake": {
+      "san": "Be5",
+      "note": "Be5 allows fxe5 d6 Bb5. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 570
+    }
+  },
+  "black-sicilian-basic/moscow": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bb5+",
+        "note": "White develops the bishop from f1 to b5. From b5, it attacks the king on e8. The opponent must answer the check before continuing a positional plan."
+      }
+    ],
+    "main": [
+      {
+        "san": "Bd7",
+        "note": "Black develops the bishop from c8 to d7. From d7, it attacks the bishop on b5."
+      },
+      {
+        "san": "Bxd7+",
+        "note": "White captures the bishop on d7 with the bishop from b5. Recount the material and check the possible recaptures. From d7, it attacks the king on e8. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Nxd7",
+        "note": "Black captures the bishop on d7 with the knight from b8. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c4",
+        "note": "White moves the pawn from c2 to c4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Ngf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "g6",
+        "note": "Black moves the pawn from g7 to g6. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "c4",
+        "note": "White moves the pawn from c2 to c4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "g6",
+        "note": "Black moves the pawn from g7 to g6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bxd7+",
+        "note": "White captures the bishop on d7 with the bishop from b5. Recount the material and check the possible recaptures. From d7, it attacks the king on e8. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Qxd7",
+        "note": "Black captures the bishop on d7 with the queen from d8. Recount the material and check the possible recaptures. Check the opponent’s forcing moves before relying on the new queen placement."
+      }
+    ],
+    "mistake": {
+      "san": "Qd7",
+      "note": "Qd7 allows Bxd7+ Bxd7 h3. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 530
+    }
+  },
+  "black-sicilian-basic/dragon": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the pawn on c5."
+      },
+      {
+        "san": "cxd4",
+        "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxd4",
+        "note": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "g6",
+        "note": "Black moves the pawn from g7 to g6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Be3",
+        "note": "White develops the bishop from c1 to e3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bg7",
+        "note": "Black develops the bishop from f8 to g7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "f3",
+        "note": "White moves the pawn from f2 to f3. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "a6",
+        "note": "Black moves the pawn from a7 to a6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "g4",
+        "note": "White moves the pawn from g2 to g4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "b5",
+        "note": "Black moves the pawn from b7 to b5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Qd2",
+        "note": "White moves the queen from d1 to d2. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "Bb7",
+        "note": "Black develops the bishop from c8 to b7. From b7, it attacks the pawn on e4."
+      },
+      {
+        "san": "O-O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "h5",
+        "note": "Black moves the pawn from h7 to h5. From h5, it attacks the pawn on g4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Qd2",
+        "note": "White moves the queen from d1 to d2. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "b5",
+        "note": "Black moves the pawn from b7 to b5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "g4",
+        "note": "White moves the pawn from g2 to g4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bb7",
+        "note": "Black develops the bishop from c8 to b7. From b7, it attacks the pawn on e4."
+      }
+    ],
+    "mistake": {
+      "san": "Bf5",
+      "note": "Bf5 allows exf5 O-O Qd2. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 373
+    }
+  },
+  "black-alien-gambit-defense/main": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "dxe4",
+        "note": "Black captures the pawn on e4 with the pawn from d5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxe4",
+        "note": "White captures the pawn on e4 with the knight from c3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the knight on e4."
+      },
+      {
+        "san": "Ng5",
+        "note": "White moves the knight from e4 to g5. From g5, it attacks the pawn on f7 and the pawn on h7."
+      },
+      {
+        "san": "Nbd7",
+        "note": "Black develops the knight from b8 to d7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bc4",
+        "note": "White develops the bishop from f1 to c4. From c4, it attacks the pawn on f7."
+      }
+    ],
+    "main": [
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Qe2",
+        "note": "White moves the queen from d1 to e2. From e2, it attacks the pawn on e6."
+      },
+      {
+        "san": "Nb6",
+        "note": "Black moves the knight from d7 to b6. From b6, it attacks the bishop on c4."
+      },
+      {
+        "san": "Bd3",
+        "note": "White moves the bishop from c4 to d3. From d3, it attacks the pawn on h7."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the knight on g5."
+      },
+      {
+        "san": "N5f3",
+        "note": "White moves the knight from g5 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c6 to c5. From c5, it attacks the pawn on d4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Ne2",
+        "note": "White develops the knight from g1 to e2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the knight on g5."
+      },
+      {
+        "san": "Nf3",
+        "note": "White moves the knight from g5 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bd6",
+        "note": "Black develops the bishop from f8 to d6. From d6, it attacks the pawn on h2."
+      }
+    ],
+    "mistake": {
+      "san": "Ne5",
+      "note": "Ne5 allows dxe5 Qxd1+ Kxd1. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 426
+    },
+    "journey": [
+      {
+        "id": "coordinate",
+        "bridge": [
+          {
+            "san": "c3",
+            "note": "White moves the pawn from c2 to c3. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "main": [
+          {
+            "san": "Nbd5",
+            "note": "Black moves the knight from b6 to d5. From d5, it attacks the pawn on c3."
+          },
+          {
+            "san": "dxc5",
+            "note": "White captures the pawn on c5 with the pawn from d4. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Nbd5",
+            "note": "Black moves the knight from b6 to d5. From d5, it attacks the pawn on c3.",
+            "reply": "dxc5",
+            "replyNote": "White captures the pawn on c5 with the pawn from d4. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "move": "cxd4",
+            "note": "Black captures the pawn on d4 with the pawn from c5. Recount the material and check the possible recaptures. From d4, it attacks the pawn on c3.",
+            "reply": "Nxd4",
+            "replyNote": "White captures the pawn on d4 with the knight from f3. Recount the material and check the possible recaptures. From d4, it attacks the pawn on e6."
+          }
+        ]
+      },
+      {
+        "id": "counterplay",
+        "bridge": [
+          {
+            "san": "Bxc5",
+            "note": "Black captures the pawn on c5 with the bishop from f8. Recount the material and check the possible recaptures. From c5, it attacks the pawn on f2."
+          },
+          {
+            "san": "Ne5",
+            "note": "White moves the knight from f3 to e5. From e5, it attacks the pawn on f7."
+          },
+          {
+            "san": "Qc7",
+            "note": "Black moves the queen from d8 to c7. From c7, it attacks the knight on e5."
+          },
+          {
+            "san": "Ngf3",
+            "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+          }
+        ],
+        "main": [
+          {
+            "san": "O-O",
+            "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+          },
+          {
+            "san": "Bd2",
+            "note": "White develops the bishop from c1 to d2. From d2, it attacks the pawn on h6."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "O-O",
+            "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre.",
+            "reply": "Bd2",
+            "replyNote": "White develops the bishop from c1 to d2. From d2, it attacks the pawn on h6."
+          },
+          {
+            "move": "Bd6",
+            "note": "Black moves the bishop from c5 to d6. From d6, it attacks the knight on e5.",
+            "reply": "O-O",
+            "replyNote": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+          }
+        ]
+      },
+      {
+        "id": "structure",
+        "bridge": [
+          {
+            "san": "Bd6",
+            "note": "Black moves the bishop from c5 to d6. From d6, it attacks the knight on e5."
+          },
+          {
+            "san": "O-O",
+            "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+          },
+          {
+            "san": "b6",
+            "note": "Black moves the pawn from b7 to b6. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Rad1",
+            "note": "White moves the rook from a1 to d1. Check the file and possible entry squares before exchanging rooks."
+          }
+        ],
+        "main": [
+          {
+            "san": "Bb7",
+            "note": "Black develops the bishop from c8 to b7. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "c4",
+            "note": "White moves the pawn from c3 to c4. From c4, it attacks the knight on d5."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Bb7",
+            "note": "Black develops the bishop from c8 to b7. Compare its new squares with the opponent’s central pawn breaks.",
+            "reply": "c4",
+            "replyNote": "White moves the pawn from c3 to c4. From c4, it attacks the knight on d5."
+          },
+          {
+            "move": "Nh5",
+            "note": "Black moves the knight from f6 to h5. Compare its new squares with the opponent’s central pawn breaks.",
+            "reply": "Qe4",
+            "replyNote": "White moves the queen from e2 to e4. From e4, it attacks the knight on d5."
+          }
+        ]
+      },
+      {
+        "id": "improve",
+        "bridge": [
+          {
+            "san": "Nf4",
+            "note": "Black moves the knight from d5 to f4. From f4, it attacks the bishop on d3 and the queen on e2 and the pawn on g2."
+          },
+          {
+            "san": "Bxf4",
+            "note": "White captures the knight on f4 with the bishop from d2. Recount the material and check the possible recaptures. From f4, it attacks the pawn on h6."
+          },
+          {
+            "san": "Bxf3",
+            "note": "Black captures the knight on f3 with the bishop from b7. Recount the material and check the possible recaptures. From f3, it attacks the queen on e2 and the pawn on g2."
+          },
+          {
+            "san": "gxf3",
+            "note": "White captures the bishop on f3 with the pawn from g2. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Nh5",
+            "note": "Black moves the knight from f6 to h5. From h5, it attacks the bishop on f4."
+          },
+          {
+            "san": "Bg3",
+            "note": "White moves the bishop from f4 to g3. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Nxg3",
+            "note": "Black captures the bishop on g3 with the knight from h5. Recount the material and check the possible recaptures. From g3, it attacks the queen on e2 and the rook on f1."
+          },
+          {
+            "san": "hxg3",
+            "note": "White captures the knight on g3 with the pawn from h2. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Bxe5",
+            "note": "Black captures the knight on e5 with the bishop from d6. Recount the material and check the possible recaptures. From e5, it attacks the pawn on g3 and the pawn on b2."
+          },
+          {
+            "san": "Kg2",
+            "note": "White moves the king from g1 to g2. King activity must be balanced against checks and exposed squares."
+          }
+        ],
+        "main": [
+          {
+            "san": "Bf6",
+            "note": "Black moves the bishop from e5 to f6. From f6, it attacks the pawn on b2."
+          },
+          {
+            "san": "b4",
+            "note": "White moves the pawn from b2 to b4. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Bf6",
+            "note": "Black moves the bishop from e5 to f6. From f6, it attacks the pawn on b2.",
+            "reply": "b4",
+            "replyNote": "White moves the pawn from b2 to b4. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "move": "Rac8",
+            "note": "Black moves the rook from a8 to c8. Check the file and possible entry squares before exchanging rooks.",
+            "reply": "Rh1",
+            "replyNote": "White moves the rook from f1 to h1. From h1, it attacks the pawn on h6."
+          }
+        ]
+      },
+      {
+        "id": "simplify",
+        "bridge": [],
+        "main": [
+          {
+            "san": "Rac8",
+            "note": "Black moves the rook from a8 to c8. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "san": "Rh1",
+            "note": "White moves the rook from f1 to h1. From h1, it attacks the pawn on h6."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Rac8",
+            "note": "Black moves the rook from a8 to c8. Check the file and possible entry squares before exchanging rooks.",
+            "reply": "Rh1",
+            "replyNote": "White moves the rook from f1 to h1. From h1, it attacks the pawn on h6."
+          },
+          {
+            "move": "a5",
+            "note": "Black moves the pawn from a7 to a5. From a5, it attacks the pawn on b4.",
+            "reply": "Be4",
+            "replyNote": "White moves the bishop from d3 to e4. From e4, it attacks the rook on a8."
+          }
+        ]
+      },
+      {
+        "id": "ending-activity",
+        "bridge": [
+          {
+            "san": "Qe5",
+            "note": "Black moves the queen from c7 to e5. From e5, it attacks the pawn on g3 and the queen on e2."
+          },
+          {
+            "san": "f4",
+            "note": "White moves the pawn from f3 to f4. From f4, it attacks the queen on e5."
+          },
+          {
+            "san": "Qxe2",
+            "note": "Black captures the queen on e2 with the queen from e5. Recount the material and check the possible recaptures. From e2, it attacks the bishop on d3 and the pawn on a2 and the pawn on f2 and the rook on d1."
+          },
+          {
+            "san": "Bxe2",
+            "note": "White captures the queen on e2 with the bishop from d3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+          }
+        ],
+        "main": [
+          {
+            "san": "Rfd8",
+            "note": "Black moves the rook from f8 to d8. From d8, it attacks the rook on d1."
+          },
+          {
+            "san": "Kf3",
+            "note": "White moves the king from g2 to f3. King activity must be balanced against checks and exposed squares."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Rfd8",
+            "note": "Black moves the rook from f8 to d8. From d8, it attacks the rook on d1.",
+            "reply": "Kf3",
+            "replyNote": "White moves the king from g2 to f3. King activity must be balanced against checks and exposed squares."
+          },
+          {
+            "move": "Be7",
+            "note": "Black moves the bishop from f6 to e7. From e7, it attacks the pawn on b4.",
+            "reply": "c5",
+            "replyNote": "White moves the pawn from c4 to c5. From c5, it attacks the pawn on b6."
+          }
+        ]
+      }
+    ]
+  },
+  "black-alien-gambit-defense/quiet": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "dxe4",
+        "note": "Black captures the pawn on e4 with the pawn from d5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxe4",
+        "note": "White captures the pawn on e4 with the knight from c3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the knight on e4."
+      },
+      {
+        "san": "Ng5",
+        "note": "White moves the knight from e4 to g5. From g5, it attacks the pawn on f7 and the pawn on h7."
+      },
+      {
+        "san": "Nbd7",
+        "note": "Black develops the knight from b8 to d7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the pawn on h7."
+      }
+    ],
+    "main": [
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "N1f3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bd6",
+        "note": "Black develops the bishop from f8 to d6. From d6, it attacks the pawn on h2."
+      },
+      {
+        "san": "Qe2",
+        "note": "White moves the queen from d1 to e2. From e2, it attacks the pawn on e6."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the knight on g5."
+      },
+      {
+        "san": "Ne4",
+        "note": "White moves the knight from g5 to e4. From e4, it attacks the bishop on d6 and the knight on f6."
+      },
+      {
+        "san": "Nxe4",
+        "note": "Black captures the knight on e4 with the knight from f6. Recount the material and check the possible recaptures. From e4, it attacks the pawn on f2."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Qe2",
+        "note": "White moves the queen from d1 to e2. From e2, it attacks the pawn on e6."
+      },
+      {
+        "san": "Qc7",
+        "note": "Black moves the queen from d8 to c7. From c7, it attacks the pawn on h2."
+      },
+      {
+        "san": "N1f3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the knight on g5."
+      }
+    ],
+    "mistake": {
+      "san": "Ne5",
+      "note": "Ne5 allows dxe5 Qa5+ Bd2. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 310
+    }
+  },
+  "black-alien-gambit-defense/f4": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "dxe4",
+        "note": "Black captures the pawn on e4 with the pawn from d5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxe4",
+        "note": "White captures the pawn on e4 with the knight from c3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the knight on e4."
+      },
+      {
+        "san": "Ng5",
+        "note": "White moves the knight from e4 to g5. From g5, it attacks the pawn on f7 and the pawn on h7."
+      },
+      {
+        "san": "Nbd7",
+        "note": "Black develops the knight from b8 to d7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "f4",
+        "note": "White moves the pawn from f2 to f4. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the knight on g5."
+      },
+      {
+        "san": "N5f3",
+        "note": "White moves the knight from g5 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c6 to c5. From c5, it attacks the pawn on d4."
+      },
+      {
+        "san": "Qe2",
+        "note": "White moves the queen from d1 to e2. From e2, it attacks the pawn on e6."
+      },
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Ne6",
+        "note": "White moves the knight from g5 to e6. From e6, it attacks the queen on d8 and the bishop on f8 and the pawn on g7."
+      },
+      {
+        "san": "fxe6",
+        "note": "Black captures the knight on e6 with the pawn from f7. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Kf7",
+        "note": "Black moves the king from e8 to f7. King activity must be balanced against checks and exposed squares."
+      }
+    ],
+    "mistake": {
+      "san": "Ne5",
+      "note": "Ne5 allows fxe5 Nd5 c4. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 499
+    }
+  },
+  "black-alien-gambit-defense/accepted": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "dxe4",
+        "note": "Black captures the pawn on e4 with the pawn from d5. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxe4",
+        "note": "White captures the pawn on e4 with the knight from c3. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the knight on e4."
+      },
+      {
+        "san": "Ng5",
+        "note": "White moves the knight from e4 to g5. From g5, it attacks the pawn on f7 and the pawn on h7."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the knight on g5."
+      },
+      {
+        "san": "Nxf7",
+        "note": "White captures the pawn on f7 with the knight from g5. Recount the material and check the possible recaptures. From f7, it attacks the queen on d8 and the rook on h8 and the pawn on h6."
+      },
+      {
+        "san": "Kxf7",
+        "note": "Black captures the knight on f7 with the king from e8. Recount the material and check the possible recaptures. King activity must be balanced against checks and exposed squares."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "main": [
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Ne5+",
+        "note": "White moves the knight from f3 to e5. From e5, it attacks the king on f7 and the pawn on c6. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Kg8",
+        "note": "Black moves the king from f7 to g8. King activity must be balanced against checks and exposed squares."
+      },
+      {
+        "san": "Bc4",
+        "note": "White develops the bishop from f1 to c4. From c4, it attacks the pawn on e6."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c6 to c5. From c5, it attacks the pawn on d4."
+      },
+      {
+        "san": "Be3",
+        "note": "White develops the bishop from c1 to e3. From e3, it attacks the pawn on h6."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the knight on e5 and the pawn on d4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c6 to c5. From c5, it attacks the pawn on d4."
+      },
+      {
+        "san": "dxc5",
+        "note": "White captures the pawn on c5 with the pawn from d4. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bxc5",
+        "note": "Black captures the pawn on c5 with the bishop from f8. Recount the material and check the possible recaptures. From c5, it attacks the pawn on f2."
+      }
+    ],
+    "mistake": {
+      "san": "Qxd4",
+      "note": "Qxd4 allows Nxd4 e5 Bc4+. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 675
+    }
+  },
+  "black-vienna-main/main": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "e5",
+        "note": "Black moves the pawn from e7 to e5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "f4",
+        "note": "White moves the pawn from f2 to f4. From f4, it attacks the pawn on e5."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "fxe5",
+        "note": "White captures the pawn on e5 with the pawn from f4. Recount the material and check the possible recaptures. From e5, it attacks the knight on f6."
+      },
+      {
+        "san": "Nxe4",
+        "note": "Black captures the pawn on e4 with the knight from f6. Recount the material and check the possible recaptures. From e4, it attacks the knight on c3 and the pawn on d2."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "main": [
+      {
+        "san": "Bc5",
+        "note": "Black develops the bishop from f8 to c5. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the bishop on c5."
+      },
+      {
+        "san": "Bb4",
+        "note": "Black moves the bishop from c5 to b4. From b4, it attacks the knight on c3."
+      },
+      {
+        "san": "Bd2",
+        "note": "White develops the bishop from c1 to d2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. From c5, it attacks the pawn on d4."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the knight on e4."
+      },
+      {
+        "san": "Nxd2",
+        "note": "Black captures the bishop on d2 with the knight from e4. Recount the material and check the possible recaptures. From d2, it attacks the knight on f3."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Qe2",
+        "note": "White moves the queen from d1 to e2. From e2, it attacks the knight on e4."
+      },
+      {
+        "san": "Bf5",
+        "note": "Black develops the bishop from c8 to f5. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. From d4, it attacks the bishop on c5."
+      },
+      {
+        "san": "Bb4",
+        "note": "Black moves the bishop from c5 to b4. From b4, it attacks the knight on c3."
+      }
+    ],
+    "mistake": {
+      "san": "Qf6",
+      "note": "Qf6 allows exf6 Nxf6 d4. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 607
+    },
+    "journey": [
+      {
+        "id": "coordinate",
+        "bridge": [
+          {
+            "san": "Qxd2",
+            "note": "White captures the knight on d2 with the queen from d1. Recount the material and check the possible recaptures. Check the opponent’s forcing moves before relying on the new queen placement."
+          }
+        ],
+        "main": [
+          {
+            "san": "O-O",
+            "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+          },
+          {
+            "san": "dxc5",
+            "note": "White captures the pawn on c5 with the pawn from d4. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "O-O",
+            "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre.",
+            "reply": "dxc5",
+            "replyNote": "White captures the pawn on c5 with the pawn from d4. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "move": "Nc6",
+            "note": "Black develops the knight from b8 to c6. From c6, it attacks the pawn on e5 and the pawn on d4.",
+            "reply": "Qf4",
+            "replyNote": "White moves the queen from d2 to f4. From f4, it attacks the pawn on f7."
+          }
+        ]
+      },
+      {
+        "id": "counterplay",
+        "bridge": [
+          {
+            "san": "Nd7",
+            "note": "Black develops the knight from b8 to d7. From d7, it attacks the pawn on c5 and the pawn on e5."
+          },
+          {
+            "san": "O-O",
+            "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+          },
+          {
+            "san": "Nxc5",
+            "note": "Black captures the pawn on c5 with the knight from d7. Recount the material and check the possible recaptures. From c5, it attacks the bishop on d3."
+          },
+          {
+            "san": "Qe3",
+            "note": "White moves the queen from d2 to e3. From e3, it attacks the knight on c5."
+          }
+        ],
+        "main": [
+          {
+            "san": "Nxd3",
+            "note": "Black captures the bishop on d3 with the knight from c5. Recount the material and check the possible recaptures. From d3, it attacks the pawn on e5 and the pawn on b2."
+          },
+          {
+            "san": "Qxd3",
+            "note": "White captures the knight on d3 with the queen from e3. Recount the material and check the possible recaptures. From d3, it attacks the pawn on h7 and the pawn on d5."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Nxd3",
+            "note": "Black captures the bishop on d3 with the knight from c5. Recount the material and check the possible recaptures. From d3, it attacks the pawn on e5 and the pawn on b2.",
+            "reply": "Qxd3",
+            "replyNote": "White captures the knight on d3 with the queen from e3. Recount the material and check the possible recaptures. From d3, it attacks the pawn on h7 and the pawn on d5."
+          },
+          {
+            "move": "Bg4",
+            "note": "Black develops the bishop from c8 to g4. From g4, it attacks the knight on f3.",
+            "reply": "Qd4",
+            "replyNote": "White moves the queen from e3 to d4. From d4, it attacks the knight on c5 and the pawn on d5 and the bishop on b4 and the bishop on g4."
+          }
+        ]
+      },
+      {
+        "id": "structure",
+        "bridge": [
+          {
+            "san": "Bxc3",
+            "note": "Black captures the knight on c3 with the bishop from b4. Recount the material and check the possible recaptures. From c3, it attacks the pawn on e5 and the pawn on b2."
+          },
+          {
+            "san": "bxc3",
+            "note": "White captures the bishop on c3 with the pawn from b2. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "a5",
+            "note": "Black moves the pawn from a7 to a5. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Rae1",
+            "note": "White moves the rook from a1 to e1. Check the file and possible entry squares before exchanging rooks."
+          }
+        ],
+        "main": [
+          {
+            "san": "Ra6",
+            "note": "Black moves the rook from a8 to a6. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "san": "Kh1",
+            "note": "White moves the king from g1 to h1. King activity must be balanced against checks and exposed squares."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Ra6",
+            "note": "Black moves the rook from a8 to a6. Check the file and possible entry squares before exchanging rooks.",
+            "reply": "Kh1",
+            "replyNote": "White moves the king from g1 to h1. King activity must be balanced against checks and exposed squares."
+          },
+          {
+            "move": "h6",
+            "note": "Black moves the pawn from h7 to h6. Check which squares this irreversible pawn move leaves behind.",
+            "reply": "Nd4",
+            "replyNote": "White moves the knight from f3 to d4. Compare its new squares with the opponent’s central pawn breaks."
+          }
+        ]
+      },
+      {
+        "id": "improve",
+        "bridge": [
+          {
+            "san": "h6",
+            "note": "Black moves the pawn from h7 to h6. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "h3",
+            "note": "White moves the pawn from h2 to h3. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Rg6",
+            "note": "Black moves the rook from a6 to g6. From g6, it attacks the pawn on g2."
+          },
+          {
+            "san": "Nd4",
+            "note": "White moves the knight from f3 to d4. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Be6",
+            "note": "Black develops the bishop from c8 to e6. From e6, it attacks the pawn on h3."
+          },
+          {
+            "san": "Re2",
+            "note": "White moves the rook from e1 to e2. Check the file and possible entry squares before exchanging rooks."
+          }
+        ],
+        "main": [
+          {
+            "san": "Qe7",
+            "note": "Black moves the queen from d8 to e7. Check the opponent’s forcing moves before relying on the new queen placement."
+          },
+          {
+            "san": "Nxe6",
+            "note": "White captures the bishop on e6 with the knight from d4. Recount the material and check the possible recaptures. From e6, it attacks the rook on f8 and the pawn on g7."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Qe7",
+            "note": "Black moves the queen from d8 to e7. Check the opponent’s forcing moves before relying on the new queen placement.",
+            "reply": "Nxe6",
+            "replyNote": "White captures the bishop on e6 with the knight from d4. Recount the material and check the possible recaptures. From e6, it attacks the rook on f8 and the pawn on g7."
+          },
+          {
+            "move": "Qb6",
+            "note": "Black moves the queen from d8 to b6. From b6, it attacks the knight on d4.",
+            "reply": "Nxe6",
+            "replyNote": "White captures the bishop on e6 with the knight from d4. Recount the material and check the possible recaptures. From e6, it attacks the rook on f8 and the pawn on g7."
+          }
+        ]
+      },
+      {
+        "id": "simplify",
+        "bridge": [
+          {
+            "san": "Rxe6",
+            "note": "Black captures the knight on e6 with the rook from g6. Recount the material and check the possible recaptures. From e6, it attacks the pawn on e5."
+          },
+          {
+            "san": "Qxd5",
+            "note": "White captures the pawn on d5 with the queen from d3. Recount the material and check the possible recaptures. From d5, it attacks the pawn on b7 and the rook on e6 and the pawn on a5."
+          },
+          {
+            "san": "b6",
+            "note": "Black moves the pawn from b7 to b6. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "a4",
+            "note": "White moves the pawn from a2 to a4. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Qd8",
+            "note": "Black moves the queen from e7 to d8. From d8, it attacks the queen on d5."
+          },
+          {
+            "san": "c4",
+            "note": "White moves the pawn from c3 to c4. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "main": [
+          {
+            "san": "Rfe8",
+            "note": "Black moves the rook from f8 to e8. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "san": "Rb1",
+            "note": "White moves the rook from f1 to b1. From b1, it attacks the pawn on b6."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Rfe8",
+            "note": "Black moves the rook from f8 to e8. Check the file and possible entry squares before exchanging rooks.",
+            "reply": "Rb1",
+            "replyNote": "White moves the rook from f1 to b1. From b1, it attacks the pawn on b6."
+          },
+          {
+            "move": "Qc7",
+            "note": "Black moves the queen from d8 to c7. From c7, it attacks the pawn on e5 and the pawn on c4.",
+            "reply": "Ref2",
+            "replyNote": "White moves the rook from e2 to f2. From f2, it attacks the pawn on f7."
+          }
+        ]
+      },
+      {
+        "id": "ending-activity",
+        "bridge": [
+          {
+            "san": "Qc7",
+            "note": "Black moves the queen from d8 to c7. From c7, it attacks the pawn on e5 and the pawn on c4."
+          },
+          {
+            "san": "c5",
+            "note": "White moves the pawn from c4 to c5. From c5, it attacks the pawn on b6."
+          },
+          {
+            "san": "Qxc5",
+            "note": "Black captures the pawn on c5 with the queen from c7. Recount the material and check the possible recaptures. From c5, it attacks the queen on d5 and the pawn on c2."
+          },
+          {
+            "san": "Qxc5",
+            "note": "White captures the queen on c5 with the queen from d5. Recount the material and check the possible recaptures. From c5, it attacks the pawn on b6 and the pawn on a5."
+          },
+          {
+            "san": "bxc5",
+            "note": "Black captures the queen on c5 with the pawn from b6. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Rb5",
+            "note": "White moves the rook from b1 to b5. From b5, it attacks the pawn on a5 and the pawn on c5."
+          }
+        ],
+        "main": [
+          {
+            "san": "Rxe5",
+            "note": "Black captures the pawn on e5 with the rook from e6. Recount the material and check the possible recaptures. From e5, it attacks the rook on e2."
+          },
+          {
+            "san": "Rxe5",
+            "note": "White captures the rook on e5 with the rook from e2. Recount the material and check the possible recaptures. From e5, it attacks the rook on e8 and the pawn on c5."
+          },
+          {
+            "san": "Rxe5",
+            "note": "Black captures the rook on e5 with the rook from e8. Recount the material and check the possible recaptures. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "san": "Rxa5",
+            "note": "White captures the pawn on a5 with the rook from b5. Recount the material and check the possible recaptures. From a5, it attacks the pawn on c5."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Rxe5",
+            "note": "Black captures the pawn on e5 with the rook from e6. Recount the material and check the possible recaptures. From e5, it attacks the rook on e2.",
+            "reply": "Rxe5",
+            "replyNote": "White captures the rook on e5 with the rook from e2. Recount the material and check the possible recaptures. From e5, it attacks the rook on e8 and the pawn on c5."
+          },
+          {
+            "move": "f6",
+            "note": "Black moves the pawn from f7 to f6. From f6, it attacks the pawn on e5.",
+            "reply": "Rxa5",
+            "replyNote": "White captures the pawn on a5 with the rook from b5. Recount the material and check the possible recaptures. From a5, it attacks the pawn on c5."
+          }
+        ]
+      }
+    ]
+  },
+  "black-vienna-main/exd5": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "e5",
+        "note": "Black moves the pawn from e7 to e5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "f4",
+        "note": "White moves the pawn from f2 to f4. From f4, it attacks the pawn on e5."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "exd5",
+        "note": "White captures the pawn on d5 with the pawn from e4. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      }
+    ],
+    "main": [
+      {
+        "san": "Nxd5",
+        "note": "Black captures the pawn on d5 with the knight from f6. Recount the material and check the possible recaptures. From d5, it attacks the pawn on f4 and the knight on c3."
+      },
+      {
+        "san": "fxe5",
+        "note": "White captures the pawn on e5 with the pawn from f4. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxc3",
+        "note": "Black captures the knight on c3 with the knight from d5. Recount the material and check the possible recaptures. From c3, it attacks the pawn on a2 and the queen on d1."
+      },
+      {
+        "san": "bxc3",
+        "note": "White captures the knight on c3 with the pawn from b2. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Qh4+",
+        "note": "Black moves the queen from d8 to h4. From h4, it attacks the pawn on h2 and the king on e1. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Ke2",
+        "note": "White moves the king from e1 to e2. King activity must be balanced against checks and exposed squares."
+      },
+      {
+        "san": "Bg4+",
+        "note": "Black develops the bishop from c8 to g4. From g4, it attacks the king on e2. The opponent must answer the check before continuing a positional plan."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. From f3, it attacks the pawn on e5."
+      },
+      {
+        "san": "exf4",
+        "note": "Black captures the pawn on f4 with the pawn from e5. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nxd5",
+        "note": "White captures the knight on d5 with the knight from c3. Recount the material and check the possible recaptures. From d5, it attacks the pawn on c7 and the pawn on f4."
+      },
+      {
+        "san": "Qxd5",
+        "note": "Black captures the knight on d5 with the queen from d8. Recount the material and check the possible recaptures. From d5, it attacks the knight on f3 and the pawn on a2 and the pawn on d2."
+      }
+    ],
+    "mistake": {
+      "san": "Qxd5",
+      "note": "Qxd5 allows Nxd5 Nxd5 c3. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 513
+    }
+  },
+  "black-vienna-main/bc4": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "e5",
+        "note": "Black moves the pawn from e7 to e5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "Bc4",
+        "note": "White develops the bishop from f1 to c4. From c4, it attacks the pawn on f7."
+      }
+    ],
+    "main": [
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bb3",
+        "note": "White moves the bishop from c4 to b3. From b3, it attacks the pawn on f7."
+      },
+      {
+        "san": "Bc5",
+        "note": "Black develops the bishop from f8 to c5. From c5, it attacks the pawn on f2."
+      },
+      {
+        "san": "d3",
+        "note": "White moves the pawn from d2 to d3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d6",
+        "note": "Black moves the pawn from d7 to d6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. From f3, it attacks the pawn on e5."
+      },
+      {
+        "san": "a5",
+        "note": "Black moves the pawn from a7 to a5. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "d3",
+        "note": "White moves the pawn from d2 to d3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Na5",
+        "note": "Black moves the knight from c6 to a5. From a5, it attacks the bishop on c4."
+      },
+      {
+        "san": "Bb3",
+        "note": "White moves the bishop from c4 to b3. From b3, it attacks the pawn on f7."
+      },
+      {
+        "san": "Nxb3",
+        "note": "Black captures the bishop on b3 with the knight from a5. Recount the material and check the possible recaptures. From b3, it attacks the rook on a1 and the bishop on c1."
+      }
+    ],
+    "mistake": {
+      "san": "Ba3",
+      "note": "Ba3 allows bxa3 Nxe4 Nxe4. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 412
+    }
+  },
+  "black-vienna-main/g3": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "e5",
+        "note": "Black moves the pawn from e7 to e5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "g3",
+        "note": "White moves the pawn from g2 to g3. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "exd5",
+        "note": "White captures the pawn on d5 with the pawn from e4. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nxd5",
+        "note": "Black captures the pawn on d5 with the knight from f6. Recount the material and check the possible recaptures. From d5, it attacks the knight on c3."
+      },
+      {
+        "san": "Bg2",
+        "note": "White develops the bishop from f1 to g2. From g2, it attacks the knight on d5."
+      },
+      {
+        "san": "Nxc3",
+        "note": "Black captures the knight on c3 with the knight from d5. Recount the material and check the possible recaptures. From c3, it attacks the pawn on a2 and the queen on d1."
+      },
+      {
+        "san": "bxc3",
+        "note": "White captures the knight on c3 with the pawn from b2. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bd6",
+        "note": "Black develops the bishop from f8 to d6. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "d3",
+        "note": "White moves the pawn from d2 to d3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bb4",
+        "note": "Black develops the bishop from f8 to b4. From b4, it attacks the knight on c3."
+      },
+      {
+        "san": "exd5",
+        "note": "White captures the pawn on d5 with the pawn from e4. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Qxd5",
+        "note": "Black captures the pawn on d5 with the queen from d8. Recount the material and check the possible recaptures. From d5, it attacks the pawn on d3 and the pawn on a2 and the rook on h1."
+      }
+    ],
+    "mistake": {
+      "san": "Ba3",
+      "note": "Ba3 allows bxa3 d5 d3. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 332
+    }
+  },
+  "black-vienna-main/d3": {
+    "opening": [
+      {
+        "san": "e4",
+        "note": "White moves the pawn from e2 to e4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "e5",
+        "note": "Black moves the pawn from e7 to e5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. From f6, it attacks the pawn on e4."
+      },
+      {
+        "san": "d3",
+        "note": "White moves the pawn from d2 to d3. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "Bb4",
+        "note": "Black develops the bishop from f8 to b4. From b4, it attacks the knight on c3."
+      },
+      {
+        "san": "a3",
+        "note": "White moves the pawn from a2 to a3. From a3, it attacks the bishop on b4."
+      },
+      {
+        "san": "Bxc3+",
+        "note": "Black captures the knight on c3 with the bishop from b4. Recount the material and check the possible recaptures. From c3, it attacks the pawn on b2 and the king on e1. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "bxc3",
+        "note": "White captures the bishop on c3 with the pawn from b2. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "exd5",
+        "note": "White captures the pawn on d5 with the pawn from e4. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Qxd5",
+        "note": "Black captures the pawn on d5 with the queen from d8. Recount the material and check the possible recaptures. From d5, it attacks the pawn on d3 and the pawn on g2."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Bd2",
+        "note": "White develops the bishop from c1 to d2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. From d5, it attacks the pawn on e4."
+      },
+      {
+        "san": "exd5",
+        "note": "White captures the pawn on d5 with the pawn from e4. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bxc3",
+        "note": "Black captures the knight on c3 with the bishop from b4. Recount the material and check the possible recaptures. From c3, it attacks the pawn on b2 and the bishop on d2."
+      }
+    ],
+    "mistake": {
+      "san": "Ba3",
+      "note": "Ba3 allows bxa3 d5 Be2. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 410
+    }
+  },
+  "black-queens-gambit-main/main": {
+    "opening": [
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c4",
+        "note": "White moves the pawn from c2 to c4. From c4, it attacks the pawn on d5."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "cxd5",
+        "note": "White captures the pawn on d5 with the pawn from c4. Recount the material and check the possible recaptures. From d5, it attacks the pawn on e6."
+      },
+      {
+        "san": "exd5",
+        "note": "Black captures the pawn on d5 with the pawn from e6. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bg5",
+        "note": "White develops the bishop from c1 to g5. From g5, it attacks the knight on f6."
+      },
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e3",
+        "note": "White moves the pawn from e2 to e3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the pawn on h7."
+      }
+    ],
+    "main": [
+      {
+        "san": "Re8",
+        "note": "Black moves the rook from f8 to e8. Check the file and possible entry squares before exchanging rooks."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Qc2",
+        "note": "White moves the queen from d1 to c2. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the bishop on g5."
+      },
+      {
+        "san": "Bf4",
+        "note": "White moves the bishop from g5 to f4. From f4, it attacks the knight on b8 and the pawn on h6."
+      },
+      {
+        "san": "Bd6",
+        "note": "Black moves the bishop from e7 to d6. From d6, it attacks the bishop on f4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "h3",
+        "note": "White moves the pawn from h2 to h3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the bishop on g5."
+      },
+      {
+        "san": "Bh4",
+        "note": "White moves the bishop from g5 to h4. From h4, it attacks the knight on f6."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. From c5, it attacks the pawn on d4."
+      }
+    ],
+    "mistake": {
+      "san": "Bf5",
+      "note": "Bf5 allows Bxf5 c5 Nge2. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 429
+    },
+    "journey": [
+      {
+        "id": "coordinate",
+        "bridge": [
+          {
+            "san": "O-O",
+            "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+          }
+        ],
+        "main": [
+          {
+            "san": "Bxf4",
+            "note": "Black captures the bishop on f4 with the bishop from d6. Recount the material and check the possible recaptures. From f4, it attacks the pawn on e3 and the pawn on h2."
+          },
+          {
+            "san": "exf4",
+            "note": "White captures the bishop on f4 with the pawn from e3. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Bxf4",
+            "note": "Black captures the bishop on f4 with the bishop from d6. Recount the material and check the possible recaptures. From f4, it attacks the pawn on e3 and the pawn on h2.",
+            "reply": "exf4",
+            "replyNote": "White captures the bishop on f4 with the pawn from e3. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "move": "Qe7",
+            "note": "Black moves the queen from d8 to e7. From e7, it attacks the pawn on e3.",
+            "reply": "Rfe1",
+            "replyNote": "White moves the rook from f1 to e1. Check the file and possible entry squares before exchanging rooks."
+          }
+        ]
+      },
+      {
+        "id": "counterplay",
+        "bridge": [
+          {
+            "san": "Nbd7",
+            "note": "Black develops the knight from b8 to d7. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Rfe1",
+            "note": "White moves the rook from f1 to e1. From e1, it attacks the rook on e8."
+          },
+          {
+            "san": "Nf8",
+            "note": "Black moves the knight from d7 to f8. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Qd2",
+            "note": "White moves the queen from c2 to d2. Check the opponent’s forcing moves before relying on the new queen placement."
+          },
+          {
+            "san": "Qb6",
+            "note": "Black moves the queen from d8 to b6. From b6, it attacks the pawn on d4 and the pawn on b2."
+          },
+          {
+            "san": "Bc2",
+            "note": "White moves the bishop from d3 to c2. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Bg4",
+            "note": "Black develops the bishop from c8 to g4. From g4, it attacks the knight on f3."
+          },
+          {
+            "san": "Na4",
+            "note": "White moves the knight from c3 to a4. From a4, it attacks the queen on b6."
+          }
+        ],
+        "main": [
+          {
+            "san": "Qb5",
+            "note": "Black moves the queen from b6 to b5. From b5, it attacks the knight on a4 and the pawn on b2."
+          },
+          {
+            "san": "b3",
+            "note": "White moves the pawn from b2 to b3. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Qb5",
+            "note": "Black moves the queen from b6 to b5. From b5, it attacks the knight on a4 and the pawn on b2.",
+            "reply": "b3",
+            "replyNote": "White moves the pawn from b2 to b3. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "move": "Qc7",
+            "note": "Black moves the queen from b6 to c7. From c7, it attacks the pawn on f4.",
+            "reply": "Ne5",
+            "replyNote": "White moves the knight from f3 to e5. From e5, it attacks the pawn on f7 and the pawn on c6 and the bishop on g4."
+          }
+        ]
+      },
+      {
+        "id": "structure",
+        "bridge": [
+          {
+            "san": "Ne4",
+            "note": "Black moves the knight from f6 to e4. From e4, it attacks the queen on d2 and the pawn on f2."
+          },
+          {
+            "san": "Bxe4",
+            "note": "White captures the knight on e4 with the bishop from c2. Recount the material and check the possible recaptures. From e4, it attacks the pawn on d5."
+          },
+          {
+            "san": "Rxe4",
+            "note": "Black captures the bishop on e4 with the rook from e8. Recount the material and check the possible recaptures. From e4, it attacks the pawn on d4 and the pawn on f4 and the rook on e1."
+          },
+          {
+            "san": "Ne5",
+            "note": "White moves the knight from f3 to e5. From e5, it attacks the pawn on f7 and the pawn on c6 and the bishop on g4."
+          },
+          {
+            "san": "Bc8",
+            "note": "Black moves the bishop from g4 to c8. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "h3",
+            "note": "White moves the pawn from h2 to h3. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "f6",
+            "note": "Black moves the pawn from f7 to f6. From f6, it attacks the knight on e5."
+          },
+          {
+            "san": "Nf3",
+            "note": "White moves the knight from e5 to f3. Compare its new squares with the opponent’s central pawn breaks."
+          }
+        ],
+        "main": [
+          {
+            "san": "b6",
+            "note": "Black moves the pawn from b7 to b6. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Nc3",
+            "note": "White moves the knight from a4 to c3. From c3, it attacks the queen on b5 and the pawn on d5 and the rook on e4."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "b6",
+            "note": "Black moves the pawn from b7 to b6. Check which squares this irreversible pawn move leaves behind.",
+            "reply": "Nc3",
+            "replyNote": "White moves the knight from a4 to c3. From c3, it attacks the queen on b5 and the pawn on d5 and the rook on e4."
+          },
+          {
+            "move": "a5",
+            "note": "Black moves the pawn from a7 to a5. Check which squares this irreversible pawn move leaves behind.",
+            "reply": "g4",
+            "replyNote": "White moves the pawn from g2 to g4. Check which squares this irreversible pawn move leaves behind."
+          }
+        ]
+      },
+      {
+        "id": "improve",
+        "bridge": [
+          {
+            "san": "Rxe1+",
+            "note": "Black captures the rook on e1 with the rook from e4. Recount the material and check the possible recaptures. From e1, it attacks the rook on a1 and the king on g1. The opponent must answer the check before continuing a positional plan."
+          },
+          {
+            "san": "Rxe1",
+            "note": "White captures the rook on e1 with the rook from a1. Recount the material and check the possible recaptures. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "san": "Qa6",
+            "note": "Black moves the queen from b5 to a6. From a6, it attacks the pawn on a2."
+          },
+          {
+            "san": "Nh4",
+            "note": "White moves the knight from f3 to h4. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Be6",
+            "note": "Black develops the bishop from c8 to e6. From e6, it attacks the pawn on h3."
+          },
+          {
+            "san": "g4",
+            "note": "White moves the pawn from g2 to g4. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Qa3",
+            "note": "Black moves the queen from a6 to a3. From a3, it attacks the pawn on b3 and the pawn on a2."
+          },
+          {
+            "san": "f5",
+            "note": "White moves the pawn from f4 to f5. From f5, it attacks the bishop on e6."
+          }
+        ],
+        "main": [
+          {
+            "san": "Bf7",
+            "note": "Black moves the bishop from e6 to f7. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Ng2",
+            "note": "White moves the knight from h4 to g2. Compare its new squares with the opponent’s central pawn breaks."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Bf7",
+            "note": "Black moves the bishop from e6 to f7. Compare its new squares with the opponent’s central pawn breaks.",
+            "reply": "Ng2",
+            "replyNote": "White moves the knight from h4 to g2. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "move": "Bd7",
+            "note": "Black moves the bishop from e6 to d7. From d7, it attacks the pawn on f5.",
+            "reply": "Re3",
+            "replyNote": "White moves the rook from e1 to e3. Check the file and possible entry squares before exchanging rooks."
+          }
+        ]
+      },
+      {
+        "id": "simplify",
+        "bridge": [
+          {
+            "san": "Qb4",
+            "note": "Black moves the queen from a3 to b4. From b4, it attacks the pawn on d4 and the pawn on b3 and the knight on c3."
+          },
+          {
+            "san": "Rd1",
+            "note": "White moves the rook from e1 to d1. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "san": "Nd7",
+            "note": "Black develops the knight from f8 to d7. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Ne2",
+            "note": "White moves the knight from c3 to e2. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "a5",
+            "note": "Black moves the pawn from a7 to a5. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Ngf4",
+            "note": "White moves the knight from g2 to f4. From f4, it attacks the pawn on d5."
+          },
+          {
+            "san": "Re8",
+            "note": "Black moves the rook from a8 to e8. From e8, it attacks the knight on e2."
+          },
+          {
+            "san": "Kg2",
+            "note": "White moves the king from g1 to g2. King activity must be balanced against checks and exposed squares."
+          },
+          {
+            "san": "Nb8",
+            "note": "Black moves the knight from d7 to b8. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "f3",
+            "note": "White moves the pawn from f2 to f3. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "main": [
+          {
+            "san": "Na6",
+            "note": "Black develops the knight from b8 to a6. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "h4",
+            "note": "White moves the pawn from h3 to h4. Check which squares this irreversible pawn move leaves behind."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Na6",
+            "note": "Black develops the knight from b8 to a6. Compare its new squares with the opponent’s central pawn breaks.",
+            "reply": "h4",
+            "replyNote": "White moves the pawn from h3 to h4. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "move": "Qa3",
+            "note": "Black moves the queen from b4 to a3. From a3, it attacks the pawn on b3 and the pawn on a2.",
+            "reply": "Rc1",
+            "replyNote": "White moves the rook from d1 to c1. From c1, it attacks the pawn on c6."
+          }
+        ]
+      },
+      {
+        "id": "ending-activity",
+        "bridge": [
+          {
+            "san": "Rd8",
+            "note": "Black moves the rook from e8 to d8. Check the file and possible entry squares before exchanging rooks."
+          },
+          {
+            "san": "Ng6",
+            "note": "White moves the knight from f4 to g6. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "c5",
+            "note": "Black moves the pawn from c6 to c5. From c5, it attacks the pawn on d4."
+          },
+          {
+            "san": "dxc5",
+            "note": "White captures the pawn on c5 with the pawn from d4. Recount the material and check the possible recaptures. From c5, it attacks the pawn on b6."
+          },
+          {
+            "san": "Qxd2",
+            "note": "Black captures the queen on d2 with the queen from b4. Recount the material and check the possible recaptures. From d2, it attacks the pawn on a2 and the knight on e2 and the rook on d1."
+          },
+          {
+            "san": "Rxd2",
+            "note": "White captures the queen on d2 with the rook from d1. Recount the material and check the possible recaptures. From d2, it attacks the pawn on d5."
+          },
+          {
+            "san": "bxc5",
+            "note": "Black captures the pawn on c5 with the pawn from b6. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Ne7+",
+            "note": "White moves the knight from g6 to e7. From e7, it attacks the king on g8 and the pawn on d5. The opponent must answer the check before continuing a positional plan."
+          },
+          {
+            "san": "Kf8",
+            "note": "Black moves the king from g8 to f8. From f8, it attacks the knight on e7."
+          },
+          {
+            "san": "Nc6",
+            "note": "White moves the knight from e7 to c6. From c6, it attacks the rook on d8 and the pawn on a5."
+          }
+        ],
+        "main": [
+          {
+            "san": "Rc8",
+            "note": "Black moves the rook from d8 to c8. From c8, it attacks the knight on c6."
+          },
+          {
+            "san": "Nxa5",
+            "note": "White captures the pawn on a5 with the knight from c6. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Rc8",
+            "note": "Black moves the rook from d8 to c8. From c8, it attacks the knight on c6.",
+            "reply": "Nxa5",
+            "replyNote": "White captures the pawn on a5 with the knight from c6. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "move": "Rd7",
+            "note": "Black moves the rook from d8 to d7. Check the file and possible entry squares before exchanging rooks.",
+            "reply": "Nxa5",
+            "replyNote": "White captures the pawn on a5 with the knight from c6. Recount the material and check the possible recaptures. Compare its new squares with the opponent’s central pawn breaks."
+          }
+        ]
+      }
+    ]
+  },
+  "black-queens-gambit-main/bg5": {
+    "opening": [
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c4",
+        "note": "White moves the pawn from c2 to c4. From c4, it attacks the pawn on d5."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bg5",
+        "note": "White develops the bishop from c1 to g5. From g5, it attacks the knight on f6."
+      },
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e3",
+        "note": "White moves the pawn from e2 to e3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "main": [
+      {
+        "san": "h6",
+        "note": "Black moves the pawn from h7 to h6. From h6, it attacks the bishop on g5."
+      },
+      {
+        "san": "Bh4",
+        "note": "White moves the bishop from g5 to h4. From h4, it attacks the knight on f6."
+      },
+      {
+        "san": "b6",
+        "note": "Black moves the pawn from b7 to b6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Rc1",
+        "note": "White moves the rook from a1 to c1. Check the file and possible entry squares before exchanging rooks."
+      },
+      {
+        "san": "Bb7",
+        "note": "Black develops the bishop from c8 to b7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "cxd5",
+        "note": "White captures the pawn on d5 with the pawn from c4. Recount the material and check the possible recaptures. From d5, it attacks the pawn on e6."
+      },
+      {
+        "san": "Nxd5",
+        "note": "Black captures the pawn on d5 with the knight from f6. Recount the material and check the possible recaptures. From d5, it attacks the knight on c3 and the pawn on e3."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Bxf6",
+        "note": "White captures the knight on f6 with the bishop from g5. Recount the material and check the possible recaptures. From f6, it attacks the bishop on e7 and the pawn on g7."
+      },
+      {
+        "san": "Bxf6",
+        "note": "Black captures the bishop on f6 with the bishop from e7. Recount the material and check the possible recaptures. From f6, it attacks the pawn on d4."
+      },
+      {
+        "san": "Rc1",
+        "note": "White moves the rook from a1 to c1. Check the file and possible entry squares before exchanging rooks."
+      },
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "mistake": {
+      "san": "Bc5",
+      "note": "Bc5 allows dxc5 h6 Bh4. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 432
+    }
+  },
+  "black-queens-gambit-main/nge2": {
+    "opening": [
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c4",
+        "note": "White moves the pawn from c2 to c4. From c4, it attacks the pawn on d5."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "cxd5",
+        "note": "White captures the pawn on d5 with the pawn from c4. Recount the material and check the possible recaptures. From d5, it attacks the pawn on e6."
+      },
+      {
+        "san": "exd5",
+        "note": "Black captures the pawn on d5 with the pawn from e6. Recount the material and check the possible recaptures. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bg5",
+        "note": "White develops the bishop from c1 to g5. From g5, it attacks the knight on f6."
+      },
+      {
+        "san": "Be7",
+        "note": "Black develops the bishop from f8 to e7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e3",
+        "note": "White moves the pawn from e2 to e3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the pawn on h7."
+      },
+      {
+        "san": "Nbd7",
+        "note": "Black develops the knight from b8 to d7. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nge2",
+        "note": "White develops the knight from g1 to e2. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "main": [
+      {
+        "san": "c6",
+        "note": "Black moves the pawn from c7 to c6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "h3",
+        "note": "White moves the pawn from h2 to h3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Re8",
+        "note": "Black moves the rook from f8 to e8. Check the file and possible entry squares before exchanging rooks."
+      },
+      {
+        "san": "Qc2",
+        "note": "White moves the queen from d1 to c2. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "g6",
+        "note": "Black moves the pawn from g7 to g6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bf4",
+        "note": "White moves the bishop from g5 to f4. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "b5",
+        "note": "Black moves the pawn from b7 to b5. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Qc2",
+        "note": "White moves the queen from d1 to c2. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "Re8",
+        "note": "Black moves the rook from f8 to e8. Check the file and possible entry squares before exchanging rooks."
+      },
+      {
+        "san": "O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "Nf8",
+        "note": "Black moves the knight from d7 to f8. Compare its new squares with the opponent’s central pawn breaks."
+      }
+    ],
+    "mistake": {
+      "san": "Ne5",
+      "note": "Ne5 allows dxe5 Nd7 Bf4. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 419
+    }
+  },
+  "black-queens-gambit-main/bf4": {
+    "opening": [
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c4",
+        "note": "White moves the pawn from c2 to c4. From c4, it attacks the pawn on d5."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bf4",
+        "note": "White develops the bishop from c1 to f4. From f4, it attacks the pawn on c7."
+      }
+    ],
+    "main": [
+      {
+        "san": "dxc4",
+        "note": "Black captures the pawn on c4 with the pawn from d5. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "e3",
+        "note": "White moves the pawn from e2 to e3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "b5",
+        "note": "Black moves the pawn from b7 to b5. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nxb5",
+        "note": "White captures the pawn on b5 with the knight from c3. Recount the material and check the possible recaptures. From b5, it attacks the pawn on a7 and the pawn on c7."
+      },
+      {
+        "san": "Bb4+",
+        "note": "Black develops the bishop from f8 to b4. From b4, it attacks the king on e1. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Nc3",
+        "note": "White moves the knight from b5 to c3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nd5",
+        "note": "Black moves the knight from f6 to d5. From d5, it attacks the bishop on f4 and the knight on c3 and the pawn on e3."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nd5",
+        "note": "Black moves the knight from f6 to d5. From d5, it attacks the bishop on f4 and the knight on c3."
+      },
+      {
+        "san": "Bg5",
+        "note": "White moves the bishop from f4 to g5. From g5, it attacks the queen on d8."
+      },
+      {
+        "san": "f6",
+        "note": "Black moves the pawn from f7 to f6. From f6, it attacks the bishop on g5."
+      }
+    ],
+    "mistake": {
+      "san": "Qd6",
+      "note": "Qd6 allows Bxd6 cxd6 cxd5. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 540
+    }
+  },
+  "black-queens-gambit-main/catalan": {
+    "opening": [
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "c4",
+        "note": "White moves the pawn from c2 to c4. From c4, it attacks the pawn on d5."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "g3",
+        "note": "White moves the pawn from g2 to g3. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "dxc4",
+        "note": "Black captures the pawn on c4 with the pawn from d5. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Qa4+",
+        "note": "White moves the queen from d1 to a4. From a4, it attacks the king on e8 and the pawn on a7 and the pawn on c4. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Bd7",
+        "note": "Black develops the bishop from c8 to d7. From d7, it attacks the queen on a4."
+      },
+      {
+        "san": "Qxc4",
+        "note": "White captures the pawn on c4 with the queen from a4. Recount the material and check the possible recaptures. From c4, it attacks the pawn on c7 and the pawn on e6."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. From c5, it attacks the pawn on d4."
+      },
+      {
+        "san": "dxc5",
+        "note": "White captures the pawn on c5 with the pawn from d4. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Qc7",
+        "note": "Black moves the queen from d8 to c7. From c7, it attacks the pawn on c5 and the pawn on g3."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Bg2",
+        "note": "White develops the bishop from f1 to g2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bb4+",
+        "note": "Black develops the bishop from f8 to b4. From b4, it attacks the king on e1. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Bd2",
+        "note": "White develops the bishop from c1 to d2. From d2, it attacks the bishop on b4."
+      },
+      {
+        "san": "a5",
+        "note": "Black moves the pawn from a7 to a5. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "mistake": {
+      "san": "Bc5",
+      "note": "Bc5 allows dxc5 Nc6 Bg2. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 366
+    }
+  },
+  "black-london-main/main": {
+    "opening": [
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bf4",
+        "note": "White develops the bishop from c1 to f4. From f4, it attacks the pawn on c7."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e3",
+        "note": "White moves the pawn from e2 to e3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. From c5, it attacks the pawn on d4."
+      },
+      {
+        "san": "c3",
+        "note": "White moves the pawn from c2 to c3. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "main": [
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the pawn on d4."
+      },
+      {
+        "san": "Nbd2",
+        "note": "White develops the knight from b1 to d2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bd6",
+        "note": "Black develops the bishop from f8 to d6. From d6, it attacks the bishop on f4."
+      },
+      {
+        "san": "Bg3",
+        "note": "White moves the bishop from f4 to g3. From g3, it attacks the bishop on d6."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the pawn on h7."
+      },
+      {
+        "san": "b6",
+        "note": "Black moves the pawn from b7 to b6. Check which squares this irreversible pawn move leaves behind."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Be2",
+        "note": "White develops the bishop from f1 to e2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Nh5",
+        "note": "Black moves the knight from f6 to h5. From h5, it attacks the bishop on f4."
+      },
+      {
+        "san": "Be5",
+        "note": "White moves the bishop from f4 to e5. From e5, it attacks the pawn on g7."
+      },
+      {
+        "san": "f6",
+        "note": "Black moves the pawn from f7 to f6. From f6, it attacks the bishop on e5."
+      }
+    ],
+    "mistake": {
+      "san": "Qd6",
+      "note": "Qd6 allows Bxd6 Bxd6 Be2. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 548
+    },
+    "journey": [
+      {
+        "id": "coordinate",
+        "bridge": [
+          {
+            "san": "Ne5",
+            "note": "White moves the knight from f3 to e5. From e5, it attacks the pawn on f7 and the knight on c6."
+          }
+        ],
+        "main": [
+          {
+            "san": "Bxe5",
+            "note": "Black captures the knight on e5 with the bishop from d6. Recount the material and check the possible recaptures. From e5, it attacks the pawn on d4 and the bishop on g3."
+          },
+          {
+            "san": "dxe5",
+            "note": "White captures the bishop on e5 with the pawn from d4. Recount the material and check the possible recaptures. From e5, it attacks the knight on f6."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Bxe5",
+            "note": "Black captures the knight on e5 with the bishop from d6. Recount the material and check the possible recaptures. From e5, it attacks the pawn on d4 and the bishop on g3.",
+            "reply": "dxe5",
+            "replyNote": "White captures the bishop on e5 with the pawn from d4. Recount the material and check the possible recaptures. From e5, it attacks the knight on f6."
+          },
+          {
+            "move": "Qc7",
+            "note": "Black moves the queen from d8 to c7. Check the opponent’s forcing moves before relying on the new queen placement.",
+            "reply": "Nxc6",
+            "replyNote": "White captures the knight on c6 with the knight from e5. Recount the material and check the possible recaptures. From c6, it attacks the pawn on a7."
+          }
+        ]
+      },
+      {
+        "id": "counterplay",
+        "bridge": [
+          {
+            "san": "Nd7",
+            "note": "Black moves the knight from f6 to d7. From d7, it attacks the pawn on e5."
+          },
+          {
+            "san": "f4",
+            "note": "White moves the pawn from f2 to f4. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "Bb7",
+            "note": "Black develops the bishop from c8 to b7. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "Qg4",
+            "note": "White moves the queen from d1 to g4. From g4, it attacks the pawn on g7 and the pawn on e6."
+          }
+        ],
+        "main": [
+          {
+            "san": "f5",
+            "note": "Black moves the pawn from f7 to f5. From f5, it attacks the queen on g4."
+          },
+          {
+            "san": "exf6",
+            "note": "White captures en passant from e5 to f6, removing the pawn beside e5. The two-square pawn advance made this reply possible for one move. From f6, it attacks the pawn on g7."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "f5",
+            "note": "Black moves the pawn from f7 to f5. From f5, it attacks the queen on g4.",
+            "reply": "exf6",
+            "replyNote": "White captures en passant from e5 to f6, removing the pawn beside e5. The two-square pawn advance made this reply possible for one move. From f6, it attacks the pawn on g7."
+          },
+          {
+            "move": "Qc8",
+            "note": "Black moves the queen from d8 to c8. Check the opponent’s forcing moves before relying on the new queen placement.",
+            "reply": "Qh3",
+            "replyNote": "White moves the queen from g4 to h3. From h3, it attacks the pawn on h7 and the pawn on e6."
+          }
+        ]
+      },
+      {
+        "id": "structure",
+        "bridge": [
+          {
+            "san": "Nxf6",
+            "note": "Black captures the pawn on f6 with the knight from d7. Recount the material and check the possible recaptures. From f6, it attacks the queen on g4."
+          },
+          {
+            "san": "Qxe6+",
+            "note": "White captures the pawn on e6 with the queen from g4. Recount the material and check the possible recaptures. From e6, it attacks the king on g8 and the knight on c6 and the knight on f6 and the pawn on d5. The opponent must answer the check before continuing a positional plan."
+          },
+          {
+            "san": "Kh8",
+            "note": "Black moves the king from g8 to h8. King activity must be balanced against checks and exposed squares."
+          },
+          {
+            "san": "Bh4",
+            "note": "White moves the bishop from g3 to h4. From h4, it attacks the knight on f6."
+          }
+        ],
+        "main": [
+          {
+            "san": "Qe8",
+            "note": "Black moves the queen from d8 to e8. From e8, it attacks the queen on e6."
+          },
+          {
+            "san": "Qxe8",
+            "note": "White captures the queen on e8 with the queen from e6. Recount the material and check the possible recaptures. From e8, it attacks the rook on a8 and the rook on f8 and the knight on c6."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Qe8",
+            "note": "Black moves the queen from d8 to e8. From e8, it attacks the queen on e6.",
+            "reply": "Qxe8",
+            "replyNote": "White captures the queen on e8 with the queen from e6. Recount the material and check the possible recaptures. From e8, it attacks the rook on a8 and the rook on f8 and the knight on c6."
+          },
+          {
+            "move": "d4",
+            "note": "Black moves the pawn from d5 to d4. From d4, it attacks the pawn on c3 and the pawn on e3.",
+            "reply": "O-O-O",
+            "replyNote": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+          }
+        ]
+      },
+      {
+        "id": "improve",
+        "bridge": [
+          {
+            "san": "Raxe8",
+            "note": "Black captures the queen on e8 with the rook from a8. Recount the material and check the possible recaptures. From e8, it attacks the pawn on e3."
+          },
+          {
+            "san": "O-O",
+            "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+          },
+          {
+            "san": "Rxe3",
+            "note": "Black captures the pawn on e3 with the rook from e8. Recount the material and check the possible recaptures. From e3, it attacks the bishop on d3."
+          },
+          {
+            "san": "Bc2",
+            "note": "White moves the bishop from d3 to c2. From c2, it attacks the pawn on h7."
+          }
+        ],
+        "main": [
+          {
+            "san": "Nh5",
+            "note": "Black moves the knight from f6 to h5. From h5, it attacks the pawn on f4."
+          },
+          {
+            "san": "Bd1",
+            "note": "White moves the bishop from c2 to d1. From d1, it attacks the knight on h5."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Nh5",
+            "note": "Black moves the knight from f6 to h5. From h5, it attacks the pawn on f4.",
+            "reply": "Bd1",
+            "replyNote": "White moves the bishop from c2 to d1. From d1, it attacks the knight on h5."
+          },
+          {
+            "move": "Re2",
+            "note": "Black moves the rook from e3 to e2. From e2, it attacks the knight on d2 and the pawn on g2.",
+            "reply": "Rad1",
+            "replyNote": "White moves the rook from a1 to d1. Check the file and possible entry squares before exchanging rooks."
+          }
+        ]
+      },
+      {
+        "id": "simplify",
+        "bridge": [
+          {
+            "san": "g6",
+            "note": "Black moves the pawn from g7 to g6. Check which squares this irreversible pawn move leaves behind."
+          },
+          {
+            "san": "f5",
+            "note": "White moves the pawn from f4 to f5. From f5, it attacks the pawn on g6."
+          },
+          {
+            "san": "Ba6",
+            "note": "Black moves the bishop from b7 to a6. From a6, it attacks the rook on f1."
+          },
+          {
+            "san": "Rf3",
+            "note": "White moves the rook from f1 to f3. From f3, it attacks the rook on e3."
+          },
+          {
+            "san": "Rxf3",
+            "note": "Black captures the rook on f3 with the rook from e3. Recount the material and check the possible recaptures. From f3, it attacks the pawn on f5 and the pawn on c3."
+          },
+          {
+            "san": "Bxf3",
+            "note": "White captures the rook on f3 with the bishop from d1. Recount the material and check the possible recaptures. From f3, it attacks the pawn on d5 and the knight on h5."
+          }
+        ],
+        "main": [
+          {
+            "san": "Nf4",
+            "note": "Black moves the knight from h5 to f4. From f4, it attacks the pawn on g2."
+          },
+          {
+            "san": "fxg6",
+            "note": "White captures the pawn on g6 with the pawn from f5. Recount the material and check the possible recaptures. From g6, it attacks the pawn on h7."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Nf4",
+            "note": "Black moves the knight from h5 to f4. From f4, it attacks the pawn on g2.",
+            "reply": "fxg6",
+            "replyNote": "White captures the pawn on g6 with the pawn from f5. Recount the material and check the possible recaptures. From g6, it attacks the pawn on h7."
+          },
+          {
+            "move": "Ne5",
+            "note": "Black moves the knight from c6 to e5. From e5, it attacks the bishop on f3.",
+            "reply": "Bxh5",
+            "replyNote": "White captures the knight on h5 with the bishop from f3. Recount the material and check the possible recaptures. From h5, it attacks the pawn on g6."
+          }
+        ]
+      },
+      {
+        "id": "ending-activity",
+        "bridge": [
+          {
+            "san": "Nxg6",
+            "note": "Black captures the pawn on g6 with the knight from f4. Recount the material and check the possible recaptures. From g6, it attacks the bishop on h4."
+          },
+          {
+            "san": "Bxd5",
+            "note": "White captures the pawn on d5 with the bishop from f3. Recount the material and check the possible recaptures. From d5, it attacks the knight on c6."
+          },
+          {
+            "san": "Nd4",
+            "note": "Black moves the knight from c6 to d4. Compare its new squares with the opponent’s central pawn breaks."
+          },
+          {
+            "san": "cxd4",
+            "note": "White captures the knight on d4 with the pawn from c3. Recount the material and check the possible recaptures. From d4, it attacks the pawn on c5."
+          },
+          {
+            "san": "Nxh4",
+            "note": "Black captures the bishop on h4 with the knight from g6. Recount the material and check the possible recaptures. From h4, it attacks the pawn on g2."
+          },
+          {
+            "san": "dxc5",
+            "note": "White captures the pawn on c5 with the pawn from d4. Recount the material and check the possible recaptures. From c5, it attacks the pawn on b6."
+          }
+        ],
+        "main": [
+          {
+            "san": "Rd8",
+            "note": "Black moves the rook from f8 to d8. From d8, it attacks the bishop on d5."
+          },
+          {
+            "san": "Nf3",
+            "note": "White moves the knight from d2 to f3. From f3, it attacks the knight on h4."
+          }
+        ],
+        "candidates": [
+          {
+            "move": "Rd8",
+            "note": "Black moves the rook from f8 to d8. From d8, it attacks the bishop on d5.",
+            "reply": "Nf3",
+            "replyNote": "White moves the knight from d2 to f3. From f3, it attacks the knight on h4."
+          },
+          {
+            "move": "Rf5",
+            "note": "Black moves the rook from f8 to f5. From f5, it attacks the bishop on d5.",
+            "reply": "Be4",
+            "replyNote": "White moves the bishop from d5 to e4. From e4, it attacks the rook on f5."
+          }
+        ]
+      }
+    ]
+  },
+  "black-london-main/ne5": {
+    "opening": [
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bf4",
+        "note": "White develops the bishop from c1 to f4. From f4, it attacks the pawn on c7."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e3",
+        "note": "White moves the pawn from e2 to e3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. From c5, it attacks the pawn on d4."
+      },
+      {
+        "san": "c3",
+        "note": "White moves the pawn from c2 to c3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the pawn on d4."
+      },
+      {
+        "san": "Nbd2",
+        "note": "White develops the knight from b1 to d2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bd6",
+        "note": "Black develops the bishop from f8 to d6. From d6, it attacks the bishop on f4."
+      },
+      {
+        "san": "Ne5",
+        "note": "White moves the knight from f3 to e5. From e5, it attacks the pawn on f7 and the knight on c6."
+      }
+    ],
+    "main": [
+      {
+        "san": "Qc7",
+        "note": "Black moves the queen from d8 to c7. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "Nxc6",
+        "note": "White captures the knight on c6 with the knight from e5. Recount the material and check the possible recaptures. From c6, it attacks the pawn on a7."
+      },
+      {
+        "san": "Bxf4",
+        "note": "Black captures the bishop on f4 with the bishop from d6. Recount the material and check the possible recaptures. From f4, it attacks the pawn on e3 and the pawn on h2."
+      },
+      {
+        "san": "Nxa7",
+        "note": "White captures the pawn on a7 with the knight from c6. Recount the material and check the possible recaptures. From a7, it attacks the bishop on c8."
+      },
+      {
+        "san": "Rxa7",
+        "note": "Black captures the knight on a7 with the rook from a8. Recount the material and check the possible recaptures. From a7, it attacks the pawn on a2."
+      },
+      {
+        "san": "exf4",
+        "note": "White captures the bishop on f4 with the pawn from e3. Recount the material and check the possible recaptures. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Qxf4",
+        "note": "Black captures the pawn on f4 with the queen from c7. Recount the material and check the possible recaptures. From f4, it attacks the pawn on d4 and the knight on d2 and the pawn on f2 and the pawn on h2."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Ndf3",
+        "note": "White moves the knight from d2 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c4",
+        "note": "Black moves the pawn from c5 to c4. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "g3",
+        "note": "White moves the pawn from g2 to g3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      }
+    ],
+    "mistake": {
+      "san": "Qd7",
+      "note": "Qd7 allows Nxd7 Bxd7 Bxd6. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 643
+    }
+  },
+  "black-london-main/exchange": {
+    "opening": [
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Bf4",
+        "note": "White develops the bishop from c1 to f4. From f4, it attacks the pawn on c7."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "e3",
+        "note": "White moves the pawn from e2 to e3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nf3",
+        "note": "White develops the knight from g1 to f3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. From c5, it attacks the pawn on d4."
+      },
+      {
+        "san": "c3",
+        "note": "White moves the pawn from c2 to c3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Bd6",
+        "note": "Black develops the bishop from f8 to d6. From d6, it attacks the bishop on f4."
+      },
+      {
+        "san": "Bxd6",
+        "note": "White captures the bishop on d6 with the bishop from f4. Recount the material and check the possible recaptures. From d6, it attacks the knight on b8 and the pawn on c5."
+      }
+    ],
+    "main": [
+      {
+        "san": "Qxd6",
+        "note": "Black captures the bishop on d6 with the queen from d8. Recount the material and check the possible recaptures. From d6, it attacks the pawn on h2."
+      },
+      {
+        "san": "Bd3",
+        "note": "White develops the bishop from f1 to d3. From d3, it attacks the pawn on h7."
+      },
+      {
+        "san": "Nc6",
+        "note": "Black develops the knight from b8 to c6. From c6, it attacks the pawn on d4."
+      },
+      {
+        "san": "Nbd2",
+        "note": "White develops the knight from b1 to d2. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "O-O",
+        "note": "Black castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "O-O",
+        "note": "White castles, moving the king away from the central files and bringing a rook toward the centre."
+      },
+      {
+        "san": "e5",
+        "note": "Black moves the pawn from e6 to e5. From e5, it attacks the pawn on d4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Ne5",
+        "note": "White moves the knight from f3 to e5. From e5, it attacks the pawn on f7."
+      },
+      {
+        "san": "Qb6",
+        "note": "Black moves the queen from d6 to b6. From b6, it attacks the pawn on b2."
+      },
+      {
+        "san": "Qb3",
+        "note": "White moves the queen from d1 to b3. From b3, it attacks the queen on b6 and the pawn on d5."
+      },
+      {
+        "san": "c4",
+        "note": "Black moves the pawn from c5 to c4. From c4, it attacks the queen on b3."
+      }
+    ],
+    "mistake": {
+      "san": "Qe7",
+      "note": "Qe7 allows Bxe7 Kxe7 Na3. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 684
+    }
+  },
+  "black-london-main/jobava": {
+    "opening": [
+      {
+        "san": "d4",
+        "note": "White moves the pawn from d2 to d4. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "d5",
+        "note": "Black moves the pawn from d7 to d5. The pawn claims central space; check how the opponent can challenge its support."
+      },
+      {
+        "san": "Nc3",
+        "note": "White develops the knight from b1 to c3. From c3, it attacks the pawn on d5."
+      },
+      {
+        "san": "Nf6",
+        "note": "Black develops the knight from g8 to f6. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bf4",
+        "note": "White develops the bishop from c1 to f4. From f4, it attacks the pawn on c7."
+      },
+      {
+        "san": "e6",
+        "note": "Black moves the pawn from e7 to e6. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "Nb5",
+        "note": "White moves the knight from c3 to b5. From b5, it attacks the pawn on a7 and the pawn on c7."
+      }
+    ],
+    "main": [
+      {
+        "san": "Bb4+",
+        "note": "Black develops the bishop from f8 to b4. From b4, it attacks the king on e1. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "c3",
+        "note": "White moves the pawn from c2 to c3. From c3, it attacks the bishop on b4."
+      },
+      {
+        "san": "Ba5",
+        "note": "Black moves the bishop from b4 to a5. From a5, it attacks the pawn on c3."
+      },
+      {
+        "san": "e3",
+        "note": "White moves the pawn from e2 to e3. Check which squares this irreversible pawn move leaves behind."
+      },
+      {
+        "san": "a6",
+        "note": "Black moves the pawn from a7 to a6. From a6, it attacks the knight on b5."
+      },
+      {
+        "san": "Na3",
+        "note": "White moves the knight from b5 to a3. Compare its new squares with the opponent’s central pawn breaks."
+      },
+      {
+        "san": "Bb6",
+        "note": "Black moves the bishop from a5 to b6. From b6, it attacks the pawn on d4."
+      }
+    ],
+    "transfer": [
+      {
+        "san": "Bd2",
+        "note": "White moves the bishop from f4 to d2. From d2, it attacks the bishop on b4."
+      },
+      {
+        "san": "Bxd2+",
+        "note": "Black captures the bishop on d2 with the bishop from b4. Recount the material and check the possible recaptures. From d2, it attacks the king on e1. The opponent must answer the check before continuing a positional plan."
+      },
+      {
+        "san": "Qxd2",
+        "note": "White captures the bishop on d2 with the queen from d1. Recount the material and check the possible recaptures. Check the opponent’s forcing moves before relying on the new queen placement."
+      },
+      {
+        "san": "c5",
+        "note": "Black moves the pawn from c7 to c5. From c5, it attacks the pawn on d4."
+      }
+    ],
+    "mistake": {
+      "san": "Qd6",
+      "note": "Qd6 allows Nxc7+ Qxc7 Bxc7. This concrete response is stronger for the opponent than the lesson move; check the threats before continuing the plan.",
+      "lossCp": 491
+    }
+  }
+}

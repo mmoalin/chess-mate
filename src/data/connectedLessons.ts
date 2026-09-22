@@ -4,6 +4,7 @@ import { createCaroContinuation } from './caroContinuation';
 import { whiteCourseLessons } from './whiteOpeningCourses';
 import { alienCourseLessons } from './alienOpeningCourses';
 import { createAlienContinuation } from './alienContinuation';
+import { blackCourseLessons, blackCourses } from './blackOpeningCourses';
 import { createQueensGambitContinuation, createViennaContinuation } from './whiteContinuations';
 import type { ConnectedLesson, LessonDecision, LessonQuestion } from '../features/connected/types';
 
@@ -125,3 +126,8 @@ queenMain.continuation = createQueensGambitContinuation(queenMain);
 export const preAlienStarterConnectedLessons = structuredClone(starterConnectedLessons);
 starterConnectedLessons.push(...alienCourseLessons);
 alienCourseLessons[0].continuation = createAlienContinuation(alienCourseLessons[0]);
+starterConnectedLessons.push(...blackCourseLessons);
+const caroCourse = blackCourses.find(course => course.mainLessonKey === 'lesson:caro-active')!;
+Object.assign(starterConnectedLessons.find(lesson => lesson.key === caroCourse.mainLessonKey)!, {
+  courseOrder: 0, course: { mainLessonKey: caroCourse.mainLessonKey, role: caroCourse.role, context: caroCourse.context, scope: caroCourse.scope }
+});

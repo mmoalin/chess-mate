@@ -1,9 +1,11 @@
+import preAlienEmbeddedRepertoireGraphFixture from '../../data/fixtures/pre-alien-release.json';
+const preAlienEmbeddedRepertoireGraph = preAlienEmbeddedRepertoireGraphFixture as unknown as import('../../domain/repertoire/types').RepertoireGraph;
 import { describe, expect, it } from 'vitest';
 import { Chess } from 'chess.js';
 import { alienCourseLessons, alienCourseDrills } from '../../data/alienOpeningCourses';
 import { legacyStarterRepertoires, starterRepertoires } from '../../data/repertoires';
 import { starterConnectedLessons } from '../../data/connectedLessons';
-import { embeddedRepertoireGraph, preAlienEmbeddedRepertoireGraph, withStarterConcepts, GuidedContentRepository } from '../../services/guidedContentRepository';
+import { embeddedRepertoireGraph, withStarterConcepts, GuidedContentRepository } from '../../services/guidedContentRepository';
 import { GuidedBrowserStore } from '../../services/guidedStorage';
 import { GuidedLearnerRepository } from '../../services/guidedLearnerRepository';
 import { validateRepertoireGraph } from '../../domain/repertoire/validation';
@@ -125,7 +127,7 @@ describe('Alien release compatibility', () => {
     expect(graph.release).toEqual(before.release);
     expect(orderedLessons(graph, [family])).toHaveLength(5);
     expect(validateRepertoireGraph(graph)).toEqual([]);
-    for (const [key, lesson] of Object.entries(before.connectedLessons!)) expect(graph.connectedLessons![key]).toEqual(lesson);
+    for (const [key, lesson] of Object.entries(before.connectedLessons!)) expect(graph.connectedLessons![key]).toMatchObject(lesson);
     expect(withStarterConcepts(graph)).toEqual(graph);
   });
 

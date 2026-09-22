@@ -133,7 +133,7 @@ export function outgoingEdges(graph: RepertoireGraph, positionKey: string, openi
 }
 
 function createOpeningFamily(line: RepertoireLine, rootPositionKey: string): OpeningFamily {
-  const context = line.side === 'white' ? 'white' : line.movesSan[0] === 'd4' ? 'black-vs-d4' : 'black-vs-e4';
+  const context = line.side === 'white' ? 'white' : line.movesSan[0] === 'd4' ? 'black-vs-d4' : line.movesSan[0] === 'e4' ? 'black-vs-e4' : 'black-other';
   return {
     key: line.id,
     name: line.name,

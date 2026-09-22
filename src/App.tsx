@@ -13,7 +13,7 @@ import type { BoardOrientation, GameMode } from './core/types';
 import { starterRepertoires } from './data/repertoires';
 import { buildDailySession, currentDailyTarget, finishDailyActivity } from './domain/repertoire/dailySessions';
 import { matchPgnToRepertoire } from './domain/repertoire/pgn';
-import { lessonForPosition } from './features/connected/course';
+import { courseCatalog, lessonForPosition } from './features/connected/course';
 import { buildPositionKey, positionKeyToFen } from './domain/repertoire/positionKey';
 import { classifyMove, createInitialMastery, scheduleReview } from './domain/repertoire/training';
 import type { DailyDuration, DailySession, LearnerProfile, LearningAttempt, MasteryState, RepertoireBacklogItem, RepertoireGraph, RepertoireSelection } from './domain/repertoire/types';
@@ -1123,7 +1123,7 @@ export default function App() {
     }
     const matchedFamilies = guidedDetection?.ambiguousOpeningFamilyKeys ?? [];
     const matchedOpening = guidedDetection?.matchedOpeningFamilyKey ? repertoireGraph.openings[guidedDetection.matchedOpeningFamilyKey] : undefined;
-    setReviewDetection(guidedDetection && guidedDetection.matchedPlyCount ? { lineName: matchedFamilies.length > 1 ? `Ambiguous match: ${matchedFamilies.map((key) => repertoireGraph.openings[key]?.name).filter(Boolean).join(' or ')}` : matchedOpening?.name ?? 'Selected repertoire', matchedPlyCount: guidedDetection.matchedPlyCount, leftBookAtPly: guidedDetection.divergencePly, coverageEnded: guidedDetection.coverageEnded, lessonKey: lessonForPosition(repertoireGraph, { familyKey: matchedOpening?.key, pgn: pgnInput })?.key } : null);
+    setReviewDetection(guidedDetection && guidedDetection.matchedPlyCount ? { lineName: matchedFamilies.length > 1 ? `Ambiguous match: ${matchedFamilies.map((key) => repertoireGraph.openings[key]?.name).filter(Boolean).join(' or ')}` : matchedOpening?.name ?? 'Selected repertoire', matchedPlyCount: guidedDetection.matchedPlyCount, leftBookAtPly: guidedDetection.divergencePly, coverageEnded: guidedDetection.coverageEnded, lessonKey: lessonForPosition(repertoireGraph, { familyKey: matchedOpening?.key, pgn: pgnInput, side: reviewLearnerSide })?.key } : null);
     if (guidedDetection?.coverageEnded) {
       setFeedback('You reached the end of this stored line. Choose a middlegame plan; the next move has not been classified as a mistake.');
     } else if (guidedDetection?.divergencePly && guidedDetection.matchedOpeningFamilyKey) {
@@ -1352,7 +1352,7 @@ export default function App() {
 
         <aside ref={dockRef} className="task-dock" aria-label="Task dock">
           {!learnerSetup && (
-            <GuidedOnboarding learnerId={learnerId} openings={Object.values(repertoireGraph.openings)} onComplete={completeGuidedOnboarding} />
+            <GuidedOnboarding learnerId={learnerId} openings={Object.values(repertoireGraph.openings)} courses={courseCatalog(repertoireGraph)} onComplete={completeGuidedOnboarding} />
           )}
 
           <nav hidden={!learnerSetup} className="mode-tabs" aria-label="Chess modes">

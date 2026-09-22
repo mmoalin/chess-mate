@@ -1,0 +1,466 @@
+[
+  {
+    "key": "concept:black-caro-kann-main:recognition-early-attacks",
+    "openingFamilyKey": "black-caro-kann-main",
+    "title": "Caro-Kann: recognise early attacks",
+    "principle": "Develop while meeting the actual threat; an early bishop or queen sortie does not replace central control.",
+    "summary": "Develop while meeting the actual threat; an early bishop or queen sortie does not replace central control.",
+    "themes": [
+      "development",
+      "move-order"
+    ],
+    "depth": "foundation",
+    "order": 200,
+    "planPrompt": "What should guide your response?",
+    "planChoices": [
+      {
+        "id": "position",
+        "label": "Develop while meeting the actual threat; an early bishop or queen sortie does not replace central control.",
+        "correct": true,
+        "feedback": "Develop while meeting the actual threat; an early bishop or queen sortie does not replace central control."
+      },
+      {
+        "id": "routine",
+        "label": "Play the memorised move even when the position differs.",
+        "correct": false,
+        "feedback": "Identify the threat and the actual pawn structure before choosing the move."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "scenario-1",
+        "setupFen": "rnbqkbnr/pp2pppp/2p5/3p4/2B1P3/8/PPPP1PPP/RNBQK1NR w KQkq - 0 3",
+        "opponentMoveUci": "c4b3",
+        "prompt": "White retreats the bishop after the central challenge. Reassess the centre.",
+        "change": "White retreats the bishop after the central challenge. Reassess the centre.",
+        "preferredMovesUci": [
+          "d5e4"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "Develop while meeting the actual threat; an early bishop or queen sortie does not replace central control.",
+        "teachingPoint": "dxe4: Develop while meeting the actual threat; an early bishop or queen sortie does not replace central control. One illustrative reply is f3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      },
+      {
+        "id": "scenario-2",
+        "setupFen": "rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+        "opponentMoveUci": "d1h5",
+        "prompt": "White develops the queen early. Check its threats and whether development can gain time.",
+        "change": "White develops the queen early. Check its threats and whether development can gain time.",
+        "preferredMovesUci": [
+          "g8f6"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "Develop while meeting the actual threat; an early bishop or queen sortie does not replace central control.",
+        "teachingPoint": "Nf6: Develop while meeting the actual threat; an early bishop or queen sortie does not replace central control. One illustrative reply is Qh4; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      }
+    ]
+  },
+  {
+    "key": "concept:black-caro-kann-main:recognition-nd2",
+    "openingFamilyKey": "black-caro-kann-main",
+    "title": "Caro-Kann: recognise the knight move order",
+    "principle": "Nc3 and Nd2 can reach the same position after Nxe4. Once the bishop is attacked, respond to that contact.",
+    "summary": "Nc3 and Nd2 can reach the same position after Nxe4. Once the bishop is attacked, respond to that contact.",
+    "themes": [
+      "development",
+      "move-order"
+    ],
+    "depth": "foundation",
+    "order": 201,
+    "planPrompt": "What should guide your response?",
+    "planChoices": [
+      {
+        "id": "position",
+        "label": "Nc3 and Nd2 can reach the same position after Nxe4. Once the bishop is attacked, respond to that contact.",
+        "correct": true,
+        "feedback": "Nc3 and Nd2 can reach the same position after Nxe4. Once the bishop is attacked, respond to that contact."
+      },
+      {
+        "id": "routine",
+        "label": "Play the memorised move even when the position differs.",
+        "correct": false,
+        "feedback": "Identify the threat and the actual pawn structure before choosing the move."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "scenario-1",
+        "setupFen": "rnbqkbnr/pp2pppp/2p5/8/3Pp3/8/PPPN1PPP/R1BQKBNR w KQkq - 0 4",
+        "opponentMoveUci": "d2e4",
+        "prompt": "The knight arrived via d2; it now stands on e4 just as in the Classical Nc3 line.",
+        "change": "The knight arrived via d2; it now stands on e4 just as in the Classical Nc3 line.",
+        "preferredMovesUci": [
+          "c8f5"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "Nc3 and Nd2 can reach the same position after Nxe4. Once the bishop is attacked, respond to that contact.",
+        "teachingPoint": "Bf5: Nc3 and Nd2 can reach the same position after Nxe4. Once the bishop is attacked, respond to that contact. One illustrative reply is Ng3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      },
+      {
+        "id": "scenario-2",
+        "setupFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/8/PPP2PPP/R1BQKBNR w KQkq - 1 5",
+        "opponentMoveUci": "e4g3",
+        "prompt": "White attacks the developed bishop. The next task has changed.",
+        "change": "White attacks the developed bishop. The next task has changed.",
+        "preferredMovesUci": [
+          "f5g6"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "Nc3 and Nd2 can reach the same position after Nxe4. Once the bishop is attacked, respond to that contact.",
+        "teachingPoint": "Bg6: Nc3 and Nd2 can reach the same position after Nxe4. Once the bishop is attacked, respond to that contact. One illustrative reply is Nf3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      }
+    ]
+  },
+  {
+    "key": "concept:black-sicilian-basic:recognition-morra",
+    "openingFamilyKey": "black-sicilian-basic",
+    "title": "Sicilian: decline the Morra and recognise the Alapin",
+    "principle": "Use …Nf6 against the Morra offer. After e5, …Nd5 and cxd4 can reach an Alapin structure.",
+    "summary": "Use …Nf6 against the Morra offer. After e5, …Nd5 and cxd4 can reach an Alapin structure.",
+    "themes": [
+      "development",
+      "move-order"
+    ],
+    "depth": "foundation",
+    "order": 202,
+    "planPrompt": "What should guide your response?",
+    "planChoices": [
+      {
+        "id": "position",
+        "label": "Use …Nf6 against the Morra offer. After e5, …Nd5 and cxd4 can reach an Alapin structure.",
+        "correct": true,
+        "feedback": "Use …Nf6 against the Morra offer. After e5, …Nd5 and cxd4 can reach an Alapin structure."
+      },
+      {
+        "id": "routine",
+        "label": "Play the memorised move even when the position differs.",
+        "correct": false,
+        "feedback": "Identify the threat and the actual pawn structure before choosing the move."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "scenario-1",
+        "setupFen": "rnbqkbnr/pp1ppppp/8/8/3pP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3",
+        "opponentMoveUci": "c2c3",
+        "prompt": "White offers a pawn for development; this repertoire declines with a developing attack on e4.",
+        "change": "White offers a pawn for development; this repertoire declines with a developing attack on e4.",
+        "preferredMovesUci": [
+          "g8f6"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "Use …Nf6 against the Morra offer. After e5, …Nd5 and cxd4 can reach an Alapin structure.",
+        "teachingPoint": "Nf6: Use …Nf6 against the Morra offer. After e5, …Nd5 and cxd4 can reach an Alapin structure. One illustrative reply is e5; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      },
+      {
+        "id": "scenario-2",
+        "setupFen": "rnbqkb1r/pp1ppppp/8/3nP3/3p4/2P5/PP3PPP/RNBQKBNR w KQkq - 0 5",
+        "opponentMoveUci": "c3d4",
+        "prompt": "White has built the Alapin centre. Check the pawn chain and the knight’s support.",
+        "change": "White has built the Alapin centre. Check the pawn chain and the knight’s support.",
+        "preferredMovesUci": [
+          "d7d6"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "Use …Nf6 against the Morra offer. After e5, …Nd5 and cxd4 can reach an Alapin structure.",
+        "teachingPoint": "d6: Use …Nf6 against the Morra offer. After e5, …Nd5 and cxd4 can reach an Alapin structure. One illustrative reply is Nf3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      }
+    ]
+  },
+  {
+    "key": "concept:black-sicilian-basic:recognition-wing",
+    "openingFamilyKey": "black-sicilian-basic",
+    "title": "Sicilian: recognise the wing pawn offer",
+    "principle": "Calculate the offered pawn and central reply before responding to a flank gambit.",
+    "summary": "Calculate the offered pawn and central reply before responding to a flank gambit.",
+    "themes": [
+      "development",
+      "move-order"
+    ],
+    "depth": "foundation",
+    "order": 203,
+    "planPrompt": "What should guide your response?",
+    "planChoices": [
+      {
+        "id": "position",
+        "label": "Calculate the offered pawn and central reply before responding to a flank gambit.",
+        "correct": true,
+        "feedback": "Calculate the offered pawn and central reply before responding to a flank gambit."
+      },
+      {
+        "id": "routine",
+        "label": "Play the memorised move even when the position differs.",
+        "correct": false,
+        "feedback": "Identify the threat and the actual pawn structure before choosing the move."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "scenario-1",
+        "setupFen": "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+        "opponentMoveUci": "b2b4",
+        "prompt": "White offers the b-pawn to divert c5. Check the centre after accepting.",
+        "change": "White offers the b-pawn to divert c5. Check the centre after accepting.",
+        "preferredMovesUci": [
+          "c5b4"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "Calculate the offered pawn and central reply before responding to a flank gambit.",
+        "teachingPoint": "cxb4: Calculate the offered pawn and central reply before responding to a flank gambit. One illustrative reply is a3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      },
+      {
+        "id": "scenario-2",
+        "setupFen": "rnbqkbnr/pp2pppp/3p4/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+        "opponentMoveUci": "b2b4",
+        "prompt": "The same wing idea arrives after development. Reassess the changed piece placement.",
+        "change": "The same wing idea arrives after development. Reassess the changed piece placement.",
+        "preferredMovesUci": [
+          "c5b4"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "Calculate the offered pawn and central reply before responding to a flank gambit.",
+        "teachingPoint": "cxb4: Calculate the offered pawn and central reply before responding to a flank gambit. One illustrative reply is d4; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      }
+    ]
+  },
+  {
+    "key": "concept:black-vienna-main:recognition-four-knights",
+    "openingFamilyKey": "black-vienna-main",
+    "title": "Vienna: recognise a Four Knights transposition",
+    "principle": "A covered position can be reached in another move order. Other 1…e5 systems still need their own courses.",
+    "summary": "A covered position can be reached in another move order. Other 1…e5 systems still need their own courses.",
+    "themes": [
+      "development",
+      "move-order"
+    ],
+    "depth": "foundation",
+    "order": 204,
+    "planPrompt": "What should guide your response?",
+    "planChoices": [
+      {
+        "id": "position",
+        "label": "A covered position can be reached in another move order. Other 1…e5 systems still need their own courses.",
+        "correct": true,
+        "feedback": "A covered position can be reached in another move order. Other 1…e5 systems still need their own courses."
+      },
+      {
+        "id": "routine",
+        "label": "Play the memorised move even when the position differs.",
+        "correct": false,
+        "feedback": "Identify the threat and the actual pawn structure before choosing the move."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "scenario-1",
+        "setupFen": "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3",
+        "opponentMoveUci": "g1f3",
+        "prompt": "White has developed Nf3 instead of playing the Vienna Gambit. Develop the other knight.",
+        "change": "White has developed Nf3 instead of playing the Vienna Gambit. Develop the other knight.",
+        "preferredMovesUci": [
+          "b8c6"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "A covered position can be reached in another move order. Other 1…e5 systems still need their own courses.",
+        "teachingPoint": "Nc6: A covered position can be reached in another move order. Other 1…e5 systems still need their own courses. One illustrative reply is d4; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      },
+      {
+        "id": "scenario-2",
+        "setupFen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+        "opponentMoveUci": "b1c3",
+        "prompt": "The knights developed in another order; the same Four Knights position is available.",
+        "change": "The knights developed in another order; the same Four Knights position is available.",
+        "preferredMovesUci": [
+          "g8f6"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "A covered position can be reached in another move order. Other 1…e5 systems still need their own courses.",
+        "teachingPoint": "Nf6: A covered position can be reached in another move order. Other 1…e5 systems still need their own courses. One illustrative reply is d4; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      }
+    ]
+  },
+  {
+    "key": "concept:black-queens-gambit-main:recognition-queen",
+    "openingFamilyKey": "black-queens-gambit-main",
+    "title": "QGD: recognise early queen pressure",
+    "principle": "An early queen move changes concrete threats; meet checks and pressure while developing.",
+    "summary": "An early queen move changes concrete threats; meet checks and pressure while developing.",
+    "themes": [
+      "development",
+      "move-order"
+    ],
+    "depth": "foundation",
+    "order": 205,
+    "planPrompt": "What should guide your response?",
+    "planChoices": [
+      {
+        "id": "position",
+        "label": "An early queen move changes concrete threats; meet checks and pressure while developing.",
+        "correct": true,
+        "feedback": "An early queen move changes concrete threats; meet checks and pressure while developing."
+      },
+      {
+        "id": "routine",
+        "label": "Play the memorised move even when the position differs.",
+        "correct": false,
+        "feedback": "Identify the threat and the actual pawn structure before choosing the move."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "scenario-1",
+        "setupFen": "rnbqkb1r/ppp2ppp/4pn2/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR w KQkq - 2 4",
+        "opponentMoveUci": "d1b3",
+        "prompt": "White puts pressure on b7 and d5. Count defenders before chasing the queen.",
+        "change": "White puts pressure on b7 and d5. Count defenders before chasing the queen.",
+        "preferredMovesUci": [
+          "c7c5"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "An early queen move changes concrete threats; meet checks and pressure while developing.",
+        "teachingPoint": "c5: An early queen move changes concrete threats; meet checks and pressure while developing. One illustrative reply is e3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      },
+      {
+        "id": "scenario-2",
+        "setupFen": "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq - 0 3",
+        "opponentMoveUci": "d1a4",
+        "prompt": "White checks along a diagonal. Resolve the check before carrying on with the normal setup.",
+        "change": "White checks along a diagonal. Resolve the check before carrying on with the normal setup.",
+        "preferredMovesUci": [
+          "c8d7"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "An early queen move changes concrete threats; meet checks and pressure while developing.",
+        "teachingPoint": "Bd7: An early queen move changes concrete threats; meet checks and pressure while developing. One illustrative reply is Qc2; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      }
+    ]
+  },
+  {
+    "key": "concept:black-london-main:recognition-c4",
+    "openingFamilyKey": "black-london-main",
+    "title": "London: recognise the switch to c4",
+    "principle": "A London bishop move followed by c4 can reach a QGD Bf4 position; without c4 the London triangle has different central tension.",
+    "summary": "A London bishop move followed by c4 can reach a QGD Bf4 position; without c4 the London triangle has different central tension.",
+    "themes": [
+      "development",
+      "move-order"
+    ],
+    "depth": "foundation",
+    "order": 206,
+    "planPrompt": "What should guide your response?",
+    "planChoices": [
+      {
+        "id": "position",
+        "label": "A London bishop move followed by c4 can reach a QGD Bf4 position; without c4 the London triangle has different central tension.",
+        "correct": true,
+        "feedback": "A London bishop move followed by c4 can reach a QGD Bf4 position; without c4 the London triangle has different central tension."
+      },
+      {
+        "id": "routine",
+        "label": "Play the memorised move even when the position differs.",
+        "correct": false,
+        "feedback": "Identify the threat and the actual pawn structure before choosing the move."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "scenario-1",
+        "setupFen": "rnbqkb1r/ppp2ppp/4pn2/3p4/2PP1B2/8/PP2PPPP/RN1QKBNR w KQkq - 0 4",
+        "opponentMoveUci": "b1c3",
+        "prompt": "White has reached the QGD Bf4 structure through a London move order.",
+        "change": "White has reached the QGD Bf4 structure through a London move order.",
+        "preferredMovesUci": [
+          "d5c4"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "A London bishop move followed by c4 can reach a QGD Bf4 position; without c4 the London triangle has different central tension.",
+        "teachingPoint": "dxc4: A London bishop move followed by c4 can reach a QGD Bf4 position; without c4 the London triangle has different central tension. One illustrative reply is e3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      },
+      {
+        "id": "scenario-2",
+        "setupFen": "rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR w KQkq - 0 4",
+        "opponentMoveUci": "g1f3",
+        "prompt": "White keeps the London centre. Challenge d4 with the c-pawn.",
+        "change": "White keeps the London centre. Challenge d4 with the c-pawn.",
+        "preferredMovesUci": [
+          "c7c5"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "A London bishop move followed by c4 can reach a QGD Bf4 position; without c4 the London triangle has different central tension.",
+        "teachingPoint": "c5: A London bishop move followed by c4 can reach a QGD Bf4 position; without c4 the London triangle has different central tension. One illustrative reply is Bd3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      }
+    ]
+  },
+  {
+    "key": "concept:black-alien-gambit-defense:recognition-boundaries",
+    "openingFamilyKey": "black-alien-gambit-defense",
+    "title": "Alien defense: recognise the Classical boundary",
+    "principle": "The Ng5 module follows …Nf6. A Classical …Bf5 position calls for the Caro-Kann bishop plan instead.",
+    "summary": "The Ng5 module follows …Nf6. A Classical …Bf5 position calls for the Caro-Kann bishop plan instead.",
+    "themes": [
+      "development",
+      "move-order"
+    ],
+    "depth": "foundation",
+    "order": 207,
+    "planPrompt": "What should guide your response?",
+    "planChoices": [
+      {
+        "id": "position",
+        "label": "The Ng5 module follows …Nf6. A Classical …Bf5 position calls for the Caro-Kann bishop plan instead.",
+        "correct": true,
+        "feedback": "The Ng5 module follows …Nf6. A Classical …Bf5 position calls for the Caro-Kann bishop plan instead."
+      },
+      {
+        "id": "routine",
+        "label": "Play the memorised move even when the position differs.",
+        "correct": false,
+        "feedback": "Identify the threat and the actual pawn structure before choosing the move."
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "scenario-1",
+        "setupFen": "rnbqkb1r/pp2pppp/2p2n2/8/3PN3/8/PPP2PPP/R1BQKBNR w KQkq - 1 5",
+        "opponentMoveUci": "e4g5",
+        "prompt": "The knight came from d2, but the Alien entry position is unchanged.",
+        "change": "The knight came from d2, but the Alien entry position is unchanged.",
+        "preferredMovesUci": [
+          "b8d7"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "The Ng5 module follows …Nf6. A Classical …Bf5 position calls for the Caro-Kann bishop plan instead.",
+        "teachingPoint": "Nbd7: The Ng5 module follows …Nf6. A Classical …Bf5 position calls for the Caro-Kann bishop plan instead. One illustrative reply is Bd3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      },
+      {
+        "id": "scenario-2",
+        "setupFen": "rn1qkbnr/pp2pppp/2p5/5b2/3PN3/8/PPP2PPP/R1BQKBNR w KQkq - 1 5",
+        "opponentMoveUci": "e4g3",
+        "prompt": "This is the Classical Caro-Kann, not the Alien entry. Respond to the attacked bishop.",
+        "change": "This is the Classical Caro-Kann, not the Alien entry. Respond to the attacked bishop.",
+        "preferredMovesUci": [
+          "f5g6"
+        ],
+        "acceptableMovesUci": [],
+        "hint": "The Ng5 module follows …Nf6. A Classical …Bf5 position calls for the Caro-Kann bishop plan instead.",
+        "teachingPoint": "Bg6: The Ng5 module follows …Nf6. A Classical …Bf5 position calls for the Caro-Kann bishop plan instead. One illustrative reply is Nf3; reassess rather than copying the old move order.",
+        "watchFor": "Checks and captures take priority over the name of the opening."
+      }
+    ]
+  }
+]

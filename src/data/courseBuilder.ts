@@ -1,4 +1,5 @@
 import { Chess } from 'chess.js';
+import { compileDecisionPath, type DecisionInput } from './courseCompiler';
 import type { ConnectedLesson, LessonDecision, StructureGuideContent } from '../features/connected/types';
 import type { RepertoireLine } from '../features/openings/types';
 import type { ConceptDrill, SparringScenario } from '../domain/repertoire/types';
@@ -19,23 +20,23 @@ export function buildChapter(chapter: CourseChapter): { line: RepertoireLine; le
   const openingMoves = chapter.opening.map(([san]) => san);
   const decisions: Record<string, LessonDecision> = {};
   function path(prefix: string[], items: TeachingMove[], transfer: boolean) {
-    const history = [...prefix];
+    const nodes: DecisionInput[] = [];
     // Each authored path starts on White's turn; opponent replies are explicit.
     for (let index = 0; index < items.length; index += 2) {
       const [moveSan, feedback] = items[index];
       const reply = items[index + 1];
       const id = `${transfer ? 'transfer-' : ''}decision-${index / 2 + 1}`;
       const last = index + 2 >= items.length;
-      decisions[id] = {
-        id, movesBefore: [...history], prompt: feedback.split('. ')[0] + '.',
+      nodes.push({
+        id, prompt: feedback.split('. ')[0] + '.',
         change: index ? items[index - 1][1] : transfer ? chapter.transfer[0][1] : chapter.opening.at(-1)![1],
         hint: feedback, dimension: !transfer && index / 2 === chapter.mistake.decision ? 'tactics' : 'understanding',
         answers: [{ moveSan, repliesSan: reply ? [reply[0]] : [], nextId: last ? null : `${transfer ? 'transfer-' : ''}decision-${index / 2 + 2}`, feedback: feedback + (reply ? ' ' + reply[1] : '') }],
         mistakes: !transfer && index / 2 === chapter.mistake.decision ? { [chapter.mistake.san]: chapter.mistake.explanation } : {},
         comparisons: { [moveSan]: feedback, ...(!transfer && index / 2 === chapter.mistake.decision ? { [chapter.mistake.san]: chapter.mistake.explanation } : {}) }
-      };
-      history.push(moveSan, ...(reply ? [reply[0]] : []));
+      });
     }
+    Object.assign(decisions, compileDecisionPath(prefix, nodes, 'white'));
   }
   path(openingMoves, chapter.main, false);
   const transferCheckpointMoves = [...openingMoves, ...chapter.main.slice(0, chapter.transferAfter).map(([san]) => san)];

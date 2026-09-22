@@ -11,7 +11,13 @@ export type ContentValidationIssue = {
 
 export function validateRepertoireGraph(graph: RepertoireGraph): ContentValidationIssue[] {
   const issues: ContentValidationIssue[] = [];
+  const descriptors = new Set<string>();
   for (const [key, lesson] of Object.entries(graph.connectedLessons ?? {})) {
+    if (lesson.course) {
+      if (descriptors.has(lesson.openingFamilyKey) || lesson.course.mainLessonKey !== lesson.key || !lesson.course.scope.trim() || lesson.course.context !== graph.openings[lesson.openingFamilyKey]?.context) issues.push(issue('course-descriptor-invalid', 'A course needs one main descriptor with a matching context and scope.', key));
+      descriptors.add(lesson.openingFamilyKey);
+    }
+    if (graph.openings[lesson.openingFamilyKey]?.side !== lesson.side) issues.push(issue('lesson-side-mismatch', 'Lesson learner side must match its opening family.', key));
     if (key !== lesson.key || !graph.openings[lesson.openingFamilyKey]?.lineKeys.includes(lesson.lineKey)) issues.push(issue('lesson-opening-missing', 'Connected lesson must reference its source opening and line.', key));
     for (const message of validateConnectedLesson(lesson)) issues.push(issue('lesson-invalid', message, key));
     try {

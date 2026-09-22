@@ -115,7 +115,7 @@ describe('guided repertoire flow', () => {
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
     await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
     await userEvent.click(screen.getByRole('button', { name: /^Repertoire$/i }));
-    await userEvent.click(screen.getAllByText('3 plan lessons for this opening')[0]);
+    await userEvent.click(screen.getAllByText('11 plan lessons for this opening')[0]);
     await userEvent.click(screen.getByRole('button', { name: /Convert initiative into development/i }));
     expect(screen.getByRole('region', { name: /Idea training/i })).toHaveTextContent('Bring pieces before forcing tactics');
   });

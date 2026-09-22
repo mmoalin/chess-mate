@@ -145,7 +145,19 @@ export function playLessonMove(session: LessonSession, lesson: ConnectedLesson, 
   return { session: touch(next), feedback: answer.feedback, accepted: true, ungraded: false };
 }
 
+const lessonValidationCache = new Map<string, string[]>();
 export function validateConnectedLesson(lesson: ConnectedLesson): string[] {
+  // Key by content, not object identity: authored drafts may mutate in place.
+  const key = JSON.stringify(lesson);
+  const cached = lessonValidationCache.get(key);
+  if (cached) return [...cached];
+  const result = validateLessonContent(lesson);
+  if (lessonValidationCache.size >= 256) lessonValidationCache.clear();
+  lessonValidationCache.set(key, result);
+  return [...result];
+}
+
+function validateLessonContent(lesson: ConnectedLesson): string[] {
   const errors: string[] = [];
   if (lesson.endgame) errors.push(...validateJourney(lesson.endgame));
   errors.push(...validateContinuation(lesson));

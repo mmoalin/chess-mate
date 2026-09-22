@@ -1,19 +1,24 @@
 import { useMemo, useState } from 'react';
 import type { LearnerProfile, OpeningFamily } from '../../domain/repertoire/types';
+import type { CourseMetadata } from '../connected/types';
 
 export type GuidedOnboardingResult = {
   profile: LearnerProfile;
   openingFamilyKeys: string[];
-  blackD4Preference: 'not-sure';
+  blackD4Preference: 'not-sure' | 'selected';
 };
 
 export function GuidedOnboarding(props: {
   learnerId: string;
   openings: OpeningFamily[];
+  courses?: Record<string, CourseMetadata>;
   onComplete: (result: GuidedOnboardingResult) => void;
 }) {
   const white = useMemo(() => props.openings.filter((opening) => opening.side === 'white'), [props.openings]);
-  const blackE4 = useMemo(() => props.openings.filter((opening) => opening.context === 'black-vs-e4'), [props.openings]);
+  const blackE4 = useMemo(() => props.openings.filter((opening) => opening.context === 'black-vs-e4' && props.courses?.[opening.key]?.role !== 'response'), [props.openings, props.courses]);
+  const blackD4 = props.openings.filter(opening => opening.context === 'black-vs-d4');
+  const responses = props.openings.filter(opening => opening.context === 'black-vs-e4' && props.courses?.[opening.key]?.role === 'response');
+  const [extraKeys, setExtraKeys] = useState<string[]>([]);
   const [whiteKeys, setWhiteKeys] = useState<string[]>([white.find((opening) => opening.key === 'white-vienna-main')?.key ?? white[0]?.key ?? ''].filter(Boolean));
   const [blackE4Key, setBlackE4Key] = useState(blackE4.find((opening) => opening.key === 'black-caro-kann-main')?.key ?? blackE4[0]?.key ?? '');
   const [ratingSource, setRatingSource] = useState<LearnerProfile['ratingSource']>('unsure');
@@ -32,7 +37,7 @@ export function GuidedOnboarding(props: {
       onboardingCompleted: true,
       updatedAt: new Date().toISOString()
     };
-    props.onComplete({ profile, openingFamilyKeys: Array.from(new Set([...whiteKeys, blackE4Key || blackE4.find((opening) => opening.key === 'black-caro-kann-main')?.key || ''].filter(Boolean))), blackD4Preference: 'not-sure' });
+    props.onComplete({ profile, openingFamilyKeys: Array.from(new Set([...whiteKeys, ...extraKeys, blackE4Key || blackE4.find((opening) => opening.key === 'black-caro-kann-main')?.key || ''].filter(Boolean))), blackD4Preference: extraKeys.some(key => blackD4.some(opening => opening.key === key)) ? 'selected' : 'not-sure' });
   }
 
   return (
@@ -66,10 +71,10 @@ export function GuidedOnboarding(props: {
           <option value="">I’m not sure — recommend one</option>
         </select>
       </label>
-      <label className="field-label">
-        As Black against 1.d4
-        <select value="not-sure" disabled><option value="not-sure">I’m not sure — add to my coverage plan</option></select>
-      </label>
+      {[{ title: 'As Black against 1.d4', openings: blackD4 }, { title: 'Targeted Black responses', openings: responses }].map(group => <fieldset key={group.title}><legend>{group.title}</legend>
+        {group.openings.map(opening => <label className="preference-check" key={opening.key}><input type="checkbox" checked={extraKeys.includes(opening.key)} onChange={event => setExtraKeys(keys => event.target.checked ? [...keys, opening.key] : keys.filter(key => key !== opening.key))} /><span><strong>{opening.name}</strong><small>{props.courses?.[opening.key]?.scope ?? opening.summary}</small></span></label>)}
+        <p className="analysis">Choose the systems you want to study. These response courses cover the named openings, not every possible first-move continuation.</p>
+      </fieldset>)}
 
       <div className="onboarding-fields">
         <label className="field-label">Rating source

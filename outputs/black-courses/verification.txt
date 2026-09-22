@@ -1,0 +1,1232 @@
+lesson:caro-active/bishop-retreat: Bh7 (accepted), loss -4cp [preserved baseline]
+lesson:caro-active/bishop-retreat/reply: Nf3 (sound opponent reply), loss -6cp [preserved baseline]
+lesson:caro-active/shell: e6 (accepted), loss 14cp [preserved baseline]
+lesson:caro-active/shell/reply: Bd3 (sound opponent reply), loss 24cp [preserved baseline]
+lesson:caro-active/exchange: Bxd3 (accepted), loss 1cp [preserved baseline]
+lesson:caro-active/exchange/reply: Qxd3 (sound opponent reply), loss -3cp [preserved baseline]
+lesson:caro-active/exchange/mistake: a6 (mistake), loss 106cp [preserved baseline]
+lesson:caro-active/queen-knight: Nd7 (accepted), loss 17cp [preserved baseline]
+lesson:caro-active/queen-knight/reply: O-O (sound opponent reply), loss 62cp [preserved baseline]
+lesson:caro-active/king-knight: Ngf6 (accepted), loss 54cp [preserved baseline]
+lesson:caro-active/king-knight/reply: Re1 (sound opponent reply), loss 9cp [preserved baseline]
+lesson:caro-active/king-bishop: Be7 (accepted), loss 10cp [preserved baseline]
+lesson:caro-active/king-bishop/reply: Bf4 (sound opponent reply), loss 9cp [preserved baseline]
+lesson:caro-active/safe-king: O-O (accepted), loss 6cp [preserved baseline]
+lesson:caro-active/safe-king/reply: Rad1 (sound opponent reply), loss -2cp [preserved baseline]
+lesson:caro-active/break: c5 (accepted), loss -11cp [preserved baseline]
+lesson:caro-active/transfer-exchange: Bxd3 (accepted), loss 3cp [preserved baseline]
+lesson:caro-active/transfer-exchange/reply: Qxd3 (sound opponent reply), loss 1cp [preserved baseline]
+lesson:caro-active/transfer-shell: e6 (accepted), loss 0cp [preserved baseline]
+lesson:caro-active/transfer-shell/reply: Nf3 (sound opponent reply), loss 16cp [preserved baseline]
+lesson:caro-active/transfer-knight: Nd7 (accepted), loss 21cp [preserved baseline]
+lesson:caro-active/continuation:central-tension: cxd4 (accepted), loss 26cp [preserved baseline]
+lesson:caro-active/continuation:central-tension/cxd4/reply: cxd4 (sound opponent reply), loss 82cp [preserved baseline]
+lesson:caro-active/continuation:central-tension/cxd4/reply: Nxd4 (sound opponent reply), loss 18cp [preserved baseline]
+lesson:caro-active/continuation:central-tension: Rc8 (accepted), loss 15cp [preserved baseline]
+lesson:caro-active/continuation:central-tension/Rc8/reply: Qe2 (sound opponent reply), loss -5cp [preserved baseline]
+lesson:caro-active/continuation:blockade: Nd5 (accepted), loss 4cp [preserved baseline]
+lesson:caro-active/continuation:blockade/Nd5/reply: Bc1 (sound opponent reply), loss 3cp [preserved baseline]
+lesson:caro-active/continuation:blockade/Nd5/reply: Be5 (mistake), loss 145cp [preserved baseline]
+lesson:caro-active/continuation:blockade: Rc8 (accepted), loss 2cp [preserved baseline]
+lesson:caro-active/continuation:blockade/Rc8/reply: Ne5 (sound opponent reply), loss 0cp [preserved baseline]
+lesson:caro-active/continuation:piece-improvement: Bd6 (accepted), loss 13cp [preserved baseline]
+lesson:caro-active/continuation:piece-improvement/Bd6/reply: Qf3 (sound opponent reply), loss -3cp [preserved baseline]
+lesson:caro-active/continuation:piece-improvement: Rc8 (accepted), loss 11cp [preserved baseline]
+lesson:caro-active/continuation:piece-improvement/Rc8/reply: Ne4 (sound opponent reply), loss 0cp [preserved baseline]
+lesson:caro-active/continuation:exchange: Bxe5 (accepted), loss 37cp [preserved baseline]
+lesson:caro-active/continuation:exchange/Bxe5/reply: dxe5 (sound opponent reply), loss -8cp [preserved baseline]
+lesson:caro-active/continuation:exchange: Rc8 (accepted), loss -1cp [preserved baseline]
+lesson:caro-active/continuation:exchange/Rc8/reply: Ne4 (sound opponent reply), loss -4cp [preserved baseline]
+lesson:caro-active/continuation:rook-ending: Qc6 (accepted), loss -7cp [preserved baseline]
+lesson:caro-active/continuation:rook-ending/Qc6/reply: Qxc6 (sound opponent reply), loss 1cp [preserved baseline]
+lesson:caro-active/continuation:rook-ending: Qe7 (accepted), loss -8cp [preserved baseline]
+lesson:caro-active/continuation:rook-ending/Qe7/reply: b3 (sound opponent reply), loss 1cp [preserved baseline]
+lesson:caro-active/continuation:rook-activity: Re2 (accepted), loss 10cp [preserved baseline]
+lesson:caro-active/continuation:rook-activity/Re2/reply: Rd8+ (sound opponent reply), loss 13cp [preserved baseline]
+lesson:caro-active/continuation:rook-activity: Re5 (accepted), loss -11cp [preserved baseline]
+lesson:caro-active/continuation:rook-activity/Re5/reply: Rd8+ (sound opponent reply), loss -2cp [preserved baseline]
+lesson:caro-active/continuation:rook-activity: Re1+ (mistake), loss 687cp [preserved baseline]
+lesson:caro-active/continuation:rook-activity/Re1+/reply: Rxe1 (sound opponent reply), loss -7cp [preserved baseline]
+lesson:caro-active/illustration:central-tension/0: c3 (illustrative connecting move), loss 29cp [preserved baseline]
+lesson:caro-active/illustration:central-tension/1: cxd4 (illustrative connecting move), loss 26cp [preserved baseline]
+lesson:caro-active/illustration:central-tension/2: cxd4 (illustrative connecting move), loss 82cp [preserved baseline]
+lesson:caro-active/illustration:blockade/0: Nd5 (illustrative connecting move), loss 4cp [preserved baseline]
+lesson:caro-active/illustration:blockade/1: Be5 (illustrative connecting move), loss 145cp [preserved baseline]
+lesson:caro-active/illustration:piece-improvement/0: Nxe5 (illustrative connecting move), loss 163cp [preserved baseline]
+lesson:caro-active/illustration:piece-improvement/1: Nxe5 (illustrative connecting move), loss 8cp [preserved baseline]
+lesson:caro-active/illustration:piece-improvement/2: Bd6 (illustrative connecting move), loss 13cp [preserved baseline]
+lesson:caro-active/illustration:piece-improvement/3: Qf3 (illustrative connecting move), loss -3cp [preserved baseline]
+lesson:caro-active/illustration:exchange/0: Bxe5 (illustrative connecting move), loss 37cp [preserved baseline]
+lesson:caro-active/illustration:exchange/1: dxe5 (illustrative connecting move), loss -8cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/0: Qg5 (illustrative connecting move), loss 5cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/1: Ne4 (illustrative connecting move), loss 12cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/2: Qxe5 (illustrative connecting move), loss -1cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/3: Nc3 (illustrative connecting move), loss -6cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/4: Qc7 (illustrative connecting move), loss -3cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/5: Nxd5 (illustrative connecting move), loss -5cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/6: exd5 (illustrative connecting move), loss -10cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/7: Rxd5 (illustrative connecting move), loss -8cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/8: Rae8 (illustrative connecting move), loss 22cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/9: Rxe8 (illustrative connecting move), loss 29cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/10: Rxe8 (illustrative connecting move), loss 3cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/11: Rd1 (illustrative connecting move), loss -1cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/12: Qc6 (illustrative connecting move), loss -7cp [preserved baseline]
+lesson:caro-active/illustration:rook-ending/13: Qxc6 (illustrative connecting move), loss 1cp [preserved baseline]
+lesson:caro-active/illustration:rook-activity/0: bxc6 (illustrative connecting move), loss 1cp [preserved baseline]
+lesson:caro-active/illustration:rook-activity/1: g3 (illustrative connecting move), loss -4cp [preserved baseline]
+lesson:caro-active/illustration:rook-activity/2: Re2 (illustrative connecting move), loss 10cp [preserved baseline]
+lesson:caro-active/illustration:rook-activity/3: Rd8+ (illustrative connecting move), loss 13cp [preserved baseline]
+lesson:black-caro-kann-main:advance/opening:0: e4 (entry position), loss -2cp
+lesson:black-caro-kann-main:advance/opening:1: c6 (entry position), loss 5cp
+lesson:black-caro-kann-main:advance/opening:2: d4 (entry position), loss 4cp
+lesson:black-caro-kann-main:advance/opening:3: d5 (entry position), loss 0cp
+lesson:black-caro-kann-main:advance/opening:4: e5 (entry position), loss 6cp
+lesson:black-caro-kann-main:advance/opening:5: Bf5 (entry position), loss 8cp
+lesson:black-caro-kann-main:advance/opening:6: Nf3 (entry position), loss 5cp
+lesson:black-caro-kann-main:advance/opening:7: e6 (entry position), loss -7cp
+lesson:black-caro-kann-main:advance/opening:8: Be2 (entry position), loss -8cp
+lesson:black-caro-kann-main:advance/opening:9: c5 (entry position), loss -15cp
+lesson:black-caro-kann-main:advance/opening:10: O-O (entry position), loss -5cp
+lesson:black-caro-kann-main:advance/decision-1: Nc6 (accepted), loss -4cp
+lesson:black-caro-kann-main:advance/decision-1/reply: c3 (sound opponent reply), loss -8cp
+lesson:black-caro-kann-main:advance/decision-1/mistake: Qf6 (mistake), loss 630cp
+lesson:black-caro-kann-main:advance/decision-2: Bg6 (accepted), loss -9cp
+lesson:black-caro-kann-main:advance/decision-2/reply: a3 (sound opponent reply), loss 3cp
+lesson:black-caro-kann-main:advance/decision-3: cxd4 (accepted), loss 2cp
+lesson:black-caro-kann-main:advance/decision-3/reply: cxd4 (sound opponent reply), loss 3cp
+lesson:black-caro-kann-main:advance/decision-4: Nge7 (accepted), loss 7cp
+lesson:black-caro-kann-main:advance/transfer-decision-1: cxd4 (accepted), loss 15cp
+lesson:black-caro-kann-main:advance/transfer-decision-1/reply: Nxd4 (sound opponent reply), loss 0cp
+lesson:black-caro-kann-main:advance/transfer-decision-2: Nxd4 (accepted), loss 8cp
+lesson:black-caro-kann-main:advance-h4/opening:0: e4 (entry position), loss -2cp
+lesson:black-caro-kann-main:advance-h4/opening:1: c6 (entry position), loss 5cp
+lesson:black-caro-kann-main:advance-h4/opening:2: d4 (entry position), loss 4cp
+lesson:black-caro-kann-main:advance-h4/opening:3: d5 (entry position), loss 0cp
+lesson:black-caro-kann-main:advance-h4/opening:4: e5 (entry position), loss 6cp
+lesson:black-caro-kann-main:advance-h4/opening:5: Bf5 (entry position), loss 8cp
+lesson:black-caro-kann-main:advance-h4/opening:6: h4 (entry position), loss 8cp
+lesson:black-caro-kann-main:advance-h4/opening:7: h5 (entry position), loss -4cp
+lesson:black-caro-kann-main:advance-h4/opening:8: Bd3 (entry position), loss 8cp
+lesson:black-caro-kann-main:advance-h4/decision-1: Bxd3 (accepted), loss 18cp
+lesson:black-caro-kann-main:advance-h4/decision-1/reply: Qxd3 (sound opponent reply), loss 1cp
+lesson:black-caro-kann-main:advance-h4/decision-1/mistake: Qd6 (mistake), loss 613cp
+lesson:black-caro-kann-main:advance-h4/decision-2: e6 (accepted), loss 4cp
+lesson:black-caro-kann-main:advance-h4/decision-2/reply: Nf3 (sound opponent reply), loss 16cp
+lesson:black-caro-kann-main:advance-h4/decision-3: Qa5+ (accepted), loss 4cp
+lesson:black-caro-kann-main:advance-h4/decision-3/reply: Nbd2 (sound opponent reply), loss -5cp
+lesson:black-caro-kann-main:advance-h4/decision-4: Nh6 (accepted), loss -4cp
+lesson:black-caro-kann-main:advance-h4/transfer-decision-1: e6 (accepted), loss 6cp
+lesson:black-caro-kann-main:advance-h4/transfer-decision-1/reply: Nc3 (sound opponent reply), loss 10cp
+lesson:black-caro-kann-main:advance-h4/transfer-decision-2: Ne7 (accepted), loss 0cp
+lesson:black-caro-kann-main:exchange/opening:0: e4 (entry position), loss -2cp
+lesson:black-caro-kann-main:exchange/opening:1: c6 (entry position), loss 5cp
+lesson:black-caro-kann-main:exchange/opening:2: d4 (entry position), loss 4cp
+lesson:black-caro-kann-main:exchange/opening:3: d5 (entry position), loss 0cp
+lesson:black-caro-kann-main:exchange/opening:4: exd5 (entry position), loss 8cp
+lesson:black-caro-kann-main:exchange/opening:5: cxd5 (entry position), loss -15cp
+lesson:black-caro-kann-main:exchange/opening:6: Bd3 (entry position), loss -8cp
+lesson:black-caro-kann-main:exchange/decision-1: Nc6 (accepted), loss -5cp
+lesson:black-caro-kann-main:exchange/decision-1/reply: c3 (sound opponent reply), loss 0cp
+lesson:black-caro-kann-main:exchange/decision-1/mistake: Bf5 (mistake), loss 473cp
+lesson:black-caro-kann-main:exchange/decision-2: Nf6 (accepted), loss 6cp
+lesson:black-caro-kann-main:exchange/decision-2/reply: Bf4 (sound opponent reply), loss -4cp
+lesson:black-caro-kann-main:exchange/decision-3: Bg4 (accepted), loss -3cp
+lesson:black-caro-kann-main:exchange/decision-3/reply: Qb3 (sound opponent reply), loss 2cp
+lesson:black-caro-kann-main:exchange/decision-4: Qd7 (accepted), loss 9cp
+lesson:black-caro-kann-main:exchange/transfer-decision-1: Nb4 (accepted), loss -1cp
+lesson:black-caro-kann-main:exchange/transfer-decision-1/reply: Bb5+ (sound opponent reply), loss -13cp
+lesson:black-caro-kann-main:exchange/transfer-decision-2: Bd7 (accepted), loss -18cp
+lesson:black-caro-kann-main:panov/opening:0: e4 (entry position), loss -2cp
+lesson:black-caro-kann-main:panov/opening:1: c6 (entry position), loss 5cp
+lesson:black-caro-kann-main:panov/opening:2: d4 (entry position), loss 4cp
+lesson:black-caro-kann-main:panov/opening:3: d5 (entry position), loss 0cp
+lesson:black-caro-kann-main:panov/opening:4: exd5 (entry position), loss 8cp
+lesson:black-caro-kann-main:panov/opening:5: cxd5 (entry position), loss -15cp
+lesson:black-caro-kann-main:panov/opening:6: c4 (entry position), loss -12cp
+lesson:black-caro-kann-main:panov/opening:7: Nf6 (entry position), loss -10cp
+lesson:black-caro-kann-main:panov/opening:8: Nc3 (entry position), loss 3cp
+lesson:black-caro-kann-main:panov/opening:9: e6 (entry position), loss 9cp
+lesson:black-caro-kann-main:panov/opening:10: Nf3 (entry position), loss -7cp
+lesson:black-caro-kann-main:panov/decision-1: Be7 (accepted), loss 7cp
+lesson:black-caro-kann-main:panov/decision-1/reply: cxd5 (sound opponent reply), loss 3cp
+lesson:black-caro-kann-main:panov/decision-1/mistake: Bc5 (mistake), loss 395cp
+lesson:black-caro-kann-main:panov/decision-2: Nxd5 (accepted), loss 2cp
+lesson:black-caro-kann-main:panov/decision-2/reply: Bd3 (sound opponent reply), loss 10cp
+lesson:black-caro-kann-main:panov/decision-3: Nc6 (accepted), loss 4cp
+lesson:black-caro-kann-main:panov/decision-3/reply: O-O (sound opponent reply), loss -1cp
+lesson:black-caro-kann-main:panov/decision-4: O-O (accepted), loss -9cp
+lesson:black-caro-kann-main:panov/transfer-decision-1: O-O (accepted), loss -1cp
+lesson:black-caro-kann-main:panov/transfer-decision-1/reply: cxd5 (sound opponent reply), loss 3cp
+lesson:black-caro-kann-main:panov/transfer-decision-2: exd5 (accepted), loss 4cp
+lesson:black-caro-kann-main:fantasy/opening:0: e4 (entry position), loss -2cp
+lesson:black-caro-kann-main:fantasy/opening:1: c6 (entry position), loss 5cp
+lesson:black-caro-kann-main:fantasy/opening:2: d4 (entry position), loss 4cp
+lesson:black-caro-kann-main:fantasy/opening:3: d5 (entry position), loss 0cp
+lesson:black-caro-kann-main:fantasy/opening:4: f3 (entry position), loss 12cp
+lesson:black-caro-kann-main:fantasy/decision-1: e6 (accepted), loss 4cp
+lesson:black-caro-kann-main:fantasy/decision-1/reply: Nc3 (sound opponent reply), loss 9cp
+lesson:black-caro-kann-main:fantasy/decision-1/mistake: Bf5 (mistake), loss 402cp
+lesson:black-caro-kann-main:fantasy/decision-2: Qb6 (accepted), loss -5cp
+lesson:black-caro-kann-main:fantasy/decision-2/reply: Na4 (sound opponent reply), loss 1cp
+lesson:black-caro-kann-main:fantasy/decision-3: Qc7 (accepted), loss 6cp
+lesson:black-caro-kann-main:fantasy/decision-3/reply: Nc3 (sound opponent reply), loss -2cp
+lesson:black-caro-kann-main:fantasy/decision-4: Nd7 (accepted), loss -14cp
+lesson:black-caro-kann-main:fantasy/transfer-decision-1: dxe4 (accepted), loss -2cp
+lesson:black-caro-kann-main:fantasy/transfer-decision-1/reply: fxe4 (sound opponent reply), loss -7cp
+lesson:black-caro-kann-main:fantasy/transfer-decision-2: Qxd4 (accepted), loss 4cp
+lesson:black-caro-kann-main:two-knights/opening:0: e4 (entry position), loss -2cp
+lesson:black-caro-kann-main:two-knights/opening:1: c6 (entry position), loss 5cp
+lesson:black-caro-kann-main:two-knights/opening:2: Nf3 (entry position), loss 8cp
+lesson:black-caro-kann-main:two-knights/opening:3: d5 (entry position), loss 6cp
+lesson:black-caro-kann-main:two-knights/opening:4: Nc3 (entry position), loss 13cp
+lesson:black-caro-kann-main:two-knights/decision-1: dxe4 (accepted), loss -1cp
+lesson:black-caro-kann-main:two-knights/decision-1/reply: Nxe4 (sound opponent reply), loss 1cp
+lesson:black-caro-kann-main:two-knights/decision-1/mistake: Na6 (mistake), loss 133cp
+lesson:black-caro-kann-main:two-knights/decision-2: Nf6 (accepted), loss 0cp
+lesson:black-caro-kann-main:two-knights/decision-2/reply: Nxf6+ (sound opponent reply), loss 3cp
+lesson:black-caro-kann-main:two-knights/decision-3: exf6 (accepted), loss 4cp
+lesson:black-caro-kann-main:two-knights/decision-3/reply: d4 (sound opponent reply), loss 5cp
+lesson:black-caro-kann-main:two-knights/decision-4: Bd6 (accepted), loss -1cp
+lesson:black-caro-kann-main:two-knights/transfer-decision-1: e5 (accepted), loss 0cp
+lesson:black-caro-kann-main:two-knights/transfer-decision-1/reply: h4 (sound opponent reply), loss 16cp
+lesson:black-caro-kann-main:two-knights/transfer-decision-2: h6 (accepted), loss 20cp
+lesson:black-sicilian-main/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-main/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-main/opening:2: Nf3 (entry position), loss 7cp
+lesson:black-sicilian-main/opening:3: d6 (entry position), loss 13cp
+lesson:black-sicilian-main/opening:4: d4 (entry position), loss -6cp
+lesson:black-sicilian-main/opening:5: cxd4 (entry position), loss 1cp
+lesson:black-sicilian-main/opening:6: Nxd4 (entry position), loss 9cp
+lesson:black-sicilian-main/opening:7: Nf6 (entry position), loss 12cp
+lesson:black-sicilian-main/opening:8: Nc3 (entry position), loss 17cp
+lesson:black-sicilian-main/opening:9: a6 (entry position), loss -4cp
+lesson:black-sicilian-main/opening:10: Be2 (entry position), loss -4cp
+lesson:black-sicilian-main/opening:11: e6 (entry position), loss 9cp
+lesson:black-sicilian-main/opening:12: O-O (entry position), loss 10cp
+lesson:black-sicilian-main/decision-1: Be7 (accepted), loss 0cp
+lesson:black-sicilian-main/decision-1/reply: f4 (sound opponent reply), loss -6cp
+lesson:black-sicilian-main/decision-1/mistake: Nh5 (mistake), loss 420cp
+lesson:black-sicilian-main/decision-2: O-O (accepted), loss 2cp
+lesson:black-sicilian-main/decision-2/reply: a4 (sound opponent reply), loss 4cp
+lesson:black-sicilian-main/decision-3: Nc6 (accepted), loss -3cp
+lesson:black-sicilian-main/decision-3/reply: Be3 (sound opponent reply), loss 1cp
+lesson:black-sicilian-main/decision-4: Qc7 (accepted), loss 1cp
+lesson:black-sicilian-main/transfer-decision-1: O-O (accepted), loss -3cp
+lesson:black-sicilian-main/transfer-decision-1/reply: Be3 (sound opponent reply), loss 1cp
+lesson:black-sicilian-main/transfer-decision-2: Nc6 (accepted), loss 5cp
+lesson:black-sicilian-main/continuation:coordinate: Nxd4 (accepted), loss 2cp
+lesson:black-sicilian-main/continuation:coordinate/Nxd4/reply: Bxd4 (sound opponent reply), loss 13cp
+lesson:black-sicilian-main/continuation:coordinate: Bd7 (accepted), loss -12cp
+lesson:black-sicilian-main/continuation:coordinate/Bd7/reply: Nb3 (sound opponent reply), loss 3cp
+lesson:black-sicilian-main/continuation:counterplay: Be6 (accepted), loss -2cp
+lesson:black-sicilian-main/continuation:counterplay/Be6/reply: Qd3 (sound opponent reply), loss 3cp
+lesson:black-sicilian-main/continuation:counterplay: Bd7 (accepted), loss 14cp
+lesson:black-sicilian-main/continuation:counterplay/Bd7/reply: Qd4 (sound opponent reply), loss 9cp
+lesson:black-sicilian-main/continuation:structure: Rfe8 (accepted), loss -1cp
+lesson:black-sicilian-main/continuation:structure/Rfe8/reply: Nd5 (sound opponent reply), loss -6cp
+lesson:black-sicilian-main/continuation:structure: h6 (accepted), loss 0cp
+lesson:black-sicilian-main/continuation:structure/h6/reply: Nd5 (sound opponent reply), loss -4cp
+lesson:black-sicilian-main/continuation:improve: Nxc6 (accepted), loss 0cp
+lesson:black-sicilian-main/continuation:improve/Nxc6/reply: Bf3 (sound opponent reply), loss 4cp
+lesson:black-sicilian-main/continuation:improve: bxc6 (accepted), loss 14cp
+lesson:black-sicilian-main/continuation:improve/bxc6/reply: g4 (sound opponent reply), loss 2cp
+lesson:black-sicilian-main/continuation:simplify: Nc4 (accepted), loss 1cp
+lesson:black-sicilian-main/continuation:simplify/Nc4/reply: Rb1 (sound opponent reply), loss 4cp
+lesson:black-sicilian-main/continuation:simplify: Nb3 (accepted), loss 38cp
+lesson:black-sicilian-main/continuation:simplify/Nb3/reply: Bxe5 (sound opponent reply), loss -2cp
+lesson:black-sicilian-main/continuation:ending-activity: Rad8 (accepted), loss -12cp
+lesson:black-sicilian-main/continuation:ending-activity/Rad8/reply: Rd4 (sound opponent reply), loss -5cp
+lesson:black-sicilian-main/continuation:ending-activity: Red8 (accepted), loss 5cp
+lesson:black-sicilian-main/continuation:ending-activity/Red8/reply: Rd4 (sound opponent reply), loss 0cp
+lesson:black-sicilian-main/illustration:coordinate/0: Kh1 (illustrative connecting move), loss -9cp
+lesson:black-sicilian-main/illustration:coordinate/1: Nxd4 (illustrative connecting move), loss 2cp
+lesson:black-sicilian-main/illustration:coordinate/2: Bxd4 (illustrative connecting move), loss 13cp
+lesson:black-sicilian-main/illustration:counterplay/0: e5 (illustrative connecting move), loss -2cp
+lesson:black-sicilian-main/illustration:counterplay/1: Be3 (illustrative connecting move), loss 2cp
+lesson:black-sicilian-main/illustration:counterplay/2: exf4 (illustrative connecting move), loss 1cp
+lesson:black-sicilian-main/illustration:counterplay/3: Bxf4 (illustrative connecting move), loss 1cp
+lesson:black-sicilian-main/illustration:counterplay/4: Be6 (illustrative connecting move), loss -2cp
+lesson:black-sicilian-main/illustration:counterplay/5: Qd3 (illustrative connecting move), loss 3cp
+lesson:black-sicilian-main/illustration:structure/0: Nd7 (illustrative connecting move), loss -20cp
+lesson:black-sicilian-main/illustration:structure/1: Rac1 (illustrative connecting move), loss -12cp
+lesson:black-sicilian-main/illustration:structure/2: Ne5 (illustrative connecting move), loss 1cp
+lesson:black-sicilian-main/illustration:structure/3: Qd2 (illustrative connecting move), loss 0cp
+lesson:black-sicilian-main/illustration:structure/4: Rfe8 (illustrative connecting move), loss -1cp
+lesson:black-sicilian-main/illustration:structure/5: Nd5 (illustrative connecting move), loss -6cp
+lesson:black-sicilian-main/illustration:improve/0: Bxd5 (illustrative connecting move), loss -1cp
+lesson:black-sicilian-main/illustration:improve/1: Qxd5 (illustrative connecting move), loss 4cp
+lesson:black-sicilian-main/illustration:improve/2: Bf6 (illustrative connecting move), loss -8cp
+lesson:black-sicilian-main/illustration:improve/3: c3 (illustrative connecting move), loss 2cp
+lesson:black-sicilian-main/illustration:improve/4: Qc6 (illustrative connecting move), loss 3cp
+lesson:black-sicilian-main/illustration:improve/5: Qxc6 (illustrative connecting move), loss 3cp
+lesson:black-sicilian-main/illustration:improve/6: Nxc6 (illustrative connecting move), loss 0cp
+lesson:black-sicilian-main/illustration:improve/7: Bf3 (illustrative connecting move), loss 4cp
+lesson:black-sicilian-main/illustration:simplify/0: Be5 (illustrative connecting move), loss 3cp
+lesson:black-sicilian-main/illustration:simplify/1: g3 (illustrative connecting move), loss -4cp
+lesson:black-sicilian-main/illustration:simplify/2: Na5 (illustrative connecting move), loss -5cp
+lesson:black-sicilian-main/illustration:simplify/3: Rcd1 (illustrative connecting move), loss -5cp
+lesson:black-sicilian-main/illustration:simplify/4: Kf8 (illustrative connecting move), loss -13cp
+lesson:black-sicilian-main/illustration:simplify/5: Rd5 (illustrative connecting move), loss -10cp
+lesson:black-sicilian-main/illustration:simplify/6: Nc4 (illustrative connecting move), loss 1cp
+lesson:black-sicilian-main/illustration:simplify/7: Rb1 (illustrative connecting move), loss 4cp
+lesson:black-sicilian-main/illustration:ending-activity/0: Nb6 (illustrative connecting move), loss 7cp
+lesson:black-sicilian-main/illustration:ending-activity/1: Rxd6 (illustrative connecting move), loss 1cp
+lesson:black-sicilian-main/illustration:ending-activity/2: Nxa4 (illustrative connecting move), loss -14cp
+lesson:black-sicilian-main/illustration:ending-activity/3: Rd5 (illustrative connecting move), loss -7cp
+lesson:black-sicilian-main/illustration:ending-activity/4: Bxf4 (illustrative connecting move), loss 3cp
+lesson:black-sicilian-main/illustration:ending-activity/5: gxf4 (illustrative connecting move), loss 0cp
+lesson:black-sicilian-main/illustration:ending-activity/6: Rad8 (illustrative connecting move), loss -12cp
+lesson:black-sicilian-main/illustration:ending-activity/7: Rd4 (illustrative connecting move), loss -5cp
+lesson:black-sicilian-basic:english/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:english/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:english/opening:2: Nf3 (entry position), loss 7cp
+lesson:black-sicilian-basic:english/opening:3: d6 (entry position), loss 13cp
+lesson:black-sicilian-basic:english/opening:4: d4 (entry position), loss -6cp
+lesson:black-sicilian-basic:english/opening:5: cxd4 (entry position), loss 1cp
+lesson:black-sicilian-basic:english/opening:6: Nxd4 (entry position), loss 9cp
+lesson:black-sicilian-basic:english/opening:7: Nf6 (entry position), loss 12cp
+lesson:black-sicilian-basic:english/opening:8: Nc3 (entry position), loss 17cp
+lesson:black-sicilian-basic:english/opening:9: a6 (entry position), loss -4cp
+lesson:black-sicilian-basic:english/opening:10: Be3 (entry position), loss -11cp
+lesson:black-sicilian-basic:english/opening:11: e6 (entry position), loss 7cp
+lesson:black-sicilian-basic:english/opening:12: f3 (entry position), loss 1cp
+lesson:black-sicilian-basic:english/decision-1: b5 (accepted), loss -3cp
+lesson:black-sicilian-basic:english/decision-1/reply: g4 (sound opponent reply), loss 9cp
+lesson:black-sicilian-basic:english/decision-1/mistake: Ng4 (mistake), loss 364cp
+lesson:black-sicilian-basic:english/decision-2: b4 (accepted), loss -13cp
+lesson:black-sicilian-basic:english/decision-2/reply: Nce2 (sound opponent reply), loss -11cp
+lesson:black-sicilian-basic:english/decision-3: e5 (accepted), loss 4cp
+lesson:black-sicilian-basic:english/decision-3/reply: Nf5 (sound opponent reply), loss 5cp
+lesson:black-sicilian-basic:english/decision-4: d5 (accepted), loss 12cp
+lesson:black-sicilian-basic:english/transfer-decision-1: Nbd7 (accepted), loss 8cp
+lesson:black-sicilian-basic:english/transfer-decision-1/reply: O-O-O (sound opponent reply), loss 18cp
+lesson:black-sicilian-basic:english/transfer-decision-2: Bb7 (accepted), loss 2cp
+lesson:black-sicilian-basic:bg5/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:bg5/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:bg5/opening:2: Nf3 (entry position), loss 7cp
+lesson:black-sicilian-basic:bg5/opening:3: d6 (entry position), loss 13cp
+lesson:black-sicilian-basic:bg5/opening:4: d4 (entry position), loss -6cp
+lesson:black-sicilian-basic:bg5/opening:5: cxd4 (entry position), loss 1cp
+lesson:black-sicilian-basic:bg5/opening:6: Nxd4 (entry position), loss 9cp
+lesson:black-sicilian-basic:bg5/opening:7: Nf6 (entry position), loss 12cp
+lesson:black-sicilian-basic:bg5/opening:8: Nc3 (entry position), loss 17cp
+lesson:black-sicilian-basic:bg5/opening:9: a6 (entry position), loss -4cp
+lesson:black-sicilian-basic:bg5/opening:10: Bg5 (entry position), loss 0cp
+lesson:black-sicilian-basic:bg5/opening:11: e6 (entry position), loss 16cp
+lesson:black-sicilian-basic:bg5/opening:12: f4 (entry position), loss 10cp
+lesson:black-sicilian-basic:bg5/decision-1: Be7 (accepted), loss 6cp
+lesson:black-sicilian-basic:bg5/decision-1/reply: Qf3 (sound opponent reply), loss 14cp
+lesson:black-sicilian-basic:bg5/decision-1/mistake: Nh5 (mistake), loss 606cp
+lesson:black-sicilian-basic:bg5/decision-2: Qc7 (accepted), loss 12cp
+lesson:black-sicilian-basic:bg5/decision-2/reply: f5 (sound opponent reply), loss -7cp
+lesson:black-sicilian-basic:bg5/decision-3: h6 (accepted), loss -4cp
+lesson:black-sicilian-basic:bg5/decision-3/reply: Bh4 (sound opponent reply), loss 1cp
+lesson:black-sicilian-basic:bg5/decision-4: Nc6 (accepted), loss 8cp
+lesson:black-sicilian-basic:bg5/transfer-decision-1: Nbd7 (accepted), loss 15cp
+lesson:black-sicilian-basic:bg5/transfer-decision-1/reply: g4 (sound opponent reply), loss -18cp
+lesson:black-sicilian-basic:bg5/transfer-decision-2: h6 (accepted), loss -1cp
+lesson:black-sicilian-basic:bc4/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:bc4/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:bc4/opening:2: Nf3 (entry position), loss 7cp
+lesson:black-sicilian-basic:bc4/opening:3: d6 (entry position), loss 13cp
+lesson:black-sicilian-basic:bc4/opening:4: d4 (entry position), loss -6cp
+lesson:black-sicilian-basic:bc4/opening:5: cxd4 (entry position), loss 1cp
+lesson:black-sicilian-basic:bc4/opening:6: Nxd4 (entry position), loss 9cp
+lesson:black-sicilian-basic:bc4/opening:7: Nf6 (entry position), loss 12cp
+lesson:black-sicilian-basic:bc4/opening:8: Nc3 (entry position), loss 17cp
+lesson:black-sicilian-basic:bc4/opening:9: a6 (entry position), loss -4cp
+lesson:black-sicilian-basic:bc4/opening:10: Bc4 (entry position), loss 0cp
+lesson:black-sicilian-basic:bc4/opening:11: e6 (entry position), loss 3cp
+lesson:black-sicilian-basic:bc4/opening:12: Bb3 (entry position), loss 1cp
+lesson:black-sicilian-basic:bc4/decision-1: b5 (accepted), loss -22cp
+lesson:black-sicilian-basic:bc4/decision-1/reply: O-O (sound opponent reply), loss -14cp
+lesson:black-sicilian-basic:bc4/decision-1/mistake: Nh5 (mistake), loss 432cp
+lesson:black-sicilian-basic:bc4/decision-2: Be7 (accepted), loss -16cp
+lesson:black-sicilian-basic:bc4/decision-2/reply: a4 (sound opponent reply), loss 7cp
+lesson:black-sicilian-basic:bc4/decision-3: b4 (accepted), loss 4cp
+lesson:black-sicilian-basic:bc4/decision-3/reply: Na2 (sound opponent reply), loss 18cp
+lesson:black-sicilian-basic:bc4/decision-4: Bb7 (accepted), loss 7cp
+lesson:black-sicilian-basic:bc4/transfer-decision-1: Be7 (accepted), loss -5cp
+lesson:black-sicilian-basic:bc4/transfer-decision-1/reply: f3 (sound opponent reply), loss 15cp
+lesson:black-sicilian-basic:bc4/transfer-decision-2: O-O (accepted), loss 3cp
+lesson:black-sicilian-basic:f4/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:f4/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:f4/opening:2: Nf3 (entry position), loss 7cp
+lesson:black-sicilian-basic:f4/opening:3: d6 (entry position), loss 13cp
+lesson:black-sicilian-basic:f4/opening:4: d4 (entry position), loss -6cp
+lesson:black-sicilian-basic:f4/opening:5: cxd4 (entry position), loss 1cp
+lesson:black-sicilian-basic:f4/opening:6: Nxd4 (entry position), loss 9cp
+lesson:black-sicilian-basic:f4/opening:7: Nf6 (entry position), loss 12cp
+lesson:black-sicilian-basic:f4/opening:8: Nc3 (entry position), loss 17cp
+lesson:black-sicilian-basic:f4/opening:9: a6 (entry position), loss -4cp
+lesson:black-sicilian-basic:f4/opening:10: f4 (entry position), loss 3cp
+lesson:black-sicilian-basic:f4/opening:11: e6 (entry position), loss 10cp
+lesson:black-sicilian-basic:f4/opening:12: Nf3 (entry position), loss 35cp
+lesson:black-sicilian-basic:f4/decision-1: Nc6 (accepted), loss 5cp
+lesson:black-sicilian-basic:f4/decision-1/reply: Bd3 (sound opponent reply), loss 5cp
+lesson:black-sicilian-basic:f4/decision-1/mistake: Nd5 (mistake), loss 460cp
+lesson:black-sicilian-basic:f4/decision-2: Be7 (accepted), loss 12cp
+lesson:black-sicilian-basic:f4/decision-2/reply: O-O (sound opponent reply), loss 9cp
+lesson:black-sicilian-basic:f4/decision-3: b5 (accepted), loss 9cp
+lesson:black-sicilian-basic:f4/decision-3/reply: Qe1 (sound opponent reply), loss 4cp
+lesson:black-sicilian-basic:f4/decision-4: Bb7 (accepted), loss 1cp
+lesson:black-sicilian-basic:f4/transfer-decision-1: b5 (accepted), loss 3cp
+lesson:black-sicilian-basic:f4/transfer-decision-1/reply: Bd3 (sound opponent reply), loss -10cp
+lesson:black-sicilian-basic:f4/transfer-decision-2: Be7 (accepted), loss -8cp
+lesson:black-sicilian-basic:g3/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:g3/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:g3/opening:2: Nf3 (entry position), loss 7cp
+lesson:black-sicilian-basic:g3/opening:3: d6 (entry position), loss 13cp
+lesson:black-sicilian-basic:g3/opening:4: d4 (entry position), loss -6cp
+lesson:black-sicilian-basic:g3/opening:5: cxd4 (entry position), loss 1cp
+lesson:black-sicilian-basic:g3/opening:6: Nxd4 (entry position), loss 9cp
+lesson:black-sicilian-basic:g3/opening:7: Nf6 (entry position), loss 12cp
+lesson:black-sicilian-basic:g3/opening:8: Nc3 (entry position), loss 17cp
+lesson:black-sicilian-basic:g3/opening:9: a6 (entry position), loss -4cp
+lesson:black-sicilian-basic:g3/opening:10: g3 (entry position), loss 16cp
+lesson:black-sicilian-basic:g3/opening:11: e6 (entry position), loss 10cp
+lesson:black-sicilian-basic:g3/opening:12: Bg2 (entry position), loss -3cp
+lesson:black-sicilian-basic:g3/decision-1: Qc7 (accepted), loss 13cp
+lesson:black-sicilian-basic:g3/decision-1/reply: g4 (sound opponent reply), loss -4cp
+lesson:black-sicilian-basic:g3/decision-1/mistake: Nh5 (mistake), loss 413cp
+lesson:black-sicilian-basic:g3/decision-2: h6 (accepted), loss -4cp
+lesson:black-sicilian-basic:g3/decision-2/reply: h4 (sound opponent reply), loss 4cp
+lesson:black-sicilian-basic:g3/decision-3: Nc6 (accepted), loss -8cp
+lesson:black-sicilian-basic:g3/decision-3/reply: g5 (sound opponent reply), loss -12cp
+lesson:black-sicilian-basic:g3/decision-4: hxg5 (accepted), loss -3cp
+lesson:black-sicilian-basic:g3/transfer-decision-1: Nc6 (accepted), loss -4cp
+lesson:black-sicilian-basic:g3/transfer-decision-1/reply: Nxc6 (sound opponent reply), loss -9cp
+lesson:black-sicilian-basic:g3/transfer-decision-2: bxc6 (accepted), loss -3cp
+lesson:black-sicilian-basic:alapin/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:alapin/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:alapin/opening:2: c3 (entry position), loss 11cp
+lesson:black-sicilian-basic:alapin/opening:3: Nf6 (entry position), loss -14cp
+lesson:black-sicilian-basic:alapin/opening:4: e5 (entry position), loss 0cp
+lesson:black-sicilian-basic:alapin/opening:5: Nd5 (entry position), loss 6cp
+lesson:black-sicilian-basic:alapin/opening:6: d4 (entry position), loss 2cp
+lesson:black-sicilian-basic:alapin/decision-1: cxd4 (accepted), loss 6cp
+lesson:black-sicilian-basic:alapin/decision-1/reply: Nf3 (sound opponent reply), loss -3cp
+lesson:black-sicilian-basic:alapin/decision-1/mistake: Nf6 (mistake), loss 405cp
+lesson:black-sicilian-basic:alapin/decision-2: d6 (accepted), loss 4cp
+lesson:black-sicilian-basic:alapin/decision-2/reply: exd6 (sound opponent reply), loss 11cp
+lesson:black-sicilian-basic:alapin/decision-3: Nc6 (accepted), loss 5cp
+lesson:black-sicilian-basic:alapin/decision-3/reply: Nxd4 (sound opponent reply), loss -3cp
+lesson:black-sicilian-basic:alapin/decision-4: Qxd6 (accepted), loss 6cp
+lesson:black-sicilian-basic:alapin/transfer-decision-1: d6 (accepted), loss 14cp
+lesson:black-sicilian-basic:alapin/transfer-decision-1/reply: Nf3 (sound opponent reply), loss 4cp
+lesson:black-sicilian-basic:alapin/transfer-decision-2: Nc6 (accepted), loss -14cp
+lesson:black-sicilian-basic:closed/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:closed/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:closed/opening:2: Nc3 (entry position), loss 15cp
+lesson:black-sicilian-basic:closed/opening:3: Nc6 (entry position), loss 4cp
+lesson:black-sicilian-basic:closed/opening:4: g3 (entry position), loss 43cp
+lesson:black-sicilian-basic:closed/opening:5: g6 (entry position), loss 5cp
+lesson:black-sicilian-basic:closed/opening:6: Bg2 (entry position), loss -3cp
+lesson:black-sicilian-basic:closed/opening:7: Bg7 (entry position), loss 4cp
+lesson:black-sicilian-basic:closed/opening:8: d3 (entry position), loss 18cp
+lesson:black-sicilian-basic:closed/decision-1: d6 (accepted), loss 7cp
+lesson:black-sicilian-basic:closed/decision-1/reply: Nge2 (sound opponent reply), loss -3cp
+lesson:black-sicilian-basic:closed/decision-1/mistake: d5 (mistake), loss 142cp
+lesson:black-sicilian-basic:closed/decision-2: Rb8 (accepted), loss -7cp
+lesson:black-sicilian-basic:closed/decision-2/reply: a4 (sound opponent reply), loss -9cp
+lesson:black-sicilian-basic:closed/decision-3: a6 (accepted), loss -4cp
+lesson:black-sicilian-basic:closed/decision-3/reply: Nd5 (sound opponent reply), loss 9cp
+lesson:black-sicilian-basic:closed/decision-4: e6 (accepted), loss 13cp
+lesson:black-sicilian-basic:closed/transfer-decision-1: e6 (accepted), loss 0cp
+lesson:black-sicilian-basic:closed/transfer-decision-1/reply: O-O (sound opponent reply), loss -3cp
+lesson:black-sicilian-basic:closed/transfer-decision-2: h6 (accepted), loss 1cp
+lesson:black-sicilian-basic:grand-prix/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:grand-prix/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:grand-prix/opening:2: Nc3 (entry position), loss 15cp
+lesson:black-sicilian-basic:grand-prix/opening:3: Nc6 (entry position), loss 4cp
+lesson:black-sicilian-basic:grand-prix/opening:4: f4 (entry position), loss 56cp
+lesson:black-sicilian-basic:grand-prix/opening:5: g6 (entry position), loss -3cp
+lesson:black-sicilian-basic:grand-prix/opening:6: Nf3 (entry position), loss -2cp
+lesson:black-sicilian-basic:grand-prix/opening:7: Bg7 (entry position), loss -4cp
+lesson:black-sicilian-basic:grand-prix/opening:8: Bc4 (entry position), loss 1cp
+lesson:black-sicilian-basic:grand-prix/decision-1: e6 (accepted), loss 3cp
+lesson:black-sicilian-basic:grand-prix/decision-1/reply: e5 (sound opponent reply), loss -7cp
+lesson:black-sicilian-basic:grand-prix/decision-1/mistake: Be5 (mistake), loss 570cp
+lesson:black-sicilian-basic:grand-prix/decision-2: d5 (accepted), loss -7cp
+lesson:black-sicilian-basic:grand-prix/decision-2/reply: Bb5 (sound opponent reply), loss -16cp
+lesson:black-sicilian-basic:grand-prix/decision-3: Ne7 (accepted), loss -14cp
+lesson:black-sicilian-basic:grand-prix/decision-3/reply: d4 (sound opponent reply), loss -5cp
+lesson:black-sicilian-basic:grand-prix/decision-4: cxd4 (accepted), loss -1cp
+lesson:black-sicilian-basic:grand-prix/transfer-decision-1: Nge7 (accepted), loss 3cp
+lesson:black-sicilian-basic:grand-prix/transfer-decision-1/reply: d3 (sound opponent reply), loss -7cp
+lesson:black-sicilian-basic:grand-prix/transfer-decision-2: O-O (accepted), loss -19cp
+lesson:black-sicilian-basic:moscow/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:moscow/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:moscow/opening:2: Nf3 (entry position), loss 7cp
+lesson:black-sicilian-basic:moscow/opening:3: d6 (entry position), loss 13cp
+lesson:black-sicilian-basic:moscow/opening:4: Bb5+ (entry position), loss 25cp
+lesson:black-sicilian-basic:moscow/decision-1: Bd7 (accepted), loss 0cp
+lesson:black-sicilian-basic:moscow/decision-1/reply: Bxd7+ (sound opponent reply), loss -1cp
+lesson:black-sicilian-basic:moscow/decision-1/mistake: Qd7 (mistake), loss 530cp
+lesson:black-sicilian-basic:moscow/decision-2: Nxd7 (accepted), loss 3cp
+lesson:black-sicilian-basic:moscow/decision-2/reply: c4 (sound opponent reply), loss -5cp
+lesson:black-sicilian-basic:moscow/decision-3: Ngf6 (accepted), loss -10cp
+lesson:black-sicilian-basic:moscow/decision-3/reply: Nc3 (sound opponent reply), loss -5cp
+lesson:black-sicilian-basic:moscow/decision-4: g6 (accepted), loss 2cp
+lesson:black-sicilian-basic:moscow/transfer-decision-1: g6 (accepted), loss 6cp
+lesson:black-sicilian-basic:moscow/transfer-decision-1/reply: Bxd7+ (sound opponent reply), loss -8cp
+lesson:black-sicilian-basic:moscow/transfer-decision-2: Qxd7 (accepted), loss 2cp
+lesson:black-sicilian-basic:dragon/opening:0: e4 (entry position), loss -2cp
+lesson:black-sicilian-basic:dragon/opening:1: c5 (entry position), loss 0cp
+lesson:black-sicilian-basic:dragon/opening:2: Nf3 (entry position), loss 7cp
+lesson:black-sicilian-basic:dragon/opening:3: d6 (entry position), loss 13cp
+lesson:black-sicilian-basic:dragon/opening:4: d4 (entry position), loss -6cp
+lesson:black-sicilian-basic:dragon/opening:5: cxd4 (entry position), loss 1cp
+lesson:black-sicilian-basic:dragon/opening:6: Nxd4 (entry position), loss 9cp
+lesson:black-sicilian-basic:dragon/opening:7: Nf6 (entry position), loss 12cp
+lesson:black-sicilian-basic:dragon/opening:8: Nc3 (entry position), loss 17cp
+lesson:black-sicilian-basic:dragon/opening:9: g6 (entry position), loss 25cp
+lesson:black-sicilian-basic:dragon/opening:10: Be3 (entry position), loss 3cp
+lesson:black-sicilian-basic:dragon/opening:11: Bg7 (entry position), loss 11cp
+lesson:black-sicilian-basic:dragon/opening:12: f3 (entry position), loss 10cp
+lesson:black-sicilian-basic:dragon/decision-1: a6 (accepted), loss 6cp
+lesson:black-sicilian-basic:dragon/decision-1/reply: g4 (sound opponent reply), loss -8cp
+lesson:black-sicilian-basic:dragon/decision-1/mistake: Bf5 (mistake), loss 373cp
+lesson:black-sicilian-basic:dragon/decision-2: b5 (accepted), loss -20cp
+lesson:black-sicilian-basic:dragon/decision-2/reply: Qd2 (sound opponent reply), loss -2cp
+lesson:black-sicilian-basic:dragon/decision-3: Bb7 (accepted), loss 2cp
+lesson:black-sicilian-basic:dragon/decision-3/reply: O-O-O (sound opponent reply), loss -5cp
+lesson:black-sicilian-basic:dragon/decision-4: h5 (accepted), loss -4cp
+lesson:black-sicilian-basic:dragon/transfer-decision-1: b5 (accepted), loss -1cp
+lesson:black-sicilian-basic:dragon/transfer-decision-1/reply: g4 (sound opponent reply), loss 14cp
+lesson:black-sicilian-basic:dragon/transfer-decision-2: Bb7 (accepted), loss 1cp
+lesson:black-alien-main/opening:0: e4 (entry position), loss -2cp
+lesson:black-alien-main/opening:1: c6 (entry position), loss 5cp
+lesson:black-alien-main/opening:2: d4 (entry position), loss 4cp
+lesson:black-alien-main/opening:3: d5 (entry position), loss 0cp
+lesson:black-alien-main/opening:4: Nc3 (entry position), loss -2cp
+lesson:black-alien-main/opening:5: dxe4 (entry position), loss -11cp
+lesson:black-alien-main/opening:6: Nxe4 (entry position), loss -10cp
+lesson:black-alien-main/opening:7: Nf6 (entry position), loss 4cp
+lesson:black-alien-main/opening:8: Ng5 (entry position), loss 49cp
+lesson:black-alien-main/opening:9: Nbd7 (entry position), loss 54cp
+lesson:black-alien-main/opening:10: Bc4 (entry position), loss 21cp
+lesson:black-alien-main/decision-1: e6 (accepted), loss -8cp
+lesson:black-alien-main/decision-1/reply: Qe2 (sound opponent reply), loss -10cp
+lesson:black-alien-main/decision-1/mistake: Ne5 (mistake), loss 426cp
+lesson:black-alien-main/decision-2: Nb6 (accepted), loss -8cp
+lesson:black-alien-main/decision-2/reply: Bd3 (sound opponent reply), loss -3cp
+lesson:black-alien-main/decision-3: h6 (accepted), loss -4cp
+lesson:black-alien-main/decision-3/reply: N5f3 (sound opponent reply), loss -1cp
+lesson:black-alien-main/decision-4: c5 (accepted), loss -7cp
+lesson:black-alien-main/transfer-decision-1: h6 (accepted), loss -5cp
+lesson:black-alien-main/transfer-decision-1/reply: Nf3 (sound opponent reply), loss 4cp
+lesson:black-alien-main/transfer-decision-2: Bd6 (accepted), loss 6cp
+lesson:black-alien-main/continuation:coordinate: Nbd5 (accepted), loss -6cp
+lesson:black-alien-main/continuation:coordinate/Nbd5/reply: dxc5 (sound opponent reply), loss 4cp
+lesson:black-alien-main/continuation:coordinate: cxd4 (accepted), loss -23cp
+lesson:black-alien-main/continuation:coordinate/cxd4/reply: Nxd4 (sound opponent reply), loss -28cp
+lesson:black-alien-main/continuation:counterplay: O-O (accepted), loss 7cp
+lesson:black-alien-main/continuation:counterplay/O-O/reply: Bd2 (sound opponent reply), loss -18cp
+lesson:black-alien-main/continuation:counterplay: Bd6 (accepted), loss 14cp
+lesson:black-alien-main/continuation:counterplay/Bd6/reply: O-O (sound opponent reply), loss 8cp
+lesson:black-alien-main/continuation:structure: Bb7 (accepted), loss -5cp
+lesson:black-alien-main/continuation:structure/Bb7/reply: c4 (sound opponent reply), loss 48cp
+lesson:black-alien-main/continuation:structure: Nh5 (accepted), loss 17cp
+lesson:black-alien-main/continuation:structure/Nh5/reply: Qe4 (sound opponent reply), loss 2cp
+lesson:black-alien-main/continuation:improve: Bf6 (accepted), loss 6cp
+lesson:black-alien-main/continuation:improve/Bf6/reply: b4 (sound opponent reply), loss 16cp
+lesson:black-alien-main/continuation:improve: Rac8 (accepted), loss -9cp
+lesson:black-alien-main/continuation:improve/Rac8/reply: Rh1 (sound opponent reply), loss -7cp
+lesson:black-alien-main/continuation:simplify: Rac8 (accepted), loss 6cp
+lesson:black-alien-main/continuation:simplify/Rac8/reply: Rh1 (sound opponent reply), loss -1cp
+lesson:black-alien-main/continuation:simplify: a5 (accepted), loss 12cp
+lesson:black-alien-main/continuation:simplify/a5/reply: Be4 (sound opponent reply), loss 0cp
+lesson:black-alien-main/continuation:ending-activity: Rfd8 (accepted), loss -4cp
+lesson:black-alien-main/continuation:ending-activity/Rfd8/reply: Kf3 (sound opponent reply), loss -2cp
+lesson:black-alien-main/continuation:ending-activity: Be7 (accepted), loss -6cp
+lesson:black-alien-main/continuation:ending-activity/Be7/reply: c5 (sound opponent reply), loss -4cp
+lesson:black-alien-main/illustration:coordinate/0: c3 (illustrative connecting move), loss -7cp
+lesson:black-alien-main/illustration:coordinate/1: Nbd5 (illustrative connecting move), loss -6cp
+lesson:black-alien-main/illustration:coordinate/2: dxc5 (illustrative connecting move), loss 4cp
+lesson:black-alien-main/illustration:counterplay/0: Bxc5 (illustrative connecting move), loss 5cp
+lesson:black-alien-main/illustration:counterplay/1: Ne5 (illustrative connecting move), loss 7cp
+lesson:black-alien-main/illustration:counterplay/2: Qc7 (illustrative connecting move), loss 11cp
+lesson:black-alien-main/illustration:counterplay/3: Ngf3 (illustrative connecting move), loss 11cp
+lesson:black-alien-main/illustration:counterplay/4: O-O (illustrative connecting move), loss 7cp
+lesson:black-alien-main/illustration:counterplay/5: Bd2 (illustrative connecting move), loss -18cp
+lesson:black-alien-main/illustration:structure/0: Bd6 (illustrative connecting move), loss -15cp
+lesson:black-alien-main/illustration:structure/1: O-O (illustrative connecting move), loss 2cp
+lesson:black-alien-main/illustration:structure/2: b6 (illustrative connecting move), loss 5cp
+lesson:black-alien-main/illustration:structure/3: Rad1 (illustrative connecting move), loss 0cp
+lesson:black-alien-main/illustration:structure/4: Bb7 (illustrative connecting move), loss -5cp
+lesson:black-alien-main/illustration:structure/5: c4 (illustrative connecting move), loss 48cp
+lesson:black-alien-main/illustration:improve/0: Nf4 (illustrative connecting move), loss 15cp
+lesson:black-alien-main/illustration:improve/1: Bxf4 (illustrative connecting move), loss 8cp
+lesson:black-alien-main/illustration:improve/2: Bxf3 (illustrative connecting move), loss 0cp
+lesson:black-alien-main/illustration:improve/3: gxf3 (illustrative connecting move), loss 2cp
+lesson:black-alien-main/illustration:improve/4: Nh5 (illustrative connecting move), loss -2cp
+lesson:black-alien-main/illustration:improve/5: Bg3 (illustrative connecting move), loss -4cp
+lesson:black-alien-main/illustration:improve/6: Nxg3 (illustrative connecting move), loss 13cp
+lesson:black-alien-main/illustration:improve/7: hxg3 (illustrative connecting move), loss 14cp
+lesson:black-alien-main/illustration:improve/8: Bxe5 (illustrative connecting move), loss 0cp
+lesson:black-alien-main/illustration:improve/9: Kg2 (illustrative connecting move), loss -5cp
+lesson:black-alien-main/illustration:improve/10: Bf6 (illustrative connecting move), loss 6cp
+lesson:black-alien-main/illustration:improve/11: b4 (illustrative connecting move), loss 16cp
+lesson:black-alien-main/illustration:simplify/0: Rac8 (illustrative connecting move), loss 6cp
+lesson:black-alien-main/illustration:simplify/1: Rh1 (illustrative connecting move), loss -1cp
+lesson:black-alien-main/illustration:ending-activity/0: Qe5 (illustrative connecting move), loss -1cp
+lesson:black-alien-main/illustration:ending-activity/1: f4 (illustrative connecting move), loss -1cp
+lesson:black-alien-main/illustration:ending-activity/2: Qxe2 (illustrative connecting move), loss 3cp
+lesson:black-alien-main/illustration:ending-activity/3: Bxe2 (illustrative connecting move), loss -6cp
+lesson:black-alien-main/illustration:ending-activity/4: Rfd8 (illustrative connecting move), loss -4cp
+lesson:black-alien-main/illustration:ending-activity/5: Kf3 (illustrative connecting move), loss -2cp
+lesson:black-alien-gambit-defense:quiet/opening:0: e4 (entry position), loss -2cp
+lesson:black-alien-gambit-defense:quiet/opening:1: c6 (entry position), loss 5cp
+lesson:black-alien-gambit-defense:quiet/opening:2: d4 (entry position), loss 4cp
+lesson:black-alien-gambit-defense:quiet/opening:3: d5 (entry position), loss 0cp
+lesson:black-alien-gambit-defense:quiet/opening:4: Nc3 (entry position), loss -2cp
+lesson:black-alien-gambit-defense:quiet/opening:5: dxe4 (entry position), loss -11cp
+lesson:black-alien-gambit-defense:quiet/opening:6: Nxe4 (entry position), loss -10cp
+lesson:black-alien-gambit-defense:quiet/opening:7: Nf6 (entry position), loss 4cp
+lesson:black-alien-gambit-defense:quiet/opening:8: Ng5 (entry position), loss 49cp
+lesson:black-alien-gambit-defense:quiet/opening:9: Nbd7 (entry position), loss 54cp
+lesson:black-alien-gambit-defense:quiet/opening:10: Bd3 (entry position), loss -3cp
+lesson:black-alien-gambit-defense:quiet/decision-1: e6 (accepted), loss 0cp
+lesson:black-alien-gambit-defense:quiet/decision-1/reply: N1f3 (sound opponent reply), loss 0cp
+lesson:black-alien-gambit-defense:quiet/decision-1/mistake: Ne5 (mistake), loss 310cp
+lesson:black-alien-gambit-defense:quiet/decision-2: Bd6 (accepted), loss -2cp
+lesson:black-alien-gambit-defense:quiet/decision-2/reply: Qe2 (sound opponent reply), loss 6cp
+lesson:black-alien-gambit-defense:quiet/decision-3: h6 (accepted), loss 15cp
+lesson:black-alien-gambit-defense:quiet/decision-3/reply: Ne4 (sound opponent reply), loss 11cp
+lesson:black-alien-gambit-defense:quiet/decision-4: Nxe4 (accepted), loss 1cp
+lesson:black-alien-gambit-defense:quiet/transfer-decision-1: Qc7 (accepted), loss 55cp
+lesson:black-alien-gambit-defense:quiet/transfer-decision-1/reply: N1f3 (sound opponent reply), loss 69cp
+lesson:black-alien-gambit-defense:quiet/transfer-decision-2: h6 (accepted), loss 9cp
+lesson:black-alien-gambit-defense:f4/opening:0: e4 (entry position), loss -2cp
+lesson:black-alien-gambit-defense:f4/opening:1: c6 (entry position), loss 5cp
+lesson:black-alien-gambit-defense:f4/opening:2: d4 (entry position), loss 4cp
+lesson:black-alien-gambit-defense:f4/opening:3: d5 (entry position), loss 0cp
+lesson:black-alien-gambit-defense:f4/opening:4: Nc3 (entry position), loss -2cp
+lesson:black-alien-gambit-defense:f4/opening:5: dxe4 (entry position), loss -11cp
+lesson:black-alien-gambit-defense:f4/opening:6: Nxe4 (entry position), loss -10cp
+lesson:black-alien-gambit-defense:f4/opening:7: Nf6 (entry position), loss 4cp
+lesson:black-alien-gambit-defense:f4/opening:8: Ng5 (entry position), loss 49cp
+lesson:black-alien-gambit-defense:f4/opening:9: Nbd7 (entry position), loss 54cp
+lesson:black-alien-gambit-defense:f4/opening:10: f4 (entry position), loss 78cp
+lesson:black-alien-gambit-defense:f4/decision-1: h6 (accepted), loss -4cp
+lesson:black-alien-gambit-defense:f4/decision-1/reply: N5f3 (sound opponent reply), loss -1cp
+lesson:black-alien-gambit-defense:f4/decision-1/mistake: Ne5 (mistake), loss 499cp
+lesson:black-alien-gambit-defense:f4/decision-2: e6 (accepted), loss 0cp
+lesson:black-alien-gambit-defense:f4/decision-2/reply: Bd3 (sound opponent reply), loss 4cp
+lesson:black-alien-gambit-defense:f4/decision-3: c5 (accepted), loss -1cp
+lesson:black-alien-gambit-defense:f4/decision-3/reply: Qe2 (sound opponent reply), loss 3cp
+lesson:black-alien-gambit-defense:f4/decision-4: Be7 (accepted), loss -6cp
+lesson:black-alien-gambit-defense:f4/transfer-decision-1: fxe6 (accepted), loss 24cp
+lesson:black-alien-gambit-defense:f4/transfer-decision-1/reply: Bd3 (sound opponent reply), loss 12cp
+lesson:black-alien-gambit-defense:f4/transfer-decision-2: Kf7 (accepted), loss -3cp
+lesson:black-alien-gambit-defense:accepted/opening:0: e4 (entry position), loss -2cp
+lesson:black-alien-gambit-defense:accepted/opening:1: c6 (entry position), loss 5cp
+lesson:black-alien-gambit-defense:accepted/opening:2: d4 (entry position), loss 4cp
+lesson:black-alien-gambit-defense:accepted/opening:3: d5 (entry position), loss 0cp
+lesson:black-alien-gambit-defense:accepted/opening:4: Nc3 (entry position), loss -2cp
+lesson:black-alien-gambit-defense:accepted/opening:5: dxe4 (entry position), loss -11cp
+lesson:black-alien-gambit-defense:accepted/opening:6: Nxe4 (entry position), loss -10cp
+lesson:black-alien-gambit-defense:accepted/opening:7: Nf6 (entry position), loss 4cp
+lesson:black-alien-gambit-defense:accepted/opening:8: Ng5 (entry position), loss 49cp
+lesson:black-alien-gambit-defense:accepted/opening:9: h6 (entry position), loss 6cp
+lesson:black-alien-gambit-defense:accepted/opening:10: Nxf7 (entry position), loss 155cp
+lesson:black-alien-gambit-defense:accepted/opening:11: Kxf7 (entry position), loss 13cp
+lesson:black-alien-gambit-defense:accepted/opening:12: Nf3 (entry position), loss -5cp
+lesson:black-alien-gambit-defense:accepted/decision-1: e6 (accepted), loss 16cp
+lesson:black-alien-gambit-defense:accepted/decision-1/reply: Ne5+ (sound opponent reply), loss 26cp
+lesson:black-alien-gambit-defense:accepted/decision-1/mistake: Qxd4 (mistake), loss 675cp
+lesson:black-alien-gambit-defense:accepted/decision-2: Kg8 (accepted), loss 7cp
+lesson:black-alien-gambit-defense:accepted/decision-2/reply: Bc4 (sound opponent reply), loss 0cp
+lesson:black-alien-gambit-defense:accepted/decision-3: c5 (accepted), loss -36cp
+lesson:black-alien-gambit-defense:accepted/decision-3/reply: Be3 (sound opponent reply), loss -11cp
+lesson:black-alien-gambit-defense:accepted/decision-4: Nc6 (accepted), loss 6cp
+lesson:black-alien-gambit-defense:accepted/transfer-decision-1: c5 (accepted), loss -28cp
+lesson:black-alien-gambit-defense:accepted/transfer-decision-1/reply: dxc5 (sound opponent reply), loss 5cp
+lesson:black-alien-gambit-defense:accepted/transfer-decision-2: Bxc5 (accepted), loss 3cp
+lesson:black-vienna-main/opening:0: e4 (entry position), loss -2cp
+lesson:black-vienna-main/opening:1: e5 (entry position), loss 4cp
+lesson:black-vienna-main/opening:2: Nc3 (entry position), loss 21cp
+lesson:black-vienna-main/opening:3: Nf6 (entry position), loss 4cp
+lesson:black-vienna-main/opening:4: f4 (entry position), loss 39cp
+lesson:black-vienna-main/opening:5: d5 (entry position), loss 8cp
+lesson:black-vienna-main/opening:6: fxe5 (entry position), loss -2cp
+lesson:black-vienna-main/opening:7: Nxe4 (entry position), loss 0cp
+lesson:black-vienna-main/opening:8: Nf3 (entry position), loss 6cp
+lesson:black-vienna-main/decision-1: Bc5 (accepted), loss 28cp
+lesson:black-vienna-main/decision-1/reply: d4 (sound opponent reply), loss 39cp
+lesson:black-vienna-main/decision-1/mistake: Qf6 (mistake), loss 607cp
+lesson:black-vienna-main/decision-2: Bb4 (accepted), loss 7cp
+lesson:black-vienna-main/decision-2/reply: Bd2 (sound opponent reply), loss 3cp
+lesson:black-vienna-main/decision-3: c5 (accepted), loss -1cp
+lesson:black-vienna-main/decision-3/reply: Bd3 (sound opponent reply), loss 6cp
+lesson:black-vienna-main/decision-4: Nxd2 (accepted), loss 14cp
+lesson:black-vienna-main/transfer-decision-1: Bf5 (accepted), loss -1cp
+lesson:black-vienna-main/transfer-decision-1/reply: d4 (sound opponent reply), loss 2cp
+lesson:black-vienna-main/transfer-decision-2: Bb4 (accepted), loss 13cp
+lesson:black-vienna-main/continuation:coordinate: O-O (accepted), loss 49cp
+lesson:black-vienna-main/continuation:coordinate/O-O/reply: dxc5 (sound opponent reply), loss 26cp
+lesson:black-vienna-main/continuation:coordinate: Nc6 (accepted), loss 6cp
+lesson:black-vienna-main/continuation:coordinate/Nc6/reply: Qf4 (sound opponent reply), loss -5cp
+lesson:black-vienna-main/continuation:counterplay: Nxd3 (accepted), loss -3cp
+lesson:black-vienna-main/continuation:counterplay/Nxd3/reply: Qxd3 (sound opponent reply), loss -14cp
+lesson:black-vienna-main/continuation:counterplay: Bg4 (accepted), loss -1cp
+lesson:black-vienna-main/continuation:counterplay/Bg4/reply: Qd4 (sound opponent reply), loss -4cp
+lesson:black-vienna-main/continuation:structure: Ra6 (accepted), loss -2cp
+lesson:black-vienna-main/continuation:structure/Ra6/reply: Kh1 (sound opponent reply), loss 13cp
+lesson:black-vienna-main/continuation:structure: h6 (accepted), loss 16cp
+lesson:black-vienna-main/continuation:structure/h6/reply: Nd4 (sound opponent reply), loss 6cp
+lesson:black-vienna-main/continuation:improve: Qe7 (accepted), loss -6cp
+lesson:black-vienna-main/continuation:improve/Qe7/reply: Nxe6 (sound opponent reply), loss -4cp
+lesson:black-vienna-main/continuation:improve: Qb6 (accepted), loss 5cp
+lesson:black-vienna-main/continuation:improve/Qb6/reply: Nxe6 (sound opponent reply), loss 1cp
+lesson:black-vienna-main/continuation:simplify: Rfe8 (accepted), loss 15cp
+lesson:black-vienna-main/continuation:simplify/Rfe8/reply: Rb1 (sound opponent reply), loss -12cp
+lesson:black-vienna-main/continuation:simplify: Qc7 (accepted), loss 10cp
+lesson:black-vienna-main/continuation:simplify/Qc7/reply: Ref2 (sound opponent reply), loss 33cp
+lesson:black-vienna-main/continuation:ending-activity: Rxe5 (accepted), loss 5cp
+lesson:black-vienna-main/continuation:ending-activity/Rxe5/reply: Rxe5 (sound opponent reply), loss 5cp
+lesson:black-vienna-main/continuation:ending-activity: f6 (accepted), loss 25cp
+lesson:black-vienna-main/continuation:ending-activity/f6/reply: Rxa5 (sound opponent reply), loss 20cp
+lesson:black-vienna-main/illustration:coordinate/0: Qxd2 (illustrative connecting move), loss 5cp
+lesson:black-vienna-main/illustration:coordinate/1: O-O (illustrative connecting move), loss 49cp
+lesson:black-vienna-main/illustration:coordinate/2: dxc5 (illustrative connecting move), loss 26cp
+lesson:black-vienna-main/illustration:counterplay/0: Nd7 (illustrative connecting move), loss -11cp
+lesson:black-vienna-main/illustration:counterplay/1: O-O (illustrative connecting move), loss -6cp
+lesson:black-vienna-main/illustration:counterplay/2: Nxc5 (illustrative connecting move), loss -4cp
+lesson:black-vienna-main/illustration:counterplay/3: Qe3 (illustrative connecting move), loss 20cp
+lesson:black-vienna-main/illustration:counterplay/4: Nxd3 (illustrative connecting move), loss -3cp
+lesson:black-vienna-main/illustration:counterplay/5: Qxd3 (illustrative connecting move), loss -14cp
+lesson:black-vienna-main/illustration:structure/0: Bxc3 (illustrative connecting move), loss -5cp
+lesson:black-vienna-main/illustration:structure/1: bxc3 (illustrative connecting move), loss 2cp
+lesson:black-vienna-main/illustration:structure/2: a5 (illustrative connecting move), loss -4cp
+lesson:black-vienna-main/illustration:structure/3: Rae1 (illustrative connecting move), loss -2cp
+lesson:black-vienna-main/illustration:structure/4: Ra6 (illustrative connecting move), loss -2cp
+lesson:black-vienna-main/illustration:structure/5: Kh1 (illustrative connecting move), loss 13cp
+lesson:black-vienna-main/illustration:improve/0: h6 (illustrative connecting move), loss 6cp
+lesson:black-vienna-main/illustration:improve/1: h3 (illustrative connecting move), loss 1cp
+lesson:black-vienna-main/illustration:improve/2: Rg6 (illustrative connecting move), loss 2cp
+lesson:black-vienna-main/illustration:improve/3: Nd4 (illustrative connecting move), loss 1cp
+lesson:black-vienna-main/illustration:improve/4: Be6 (illustrative connecting move), loss -2cp
+lesson:black-vienna-main/illustration:improve/5: Re2 (illustrative connecting move), loss -2cp
+lesson:black-vienna-main/illustration:improve/6: Qe7 (illustrative connecting move), loss -6cp
+lesson:black-vienna-main/illustration:improve/7: Nxe6 (illustrative connecting move), loss -4cp
+lesson:black-vienna-main/illustration:simplify/0: Rxe6 (illustrative connecting move), loss 1cp
+lesson:black-vienna-main/illustration:simplify/1: Qxd5 (illustrative connecting move), loss -5cp
+lesson:black-vienna-main/illustration:simplify/2: b6 (illustrative connecting move), loss 3cp
+lesson:black-vienna-main/illustration:simplify/3: a4 (illustrative connecting move), loss 13cp
+lesson:black-vienna-main/illustration:simplify/4: Qd8 (illustrative connecting move), loss 12cp
+lesson:black-vienna-main/illustration:simplify/5: c4 (illustrative connecting move), loss 8cp
+lesson:black-vienna-main/illustration:simplify/6: Rfe8 (illustrative connecting move), loss 15cp
+lesson:black-vienna-main/illustration:simplify/7: Rb1 (illustrative connecting move), loss -12cp
+lesson:black-vienna-main/illustration:ending-activity/0: Qc7 (illustrative connecting move), loss -7cp
+lesson:black-vienna-main/illustration:ending-activity/1: c5 (illustrative connecting move), loss -5cp
+lesson:black-vienna-main/illustration:ending-activity/2: Qxc5 (illustrative connecting move), loss 2cp
+lesson:black-vienna-main/illustration:ending-activity/3: Qxc5 (illustrative connecting move), loss -2cp
+lesson:black-vienna-main/illustration:ending-activity/4: bxc5 (illustrative connecting move), loss -10cp
+lesson:black-vienna-main/illustration:ending-activity/5: Rb5 (illustrative connecting move), loss -3cp
+lesson:black-vienna-main/illustration:ending-activity/6: Rxe5 (illustrative connecting move), loss 5cp
+lesson:black-vienna-main/illustration:ending-activity/7: Rxe5 (illustrative connecting move), loss 5cp
+lesson:black-vienna-main/illustration:ending-activity/8: Rxe5 (illustrative connecting move), loss 5cp
+lesson:black-vienna-main/illustration:ending-activity/9: Rxa5 (illustrative connecting move), loss 9cp
+lesson:black-vienna-main:exd5/opening:0: e4 (entry position), loss -2cp
+lesson:black-vienna-main:exd5/opening:1: e5 (entry position), loss 4cp
+lesson:black-vienna-main:exd5/opening:2: Nc3 (entry position), loss 21cp
+lesson:black-vienna-main:exd5/opening:3: Nf6 (entry position), loss 4cp
+lesson:black-vienna-main:exd5/opening:4: f4 (entry position), loss 39cp
+lesson:black-vienna-main:exd5/opening:5: d5 (entry position), loss 8cp
+lesson:black-vienna-main:exd5/opening:6: exd5 (entry position), loss 45cp
+lesson:black-vienna-main:exd5/decision-1: Nxd5 (accepted), loss 13cp
+lesson:black-vienna-main:exd5/decision-1/reply: fxe5 (sound opponent reply), loss 10cp
+lesson:black-vienna-main:exd5/decision-1/mistake: Qxd5 (mistake), loss 513cp
+lesson:black-vienna-main:exd5/decision-2: Nxc3 (accepted), loss 14cp
+lesson:black-vienna-main:exd5/decision-2/reply: bxc3 (sound opponent reply), loss 15cp
+lesson:black-vienna-main:exd5/decision-3: Qh4+ (accepted), loss 12cp
+lesson:black-vienna-main:exd5/decision-3/reply: Ke2 (sound opponent reply), loss 13cp
+lesson:black-vienna-main:exd5/decision-4: Bg4+ (accepted), loss -8cp
+lesson:black-vienna-main:exd5/transfer-decision-1: exf4 (accepted), loss -4cp
+lesson:black-vienna-main:exd5/transfer-decision-1/reply: Nxd5 (sound opponent reply), loss -18cp
+lesson:black-vienna-main:exd5/transfer-decision-2: Qxd5 (accepted), loss 0cp
+lesson:black-vienna-main:bc4/opening:0: e4 (entry position), loss -2cp
+lesson:black-vienna-main:bc4/opening:1: e5 (entry position), loss 4cp
+lesson:black-vienna-main:bc4/opening:2: Nc3 (entry position), loss 21cp
+lesson:black-vienna-main:bc4/opening:3: Nf6 (entry position), loss 4cp
+lesson:black-vienna-main:bc4/opening:4: Bc4 (entry position), loss 34cp
+lesson:black-vienna-main:bc4/decision-1: Nc6 (accepted), loss -1cp
+lesson:black-vienna-main:bc4/decision-1/reply: Bb3 (sound opponent reply), loss 2cp
+lesson:black-vienna-main:bc4/decision-1/mistake: Ba3 (mistake), loss 412cp
+lesson:black-vienna-main:bc4/decision-2: Bc5 (accepted), loss -3cp
+lesson:black-vienna-main:bc4/decision-2/reply: d3 (sound opponent reply), loss 7cp
+lesson:black-vienna-main:bc4/decision-3: d6 (accepted), loss 8cp
+lesson:black-vienna-main:bc4/decision-3/reply: Nf3 (sound opponent reply), loss -4cp
+lesson:black-vienna-main:bc4/decision-4: a5 (accepted), loss 1cp
+lesson:black-vienna-main:bc4/transfer-decision-1: Na5 (accepted), loss 5cp
+lesson:black-vienna-main:bc4/transfer-decision-1/reply: Bb3 (sound opponent reply), loss -2cp
+lesson:black-vienna-main:bc4/transfer-decision-2: Nxb3 (accepted), loss 1cp
+lesson:black-vienna-main:g3/opening:0: e4 (entry position), loss -2cp
+lesson:black-vienna-main:g3/opening:1: e5 (entry position), loss 4cp
+lesson:black-vienna-main:g3/opening:2: Nc3 (entry position), loss 21cp
+lesson:black-vienna-main:g3/opening:3: Nf6 (entry position), loss 4cp
+lesson:black-vienna-main:g3/opening:4: g3 (entry position), loss 29cp
+lesson:black-vienna-main:g3/decision-1: d5 (accepted), loss 6cp
+lesson:black-vienna-main:g3/decision-1/reply: exd5 (sound opponent reply), loss 17cp
+lesson:black-vienna-main:g3/decision-1/mistake: Ba3 (mistake), loss 332cp
+lesson:black-vienna-main:g3/decision-2: Nxd5 (accepted), loss 3cp
+lesson:black-vienna-main:g3/decision-2/reply: Bg2 (sound opponent reply), loss 0cp
+lesson:black-vienna-main:g3/decision-3: Nxc3 (accepted), loss 5cp
+lesson:black-vienna-main:g3/decision-3/reply: bxc3 (sound opponent reply), loss 8cp
+lesson:black-vienna-main:g3/decision-4: Bd6 (accepted), loss 6cp
+lesson:black-vienna-main:g3/transfer-decision-1: Bb4 (accepted), loss -3cp
+lesson:black-vienna-main:g3/transfer-decision-1/reply: exd5 (sound opponent reply), loss 8cp
+lesson:black-vienna-main:g3/transfer-decision-2: Qxd5 (accepted), loss 7cp
+lesson:black-vienna-main:d3/opening:0: e4 (entry position), loss -2cp
+lesson:black-vienna-main:d3/opening:1: e5 (entry position), loss 4cp
+lesson:black-vienna-main:d3/opening:2: Nc3 (entry position), loss 21cp
+lesson:black-vienna-main:d3/opening:3: Nf6 (entry position), loss 4cp
+lesson:black-vienna-main:d3/opening:4: d3 (entry position), loss 54cp
+lesson:black-vienna-main:d3/decision-1: Bb4 (accepted), loss 11cp
+lesson:black-vienna-main:d3/decision-1/reply: a3 (sound opponent reply), loss 0cp
+lesson:black-vienna-main:d3/decision-1/mistake: Ba3 (mistake), loss 410cp
+lesson:black-vienna-main:d3/decision-2: Bxc3+ (accepted), loss -2cp
+lesson:black-vienna-main:d3/decision-2/reply: bxc3 (sound opponent reply), loss 2cp
+lesson:black-vienna-main:d3/decision-3: d5 (accepted), loss -4cp
+lesson:black-vienna-main:d3/decision-3/reply: exd5 (sound opponent reply), loss -1cp
+lesson:black-vienna-main:d3/decision-4: Qxd5 (accepted), loss -2cp
+lesson:black-vienna-main:d3/transfer-decision-1: d5 (accepted), loss -4cp
+lesson:black-vienna-main:d3/transfer-decision-1/reply: exd5 (sound opponent reply), loss -14cp
+lesson:black-vienna-main:d3/transfer-decision-2: Bxc3 (accepted), loss 9cp
+lesson:black-queens-gambit-main/opening:0: d4 (entry position), loss 11cp
+lesson:black-queens-gambit-main/opening:1: d5 (entry position), loss 8cp
+lesson:black-queens-gambit-main/opening:2: c4 (entry position), loss -1cp
+lesson:black-queens-gambit-main/opening:3: e6 (entry position), loss -4cp
+lesson:black-queens-gambit-main/opening:4: Nc3 (entry position), loss 8cp
+lesson:black-queens-gambit-main/opening:5: Nf6 (entry position), loss 6cp
+lesson:black-queens-gambit-main/opening:6: cxd5 (entry position), loss -3cp
+lesson:black-queens-gambit-main/opening:7: exd5 (entry position), loss -2cp
+lesson:black-queens-gambit-main/opening:8: Bg5 (entry position), loss 4cp
+lesson:black-queens-gambit-main/opening:9: Be7 (entry position), loss -4cp
+lesson:black-queens-gambit-main/opening:10: e3 (entry position), loss -7cp
+lesson:black-queens-gambit-main/opening:11: O-O (entry position), loss -10cp
+lesson:black-queens-gambit-main/opening:12: Bd3 (entry position), loss -5cp
+lesson:black-queens-gambit-main/decision-1: Re8 (accepted), loss -3cp
+lesson:black-queens-gambit-main/decision-1/reply: Nf3 (sound opponent reply), loss -8cp
+lesson:black-queens-gambit-main/decision-1/mistake: Bf5 (mistake), loss 429cp
+lesson:black-queens-gambit-main/decision-2: c6 (accepted), loss 11cp
+lesson:black-queens-gambit-main/decision-2/reply: Qc2 (sound opponent reply), loss 0cp
+lesson:black-queens-gambit-main/decision-3: h6 (accepted), loss 2cp
+lesson:black-queens-gambit-main/decision-3/reply: Bf4 (sound opponent reply), loss 4cp
+lesson:black-queens-gambit-main/decision-4: Bd6 (accepted), loss 12cp
+lesson:black-queens-gambit-main/transfer-decision-1: h6 (accepted), loss -4cp
+lesson:black-queens-gambit-main/transfer-decision-1/reply: Bh4 (sound opponent reply), loss -3cp
+lesson:black-queens-gambit-main/transfer-decision-2: c5 (accepted), loss -3cp
+lesson:black-queens-gambit-main/continuation:coordinate: Bxf4 (accepted), loss 4cp
+lesson:black-queens-gambit-main/continuation:coordinate/Bxf4/reply: exf4 (sound opponent reply), loss -2cp
+lesson:black-queens-gambit-main/continuation:coordinate: Qe7 (accepted), loss 4cp
+lesson:black-queens-gambit-main/continuation:coordinate/Qe7/reply: Rfe1 (sound opponent reply), loss 5cp
+lesson:black-queens-gambit-main/continuation:counterplay: Qb5 (accepted), loss 0cp
+lesson:black-queens-gambit-main/continuation:counterplay/Qb5/reply: b3 (sound opponent reply), loss -3cp
+lesson:black-queens-gambit-main/continuation:counterplay: Qc7 (accepted), loss 18cp
+lesson:black-queens-gambit-main/continuation:counterplay/Qc7/reply: Ne5 (sound opponent reply), loss 7cp
+lesson:black-queens-gambit-main/continuation:structure: b6 (accepted), loss 14cp
+lesson:black-queens-gambit-main/continuation:structure/b6/reply: Nc3 (sound opponent reply), loss 11cp
+lesson:black-queens-gambit-main/continuation:structure: a5 (accepted), loss 36cp
+lesson:black-queens-gambit-main/continuation:structure/a5/reply: g4 (sound opponent reply), loss -4cp
+lesson:black-queens-gambit-main/continuation:improve: Bf7 (accepted), loss -8cp
+lesson:black-queens-gambit-main/continuation:improve/Bf7/reply: Ng2 (sound opponent reply), loss -4cp
+lesson:black-queens-gambit-main/continuation:improve: Bd7 (accepted), loss 4cp
+lesson:black-queens-gambit-main/continuation:improve/Bd7/reply: Re3 (sound opponent reply), loss 2cp
+lesson:black-queens-gambit-main/continuation:simplify: Na6 (accepted), loss 3cp
+lesson:black-queens-gambit-main/continuation:simplify/Na6/reply: h4 (sound opponent reply), loss -1cp
+lesson:black-queens-gambit-main/continuation:simplify: Qa3 (accepted), loss 11cp
+lesson:black-queens-gambit-main/continuation:simplify/Qa3/reply: Rc1 (sound opponent reply), loss 1cp
+lesson:black-queens-gambit-main/continuation:ending-activity: Rc8 (accepted), loss 12cp
+lesson:black-queens-gambit-main/continuation:ending-activity/Rc8/reply: Nxa5 (sound opponent reply), loss 9cp
+lesson:black-queens-gambit-main/continuation:ending-activity: Rd7 (accepted), loss -1cp
+lesson:black-queens-gambit-main/continuation:ending-activity/Rd7/reply: Nxa5 (sound opponent reply), loss -7cp
+lesson:black-queens-gambit-main/illustration:coordinate/0: O-O (illustrative connecting move), loss 2cp
+lesson:black-queens-gambit-main/illustration:coordinate/1: Bxf4 (illustrative connecting move), loss 4cp
+lesson:black-queens-gambit-main/illustration:coordinate/2: exf4 (illustrative connecting move), loss -2cp
+lesson:black-queens-gambit-main/illustration:counterplay/0: Nbd7 (illustrative connecting move), loss -4cp
+lesson:black-queens-gambit-main/illustration:counterplay/1: Rfe1 (illustrative connecting move), loss 3cp
+lesson:black-queens-gambit-main/illustration:counterplay/2: Nf8 (illustrative connecting move), loss -5cp
+lesson:black-queens-gambit-main/illustration:counterplay/3: Qd2 (illustrative connecting move), loss -10cp
+lesson:black-queens-gambit-main/illustration:counterplay/4: Qb6 (illustrative connecting move), loss 2cp
+lesson:black-queens-gambit-main/illustration:counterplay/5: Bc2 (illustrative connecting move), loss 7cp
+lesson:black-queens-gambit-main/illustration:counterplay/6: Bg4 (illustrative connecting move), loss -1cp
+lesson:black-queens-gambit-main/illustration:counterplay/7: Na4 (illustrative connecting move), loss -2cp
+lesson:black-queens-gambit-main/illustration:counterplay/8: Qb5 (illustrative connecting move), loss 0cp
+lesson:black-queens-gambit-main/illustration:counterplay/9: b3 (illustrative connecting move), loss -3cp
+lesson:black-queens-gambit-main/illustration:structure/0: Ne4 (illustrative connecting move), loss -1cp
+lesson:black-queens-gambit-main/illustration:structure/1: Bxe4 (illustrative connecting move), loss 4cp
+lesson:black-queens-gambit-main/illustration:structure/2: Rxe4 (illustrative connecting move), loss 17cp
+lesson:black-queens-gambit-main/illustration:structure/3: Ne5 (illustrative connecting move), loss 1cp
+lesson:black-queens-gambit-main/illustration:structure/4: Bc8 (illustrative connecting move), loss 2cp
+lesson:black-queens-gambit-main/illustration:structure/5: h3 (illustrative connecting move), loss 4cp
+lesson:black-queens-gambit-main/illustration:structure/6: f6 (illustrative connecting move), loss 9cp
+lesson:black-queens-gambit-main/illustration:structure/7: Nf3 (illustrative connecting move), loss 27cp
+lesson:black-queens-gambit-main/illustration:structure/8: b6 (illustrative connecting move), loss 14cp
+lesson:black-queens-gambit-main/illustration:structure/9: Nc3 (illustrative connecting move), loss 11cp
+lesson:black-queens-gambit-main/illustration:improve/0: Rxe1+ (illustrative connecting move), loss -5cp
+lesson:black-queens-gambit-main/illustration:improve/1: Rxe1 (illustrative connecting move), loss 5cp
+lesson:black-queens-gambit-main/illustration:improve/2: Qa6 (illustrative connecting move), loss 15cp
+lesson:black-queens-gambit-main/illustration:improve/3: Nh4 (illustrative connecting move), loss 4cp
+lesson:black-queens-gambit-main/illustration:improve/4: Be6 (illustrative connecting move), loss 23cp
+lesson:black-queens-gambit-main/illustration:improve/5: g4 (illustrative connecting move), loss 19cp
+lesson:black-queens-gambit-main/illustration:improve/6: Qa3 (illustrative connecting move), loss -6cp
+lesson:black-queens-gambit-main/illustration:improve/7: f5 (illustrative connecting move), loss -16cp
+lesson:black-queens-gambit-main/illustration:improve/8: Bf7 (illustrative connecting move), loss -8cp
+lesson:black-queens-gambit-main/illustration:improve/9: Ng2 (illustrative connecting move), loss -4cp
+lesson:black-queens-gambit-main/illustration:simplify/0: Qb4 (illustrative connecting move), loss 7cp
+lesson:black-queens-gambit-main/illustration:simplify/1: Rd1 (illustrative connecting move), loss 3cp
+lesson:black-queens-gambit-main/illustration:simplify/2: Nd7 (illustrative connecting move), loss -12cp
+lesson:black-queens-gambit-main/illustration:simplify/3: Ne2 (illustrative connecting move), loss 1cp
+lesson:black-queens-gambit-main/illustration:simplify/4: a5 (illustrative connecting move), loss 2cp
+lesson:black-queens-gambit-main/illustration:simplify/5: Ngf4 (illustrative connecting move), loss 8cp
+lesson:black-queens-gambit-main/illustration:simplify/6: Re8 (illustrative connecting move), loss 28cp
+lesson:black-queens-gambit-main/illustration:simplify/7: Kg2 (illustrative connecting move), loss 5cp
+lesson:black-queens-gambit-main/illustration:simplify/8: Nb8 (illustrative connecting move), loss -20cp
+lesson:black-queens-gambit-main/illustration:simplify/9: f3 (illustrative connecting move), loss 6cp
+lesson:black-queens-gambit-main/illustration:simplify/10: Na6 (illustrative connecting move), loss 3cp
+lesson:black-queens-gambit-main/illustration:simplify/11: h4 (illustrative connecting move), loss -1cp
+lesson:black-queens-gambit-main/illustration:ending-activity/0: Rd8 (illustrative connecting move), loss 6cp
+lesson:black-queens-gambit-main/illustration:ending-activity/1: Ng6 (illustrative connecting move), loss 3cp
+lesson:black-queens-gambit-main/illustration:ending-activity/2: c5 (illustrative connecting move), loss -2cp
+lesson:black-queens-gambit-main/illustration:ending-activity/3: dxc5 (illustrative connecting move), loss -7cp
+lesson:black-queens-gambit-main/illustration:ending-activity/4: Qxd2 (illustrative connecting move), loss -9cp
+lesson:black-queens-gambit-main/illustration:ending-activity/5: Rxd2 (illustrative connecting move), loss -9cp
+lesson:black-queens-gambit-main/illustration:ending-activity/6: bxc5 (illustrative connecting move), loss -2cp
+lesson:black-queens-gambit-main/illustration:ending-activity/7: Ne7+ (illustrative connecting move), loss -7cp
+lesson:black-queens-gambit-main/illustration:ending-activity/8: Kf8 (illustrative connecting move), loss -4cp
+lesson:black-queens-gambit-main/illustration:ending-activity/9: Nc6 (illustrative connecting move), loss -6cp
+lesson:black-queens-gambit-main/illustration:ending-activity/10: Rc8 (illustrative connecting move), loss 12cp
+lesson:black-queens-gambit-main/illustration:ending-activity/11: Nxa5 (illustrative connecting move), loss 9cp
+lesson:black-queens-gambit-main:bg5/opening:0: d4 (entry position), loss 11cp
+lesson:black-queens-gambit-main:bg5/opening:1: d5 (entry position), loss 8cp
+lesson:black-queens-gambit-main:bg5/opening:2: c4 (entry position), loss -1cp
+lesson:black-queens-gambit-main:bg5/opening:3: e6 (entry position), loss -4cp
+lesson:black-queens-gambit-main:bg5/opening:4: Nc3 (entry position), loss 8cp
+lesson:black-queens-gambit-main:bg5/opening:5: Nf6 (entry position), loss 6cp
+lesson:black-queens-gambit-main:bg5/opening:6: Bg5 (entry position), loss -1cp
+lesson:black-queens-gambit-main:bg5/opening:7: Be7 (entry position), loss -10cp
+lesson:black-queens-gambit-main:bg5/opening:8: e3 (entry position), loss -4cp
+lesson:black-queens-gambit-main:bg5/opening:9: O-O (entry position), loss -3cp
+lesson:black-queens-gambit-main:bg5/opening:10: Nf3 (entry position), loss -3cp
+lesson:black-queens-gambit-main:bg5/decision-1: h6 (accepted), loss 0cp
+lesson:black-queens-gambit-main:bg5/decision-1/reply: Bh4 (sound opponent reply), loss 5cp
+lesson:black-queens-gambit-main:bg5/decision-1/mistake: Bc5 (mistake), loss 432cp
+lesson:black-queens-gambit-main:bg5/decision-2: b6 (accepted), loss -8cp
+lesson:black-queens-gambit-main:bg5/decision-2/reply: Rc1 (sound opponent reply), loss 5cp
+lesson:black-queens-gambit-main:bg5/decision-3: Bb7 (accepted), loss 11cp
+lesson:black-queens-gambit-main:bg5/decision-3/reply: cxd5 (sound opponent reply), loss 12cp
+lesson:black-queens-gambit-main:bg5/decision-4: Nxd5 (accepted), loss -6cp
+lesson:black-queens-gambit-main:bg5/transfer-decision-1: Bxf6 (accepted), loss -1cp
+lesson:black-queens-gambit-main:bg5/transfer-decision-1/reply: Rc1 (sound opponent reply), loss 8cp
+lesson:black-queens-gambit-main:bg5/transfer-decision-2: c6 (accepted), loss 0cp
+lesson:black-queens-gambit-main:nge2/opening:0: d4 (entry position), loss 11cp
+lesson:black-queens-gambit-main:nge2/opening:1: d5 (entry position), loss 8cp
+lesson:black-queens-gambit-main:nge2/opening:2: c4 (entry position), loss -1cp
+lesson:black-queens-gambit-main:nge2/opening:3: e6 (entry position), loss -4cp
+lesson:black-queens-gambit-main:nge2/opening:4: Nc3 (entry position), loss 8cp
+lesson:black-queens-gambit-main:nge2/opening:5: Nf6 (entry position), loss 6cp
+lesson:black-queens-gambit-main:nge2/opening:6: cxd5 (entry position), loss -3cp
+lesson:black-queens-gambit-main:nge2/opening:7: exd5 (entry position), loss -2cp
+lesson:black-queens-gambit-main:nge2/opening:8: Bg5 (entry position), loss 4cp
+lesson:black-queens-gambit-main:nge2/opening:9: Be7 (entry position), loss -4cp
+lesson:black-queens-gambit-main:nge2/opening:10: e3 (entry position), loss -7cp
+lesson:black-queens-gambit-main:nge2/opening:11: O-O (entry position), loss -10cp
+lesson:black-queens-gambit-main:nge2/opening:12: Bd3 (entry position), loss -5cp
+lesson:black-queens-gambit-main:nge2/opening:13: Nbd7 (entry position), loss 6cp
+lesson:black-queens-gambit-main:nge2/opening:14: Nge2 (entry position), loss 12cp
+lesson:black-queens-gambit-main:nge2/decision-1: c6 (accepted), loss 4cp
+lesson:black-queens-gambit-main:nge2/decision-1/reply: h3 (sound opponent reply), loss 12cp
+lesson:black-queens-gambit-main:nge2/decision-1/mistake: Ne5 (mistake), loss 419cp
+lesson:black-queens-gambit-main:nge2/decision-2: Re8 (accepted), loss 8cp
+lesson:black-queens-gambit-main:nge2/decision-2/reply: Qc2 (sound opponent reply), loss 5cp
+lesson:black-queens-gambit-main:nge2/decision-3: g6 (accepted), loss 1cp
+lesson:black-queens-gambit-main:nge2/decision-3/reply: Bf4 (sound opponent reply), loss 5cp
+lesson:black-queens-gambit-main:nge2/decision-4: b5 (accepted), loss 2cp
+lesson:black-queens-gambit-main:nge2/transfer-decision-1: Re8 (accepted), loss 7cp
+lesson:black-queens-gambit-main:nge2/transfer-decision-1/reply: O-O (sound opponent reply), loss -3cp
+lesson:black-queens-gambit-main:nge2/transfer-decision-2: Nf8 (accepted), loss -8cp
+lesson:black-queens-gambit-main:bf4/opening:0: d4 (entry position), loss 11cp
+lesson:black-queens-gambit-main:bf4/opening:1: d5 (entry position), loss 8cp
+lesson:black-queens-gambit-main:bf4/opening:2: c4 (entry position), loss -1cp
+lesson:black-queens-gambit-main:bf4/opening:3: e6 (entry position), loss -4cp
+lesson:black-queens-gambit-main:bf4/opening:4: Nc3 (entry position), loss 8cp
+lesson:black-queens-gambit-main:bf4/opening:5: Nf6 (entry position), loss 6cp
+lesson:black-queens-gambit-main:bf4/opening:6: Bf4 (entry position), loss 13cp
+lesson:black-queens-gambit-main:bf4/decision-1: dxc4 (accepted), loss -1cp
+lesson:black-queens-gambit-main:bf4/decision-1/reply: e3 (sound opponent reply), loss -2cp
+lesson:black-queens-gambit-main:bf4/decision-1/mistake: Qd6 (mistake), loss 540cp
+lesson:black-queens-gambit-main:bf4/decision-2: b5 (accepted), loss 7cp
+lesson:black-queens-gambit-main:bf4/decision-2/reply: Nxb5 (sound opponent reply), loss 4cp
+lesson:black-queens-gambit-main:bf4/decision-3: Bb4+ (accepted), loss 5cp
+lesson:black-queens-gambit-main:bf4/decision-3/reply: Nc3 (sound opponent reply), loss -2cp
+lesson:black-queens-gambit-main:bf4/decision-4: Nd5 (accepted), loss 0cp
+lesson:black-queens-gambit-main:bf4/transfer-decision-1: Nd5 (accepted), loss 13cp
+lesson:black-queens-gambit-main:bf4/transfer-decision-1/reply: Bg5 (sound opponent reply), loss 1cp
+lesson:black-queens-gambit-main:bf4/transfer-decision-2: f6 (accepted), loss 0cp
+lesson:black-queens-gambit-main:catalan/opening:0: d4 (entry position), loss 11cp
+lesson:black-queens-gambit-main:catalan/opening:1: d5 (entry position), loss 8cp
+lesson:black-queens-gambit-main:catalan/opening:2: c4 (entry position), loss -1cp
+lesson:black-queens-gambit-main:catalan/opening:3: e6 (entry position), loss -4cp
+lesson:black-queens-gambit-main:catalan/opening:4: Nf3 (entry position), loss 4cp
+lesson:black-queens-gambit-main:catalan/opening:5: Nf6 (entry position), loss 2cp
+lesson:black-queens-gambit-main:catalan/opening:6: g3 (entry position), loss -12cp
+lesson:black-queens-gambit-main:catalan/decision-1: dxc4 (accepted), loss -4cp
+lesson:black-queens-gambit-main:catalan/decision-1/reply: Qa4+ (sound opponent reply), loss -8cp
+lesson:black-queens-gambit-main:catalan/decision-1/mistake: Bc5 (mistake), loss 366cp
+lesson:black-queens-gambit-main:catalan/decision-2: Bd7 (accepted), loss -15cp
+lesson:black-queens-gambit-main:catalan/decision-2/reply: Qxc4 (sound opponent reply), loss 2cp
+lesson:black-queens-gambit-main:catalan/decision-3: c5 (accepted), loss -4cp
+lesson:black-queens-gambit-main:catalan/decision-3/reply: dxc5 (sound opponent reply), loss -1cp
+lesson:black-queens-gambit-main:catalan/decision-4: Qc7 (accepted), loss -6cp
+lesson:black-queens-gambit-main:catalan/transfer-decision-1: Bb4+ (accepted), loss -2cp
+lesson:black-queens-gambit-main:catalan/transfer-decision-1/reply: Bd2 (sound opponent reply), loss 3cp
+lesson:black-queens-gambit-main:catalan/transfer-decision-2: a5 (accepted), loss 14cp
+lesson:black-london-main/opening:0: d4 (entry position), loss 11cp
+lesson:black-london-main/opening:1: d5 (entry position), loss 8cp
+lesson:black-london-main/opening:2: Bf4 (entry position), loss 11cp
+lesson:black-london-main/opening:3: Nf6 (entry position), loss -5cp
+lesson:black-london-main/opening:4: e3 (entry position), loss -4cp
+lesson:black-london-main/opening:5: e6 (entry position), loss -3cp
+lesson:black-london-main/opening:6: Nf3 (entry position), loss -3cp
+lesson:black-london-main/opening:7: c5 (entry position), loss -2cp
+lesson:black-london-main/opening:8: c3 (entry position), loss 15cp
+lesson:black-london-main/decision-1: Nc6 (accepted), loss 5cp
+lesson:black-london-main/decision-1/reply: Nbd2 (sound opponent reply), loss 4cp
+lesson:black-london-main/decision-1/mistake: Qd6 (mistake), loss 548cp
+lesson:black-london-main/decision-2: Bd6 (accepted), loss 2cp
+lesson:black-london-main/decision-2/reply: Bg3 (sound opponent reply), loss -7cp
+lesson:black-london-main/decision-3: O-O (accepted), loss 2cp
+lesson:black-london-main/decision-3/reply: Bd3 (sound opponent reply), loss -7cp
+lesson:black-london-main/decision-4: b6 (accepted), loss -2cp
+lesson:black-london-main/transfer-decision-1: Nh5 (accepted), loss 12cp
+lesson:black-london-main/transfer-decision-1/reply: Be5 (sound opponent reply), loss 3cp
+lesson:black-london-main/transfer-decision-2: f6 (accepted), loss 1cp
+lesson:black-london-main/continuation:coordinate: Bxe5 (accepted), loss 61cp
+lesson:black-london-main/continuation:coordinate/Bxe5/reply: dxe5 (sound opponent reply), loss 11cp
+lesson:black-london-main/continuation:coordinate: Qc7 (accepted), loss 6cp
+lesson:black-london-main/continuation:coordinate/Qc7/reply: Nxc6 (sound opponent reply), loss 8cp
+lesson:black-london-main/continuation:counterplay: f5 (accepted), loss 19cp
+lesson:black-london-main/continuation:counterplay/f5/reply: exf6 (sound opponent reply), loss -1cp
+lesson:black-london-main/continuation:counterplay: Qc8 (accepted), loss 36cp
+lesson:black-london-main/continuation:counterplay/Qc8/reply: Qh3 (sound opponent reply), loss -8cp
+lesson:black-london-main/continuation:structure: Qe8 (accepted), loss 26cp
+lesson:black-london-main/continuation:structure/Qe8/reply: Qxe8 (sound opponent reply), loss 38cp
+lesson:black-london-main/continuation:structure: d4 (accepted), loss 29cp
+lesson:black-london-main/continuation:structure/d4/reply: O-O-O (sound opponent reply), loss -5cp
+lesson:black-london-main/continuation:improve: Nh5 (accepted), loss 36cp
+lesson:black-london-main/continuation:improve/Nh5/reply: Bd1 (sound opponent reply), loss 5cp
+lesson:black-london-main/continuation:improve: Re2 (accepted), loss -12cp
+lesson:black-london-main/continuation:improve/Re2/reply: Rad1 (sound opponent reply), loss -4cp
+lesson:black-london-main/continuation:simplify: Nf4 (accepted), loss 0cp
+lesson:black-london-main/continuation:simplify/Nf4/reply: fxg6 (sound opponent reply), loss -12cp
+lesson:black-london-main/continuation:simplify: Ne5 (accepted), loss 15cp
+lesson:black-london-main/continuation:simplify/Ne5/reply: Bxh5 (sound opponent reply), loss 15cp
+lesson:black-london-main/continuation:ending-activity: Rd8 (accepted), loss -1cp
+lesson:black-london-main/continuation:ending-activity/Rd8/reply: Nf3 (sound opponent reply), loss -7cp
+lesson:black-london-main/continuation:ending-activity: Rf5 (accepted), loss 64cp
+lesson:black-london-main/continuation:ending-activity/Rf5/reply: Be4 (sound opponent reply), loss 5cp
+lesson:black-london-main/illustration:coordinate/0: Ne5 (illustrative connecting move), loss 17cp
+lesson:black-london-main/illustration:coordinate/1: Bxe5 (illustrative connecting move), loss 61cp
+lesson:black-london-main/illustration:coordinate/2: dxe5 (illustrative connecting move), loss 11cp
+lesson:black-london-main/illustration:counterplay/0: Nd7 (illustrative connecting move), loss 6cp
+lesson:black-london-main/illustration:counterplay/1: f4 (illustrative connecting move), loss 3cp
+lesson:black-london-main/illustration:counterplay/2: Bb7 (illustrative connecting move), loss 6cp
+lesson:black-london-main/illustration:counterplay/3: Qg4 (illustrative connecting move), loss 13cp
+lesson:black-london-main/illustration:counterplay/4: f5 (illustrative connecting move), loss 19cp
+lesson:black-london-main/illustration:counterplay/5: exf6 (illustrative connecting move), loss -1cp
+lesson:black-london-main/illustration:structure/0: Nxf6 (illustrative connecting move), loss -15cp
+lesson:black-london-main/illustration:structure/1: Qxe6+ (illustrative connecting move), loss 9cp
+lesson:black-london-main/illustration:structure/2: Kh8 (illustrative connecting move), loss -3cp
+lesson:black-london-main/illustration:structure/3: Bh4 (illustrative connecting move), loss 22cp
+lesson:black-london-main/illustration:structure/4: Qe8 (illustrative connecting move), loss 26cp
+lesson:black-london-main/illustration:structure/5: Qxe8 (illustrative connecting move), loss 38cp
+lesson:black-london-main/illustration:improve/0: Raxe8 (illustrative connecting move), loss 3cp
+lesson:black-london-main/illustration:improve/1: O-O (illustrative connecting move), loss 1cp
+lesson:black-london-main/illustration:improve/2: Rxe3 (illustrative connecting move), loss -3cp
+lesson:black-london-main/illustration:improve/3: Bc2 (illustrative connecting move), loss -6cp
+lesson:black-london-main/illustration:improve/4: Nh5 (illustrative connecting move), loss 36cp
+lesson:black-london-main/illustration:improve/5: Bd1 (illustrative connecting move), loss 5cp
+lesson:black-london-main/illustration:simplify/0: g6 (illustrative connecting move), loss 17cp
+lesson:black-london-main/illustration:simplify/1: f5 (illustrative connecting move), loss 6cp
+lesson:black-london-main/illustration:simplify/2: Ba6 (illustrative connecting move), loss 2cp
+lesson:black-london-main/illustration:simplify/3: Rf3 (illustrative connecting move), loss -9cp
+lesson:black-london-main/illustration:simplify/4: Rxf3 (illustrative connecting move), loss -8cp
+lesson:black-london-main/illustration:simplify/5: Bxf3 (illustrative connecting move), loss -5cp
+lesson:black-london-main/illustration:simplify/6: Nf4 (illustrative connecting move), loss 0cp
+lesson:black-london-main/illustration:simplify/7: fxg6 (illustrative connecting move), loss -12cp
+lesson:black-london-main/illustration:ending-activity/0: Nxg6 (illustrative connecting move), loss 0cp
+lesson:black-london-main/illustration:ending-activity/1: Bxd5 (illustrative connecting move), loss 14cp
+lesson:black-london-main/illustration:ending-activity/2: Nd4 (illustrative connecting move), loss 23cp
+lesson:black-london-main/illustration:ending-activity/3: cxd4 (illustrative connecting move), loss 2cp
+lesson:black-london-main/illustration:ending-activity/4: Nxh4 (illustrative connecting move), loss -11cp
+lesson:black-london-main/illustration:ending-activity/5: dxc5 (illustrative connecting move), loss -5cp
+lesson:black-london-main/illustration:ending-activity/6: Rd8 (illustrative connecting move), loss -1cp
+lesson:black-london-main/illustration:ending-activity/7: Nf3 (illustrative connecting move), loss -7cp
+lesson:black-london-main:ne5/opening:0: d4 (entry position), loss 11cp
+lesson:black-london-main:ne5/opening:1: d5 (entry position), loss 8cp
+lesson:black-london-main:ne5/opening:2: Bf4 (entry position), loss 11cp
+lesson:black-london-main:ne5/opening:3: Nf6 (entry position), loss -5cp
+lesson:black-london-main:ne5/opening:4: e3 (entry position), loss -4cp
+lesson:black-london-main:ne5/opening:5: e6 (entry position), loss -3cp
+lesson:black-london-main:ne5/opening:6: Nf3 (entry position), loss -3cp
+lesson:black-london-main:ne5/opening:7: c5 (entry position), loss -2cp
+lesson:black-london-main:ne5/opening:8: c3 (entry position), loss 15cp
+lesson:black-london-main:ne5/opening:9: Nc6 (entry position), loss 5cp
+lesson:black-london-main:ne5/opening:10: Nbd2 (entry position), loss 4cp
+lesson:black-london-main:ne5/opening:11: Bd6 (entry position), loss 2cp
+lesson:black-london-main:ne5/opening:12: Ne5 (entry position), loss 37cp
+lesson:black-london-main:ne5/decision-1: Qc7 (accepted), loss 7cp
+lesson:black-london-main:ne5/decision-1/reply: Nxc6 (sound opponent reply), loss 4cp
+lesson:black-london-main:ne5/decision-1/mistake: Qd7 (mistake), loss 643cp
+lesson:black-london-main:ne5/decision-2: Bxf4 (accepted), loss 24cp
+lesson:black-london-main:ne5/decision-2/reply: Nxa7 (sound opponent reply), loss 18cp
+lesson:black-london-main:ne5/decision-3: Rxa7 (accepted), loss 19cp
+lesson:black-london-main:ne5/decision-3/reply: exf4 (sound opponent reply), loss -2cp
+lesson:black-london-main:ne5/decision-4: Qxf4 (accepted), loss -3cp
+lesson:black-london-main:ne5/transfer-decision-1: c4 (accepted), loss -10cp
+lesson:black-london-main:ne5/transfer-decision-1/reply: g3 (sound opponent reply), loss 7cp
+lesson:black-london-main:ne5/transfer-decision-2: O-O (accepted), loss 7cp
+lesson:black-london-main:exchange/opening:0: d4 (entry position), loss 11cp
+lesson:black-london-main:exchange/opening:1: d5 (entry position), loss 8cp
+lesson:black-london-main:exchange/opening:2: Bf4 (entry position), loss 11cp
+lesson:black-london-main:exchange/opening:3: Nf6 (entry position), loss -5cp
+lesson:black-london-main:exchange/opening:4: e3 (entry position), loss -4cp
+lesson:black-london-main:exchange/opening:5: e6 (entry position), loss -3cp
+lesson:black-london-main:exchange/opening:6: Nf3 (entry position), loss -3cp
+lesson:black-london-main:exchange/opening:7: c5 (entry position), loss -2cp
+lesson:black-london-main:exchange/opening:8: c3 (entry position), loss 15cp
+lesson:black-london-main:exchange/opening:9: Bd6 (entry position), loss -8cp
+lesson:black-london-main:exchange/opening:10: Bxd6 (entry position), loss 5cp
+lesson:black-london-main:exchange/decision-1: Qxd6 (accepted), loss -1cp
+lesson:black-london-main:exchange/decision-1/reply: Bd3 (sound opponent reply), loss -1cp
+lesson:black-london-main:exchange/decision-1/mistake: Qe7 (mistake), loss 684cp
+lesson:black-london-main:exchange/decision-2: Nc6 (accepted), loss -13cp
+lesson:black-london-main:exchange/decision-2/reply: Nbd2 (sound opponent reply), loss -6cp
+lesson:black-london-main:exchange/decision-3: O-O (accepted), loss 9cp
+lesson:black-london-main:exchange/decision-3/reply: O-O (sound opponent reply), loss 8cp
+lesson:black-london-main:exchange/decision-4: e5 (accepted), loss 2cp
+lesson:black-london-main:exchange/transfer-decision-1: Qb6 (accepted), loss 6cp
+lesson:black-london-main:exchange/transfer-decision-1/reply: Qb3 (sound opponent reply), loss 1cp
+lesson:black-london-main:exchange/transfer-decision-2: c4 (accepted), loss 23cp
+lesson:black-london-main:jobava/opening:0: d4 (entry position), loss 11cp
+lesson:black-london-main:jobava/opening:1: d5 (entry position), loss 8cp
+lesson:black-london-main:jobava/opening:2: Nc3 (entry position), loss 29cp
+lesson:black-london-main:jobava/opening:3: Nf6 (entry position), loss 5cp
+lesson:black-london-main:jobava/opening:4: Bf4 (entry position), loss 2cp
+lesson:black-london-main:jobava/opening:5: e6 (entry position), loss 1cp
+lesson:black-london-main:jobava/opening:6: Nb5 (entry position), loss -6cp
+lesson:black-london-main:jobava/decision-1: Bb4+ (accepted), loss -11cp
+lesson:black-london-main:jobava/decision-1/reply: c3 (sound opponent reply), loss -3cp
+lesson:black-london-main:jobava/decision-1/mistake: Qd6 (mistake), loss 491cp
+lesson:black-london-main:jobava/decision-2: Ba5 (accepted), loss 11cp
+lesson:black-london-main:jobava/decision-2/reply: e3 (sound opponent reply), loss 3cp
+lesson:black-london-main:jobava/decision-3: a6 (accepted), loss -12cp
+lesson:black-london-main:jobava/decision-3/reply: Na3 (sound opponent reply), loss -17cp
+lesson:black-london-main:jobava/decision-4: Bb6 (accepted), loss -4cp
+lesson:black-london-main:jobava/transfer-decision-1: Bxd2+ (accepted), loss -4cp
+lesson:black-london-main:jobava/transfer-decision-1/reply: Qxd2 (sound opponent reply), loss -7cp
+lesson:black-london-main:jobava/transfer-decision-2: c5 (accepted), loss 4cp
+concept:caro-resolve-centre/nc3-support: d5e4 (accepted), loss -11cp [preserved baseline]
+concept:caro-resolve-centre/nc3-support: g8f6 (accepted), loss 58cp [preserved baseline]
+concept:caro-resolve-centre/advance-choice: c8f5 (accepted), loss 8cp [preserved baseline]
+concept:caro-resolve-centre/advance-choice: c8g4 (accepted), loss 457cp [preserved baseline]
+concept:caro-bishop-first/recapture-complete: c8f5 (accepted), loss -7cp [preserved baseline]
+concept:caro-bishop-first/recapture-complete: g8f6 (accepted), loss 4cp [preserved baseline]
+concept:caro-bishop-first/bishop-questioned: f5g6 (accepted), loss 6cp [preserved baseline]
+concept:caro-bishop-first/bishop-questioned: f5c8 (accepted), loss 78cp [preserved baseline]
+concept:caro-active-break/be2-development: c6c5 (accepted), loss -15cp [preserved baseline]
+concept:caro-active-break/be2-development: b8d7 (accepted), loss 13cp [preserved baseline]
+concept:caro-active-break/be2-development: g8e7 (accepted), loss 12cp [preserved baseline]
+concept:caro-active-break/c3-support: b8c6 (accepted), loss -4cp [preserved baseline]
+concept:caro-active-break/c3-support: d8b6 (accepted), loss 49cp [preserved baseline]
+concept:caro-active-break/c3-support: g8e7 (accepted), loss 62cp [preserved baseline]
+concept:black-caro-kann-main:advance/main: b8c6 (accepted), loss -4cp
+concept:black-caro-kann-main:advance/different-reply: c5d4 (accepted), loss 15cp
+concept:black-caro-kann-main:advance-h4/main: f5d3 (accepted), loss 18cp
+concept:black-caro-kann-main:advance-h4/different-reply: e7e6 (accepted), loss 6cp
+concept:black-caro-kann-main:exchange/main: b8c6 (accepted), loss -5cp
+concept:black-caro-kann-main:exchange/different-reply: c6b4 (accepted), loss -1cp
+concept:black-caro-kann-main:panov/main: f8e7 (accepted), loss 7cp
+concept:black-caro-kann-main:panov/different-reply: e8g8 (accepted), loss -1cp
+concept:black-caro-kann-main:fantasy/main: e7e6 (accepted), loss 4cp
+concept:black-caro-kann-main:fantasy/different-reply: d5e4 (accepted), loss -2cp
+concept:black-caro-kann-main:two-knights/main: d5e4 (accepted), loss -1cp
+concept:black-caro-kann-main:two-knights/different-reply: e7e5 (accepted), loss 0cp
+concept:black-sicilian-basic:main/main: f8e7 (accepted), loss 0cp
+concept:black-sicilian-basic:main/different-reply: e8g8 (accepted), loss -3cp
+concept:black-sicilian-basic:english/main: b7b5 (accepted), loss -3cp
+concept:black-sicilian-basic:english/different-reply: b8d7 (accepted), loss 8cp
+concept:black-sicilian-basic:bg5/main: f8e7 (accepted), loss 6cp
+concept:black-sicilian-basic:bg5/different-reply: b8d7 (accepted), loss 15cp
+concept:black-sicilian-basic:bc4/main: b7b5 (accepted), loss -22cp
+concept:black-sicilian-basic:bc4/different-reply: f8e7 (accepted), loss -5cp
+concept:black-sicilian-basic:f4/main: b8c6 (accepted), loss 5cp
+concept:black-sicilian-basic:f4/different-reply: b7b5 (accepted), loss 3cp
+concept:black-sicilian-basic:g3/main: d8c7 (accepted), loss 13cp
+concept:black-sicilian-basic:g3/different-reply: b8c6 (accepted), loss -4cp
+concept:black-sicilian-basic:alapin/main: c5d4 (accepted), loss 6cp
+concept:black-sicilian-basic:alapin/different-reply: d7d6 (accepted), loss 14cp
+concept:black-sicilian-basic:closed/main: d7d6 (accepted), loss 7cp
+concept:black-sicilian-basic:closed/different-reply: e7e6 (accepted), loss 0cp
+concept:black-sicilian-basic:grand-prix/main: e7e6 (accepted), loss 3cp
+concept:black-sicilian-basic:grand-prix/different-reply: g8e7 (accepted), loss 3cp
+concept:black-sicilian-basic:moscow/main: c8d7 (accepted), loss 0cp
+concept:black-sicilian-basic:moscow/different-reply: g7g6 (accepted), loss 6cp
+concept:black-sicilian-basic:dragon/main: a7a6 (accepted), loss 6cp
+concept:black-sicilian-basic:dragon/different-reply: b7b5 (accepted), loss -1cp
+concept:black-alien-gambit-defense:main/main: e7e6 (accepted), loss -8cp
+concept:black-alien-gambit-defense:main/different-reply: h7h6 (accepted), loss -5cp
+concept:black-alien-gambit-defense:quiet/main: e7e6 (accepted), loss 0cp
+concept:black-alien-gambit-defense:quiet/different-reply: d8c7 (accepted), loss 55cp
+concept:black-alien-gambit-defense:f4/main: h7h6 (accepted), loss -4cp
+concept:black-alien-gambit-defense:f4/different-reply: f7e6 (accepted), loss 24cp
+concept:black-alien-gambit-defense:accepted/main: e7e6 (accepted), loss 16cp
+concept:black-alien-gambit-defense:accepted/different-reply: c6c5 (accepted), loss -28cp
+concept:black-vienna-main:main/main: f8c5 (accepted), loss 28cp
+concept:black-vienna-main:main/different-reply: c8f5 (accepted), loss -1cp
+concept:black-vienna-main:exd5/main: f6d5 (accepted), loss 13cp
+concept:black-vienna-main:exd5/different-reply: e5f4 (accepted), loss -4cp
+concept:black-vienna-main:bc4/main: b8c6 (accepted), loss -1cp
+concept:black-vienna-main:bc4/different-reply: c6a5 (accepted), loss 5cp
+concept:black-vienna-main:g3/main: d7d5 (accepted), loss 6cp
+concept:black-vienna-main:g3/different-reply: f8b4 (accepted), loss -3cp
+concept:black-vienna-main:d3/main: f8b4 (accepted), loss 11cp
+concept:black-vienna-main:d3/different-reply: d7d5 (accepted), loss -4cp
+concept:black-queens-gambit-main:main/main: f8e8 (accepted), loss -3cp
+concept:black-queens-gambit-main:main/different-reply: h7h6 (accepted), loss -4cp
+concept:black-queens-gambit-main:bg5/main: h7h6 (accepted), loss 0cp
+concept:black-queens-gambit-main:bg5/different-reply: e7f6 (accepted), loss -1cp
+concept:black-queens-gambit-main:nge2/main: c7c6 (accepted), loss 4cp
+concept:black-queens-gambit-main:nge2/different-reply: f8e8 (accepted), loss 7cp
+concept:black-queens-gambit-main:bf4/main: d5c4 (accepted), loss -1cp
+concept:black-queens-gambit-main:bf4/different-reply: f6d5 (accepted), loss 13cp
+concept:black-queens-gambit-main:catalan/main: d5c4 (accepted), loss -4cp
+concept:black-queens-gambit-main:catalan/different-reply: f8b4 (accepted), loss -2cp
+concept:black-london-main:main/main: b8c6 (accepted), loss 5cp
+concept:black-london-main:main/different-reply: f6h5 (accepted), loss 12cp
+concept:black-london-main:ne5/main: d8c7 (accepted), loss 7cp
+concept:black-london-main:ne5/different-reply: c5c4 (accepted), loss -10cp
+concept:black-london-main:exchange/main: d8d6 (accepted), loss -1cp
+concept:black-london-main:exchange/different-reply: d6b6 (accepted), loss 6cp
+concept:black-london-main:jobava/main: f8b4 (accepted), loss -11cp
+concept:black-london-main:jobava/different-reply: b4d2 (accepted), loss -4cp
+concept:black-caro-kann-main:recognition-early-attacks/scenario-1: d5e4 (accepted), loss -7cp
+concept:black-caro-kann-main:recognition-early-attacks/scenario-2: g8f6 (accepted), loss -2cp
+concept:black-caro-kann-main:recognition-nd2/scenario-1: c8f5 (accepted), loss -7cp
+concept:black-caro-kann-main:recognition-nd2/scenario-2: f5g6 (accepted), loss 6cp
+concept:black-sicilian-basic:recognition-morra/scenario-1: g8f6 (accepted), loss 48cp
+concept:black-sicilian-basic:recognition-morra/scenario-2: d7d6 (accepted), loss 14cp
+concept:black-sicilian-basic:recognition-wing/scenario-1: c5b4 (accepted), loss 6cp
+concept:black-sicilian-basic:recognition-wing/scenario-2: c5b4 (accepted), loss 13cp
+concept:black-vienna-main:recognition-four-knights/scenario-1: b8c6 (accepted), loss 3cp
+concept:black-vienna-main:recognition-four-knights/scenario-2: g8f6 (accepted), loss 8cp
+concept:black-queens-gambit-main:recognition-queen/scenario-1: c7c5 (accepted), loss 0cp
+concept:black-queens-gambit-main:recognition-queen/scenario-2: c8d7 (accepted), loss 3cp
+concept:black-london-main:recognition-c4/scenario-1: d5c4 (accepted), loss -2cp
+concept:black-london-main:recognition-c4/scenario-2: c7c5 (accepted), loss -2cp
+concept:black-alien-gambit-defense:recognition-boundaries/scenario-1: b8d7 (accepted), loss 54cp
+concept:black-alien-gambit-defense:recognition-boundaries/scenario-2: f5g6 (accepted), loss 6cp
+1231 claims checked; 0 require author review.

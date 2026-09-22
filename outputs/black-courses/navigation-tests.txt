@@ -1,0 +1,12 @@
+
+> chess-opening-trainer@0.1.0 test
+> vitest run src/features/guided/blackCourseNavigation.test.tsx --maxWorkers=1 --testTimeout=120000
+
+
+ RUN  v4.1.9 C:/Dev/CodexApps/chess
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  01:44:13
+   Duration  16.13s (transform 1.14s, setup 171ms, import 12.80s, tests 1.84s, environment 969ms)

@@ -1,8 +1,10 @@
+import legacyEmbeddedRepertoireGraphFixture from '../../data/fixtures/legacy-release.json';
+const legacyEmbeddedRepertoireGraph = legacyEmbeddedRepertoireGraphFixture as unknown as import('../../domain/repertoire/types').RepertoireGraph;
 import { describe, expect, it } from 'vitest';
 import { starterConnectedLessons } from '../../data/connectedLessons';
 import { whiteCourseLessons, whiteCourseDrills, whiteCourseLines } from '../../data/whiteOpeningCourses';
 import { boardAfter } from '../../data/courseBuilder';
-import { embeddedRepertoireGraph, legacyEmbeddedRepertoireGraph, withStarterConcepts } from '../../services/guidedContentRepository';
+import { embeddedRepertoireGraph, withStarterConcepts } from '../../services/guidedContentRepository';
 import { validateRepertoireGraph } from '../../domain/repertoire/validation';
 import { buildPositionKey } from '../../domain/repertoire/positionKey';
 import { buildDailySession } from '../../domain/repertoire/dailySessions';
@@ -131,11 +133,11 @@ describe('conservative White course upgrades', () => {
     expect(after.connectedLessons![queen.key]).toBeDefined();
   });
 
-  it('does not install branch dependencies over an edited source graph or attach incompatible lessons', () => {
+  it('skips edited family dependencies while allowing independent courses', () => {
     const before = structuredClone(legacyEmbeddedRepertoireGraph);
     before.openings[vienna.openingFamilyKey].summary = 'An edited repertoire';
     const after = withStarterConcepts(before);
-    expect(after.openings[queen.openingFamilyKey]).toBeUndefined();
+    expect(after.openings[queen.openingFamilyKey]).toBeDefined();
     expect(after.connectedLessons!['lesson:vienna-accepted']).toBeUndefined();
     expect(after.openings[vienna.openingFamilyKey].summary).toBe('An edited repertoire');
     const missing = structuredClone(before);

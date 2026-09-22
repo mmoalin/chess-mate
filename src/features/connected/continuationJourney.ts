@@ -21,6 +21,7 @@ export type ContinuationStep = {
 export type ContinuationJourney = {
   id: string; title: string; introduction: string; sourceCheckpointId: string;
   openingPrefix: string[]; steps: ContinuationStep[];
+  sourceMove?: string;
 };
 export type ComponentFeedback = { status: 'correct' | 'incorrect' | 'unassessed'; text: string };
 export type ContinuationResult = {
@@ -122,7 +123,8 @@ export function validateContinuation(lesson: ConnectedLesson): string[] {
   const errors: string[] = [];
   try {
     const source = lesson.decisions[journey.sourceCheckpointId];
-    if (!source || source.answers[0].nextId || JSON.stringify(journey.openingPrefix) !== JSON.stringify([...source.movesBefore, source.answers[0].moveSan, ...source.answers[0].repliesSan])) errors.push('Continuation must start at the declared main-line ending.');
+    const sourceAnswer = journey.sourceMove ? source?.answers.find(answer => answer.moveSan === journey.sourceMove) : source?.answers[0];
+    if (!source || !sourceAnswer || sourceAnswer.nextId || JSON.stringify(journey.openingPrefix) !== JSON.stringify([...source.movesBefore, sourceAnswer.moveSan, ...sourceAnswer.repliesSan])) errors.push('Continuation must start at the declared main-line ending.');
     let mainId: string | null = lesson.mainStartId;
     const visited = new Set<string>();
     while (mainId && !visited.has(mainId)) { visited.add(mainId); mainId = lesson.decisions[mainId]?.answers[0]?.nextId ?? null; }

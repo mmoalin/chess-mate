@@ -6,8 +6,8 @@ import { advanceScenario, beginScenarios, completeScenario, createIdeaTrainingSe
 
 describe('idea-first training', () => {
   it('ships valid decision drills across Alien Gambit, Vienna, Queen’s Gambit and Caro-Kann', () => {
-    expect(starterConceptDrills).toHaveLength(24);
-    expect(new Set(starterConceptDrills.map((drill) => drill.openingFamilyKey))).toEqual(new Set(['white-vienna-main', 'black-caro-kann-main', 'white-queens-gambit-main', 'white-alien-gambit-main']));
+    expect(starterConceptDrills).toHaveLength(67);
+    expect(new Set(starterConceptDrills.map((drill) => drill.openingFamilyKey))).toEqual(new Set(['white-vienna-main', 'black-caro-kann-main', 'white-queens-gambit-main', 'white-alien-gambit-main', 'black-sicilian-basic', 'black-alien-gambit-defense', 'black-vienna-main', 'black-queens-gambit-main', 'black-london-main']));
     expect(validateRepertoireGraph(embeddedRepertoireGraph).filter((issue) => issue.code.startsWith('concept-'))).toEqual([]);
   });
 

@@ -110,11 +110,11 @@ describe('learning experience integrity', () => {
     expect(screen.getByText(/0 activities completed.*1 partially practised.*1 skipped/)).toBeInTheDocument();
   });
 
-  for (const lesson of starterConnectedLessons) it('ends practice after four learner moves and preserves its recap for ' + lesson.side, async () => {
+  for (const lesson of starterConnectedLessons) it('ends practice after four learner moves and preserves its recap for ' + lesson.key, async () => {
     const engine = vi.spyOn(EngineService.prototype, 'bestMove').mockImplementation(async (fen) => {
       const moves = new Chess(fen).moves({ verbose: true });
-      const move = moves.find((m) => m.piece === 'p') ?? moves[0];
-      return { from: move.from, to: move.to };
+      const move = moves.find((m) => m.piece === 'p' && !m.promotion) ?? moves[0];
+      return { from: move.from, to: move.to, promotion: move.promotion };
     });
     const initial = { ...createLessonSession(lesson, 'local', 'today'), stage: 'summary' as const, moves: [...lesson.openingMoves] };
     const { changed } = show(initial, lesson);
@@ -122,7 +122,7 @@ describe('learning experience integrity', () => {
     for (let index = 0; index < 4; index++) {
       await waitFor(() => expect(positionAfter(changed.mock.calls.at(-1)![0].moves).turn()).toBe(lesson.side[0]));
       const moves = positionAfter(changed.mock.calls.at(-1)![0].moves).moves({ verbose: true });
-      await click('Play ' + (moves.find((m) => m.piece === 'p') ?? moves[0]).san);
+      await click('Play ' + (moves.find((m) => m.piece === 'p' && !m.promotion) ?? moves[0]).san);
     }
     await screen.findByRole('heading', { name: 'Plan practice complete' });
     const finalMoves = [...changed.mock.calls.at(-1)![0].moves];

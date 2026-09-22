@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { buildPositionKey } from '../../domain/repertoire/positionKey';
 import type { GuidanceKind, MoveEdgeClassification, RepertoireGraph } from '../../domain/repertoire/types';
 import { validateRepertoireGraph } from '../../domain/repertoire/validation';
+import { bundledUpgradeDiagnostics } from '../../services/bundledCourseUpgrades';
 
 export function AdminPanel(props: {
   draft: RepertoireGraph | null;
@@ -96,6 +97,7 @@ export function AdminPanel(props: {
     <details><summary>Learning unit</summary><div className="admin-guidance"><input placeholder="Unit title" value={unitTitle} onChange={(event) => setUnitTitle(event.target.value)} /><textarea aria-label="Ordered edge keys" placeholder="Ordered edge keys, comma separated" value={unitEdges} onChange={(event) => setUnitEdges(event.target.value)} /><small>Available: {Object.values(graph.edges).filter((edge) => edge.openingFamilyKeys.includes(activeOpeningKey)).map((edge) => `${edge.san} (${edge.key})`).join(', ')}</small><button className="secondary-button" onClick={addLearningUnit}>Add learning unit</button></div></details>
     <details><summary>Deviation policy</summary><div className="admin-guidance"><input placeholder="Optional move UCI, e.g. a7a6" value={deviationMove} onChange={(event) => setDeviationMove(event.target.value)} /><textarea placeholder="Fallback guidance" value={deviationGuidance} onChange={(event) => setDeviationGuidance(event.target.value)} /><button className="secondary-button" onClick={addDeviation}>Add deviation policy</button></div></details>
     <details><summary>Tactical motif</summary><div className="admin-guidance"><input placeholder="Motif title" value={motifTitle} onChange={(event) => setMotifTitle(event.target.value)} /><input placeholder="Observable trigger" value={motifTrigger} onChange={(event) => setMotifTrigger(event.target.value)} /><input placeholder="Execution" value={motifExecution} onChange={(event) => setMotifExecution(event.target.value)} /><textarea placeholder="Limitation or failure mode" value={motifLimitation} onChange={(event) => setMotifLimitation(event.target.value)} /><button className="secondary-button" onClick={addMotif}>Add motif</button></div></details>
+    {bundledUpgradeDiagnostics(graph).length > 0 && <details><summary>Bundled course upgrade notes</summary><ul>{bundledUpgradeDiagnostics(graph).map(message => <li key={message}>{message}</li>)}</ul></details>}
     {issues.length > 0 && <ul className="validation-list">{issues.slice(0, 8).map((issue) => <li key={`${issue.code}-${issue.itemKey}`}>{issue.message} <small>{issue.itemKey}</small></li>)}</ul>}
     <div className="button-row"><button className="secondary-button" disabled={props.busy} onClick={() => void props.onSave()}>Save draft</button><button className="primary-button" disabled={props.busy || issues.length > 0} onClick={() => void props.onPublish()}>Publish</button></div>
   </section>;

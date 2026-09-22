@@ -1,0 +1,631 @@
+{
+  "lesson:caro-active": {
+    "title": "Caro-Kann: stay solid and active",
+    "main": [
+      "g6h7",
+      "e7e6",
+      "h7d3",
+      "b8d7",
+      "g8f6",
+      "f8e7",
+      "e8g8",
+      "c6c5"
+    ],
+    "transfer": [
+      "g6d3",
+      "e7e6",
+      "b8d7"
+    ],
+    "journey": [
+      [
+        "c5d4",
+        "cxd4"
+      ],
+      [
+        "f6d5",
+        "Be5"
+      ],
+      [
+        "e7d6",
+        "Qf3"
+      ],
+      [
+        "d6e5",
+        "dxe5"
+      ],
+      [
+        "c7c6",
+        "Qxc6"
+      ],
+      [
+        "e8e2",
+        "Rd8+"
+      ]
+    ]
+  },
+  "lesson:black-caro-kann-main:advance": {
+    "title": "Advance: challenge the supported centre",
+    "main": [
+      "b8c6",
+      "f5g6",
+      "c5d4",
+      "g8e7"
+    ],
+    "transfer": [
+      "c5d4",
+      "c6d4"
+    ]
+  },
+  "lesson:black-caro-kann-main:advance-h4": {
+    "title": "Advance: handle the bishop chase",
+    "main": [
+      "f5d3",
+      "e7e6",
+      "d8a5",
+      "g8h6"
+    ],
+    "transfer": [
+      "e7e6",
+      "g8e7"
+    ]
+  },
+  "lesson:black-caro-kann-main:exchange": {
+    "title": "Exchange: active pieces behind the pawns",
+    "main": [
+      "b8c6",
+      "g8f6",
+      "c8g4",
+      "d8d7"
+    ],
+    "transfer": [
+      "c6b4",
+      "c8d7"
+    ]
+  },
+  "lesson:black-caro-kann-main:panov": {
+    "title": "Panov: activity around the isolated pawn",
+    "main": [
+      "f8e7",
+      "f6d5",
+      "b8c6",
+      "e8g8"
+    ],
+    "transfer": [
+      "e8g8",
+      "e6d5"
+    ]
+  },
+  "lesson:black-caro-kann-main:fantasy": {
+    "title": "Fantasy: respond to f3 in the centre",
+    "main": [
+      "e7e6",
+      "d8b6",
+      "b6c7",
+      "b8d7"
+    ],
+    "transfer": [
+      "d5e4",
+      "d8d4"
+    ]
+  },
+  "lesson:black-caro-kann-main:two-knights": {
+    "title": "Two Knights: development before pawn hunting",
+    "main": [
+      "d5e4",
+      "g8f6",
+      "e7f6",
+      "f8d6"
+    ],
+    "transfer": [
+      "e7e5",
+      "h7h6"
+    ]
+  },
+  "lesson:black-sicilian-main": {
+    "title": "Open Sicilian: meet Be2 with coordination",
+    "main": [
+      "f8e7",
+      "e8g8",
+      "b8c6",
+      "d8c7"
+    ],
+    "transfer": [
+      "e8g8",
+      "b8c6"
+    ],
+    "journey": [
+      [
+        "c6d4",
+        "Bxd4"
+      ],
+      [
+        "c8e6",
+        "Qd3"
+      ],
+      [
+        "f8e8",
+        "Nd5"
+      ],
+      [
+        "e5c6",
+        "Bf3"
+      ],
+      [
+        "a5c4",
+        "Rb1"
+      ],
+      [
+        "a8d8",
+        "Rd4"
+      ]
+    ]
+  },
+  "lesson:black-sicilian-basic:english": {
+    "title": "English Attack: respect opposite-wing attacks",
+    "main": [
+      "b7b5",
+      "b5b4",
+      "e6e5",
+      "d6d5"
+    ],
+    "transfer": [
+      "b8d7",
+      "c8b7"
+    ]
+  },
+  "lesson:black-sicilian-basic:bg5": {
+    "title": "Bg5: account for the pin",
+    "main": [
+      "f8e7",
+      "d8c7",
+      "h7h6",
+      "b8c6"
+    ],
+    "transfer": [
+      "b8d7",
+      "h7h6"
+    ]
+  },
+  "lesson:black-sicilian-basic:bc4": {
+    "title": "Bc4: cover the central diagonals",
+    "main": [
+      "b7b5",
+      "f8e7",
+      "b5b4",
+      "c8b7"
+    ],
+    "transfer": [
+      "f8e7",
+      "e8g8"
+    ]
+  },
+  "lesson:black-sicilian-basic:f4": {
+    "title": "Early f4: meet space with central control",
+    "main": [
+      "b8c6",
+      "f8e7",
+      "b7b5",
+      "c8b7"
+    ],
+    "transfer": [
+      "b7b5",
+      "f8e7"
+    ]
+  },
+  "lesson:black-sicilian-basic:g3": {
+    "title": "Fianchetto: contest the long diagonal",
+    "main": [
+      "d8c7",
+      "h7h6",
+      "b8c6",
+      "h6g5"
+    ],
+    "transfer": [
+      "b8c6",
+      "b7c6"
+    ]
+  },
+  "lesson:black-sicilian-basic:alapin": {
+    "title": "Alapin: challenge the planned pawn centre",
+    "main": [
+      "c5d4",
+      "d7d6",
+      "b8c6",
+      "d8d6"
+    ],
+    "transfer": [
+      "d7d6",
+      "b8c6"
+    ]
+  },
+  "lesson:black-sicilian-basic:closed": {
+    "title": "Closed Sicilian: prepare the central response",
+    "main": [
+      "d7d6",
+      "a8b8",
+      "a7a6",
+      "e7e6"
+    ],
+    "transfer": [
+      "e7e6",
+      "h7h6"
+    ]
+  },
+  "lesson:black-sicilian-basic:grand-prix": {
+    "title": "Grand Prix: challenge the attacking centre",
+    "main": [
+      "e7e6",
+      "d7d5",
+      "g8e7",
+      "c5d4"
+    ],
+    "transfer": [
+      "g8e7",
+      "e8g8"
+    ]
+  },
+  "lesson:black-sicilian-basic:moscow": {
+    "title": "Moscow: resolve the checking bishop",
+    "main": [
+      "c8d7",
+      "b8d7",
+      "g8f6",
+      "g7g6"
+    ],
+    "transfer": [
+      "g7g6",
+      "d8d7"
+    ]
+  },
+  "lesson:black-sicilian-basic:dragon": {
+    "title": "Optional Dragon: defend the long diagonal",
+    "main": [
+      "a7a6",
+      "b7b5",
+      "c8b7",
+      "h7h5"
+    ],
+    "transfer": [
+      "b7b5",
+      "c8b7"
+    ]
+  },
+  "lesson:black-alien-main": {
+    "title": "Alien defense: meet direct Bc4 pressure",
+    "main": [
+      "e7e6",
+      "d7b6",
+      "h7h6",
+      "c6c5"
+    ],
+    "transfer": [
+      "h7h6",
+      "f8d6"
+    ],
+    "journey": [
+      [
+        "b6d5",
+        "dxc5"
+      ],
+      [
+        "e8g8",
+        "Bd2"
+      ],
+      [
+        "c8b7",
+        "c4"
+      ],
+      [
+        "e5f6",
+        "b4"
+      ],
+      [
+        "a8c8",
+        "Rh1"
+      ],
+      [
+        "f8d8",
+        "Kf3"
+      ]
+    ]
+  },
+  "lesson:black-alien-gambit-defense:quiet": {
+    "title": "Alien defense: meet Bd3 and the knight retreat",
+    "main": [
+      "e7e6",
+      "f8d6",
+      "h7h6",
+      "f6e4"
+    ],
+    "transfer": [
+      "d8c7",
+      "h7h6"
+    ]
+  },
+  "lesson:black-alien-gambit-defense:f4": {
+    "title": "Alien defense: challenge the pawn attack",
+    "main": [
+      "h7h6",
+      "e7e6",
+      "c6c5",
+      "f8e7"
+    ],
+    "transfer": [
+      "f7e6",
+      "e8f7"
+    ]
+  },
+  "lesson:black-alien-gambit-defense:accepted": {
+    "title": "Optional Alien recovery: coordinate after Kxf7",
+    "main": [
+      "e7e6",
+      "f7g8",
+      "c6c5",
+      "b8c6"
+    ],
+    "transfer": [
+      "c6c5",
+      "f8c5"
+    ]
+  },
+  "lesson:black-vienna-main": {
+    "title": "Vienna Gambit: counter the advanced e-pawn",
+    "main": [
+      "f8c5",
+      "c5b4",
+      "c7c5",
+      "e4d2"
+    ],
+    "transfer": [
+      "c8f5",
+      "c5b4"
+    ],
+    "journey": [
+      [
+        "e8g8",
+        "dxc5"
+      ],
+      [
+        "c5d3",
+        "Qxd3"
+      ],
+      [
+        "a8a6",
+        "Kh1"
+      ],
+      [
+        "d8e7",
+        "Nxe6"
+      ],
+      [
+        "f8e8",
+        "Rb1"
+      ],
+      [
+        "e6e5",
+        "Rxe5"
+      ]
+    ]
+  },
+  "lesson:black-vienna-main:exd5": {
+    "title": "Vienna Gambit: respond to the central exchange",
+    "main": [
+      "f6d5",
+      "d5c3",
+      "d8h4",
+      "c8g4"
+    ],
+    "transfer": [
+      "e5f4",
+      "d8d5"
+    ]
+  },
+  "lesson:black-vienna-main:bc4": {
+    "title": "Vienna Bc4: develop against f7 pressure",
+    "main": [
+      "b8c6",
+      "f8c5",
+      "d7d6",
+      "a7a5"
+    ],
+    "transfer": [
+      "c6a5",
+      "a5b3"
+    ]
+  },
+  "lesson:black-vienna-main:g3": {
+    "title": "Vienna g3: meet the long diagonal",
+    "main": [
+      "d7d5",
+      "f6d5",
+      "d5c3",
+      "f8d6"
+    ],
+    "transfer": [
+      "f8b4",
+      "d8d5"
+    ]
+  },
+  "lesson:black-vienna-main:d3": {
+    "title": "Vienna d3: improve before expanding",
+    "main": [
+      "f8b4",
+      "b4c3",
+      "d7d5",
+      "d8d5"
+    ],
+    "transfer": [
+      "d7d5",
+      "b4c3"
+    ]
+  },
+  "lesson:black-queens-gambit-main": {
+    "title": "QGD Exchange: counter the minority attack",
+    "main": [
+      "f8e8",
+      "c7c6",
+      "h7h6",
+      "e7d6"
+    ],
+    "transfer": [
+      "h7h6",
+      "c7c5"
+    ],
+    "journey": [
+      [
+        "d6f4",
+        "exf4"
+      ],
+      [
+        "b6b5",
+        "b3"
+      ],
+      [
+        "b7b6",
+        "Nc3"
+      ],
+      [
+        "e6f7",
+        "Ng2"
+      ],
+      [
+        "b8a6",
+        "h4"
+      ],
+      [
+        "d8c8",
+        "Nxa5"
+      ]
+    ]
+  },
+  "lesson:black-queens-gambit-main:bg5": {
+    "title": "QGD Bg5: release the pin with development",
+    "main": [
+      "h7h6",
+      "b7b6",
+      "c8b7",
+      "f6d5"
+    ],
+    "transfer": [
+      "e7f6",
+      "c7c6"
+    ]
+  },
+  "lesson:black-queens-gambit-main:nge2": {
+    "title": "QGD Exchange: meet the central expansion",
+    "main": [
+      "c7c6",
+      "f8e8",
+      "g7g6",
+      "b7b5"
+    ],
+    "transfer": [
+      "f8e8",
+      "d7f8"
+    ]
+  },
+  "lesson:black-queens-gambit-main:bf4": {
+    "title": "QGD Bf4: contest the active bishop",
+    "main": [
+      "d5c4",
+      "b7b5",
+      "f8b4",
+      "f6d5"
+    ],
+    "transfer": [
+      "f6d5",
+      "f7f6"
+    ]
+  },
+  "lesson:black-queens-gambit-main:catalan": {
+    "title": "Catalan: account for the long diagonal",
+    "main": [
+      "d5c4",
+      "c8d7",
+      "c7c5",
+      "d8c7"
+    ],
+    "transfer": [
+      "f8b4",
+      "a7a5"
+    ]
+  },
+  "lesson:black-london-main": {
+    "title": "London triangle: challenge d4",
+    "main": [
+      "b8c6",
+      "f8d6",
+      "e8g8",
+      "b7b6"
+    ],
+    "transfer": [
+      "f6h5",
+      "f7f6"
+    ],
+    "journey": [
+      [
+        "d6e5",
+        "dxe5"
+      ],
+      [
+        "f7f5",
+        "exf6"
+      ],
+      [
+        "d8e8",
+        "Qxe8"
+      ],
+      [
+        "f6h5",
+        "Bd1"
+      ],
+      [
+        "h5f4",
+        "fxg6"
+      ],
+      [
+        "f8d8",
+        "Nf3"
+      ]
+    ]
+  },
+  "lesson:black-london-main:ne5": {
+    "title": "London Ne5: answer the kingside foothold",
+    "main": [
+      "d8c7",
+      "d6f4",
+      "a8a7",
+      "c7f4"
+    ],
+    "transfer": [
+      "c5c4",
+      "e8g8"
+    ]
+  },
+  "lesson:black-london-main:exchange": {
+    "title": "London exchanges: reassess the open files",
+    "main": [
+      "d8d6",
+      "b8c6",
+      "e8g8",
+      "e6e5"
+    ],
+    "transfer": [
+      "d6b6",
+      "c5c4"
+    ]
+  },
+  "lesson:black-london-main:jobava": {
+    "title": "Jobava: handle Nc3 and direct threats",
+    "main": [
+      "f8b4",
+      "b4a5",
+      "a7a6",
+      "a5b6"
+    ],
+    "transfer": [
+      "b4d2",
+      "c7c5"
+    ]
+  }
+}
