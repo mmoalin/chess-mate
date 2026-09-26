@@ -116,6 +116,8 @@ export type SparringScenario = {
 };
 
 export type ConceptDrill = {
+  replaces?: string[];
+  relatedLessons?: { lessonKey: string; label: string }[];
   key: string;
   openingFamilyKey: string;
   title: string;

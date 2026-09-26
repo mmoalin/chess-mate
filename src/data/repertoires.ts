@@ -2,6 +2,7 @@ import type { RepertoireLine } from '../features/openings/types';
 import { whiteCourseLines } from './whiteOpeningCourses';
 import { alienCourseLines } from './alienOpeningCourses';
 import { blackCourseLines } from './blackOpeningCourses';
+import { companionLines } from './whiteCompanionCourses';
 
 export const legacyStarterRepertoires: RepertoireLine[] = [
   {
@@ -344,4 +345,4 @@ export const legacyStarterRepertoires: RepertoireLine[] = [
   }
 ];
 export const preAlienStarterRepertoires: RepertoireLine[] = [...legacyStarterRepertoires, ...whiteCourseLines];
-export const starterRepertoires: RepertoireLine[] = [...preAlienStarterRepertoires, ...alienCourseLines, ...blackCourseLines];
+export const starterRepertoires: RepertoireLine[] = [...preAlienStarterRepertoires, ...alienCourseLines, ...blackCourseLines, ...companionLines];

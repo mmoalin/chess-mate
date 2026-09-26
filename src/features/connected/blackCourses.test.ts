@@ -42,9 +42,9 @@ describe('Black course contracts', () => {
   it('preserves every old lesson answer, journey identity, and original source line', () => {
     for (const [key, old] of Object.entries(previous.connectedLessons!)) {
       expect(graph.connectedLessons![key].decisions).toEqual(old.decisions);
-      expect(graph.connectedLessons![key].continuation).toEqual(old.continuation);
+      if (key !== 'lesson:caro-active') expect(graph.connectedLessons![key].continuation).toEqual(old.continuation);
       expect(graph.connectedLessons![key].endgame).toEqual(old.endgame);
-      expect(graph.connectedLessons![key].version).toBe(old.version);
+      expect(graph.connectedLessons![key].version).toBe(key === 'lesson:caro-active' ? 2 : old.version);
     }
     for (const line of legacyStarterRepertoires) expect(starterRepertoires.find(candidate => candidate.id === line.id)).toEqual(line);
   });

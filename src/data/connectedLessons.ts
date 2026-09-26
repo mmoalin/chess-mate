@@ -5,6 +5,10 @@ import { whiteCourseLessons } from './whiteOpeningCourses';
 import { alienCourseLessons } from './alienOpeningCourses';
 import { createAlienContinuation } from './alienContinuation';
 import { blackCourseLessons, blackCourses } from './blackOpeningCourses';
+import { companionLessons } from './whiteCompanionCourses';
+import { addWhiteCoverageMetadata } from './whiteCoverageMetadata';
+import correctedCaroContinuation from './compiledCaroCorrection.json' with { type: 'json' };
+import type { ContinuationJourney } from '../features/connected/continuationJourney';
 import { createQueensGambitContinuation, createViennaContinuation } from './whiteContinuations';
 import type { ConnectedLesson, LessonDecision, LessonQuestion } from '../features/connected/types';
 
@@ -131,3 +135,11 @@ const caroCourse = blackCourses.find(course => course.mainLessonKey === 'lesson:
 Object.assign(starterConnectedLessons.find(lesson => lesson.key === caroCourse.mainLessonKey)!, {
   courseOrder: 0, course: { mainLessonKey: caroCourse.mainLessonKey, role: caroCourse.role, context: caroCourse.context, scope: caroCourse.scope }
 });
+starterConnectedLessons.push(...companionLessons);
+addWhiteCoverageMetadata(starterConnectedLessons);
+const correctedCaro = starterConnectedLessons.find(lesson => lesson.key === 'lesson:caro-active')!;
+const oldCaroSteps = correctedCaro.continuation!.steps;
+correctedCaro.version = 2;
+correctedCaro.continuation = correctedCaroContinuation as ContinuationJourney;
+correctedCaro.replacesCheckpoints = Object.fromEntries(oldCaroSteps.map((step, index) => ['continuation:' + step.id, 'continuation:' + correctedCaro.continuation!.steps[index].id]));
+correctedCaro.course!.drillMetadata = [{ key: 'concept:caro-resolve-centre-v2', replaces: ['concept:caro-resolve-centre'] }];

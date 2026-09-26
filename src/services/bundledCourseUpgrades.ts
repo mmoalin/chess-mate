@@ -1,14 +1,16 @@
 import manifestData from '../data/bundledContentManifest.json' with { type: 'json' };
+import companionManifestData from '../data/preWhiteCompanionManifest.json' with { type: 'json' };
 import { canonicalContent, contentFingerprint } from '../domain/repertoire/contentFingerprint';
 import type { RepertoireGraph } from '../domain/repertoire/types';
 import { validateRepertoireGraph } from '../domain/repertoire/validation';
 import type { ConnectedLesson } from '../features/connected/types';
 
 const manifest = manifestData as Record<string, Record<string, string[]>>;
+const companionManifest = companionManifestData as Record<string, Record<string, string>>;
 const diagnostics = new WeakMap<RepertoireGraph, string[]>();
 export const bundledUpgradeDiagnostics = (graph: RepertoireGraph): string[] => diagnostics.get(graph) ?? [];
 const union = (left: string[], right: string[]) => [...new Set([...left, ...right])];
-const known = (collection: string, key: string, record: unknown, current: unknown) => canonicalContent(record) === canonicalContent(current) || Boolean(manifest[collection]?.[key]?.includes(contentFingerprint(record)));
+const known = (collection: string, key: string, record: unknown, current: unknown) => canonicalContent(record) === canonicalContent(current) || Boolean(manifest[collection]?.[key]?.includes(contentFingerprint(record))) || companionManifest[collection]?.[key] === contentFingerprint(record);
 
 /** Install each family's full dependency closure or leave that family untouched. */
 export function upgradeBundledCourses(original: RepertoireGraph, bundled: RepertoireGraph): RepertoireGraph {
@@ -17,7 +19,7 @@ export function upgradeBundledCourses(original: RepertoireGraph, bundled: Repert
   const messages: string[] = [];
   const recognised = Object.entries(original.openings).some(([key, opening]) => known('openings', key, opening, bundled.openings[key]));
   if (!recognised) return original;
-  for (const family of Object.values(bundled.openings)) {
+  for (const family of dependencyOrderedFamilies(bundled)) {
     const existingFamily = original.openings[family.key];
     if (existingFamily && !known('openings', family.key, existingFamily, family)) { messages.push(`${family.name}: preserved edited family metadata; package skipped.`); continue; }
     const lines = new Set(family.lineKeys);
@@ -68,13 +70,21 @@ export function upgradeBundledCourses(original: RepertoireGraph, bundled: Repert
     for (const lesson of Object.values(bundled.connectedLessons ?? {}).filter(lesson => lesson.openingFamilyKey === family.key)) {
       const existing = next.connectedLessons[lesson.key];
       if (!existing) next.connectedLessons[lesson.key] = structuredClone(lesson);
+      else if (known('connectedLessons', lesson.key, existing, lesson)) next.connectedLessons[lesson.key] = structuredClone(lesson);
       else if (lessonBase(existing) === lessonBase(lesson)) next.connectedLessons[lesson.key] = {
         ...existing, endgame: existing.endgame ?? lesson.endgame, continuation: existing.continuation ?? lesson.continuation,
         courseOrder: existing.courseOrder ?? lesson.courseOrder, structureGuide: existing.structureGuide ?? lesson.structureGuide,
         course: existing.course ?? lesson.course, optional: existing.optional ?? lesson.optional
       };
+      else if (lesson.replacesCheckpoints) { conflict = true; messages.push(`${family.name}: preserved edited lesson ${lesson.key}; its correction package needs editorial reconciliation.`); }
     }
     for (const drill of Object.values(bundled.conceptDrills).filter(drill => drill.openingFamilyKey === family.key)) {
+      for (const retiredKey of drill.replaces ?? []) {
+        const retired = next.conceptDrills[retiredKey];
+        if (!retired) continue;
+        if (known('conceptDrills', retiredKey, retired, undefined)) delete next.conceptDrills[retiredKey];
+        else { conflict = true; messages.push(`${family.name}: preserved edited retired drill ${retiredKey}; correction package skipped.`); }
+      }
       const existing = next.conceptDrills[drill.key];
       if (!existing || known('conceptDrills', drill.key, existing, drill)) next.conceptDrills[drill.key] = structuredClone(drill);
     }
@@ -86,6 +96,21 @@ export function upgradeBundledCourses(original: RepertoireGraph, bundled: Repert
   }
   diagnostics.set(graph, messages);
   return graph;
+}
+
+/** Install cross-course lesson links only after their complete dependencies. */
+function dependencyOrderedFamilies(graph: RepertoireGraph) {
+  const ordered: typeof graph.openings[string][] = []; const visited = new Set<string>();
+  function visit(key: string) {
+    if (visited.has(key)) return;
+    visited.add(key);
+    const lessons = Object.values(graph.connectedLessons ?? {}).filter(lesson => lesson.openingFamilyKey === key);
+    const targets = [...lessons.flatMap(lesson => lesson.course?.coverage?.routes.flatMap(route => route.lessonKeys) ?? []), ...Object.values(graph.conceptDrills).filter(drill => drill.openingFamilyKey === key).flatMap(drill => drill.relatedLessons?.map(link => link.lessonKey) ?? [])];
+    for (const target of targets) { const family = graph.connectedLessons?.[target]?.openingFamilyKey; if (family && family !== key) visit(family); }
+    if (graph.openings[key]) ordered.push(graph.openings[key]);
+  }
+  Object.keys(graph.openings).forEach(visit);
+  return ordered;
 }
 
 function lessonBase(lesson: ConnectedLesson) {

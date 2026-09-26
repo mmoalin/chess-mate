@@ -1,0 +1,155 @@
+lesson:white-sicilian-alapin:main/opening:0: e4 (entry position), loss -2cp
+lesson:white-sicilian-alapin:main/opening:1: c5 (entry position), loss 0cp
+lesson:white-sicilian-alapin:main/opening:2: c3 (entry position), loss 11cp
+lesson:white-sicilian-alapin:main/opening:3: d5 (entry position), loss 8cp
+lesson:white-sicilian-alapin:main/opening:4: exd5 (entry position), loss 14cp
+lesson:white-sicilian-alapin:main/opening:5: Qxd5 (entry position), loss 3cp
+lesson:white-sicilian-alapin:main/opening:6: d4 (entry position), loss -10cp
+lesson:white-sicilian-alapin:main/opening:7: Nf6 (entry position), loss -9cp
+lesson:white-sicilian-alapin:main/decision-1: Nf3 (accepted), loss 2cp
+lesson:white-sicilian-alapin:main/decision-1/reply: Nc6 (sound opponent reply), loss -2cp
+lesson:white-sicilian-alapin:main/decision-1/mistake: Qg4 (mistake), loss 612cp
+lesson:white-sicilian-alapin:main/decision-2: Be3 (accepted), loss -5cp
+lesson:white-sicilian-alapin:main/decision-2/reply: Bf5 (sound opponent reply), loss -4cp
+lesson:white-sicilian-alapin:main/decision-3: dxc5 (accepted), loss 8cp
+lesson:white-sicilian-alapin:main/decision-3/reply: Qxd1+ (sound opponent reply), loss -5cp
+lesson:white-sicilian-alapin:main/decision-4: Kxd1 (accepted), loss -11cp
+lesson:white-sicilian-alapin:main/decision-4/reply: Nd5 (sound opponent reply), loss 1cp
+lesson:white-sicilian-alapin:main/transfer-decision-1: Na3 (accepted), loss -1cp
+lesson:white-sicilian-alapin:main/transfer-decision-1/reply: cxd4 (sound opponent reply), loss 5cp
+lesson:white-sicilian-alapin:main/transfer-decision-2: Nb5 (accepted), loss 8cp
+lesson:white-sicilian-alapin:main/transfer-entry: e6 (sound opponent reply), loss 8cp
+lesson:white-sicilian-alapin:main/continuation:coordinate: Bb5 (accepted), loss 2cp
+lesson:white-sicilian-alapin:main/continuation:coordinate/Bb5/reply: O-O-O (sound opponent reply), loss 15cp
+lesson:white-sicilian-alapin:main/continuation:coordinate: Kc1 (accepted), loss -6cp
+lesson:white-sicilian-alapin:main/continuation:coordinate/Kc1/reply: e5 (sound opponent reply), loss -8cp
+lesson:white-sicilian-alapin:main/continuation:counterplay: Kc1 (accepted), loss -10cp
+lesson:white-sicilian-alapin:main/continuation:counterplay/Kc1/reply: Nxe3 (sound opponent reply), loss 8cp
+lesson:white-sicilian-alapin:main/continuation:counterplay: Bd2 (accepted), loss 11cp
+lesson:white-sicilian-alapin:main/continuation:counterplay/Bd2/reply: f6 (sound opponent reply), loss 22cp
+lesson:white-sicilian-alapin:main/continuation:structure: Nd2 (accepted), loss -4cp
+lesson:white-sicilian-alapin:main/continuation:structure/Nd2/reply: Bxg2 (sound opponent reply), loss 25cp
+lesson:white-sicilian-alapin:main/continuation:structure: b4 (accepted), loss 54cp
+lesson:white-sicilian-alapin:main/continuation:structure/b4/reply: Bxg2 (sound opponent reply), loss -14cp
+lesson:white-sicilian-alapin:main/continuation:improve: c4 (accepted), loss -13cp
+lesson:white-sicilian-alapin:main/continuation:improve/c4/reply: Be6 (sound opponent reply), loss -22cp
+lesson:white-sicilian-alapin:main/continuation:improve: e4 (accepted), loss 49cp
+lesson:white-sicilian-alapin:main/continuation:improve/e4/reply: e5 (sound opponent reply), loss 6cp
+lesson:white-sicilian-alapin:main/continuation:simplify: Kc2 (accepted), loss 21cp
+lesson:white-sicilian-alapin:main/continuation:simplify/Kc2/reply: Rhf8 (sound opponent reply), loss 20cp
+lesson:white-sicilian-alapin:main/continuation:simplify: Rg2 (accepted), loss 38cp
+lesson:white-sicilian-alapin:main/continuation:simplify/Rg2/reply: Rhf8 (sound opponent reply), loss -5cp
+lesson:white-sicilian-alapin:main/continuation:ending-activity: Rg1 (accepted), loss 0cp
+lesson:white-sicilian-alapin:main/continuation:ending-activity/Rg1/reply: Bxe3 (sound opponent reply), loss 0cp
+lesson:white-sicilian-alapin:main/continuation:ending-activity: Re1 (accepted), loss 29cp
+lesson:white-sicilian-alapin:main/continuation:ending-activity/Re1/reply: Bg7 (sound opponent reply), loss -14cp
+lesson:white-sicilian-alapin:main/illustration:coordinate/0: Bb5 (illustrative connecting move), loss 2cp
+lesson:white-sicilian-alapin:main/illustration:coordinate/1: O-O-O (illustrative connecting move), loss 15cp
+lesson:white-sicilian-alapin:main/illustration:counterplay/0: Kc1 (illustrative connecting move), loss -10cp
+lesson:white-sicilian-alapin:main/illustration:counterplay/1: Nxe3 (illustrative connecting move), loss 8cp
+lesson:white-sicilian-alapin:main/illustration:structure/0: fxe3 (illustrative connecting move), loss -9cp
+lesson:white-sicilian-alapin:main/illustration:structure/1: g5 (illustrative connecting move), loss -1cp
+lesson:white-sicilian-alapin:main/illustration:structure/2: Bxc6 (illustrative connecting move), loss 2cp
+lesson:white-sicilian-alapin:main/illustration:structure/3: bxc6 (illustrative connecting move), loss 5cp
+lesson:white-sicilian-alapin:main/illustration:structure/4: Nd4 (illustrative connecting move), loss 8cp
+lesson:white-sicilian-alapin:main/illustration:structure/5: Be4 (illustrative connecting move), loss -4cp
+lesson:white-sicilian-alapin:main/illustration:structure/6: Nd2 (illustrative connecting move), loss -4cp
+lesson:white-sicilian-alapin:main/illustration:structure/7: Bxg2 (illustrative connecting move), loss 25cp
+lesson:white-sicilian-alapin:main/illustration:improve/0: Rg1 (illustrative connecting move), loss 4cp
+lesson:white-sicilian-alapin:main/illustration:improve/1: Bd5 (illustrative connecting move), loss -1cp
+lesson:white-sicilian-alapin:main/illustration:improve/2: c4 (illustrative connecting move), loss -13cp
+lesson:white-sicilian-alapin:main/illustration:improve/3: Be6 (illustrative connecting move), loss -22cp
+lesson:white-sicilian-alapin:main/illustration:simplify/0: Nxe6 (illustrative connecting move), loss 25cp
+lesson:white-sicilian-alapin:main/illustration:simplify/1: fxe6 (illustrative connecting move), loss -7cp
+lesson:white-sicilian-alapin:main/illustration:simplify/2: Nb3 (illustrative connecting move), loss -4cp
+lesson:white-sicilian-alapin:main/illustration:simplify/3: Bh6 (illustrative connecting move), loss 9cp
+lesson:white-sicilian-alapin:main/illustration:simplify/4: Kc2 (illustrative connecting move), loss 21cp
+lesson:white-sicilian-alapin:main/illustration:simplify/5: Rhf8 (illustrative connecting move), loss 20cp
+lesson:white-sicilian-alapin:main/illustration:ending-activity/0: Raf1 (illustrative connecting move), loss 2cp
+lesson:white-sicilian-alapin:main/illustration:ending-activity/1: Rxf1 (illustrative connecting move), loss -19cp
+lesson:white-sicilian-alapin:main/illustration:ending-activity/2: Rxf1 (illustrative connecting move), loss -4cp
+lesson:white-sicilian-alapin:main/illustration:ending-activity/3: g4 (illustrative connecting move), loss 8cp
+lesson:white-sicilian-alapin:main/illustration:ending-activity/4: Rg1 (illustrative connecting move), loss 0cp
+lesson:white-sicilian-alapin:main/illustration:ending-activity/5: Bxe3 (illustrative connecting move), loss 0cp
+lesson:white-sicilian-alapin:nf6/opening:0: e4 (entry position), loss -2cp
+lesson:white-sicilian-alapin:nf6/opening:1: c5 (entry position), loss 0cp
+lesson:white-sicilian-alapin:nf6/opening:2: c3 (entry position), loss 11cp
+lesson:white-sicilian-alapin:nf6/opening:3: Nf6 (entry position), loss -14cp
+lesson:white-sicilian-alapin:nf6/opening:4: e5 (entry position), loss 0cp
+lesson:white-sicilian-alapin:nf6/opening:5: Nd5 (entry position), loss 6cp
+lesson:white-sicilian-alapin:nf6/opening:6: d4 (entry position), loss 2cp
+lesson:white-sicilian-alapin:nf6/opening:7: cxd4 (entry position), loss 6cp
+lesson:white-sicilian-alapin:nf6/decision-1: Nf3 (accepted), loss -3cp
+lesson:white-sicilian-alapin:nf6/decision-1/reply: d6 (sound opponent reply), loss 4cp
+lesson:white-sicilian-alapin:nf6/decision-1/mistake: Be3 (mistake), loss 334cp
+lesson:white-sicilian-alapin:nf6/decision-2: exd6 (accepted), loss 11cp
+lesson:white-sicilian-alapin:nf6/decision-2/reply: Nc6 (sound opponent reply), loss 5cp
+lesson:white-sicilian-alapin:nf6/decision-3: Nxd4 (accepted), loss -3cp
+lesson:white-sicilian-alapin:nf6/decision-3/reply: Qxd6 (sound opponent reply), loss 6cp
+lesson:white-sicilian-alapin:nf6/decision-4: Na3 (accepted), loss 8cp
+lesson:white-sicilian-alapin:nf6/decision-4/reply: e6 (sound opponent reply), loss 3cp
+lesson:white-sicilian-alapin:nf6/transfer-decision-1: cxd4 (accepted), loss 3cp
+lesson:white-sicilian-alapin:nf6/transfer-decision-1/reply: d6 (sound opponent reply), loss -5cp
+lesson:white-sicilian-alapin:nf6/transfer-decision-2: Bc4 (accepted), loss 13cp
+lesson:white-sicilian-alapin:nf6/transfer-entry: Nc6 (sound opponent reply), loss -3cp
+lesson:white-sicilian-alapin:nc6/opening:0: e4 (entry position), loss -2cp
+lesson:white-sicilian-alapin:nc6/opening:1: c5 (entry position), loss 0cp
+lesson:white-sicilian-alapin:nc6/opening:2: c3 (entry position), loss 11cp
+lesson:white-sicilian-alapin:nc6/opening:3: Nc6 (entry position), loss 4cp
+lesson:white-sicilian-alapin:nc6/opening:4: d4 (entry position), loss 9cp
+lesson:white-sicilian-alapin:nc6/opening:5: cxd4 (entry position), loss 14cp
+lesson:white-sicilian-alapin:nc6/opening:6: cxd4 (entry position), loss -2cp
+lesson:white-sicilian-alapin:nc6/opening:7: d5 (entry position), loss -12cp
+lesson:white-sicilian-alapin:nc6/decision-1: exd5 (accepted), loss -4cp
+lesson:white-sicilian-alapin:nc6/decision-1/reply: Qxd5 (sound opponent reply), loss 1cp
+lesson:white-sicilian-alapin:nc6/decision-1/mistake: Qg4 (mistake), loss 662cp
+lesson:white-sicilian-alapin:nc6/decision-2: Nf3 (accepted), loss -2cp
+lesson:white-sicilian-alapin:nc6/decision-2/reply: Bg4 (sound opponent reply), loss -3cp
+lesson:white-sicilian-alapin:nc6/decision-3: Be2 (accepted), loss -8cp
+lesson:white-sicilian-alapin:nc6/decision-3/reply: e6 (sound opponent reply), loss -16cp
+lesson:white-sicilian-alapin:nc6/decision-4: Nc3 (accepted), loss -9cp
+lesson:white-sicilian-alapin:nc6/decision-4/reply: Qd7 (sound opponent reply), loss 8cp
+lesson:white-sicilian-alapin:nc6/transfer-decision-1: Nc3 (accepted), loss 1cp
+lesson:white-sicilian-alapin:nc6/transfer-decision-1/reply: Qf5 (sound opponent reply), loss 18cp
+lesson:white-sicilian-alapin:nc6/transfer-decision-2: d5 (accepted), loss 7cp
+lesson:white-sicilian-alapin:nc6/transfer-entry: Nf6 (sound opponent reply), loss 93cp
+lesson:white-sicilian-alapin:d6/opening:0: e4 (entry position), loss -2cp
+lesson:white-sicilian-alapin:d6/opening:1: c5 (entry position), loss 0cp
+lesson:white-sicilian-alapin:d6/opening:2: c3 (entry position), loss 11cp
+lesson:white-sicilian-alapin:d6/opening:3: d6 (entry position), loss 38cp
+lesson:white-sicilian-alapin:d6/opening:4: d4 (entry position), loss 6cp
+lesson:white-sicilian-alapin:d6/opening:5: Nf6 (entry position), loss 0cp
+lesson:white-sicilian-alapin:d6/decision-1: Bd3 (accepted), loss 2cp
+lesson:white-sicilian-alapin:d6/decision-1/reply: g6 (sound opponent reply), loss 8cp
+lesson:white-sicilian-alapin:d6/decision-1/mistake: Qg4 (mistake), loss 663cp
+lesson:white-sicilian-alapin:d6/decision-2: Nf3 (accepted), loss -3cp
+lesson:white-sicilian-alapin:d6/decision-2/reply: Bg7 (sound opponent reply), loss 5cp
+lesson:white-sicilian-alapin:d6/decision-3: h3 (accepted), loss 3cp
+lesson:white-sicilian-alapin:d6/decision-3/reply: O-O (sound opponent reply), loss -4cp
+lesson:white-sicilian-alapin:d6/decision-4: O-O (accepted), loss -8cp
+lesson:white-sicilian-alapin:d6/decision-4/reply: Nc6 (sound opponent reply), loss -11cp
+lesson:white-sicilian-alapin:d6/transfer-decision-1: cxd4 (accepted), loss -4cp
+lesson:white-sicilian-alapin:d6/transfer-decision-1/reply: e5 (sound opponent reply), loss -6cp
+lesson:white-sicilian-alapin:d6/transfer-decision-2: Ne2 (accepted), loss -3cp
+lesson:white-sicilian-alapin:d6/transfer-entry: cxd4 (sound opponent reply), loss 6cp
+concept:white-sicilian-alapin:main/main/setup: g8f6 (entry position), loss -9cp
+concept:white-sicilian-alapin:main/main: g1f3 (accepted), loss 2cp
+concept:white-sicilian-alapin:main/different-reply/setup: e7e6 (entry position), loss 8cp
+concept:white-sicilian-alapin:main/different-reply: b1a3 (accepted), loss -1cp
+concept:white-sicilian-alapin:nf6/main/setup: c5d4 (entry position), loss 6cp
+concept:white-sicilian-alapin:nf6/main: g1f3 (accepted), loss -3cp
+concept:white-sicilian-alapin:nf6/different-reply/setup: b8c6 (entry position), loss -3cp
+concept:white-sicilian-alapin:nf6/different-reply: c3d4 (accepted), loss 3cp
+concept:white-sicilian-alapin:nc6/main/setup: d7d5 (entry position), loss -12cp
+concept:white-sicilian-alapin:nc6/main: e4d5 (accepted), loss -4cp
+concept:white-sicilian-alapin:nc6/different-reply/setup: g8f6 (entry position), loss 93cp
+concept:white-sicilian-alapin:nc6/different-reply: b1c3 (accepted), loss 1cp
+concept:white-sicilian-alapin:d6/main/setup: g8f6 (entry position), loss 0cp
+concept:white-sicilian-alapin:d6/main: f1d3 (accepted), loss 2cp
+concept:white-sicilian-alapin:d6/different-reply/setup: c5d4 (entry position), loss 6cp
+concept:white-sicilian-alapin:d6/different-reply: c3d4 (accepted), loss -4cp
+concept:white-sicilian-alapin:recognition/recognition-1/setup: b8c6 (entry position), loss 3cp
+concept:white-sicilian-alapin:recognition/recognition-1: g1f3 (accepted), loss -3cp
+concept:white-sicilian-alapin:recognition/recognition-2/setup: f8g7 (entry position), loss 16cp
+concept:white-sicilian-alapin:recognition/recognition-2: g1f3 (accepted), loss -2cp
+154 claims checked; 0 require author review.

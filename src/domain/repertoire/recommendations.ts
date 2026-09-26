@@ -3,6 +3,7 @@ import type { LessonSession } from '../../features/connected/types';
 import { hasCheckpoint } from '../../features/connected/session';
 import { nextCourseContinuation, orderedLessons } from '../../features/connected/course';
 import { continuationKey } from '../../features/connected/continuationJourney';
+import { currentReviewMastery } from '../../features/connected/contentRevisions';
 
 export type GuidedNextActivity =
   | { kind: 'connected-lesson'; targetKey: string; title: string; reason: string }
@@ -21,6 +22,7 @@ export function recommendGuidedNextActivity(input: {
   now: string;
   lessonSessions?: LessonSession[];
 }): GuidedNextActivity {
+  input = { ...input, mastery: currentReviewMastery(input.graph, input.mastery) };
   const lessons = orderedLessons(input.graph, input.selectedOpeningKeys);
   const sessions = input.lessonSessions ?? [];
   const unfinished = sessions.filter((s) => !s.completedAt && !s.supersededAt && lessons.some((l) => l.key === s.lessonKey)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];

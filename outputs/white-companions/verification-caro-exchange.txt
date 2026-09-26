@@ -1,0 +1,165 @@
+lesson:white-caro-exchange:main/opening:0: e4 (entry position), loss -2cp
+lesson:white-caro-exchange:main/opening:1: c6 (entry position), loss 5cp
+lesson:white-caro-exchange:main/opening:2: d4 (entry position), loss 4cp
+lesson:white-caro-exchange:main/opening:3: d5 (entry position), loss 0cp
+lesson:white-caro-exchange:main/opening:4: exd5 (entry position), loss 8cp
+lesson:white-caro-exchange:main/opening:5: cxd5 (entry position), loss -15cp
+lesson:white-caro-exchange:main/opening:6: Bd3 (entry position), loss -8cp
+lesson:white-caro-exchange:main/opening:7: Nc6 (entry position), loss -5cp
+lesson:white-caro-exchange:main/opening:8: c3 (entry position), loss 0cp
+lesson:white-caro-exchange:main/opening:9: Nf6 (entry position), loss 6cp
+lesson:white-caro-exchange:main/decision-1: Bf4 (accepted), loss -4cp
+lesson:white-caro-exchange:main/decision-1/reply: Bg4 (sound opponent reply), loss -3cp
+lesson:white-caro-exchange:main/decision-1/mistake: Qg4 (mistake), loss 658cp
+lesson:white-caro-exchange:main/decision-2: Qb3 (accepted), loss 2cp
+lesson:white-caro-exchange:main/decision-2/reply: Qd7 (sound opponent reply), loss 9cp
+lesson:white-caro-exchange:main/decision-3: Nd2 (accepted), loss 12cp
+lesson:white-caro-exchange:main/decision-3/reply: e6 (sound opponent reply), loss -2cp
+lesson:white-caro-exchange:main/decision-4: Ngf3 (accepted), loss -6cp
+lesson:white-caro-exchange:main/decision-4/reply: Bd6 (sound opponent reply), loss 1cp
+lesson:white-caro-exchange:main/transfer-decision-1: Nf3 (accepted), loss -2cp
+lesson:white-caro-exchange:main/transfer-decision-1/reply: Nh5 (sound opponent reply), loss -2cp
+lesson:white-caro-exchange:main/transfer-decision-2: Be3 (accepted), loss 3cp
+lesson:white-caro-exchange:main/transfer-entry: g6 (sound opponent reply), loss 16cp
+lesson:white-caro-exchange:main/continuation:coordinate: Bxd6 (accepted), loss 3cp
+lesson:white-caro-exchange:main/continuation:coordinate/Bxd6/reply: Qxd6 (sound opponent reply), loss -3cp
+lesson:white-caro-exchange:main/continuation:coordinate: Be5 (accepted), loss 16cp
+lesson:white-caro-exchange:main/continuation:coordinate/Be5/reply: Nh5 (sound opponent reply), loss 7cp
+lesson:white-caro-exchange:main/continuation:counterplay: Rae1 (accepted), loss 13cp
+lesson:white-caro-exchange:main/continuation:counterplay/Rae1/reply: Bxf3 (sound opponent reply), loss 17cp
+lesson:white-caro-exchange:main/continuation:counterplay: Rfe1 (accepted), loss -3cp
+lesson:white-caro-exchange:main/continuation:counterplay/Rfe1/reply: Qc7 (sound opponent reply), loss -10cp
+lesson:white-caro-exchange:main/continuation:structure: Qd1 (accepted), loss 6cp
+lesson:white-caro-exchange:main/continuation:structure/Qd1/reply: a6 (sound opponent reply), loss 2cp
+lesson:white-caro-exchange:main/continuation:structure: Qc2 (accepted), loss 0cp
+lesson:white-caro-exchange:main/continuation:structure/Qc2/reply: a6 (sound opponent reply), loss -5cp
+lesson:white-caro-exchange:main/continuation:improve: Nh4 (accepted), loss 5cp
+lesson:white-caro-exchange:main/continuation:improve/Nh4/reply: Na5 (sound opponent reply), loss 3cp
+lesson:white-caro-exchange:main/continuation:improve: g3 (accepted), loss -1cp
+lesson:white-caro-exchange:main/continuation:improve/g3/reply: Rac8 (sound opponent reply), loss -5cp
+lesson:white-caro-exchange:main/continuation:simplify: f5 (accepted), loss 26cp
+lesson:white-caro-exchange:main/continuation:simplify/f5/reply: exf5 (sound opponent reply), loss 12cp
+lesson:white-caro-exchange:main/continuation:simplify: Qxc4 (accepted), loss 0cp
+lesson:white-caro-exchange:main/continuation:simplify/Qxc4/reply: dxc4 (sound opponent reply), loss -14cp
+lesson:white-caro-exchange:main/continuation:ending-activity: Re5 (accepted), loss 1cp
+lesson:white-caro-exchange:main/continuation:ending-activity/Re5/reply: b5 (sound opponent reply), loss 7cp
+lesson:white-caro-exchange:main/continuation:ending-activity: g4 (accepted), loss 3cp
+lesson:white-caro-exchange:main/continuation:ending-activity/g4/reply: Re8 (sound opponent reply), loss 2cp
+lesson:white-caro-exchange:main/illustration:coordinate/0: Bxd6 (illustrative connecting move), loss 3cp
+lesson:white-caro-exchange:main/illustration:coordinate/1: Qxd6 (illustrative connecting move), loss -3cp
+lesson:white-caro-exchange:main/illustration:counterplay/0: O-O (illustrative connecting move), loss -1cp
+lesson:white-caro-exchange:main/illustration:counterplay/1: O-O (illustrative connecting move), loss 3cp
+lesson:white-caro-exchange:main/illustration:counterplay/2: Rae1 (illustrative connecting move), loss 13cp
+lesson:white-caro-exchange:main/illustration:counterplay/3: Bxf3 (illustrative connecting move), loss 17cp
+lesson:white-caro-exchange:main/illustration:structure/0: Nxf3 (illustrative connecting move), loss 9cp
+lesson:white-caro-exchange:main/illustration:structure/1: Rfb8 (illustrative connecting move), loss 2cp
+lesson:white-caro-exchange:main/illustration:structure/2: a4 (illustrative connecting move), loss 0cp
+lesson:white-caro-exchange:main/illustration:structure/3: Qc7 (illustrative connecting move), loss 10cp
+lesson:white-caro-exchange:main/illustration:structure/4: Qd1 (illustrative connecting move), loss 6cp
+lesson:white-caro-exchange:main/illustration:structure/5: a6 (illustrative connecting move), loss 2cp
+lesson:white-caro-exchange:main/illustration:improve/0: Qe2 (illustrative connecting move), loss -2cp
+lesson:white-caro-exchange:main/illustration:improve/1: Rd8 (illustrative connecting move), loss 3cp
+lesson:white-caro-exchange:main/illustration:improve/2: Nh4 (illustrative connecting move), loss 5cp
+lesson:white-caro-exchange:main/illustration:improve/3: Na5 (illustrative connecting move), loss 3cp
+lesson:white-caro-exchange:main/illustration:simplify/0: f4 (illustrative connecting move), loss 4cp
+lesson:white-caro-exchange:main/illustration:simplify/1: Nc4 (illustrative connecting move), loss 3cp
+lesson:white-caro-exchange:main/illustration:simplify/2: Bxc4 (illustrative connecting move), loss 7cp
+lesson:white-caro-exchange:main/illustration:simplify/3: Qxc4 (illustrative connecting move), loss 18cp
+lesson:white-caro-exchange:main/illustration:simplify/4: f5 (illustrative connecting move), loss 26cp
+lesson:white-caro-exchange:main/illustration:simplify/5: exf5 (illustrative connecting move), loss 12cp
+lesson:white-caro-exchange:main/illustration:ending-activity/0: Nxf5 (illustrative connecting move), loss 13cp
+lesson:white-caro-exchange:main/illustration:ending-activity/1: Qxe2 (illustrative connecting move), loss 8cp
+lesson:white-caro-exchange:main/illustration:ending-activity/2: Rxe2 (illustrative connecting move), loss 4cp
+lesson:white-caro-exchange:main/illustration:ending-activity/3: Kf8 (illustrative connecting move), loss -4cp
+lesson:white-caro-exchange:main/illustration:ending-activity/4: Re5 (illustrative connecting move), loss 1cp
+lesson:white-caro-exchange:main/illustration:ending-activity/5: b5 (illustrative connecting move), loss 7cp
+lesson:white-caro-exchange:bf5/opening:0: e4 (entry position), loss -2cp
+lesson:white-caro-exchange:bf5/opening:1: c6 (entry position), loss 5cp
+lesson:white-caro-exchange:bf5/opening:2: d4 (entry position), loss 4cp
+lesson:white-caro-exchange:bf5/opening:3: d5 (entry position), loss 0cp
+lesson:white-caro-exchange:bf5/opening:4: exd5 (entry position), loss 8cp
+lesson:white-caro-exchange:bf5/opening:5: cxd5 (entry position), loss -15cp
+lesson:white-caro-exchange:bf5/opening:6: Bd3 (entry position), loss -8cp
+lesson:white-caro-exchange:bf5/opening:7: Bf5 (entry position), loss 473cp
+lesson:white-caro-exchange:bf5/decision-1: Bxf5 (accepted), loss 22cp
+lesson:white-caro-exchange:bf5/decision-1/reply: Nc6 (sound opponent reply), loss 6cp
+lesson:white-caro-exchange:bf5/decision-1/mistake: Qg4 (mistake), loss 1096cp
+lesson:white-caro-exchange:bf5/decision-2: Nf3 (accepted), loss 1cp
+lesson:white-caro-exchange:bf5/decision-2/reply: e6 (sound opponent reply), loss -9cp
+lesson:white-caro-exchange:bf5/decision-3: Bd3 (accepted), loss -8cp
+lesson:white-caro-exchange:bf5/decision-3/reply: Bd6 (sound opponent reply), loss 1cp
+lesson:white-caro-exchange:bf5/decision-4: O-O (accepted), loss 0cp
+lesson:white-caro-exchange:bf5/decision-4/reply: h6 (sound opponent reply), loss -1cp
+lesson:white-caro-exchange:bf5/transfer-decision-1: c3 (accepted), loss -20cp
+lesson:white-caro-exchange:bf5/transfer-decision-1/reply: Nc6 (sound opponent reply), loss -26cp
+lesson:white-caro-exchange:bf5/transfer-decision-2: Nf3 (accepted), loss -20cp
+lesson:white-caro-exchange:bf5/transfer-entry: Nf6 (sound opponent reply), loss 8cp
+lesson:white-caro-exchange:bg4/opening:0: e4 (entry position), loss -2cp
+lesson:white-caro-exchange:bg4/opening:1: c6 (entry position), loss 5cp
+lesson:white-caro-exchange:bg4/opening:2: d4 (entry position), loss 4cp
+lesson:white-caro-exchange:bg4/opening:3: d5 (entry position), loss 0cp
+lesson:white-caro-exchange:bg4/opening:4: exd5 (entry position), loss 8cp
+lesson:white-caro-exchange:bg4/opening:5: cxd5 (entry position), loss -15cp
+lesson:white-caro-exchange:bg4/opening:6: Bd3 (entry position), loss -8cp
+lesson:white-caro-exchange:bg4/opening:7: Nc6 (entry position), loss -5cp
+lesson:white-caro-exchange:bg4/opening:8: c3 (entry position), loss 0cp
+lesson:white-caro-exchange:bg4/opening:9: Nf6 (entry position), loss 6cp
+lesson:white-caro-exchange:bg4/opening:10: Nf3 (entry position), loss -5cp
+lesson:white-caro-exchange:bg4/opening:11: Bg4 (entry position), loss -9cp
+lesson:white-caro-exchange:bg4/decision-1: Bf4 (accepted), loss 0cp
+lesson:white-caro-exchange:bg4/decision-1/reply: e6 (sound opponent reply), loss 1cp
+lesson:white-caro-exchange:bg4/decision-1/mistake: Bc4 (mistake), loss 402cp
+lesson:white-caro-exchange:bg4/decision-2: O-O (accepted), loss 1cp
+lesson:white-caro-exchange:bg4/decision-2/reply: Bd6 (sound opponent reply), loss 0cp
+lesson:white-caro-exchange:bg4/decision-3: Bxd6 (accepted), loss 2cp
+lesson:white-caro-exchange:bg4/decision-3/reply: Qxd6 (sound opponent reply), loss -5cp
+lesson:white-caro-exchange:bg4/decision-4: h3 (accepted), loss -2cp
+lesson:white-caro-exchange:bg4/decision-4/reply: Bxf3 (sound opponent reply), loss 7cp
+lesson:white-caro-exchange:bg4/transfer-decision-1: h3 (accepted), loss -4cp
+lesson:white-caro-exchange:bg4/transfer-decision-1/reply: Bh5 (sound opponent reply), loss -2cp
+lesson:white-caro-exchange:bg4/transfer-decision-2: Nbd2 (accepted), loss 4cp
+lesson:white-caro-exchange:bg4/transfer-entry: a6 (sound opponent reply), loss 6cp
+lesson:white-caro-exchange:g6/opening:0: e4 (entry position), loss -2cp
+lesson:white-caro-exchange:g6/opening:1: c6 (entry position), loss 5cp
+lesson:white-caro-exchange:g6/opening:2: d4 (entry position), loss 4cp
+lesson:white-caro-exchange:g6/opening:3: d5 (entry position), loss 0cp
+lesson:white-caro-exchange:g6/opening:4: exd5 (entry position), loss 8cp
+lesson:white-caro-exchange:g6/opening:5: cxd5 (entry position), loss -15cp
+lesson:white-caro-exchange:g6/opening:6: Bd3 (entry position), loss -8cp
+lesson:white-caro-exchange:g6/opening:7: Nf6 (entry position), loss 9cp
+lesson:white-caro-exchange:g6/opening:8: c3 (entry position), loss 12cp
+lesson:white-caro-exchange:g6/opening:9: g6 (entry position), loss 26cp
+lesson:white-caro-exchange:g6/decision-1: Nf3 (accepted), loss -7cp
+lesson:white-caro-exchange:g6/decision-1/reply: Qc7 (sound opponent reply), loss -9cp
+lesson:white-caro-exchange:g6/decision-1/mistake: Qg4 (mistake), loss 660cp
+lesson:white-caro-exchange:g6/decision-2: O-O (accepted), loss -1cp
+lesson:white-caro-exchange:g6/decision-2/reply: Nc6 (sound opponent reply), loss 3cp
+lesson:white-caro-exchange:g6/decision-3: Na3 (accepted), loss -1cp
+lesson:white-caro-exchange:g6/decision-3/reply: Bg7 (sound opponent reply), loss 0cp
+lesson:white-caro-exchange:g6/decision-4: Re1 (accepted), loss 5cp
+lesson:white-caro-exchange:g6/decision-4/reply: a6 (sound opponent reply), loss 4cp
+lesson:white-caro-exchange:g6/transfer-decision-1: O-O (accepted), loss -6cp
+lesson:white-caro-exchange:g6/transfer-decision-1/reply: Bg7 (sound opponent reply), loss -3cp
+lesson:white-caro-exchange:g6/transfer-decision-2: h3 (accepted), loss 8cp
+lesson:white-caro-exchange:g6/transfer-entry: Nc6 (sound opponent reply), loss -14cp
+concept:white-caro-exchange:main/main/setup: g8f6 (entry position), loss 6cp
+concept:white-caro-exchange:main/main: c1f4 (accepted), loss -4cp
+concept:white-caro-exchange:main/different-reply/setup: g7g6 (entry position), loss 16cp
+concept:white-caro-exchange:main/different-reply: g1f3 (accepted), loss -2cp
+concept:white-caro-exchange:bf5/main/setup: c8f5 (entry position), loss 473cp
+concept:white-caro-exchange:bf5/main: d3f5 (accepted), loss 22cp
+concept:white-caro-exchange:bf5/different-reply/setup: g8f6 (entry position), loss 8cp
+concept:white-caro-exchange:bf5/different-reply: c2c3 (accepted), loss -20cp
+concept:white-caro-exchange:bg4/main/setup: c8g4 (entry position), loss -9cp
+concept:white-caro-exchange:bg4/main: c1f4 (accepted), loss 0cp
+concept:white-caro-exchange:bg4/different-reply/setup: a7a6 (entry position), loss 6cp
+concept:white-caro-exchange:bg4/different-reply: h2h3 (accepted), loss -4cp
+concept:white-caro-exchange:g6/main/setup: g7g6 (entry position), loss 26cp
+concept:white-caro-exchange:g6/main: g1f3 (accepted), loss -7cp
+concept:white-caro-exchange:g6/different-reply/setup: b8c6 (entry position), loss -14cp
+concept:white-caro-exchange:g6/different-reply: e1g1 (accepted), loss -6cp
+concept:white-caro-exchange:recognition/recognition-1/setup: b8c6 (entry position), loss 1cp
+concept:white-caro-exchange:recognition/recognition-1: f1d3 (accepted), loss 32cp
+concept:white-caro-exchange:recognition/recognition-2/setup: g7g6 (entry position), loss 27cp
+concept:white-caro-exchange:recognition/recognition-2: g1f3 (accepted), loss 1cp
+164 claims checked; 0 require author review.

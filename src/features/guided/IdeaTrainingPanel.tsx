@@ -19,6 +19,7 @@ type Props = {
   onLinePractice: () => void;
   boardTools?: ReactNode;
   notice?: string;
+  onLesson?: (key: string) => void;
 };
 
 export function IdeaTrainingPanel(props: Props) {
@@ -41,6 +42,7 @@ export function IdeaTrainingPanel(props: Props) {
       <div className="study-kicker-row"><p className="eyebrow">Plan Lab + Adaptive Sparring</p><span className="study-session-badge">5 min</span></div>
       <p className="analysis">{props.openingName} → Plan → Board decisions</p><h2>{drill.title}</h2>
       <div className="tag-cloud" aria-label="Idea themes">{drill.themes.map((theme) => <span key={theme}>{formatTheme(theme)}</span>)}</div>
+      {props.onLesson && drill.relatedLessons?.map(link => <button type="button" className="secondary-button" key={link.lessonKey} onClick={() => props.onLesson?.(link.lessonKey)}>{link.label}</button>)}
 
       {session.stage === 'plan' && <>
         <div className="idea-step"><span>1 of 3 · Recognize the plan</span><h3 ref={promptRef} tabIndex={-1}>{drill.planPrompt}</h3></div>

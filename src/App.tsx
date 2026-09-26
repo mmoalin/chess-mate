@@ -44,6 +44,7 @@ import { createSupabaseBrowserClient, getSupabaseUnavailableReason, SupabasePers
 import './styles.css';
 import { ConnectedLessonWorkspace } from './features/connected/ConnectedLessonWorkspace';
 import { createLessonSession } from './features/connected/session';
+import { replacementTarget, updateRetiredDailyTargets } from './features/connected/contentRevisions';
 import type { LessonSession } from './features/connected/types';
 
 const modes: Array<{ id: GameMode; label: string; icon: React.ComponentType<{ size: number }> }> = [
@@ -247,6 +248,7 @@ export default function App() {
   }
 
   function startConnectedLesson(target: string) {
+    target = replacementTarget(repertoireGraph, target);
     const saved = target.startsWith('session:') ? lessonSessions.find((s) => s.id === target.slice(8) && s.learnerId === learnerId) : undefined;
     const lesson = saved ? repertoireGraph.connectedLessons?.[saved.lessonKey] : Object.values(repertoireGraph.connectedLessons ?? {}).find((l) => target === l.key || target.startsWith(l.key + '/'));
     if (!lesson) return;
@@ -493,6 +495,7 @@ export default function App() {
   }
 
   function startDaily(next = dailyPreview) {
+    next = updateRetiredDailyTargets(repertoireGraph, next);
     const target = currentDailyTarget(next);
     if (target && !dailyTargetAvailable(target.kind, target.contentKey)) {
       const recovered = finishDailyActivity(next, { status: 'skipped', correct: 0, total: 0, assistanceUsed: 0, takeaway: 'This activity changed or is no longer available, so it was safely replaced by the next item.' }, new Date().toISOString());
@@ -606,6 +609,7 @@ export default function App() {
   }
 
   function startConceptDrill(drillKey: string) {
+    drillKey = replacementTarget(repertoireGraph, drillKey);
     setPlanPreview(false);
     setActiveCriticalPosition(null);
     setHintText('');
@@ -629,6 +633,7 @@ export default function App() {
   }
 
   function startGuidedTarget(targetKey: string) {
+    targetKey = replacementTarget(repertoireGraph, targetKey);
     if (targetKey.startsWith('study:')) {
       const taskId = targetKey.slice(6);
       const module = starterCurriculumModules.find((item) => item.tasks.some((task) => task.id === taskId));
@@ -1376,10 +1381,11 @@ export default function App() {
 
           {learnerSetup && mode === 'today' && <TodayPanel dailySession={dailySession} preview={dailyPreview} profile={effectiveProfile} openings={Object.values(repertoireGraph.openings)} selectedOpeningKeys={selectedOpeningKeys} mastery={guidedMastery} sessions={lessonSessions} lessons={repertoireGraph.connectedLessons} backlog={guidedBacklog} onStart={startGuidedTarget} onStartSession={() => startDaily()} onContinueSession={() => dailySession && startDaily(dailySession)} onDuration={setDailyDuration} onPreferences={updatePreferences} />}
 
-          {learnerSetup && mode === 'repertoire' && <RepertoireMap onLine={(key) => { const line = trainer.findLine(key); if (line) { startOpening(line.parentLineId ?? key); setLineId(key); } }} sessions={lessonSessions} graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} onPracticeIdeas={startIdeasForOpening} onConcept={startConceptDrill} onLesson={startConnectedLesson} />}
+          {learnerSetup && mode === 'repertoire' && <RepertoireMap onAdd={key => updatePreferences({ ...effectiveProfile, updatedAt: new Date().toISOString() }, [...new Set([...selectedOpeningKeys, key])])} onLine={(key) => { const line = trainer.findLine(key); if (line) { startOpening(line.parentLineId ?? key); setLineId(key); } }} sessions={lessonSessions} graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} onPracticeIdeas={startIdeasForOpening} onConcept={startConceptDrill} onLesson={startConnectedLesson} />}
 
           {learnerSetup && mode === 'idea-training' && activeConceptDrill && ideaSession && (
             <IdeaTrainingPanel
+              onLesson={startConnectedLesson}
               depth={effectiveProfile.depth}
               openingName={repertoireGraph.openings[activeConceptDrill.openingFamilyKey]?.name}
               drill={activeConceptDrill}

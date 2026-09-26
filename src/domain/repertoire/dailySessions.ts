@@ -5,6 +5,7 @@ import type { ActivityOutcome, ActivityTarget, DailyDuration, DailySession, Lear
 import { hasCheckpoint } from '../../features/connected/session';
 import { CONTINUATION_MINUTES, continuationKey } from '../../features/connected/continuationJourney';
 import { nextCourseContinuation, orderedLessons } from '../../features/connected/course';
+import { currentReviewMastery } from '../../features/connected/contentRevisions';
 
 const budgets: Record<DailyDuration, [number, number, number]> = { 5: [3, 3, 5], 10: [3, 3, 5], 20: [3, 12, 5] };
 type PlannedTarget = Omit<ActivityTarget, 'attemptId'>;
@@ -14,6 +15,7 @@ export function buildDailySession(input: {
   mastery: MasteryState[]; backlog: RepertoireBacklogItem[]; lessonSessions: LessonSession[]; profile?: LearnerProfile | null; now: string;
 }): DailySession {
   const [reviewMinutes, learnMinutes, applyMinutes] = budgets[input.durationMinutes];
+  input = { ...input, mastery: currentReviewMastery(input.graph, input.mastery) };
   const targets: PlannedTarget[] = [];
   const due = input.mastery.flatMap((state) => (['recall', 'understanding', 'tactics'] as MasteryDimension[]).map((dimension) => ({ state, dimension, progress: state[dimension] })))
     .filter(({ progress }) => progress.status !== 'unseen' && progress.dueAt <= input.now)

@@ -1,0 +1,18 @@
+
+> chess-opening-trainer@0.1.0 test
+> vitest run --maxWorkers=1 --testTimeout=120000
+
+
+ RUN  v4.1.9 C:/Dev/CodexApps/chess
+
+ ❯ src/features/connected/alienCourses.test.ts (7 tests | 1 failed) 67538ms
+     × upgrades the previous White release through cached loading with every dependency 25575ms
+ ❯ src/services/guidedContentRepository.test.ts (4 tests | 1 failed) 15152ms
+     × round-trips connected lesson branches through a content release 7900ms
+ ❯ src/features/guided/ideaTraining.test.ts (3 tests | 1 failed) 12ms
+     × ships valid decision drills across Alien Gambit, Vienna, Queen’s Gambit and Caro-Kann 8ms
+
+ Test Files  3 failed | 32 passed (35)
+      Tests  3 failed | 480 passed (483)
+   Start at  21:25:33
+   Duration  699.96s (transform 2.10s, setup 3.83s, import 82.69s, tests 578.21s, environment 26.90s)

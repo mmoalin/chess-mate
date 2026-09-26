@@ -1,0 +1,36 @@
+
+> chess-opening-trainer@0.1.0 prebuild
+> npm run content:compile
+
+
+> chess-opening-trainer@0.1.0 content:compile
+> node scripts/compile-courses.mjs
+
+Compiled 35 Black chapters and 43 drills.
+Compiled 12 White companion chapters and 15 drills.
+
+> chess-opening-trainer@0.1.0 build
+> tsc -b && vite build
+
+vite v8.0.16 building client environment for production...
+[2K
+[plugin rolldown:vite-resolve] Module "fs" has been externalized for browser compatibility, imported by "C:/Dev/CodexApps/chess/node_modules/.pnpm/stockfish@17.1.0/node_modules/stockfish/src/stockfish-17.1-asm-341ff22.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "path" has been externalized for browser compatibility, imported by "C:/Dev/CodexApps/chess/node_modules/.pnpm/stockfish@17.1.0/node_modules/stockfish/src/stockfish-17.1-asm-341ff22.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "worker_threads" has been externalized for browser compatibility, imported by "C:/Dev/CodexApps/chess/node_modules/.pnpm/stockfish@17.1.0/node_modules/stockfish/src/stockfish-17.1-asm-341ff22.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "readline" has been externalized for browser compatibility, imported by "C:/Dev/CodexApps/chess/node_modules/.pnpm/stockfish@17.1.0/node_modules/stockfish/src/stockfish-17.1-asm-341ff22.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[MISSING_NAME_OPTION_FOR_IIFE_EXPORT] If you do not supply "output.name", you may not be able to access the exports of an IIFE bundle.
+
+transforming...✓ 1680 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                          0.40 kB │ gzip:   0.27 kB
+dist/assets/stockfish-17.1-asm-341ff22-DOpg6G_i.js  10,375.90 kB
+dist/assets/index-Dfj30Exu.css                          35.67 kB │ gzip:   7.47 kB
+dist/assets/index-BhfJOuxR.js                        1,960.50 kB │ gzip: 369.97 kB
+
+✓ built in 1.76s
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

@@ -15,7 +15,7 @@ export const embeddedRepertoireGraph = compileLegacyLines(starterRepertoires);
 embeddedRepertoireGraph.conceptDrills = Object.fromEntries(starterConceptDrills.map((drill) => [drill.key, drill]));
 embeddedRepertoireGraph.connectedLessons = Object.fromEntries(starterConnectedLessons.map((lesson) => [lesson.key, lesson]));
 embeddedRepertoireGraph.release.schemaVersion = 3;
-embeddedRepertoireGraph.release.version = 4;
+embeddedRepertoireGraph.release.version = 5;
 export class GuidedContentRepository implements ContentRepository {
   constructor(private readonly client: SupabaseClient | null, private readonly store = new GuidedBrowserStore()) {}
 
@@ -177,6 +177,12 @@ function rowsToGraph(release: ReleaseRow, rows: Record<string, any[]>): Repertoi
   for (const row of rows.motifs) graph.motifs[row.stable_key] = { key: row.stable_key, title: row.title, pattern: row.pattern, trigger: row.trigger_text, execution: row.execution, prerequisites: row.prerequisites, limitation: row.limitation, difficulty: row.difficulty, positionKeys: rows.motifPositions.filter((link) => link.motif_key === row.stable_key).map((link) => link.position_key) };
   for (const row of rows.conceptDrills ?? []) graph.conceptDrills[row.stable_key] = { key: row.stable_key, openingFamilyKey: row.opening_family_key, title: row.title, principle: row.principle, summary: row.summary, themes: row.themes ?? [], depth: row.depth, order: row.sort_order, planPrompt: row.plan_prompt, planChoices: row.plan_choices ?? [], scenarios: row.scenarios ?? [] };
   graph.connectedLessons = Object.fromEntries((rows.connectedLessons ?? []).map((row) => [row.stable_key, row.content]));
+  // Optional drill links and retirement declarations travel in the existing
+  // schema-3 course JSON; concept_drills needs no new database columns.
+  for (const lesson of Object.values(graph.connectedLessons ?? {})) for (const metadata of lesson.course?.drillMetadata ?? []) {
+    const drill = graph.conceptDrills[metadata.key];
+    if (drill && drill.openingFamilyKey === lesson.openingFamilyKey) Object.assign(drill, metadata);
+  }
   return graph;
 }
 

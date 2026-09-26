@@ -1,0 +1,209 @@
+lesson:caro-active/opening:0: e4 (entry position), loss -2cp
+lesson:caro-active/opening:1: c6 (entry position), loss 5cp
+lesson:caro-active/opening:2: d4 (entry position), loss 4cp
+lesson:caro-active/opening:3: d5 (entry position), loss 0cp
+lesson:caro-active/opening:4: Nc3 (entry position), loss -2cp
+lesson:caro-active/opening:5: dxe4 (entry position), loss -11cp
+lesson:caro-active/opening:6: Nxe4 (entry position), loss -10cp
+lesson:caro-active/opening:7: Bf5 (entry position), loss -7cp
+lesson:caro-active/opening:8: Ng3 (entry position), loss 3cp
+lesson:caro-active/opening:9: Bg6 (entry position), loss 6cp
+lesson:caro-active/opening:10: h4 (entry position), loss 0cp
+lesson:caro-active/opening:11: h6 (entry position), loss 8cp
+lesson:caro-active/bishop-retreat: Bh7 (accepted), loss -4cp
+lesson:caro-active/bishop-retreat/reply: Nf3 (sound opponent reply), loss -6cp
+lesson:caro-active/shell: e6 (accepted), loss 14cp
+lesson:caro-active/shell/reply: Bd3 (sound opponent reply), loss 24cp
+lesson:caro-active/exchange: Bxd3 (accepted), loss 1cp
+lesson:caro-active/exchange/reply: Qxd3 (sound opponent reply), loss -3cp
+lesson:caro-active/exchange/mistake: a6 (mistake), loss 106cp
+lesson:caro-active/queen-knight: Nd7 (accepted), loss 17cp
+lesson:caro-active/queen-knight/reply: O-O (sound opponent reply), loss 62cp
+lesson:caro-active/king-knight: Ngf6 (accepted), loss 54cp
+lesson:caro-active/king-knight/reply: Re1 (sound opponent reply), loss 9cp
+lesson:caro-active/king-bishop: Be7 (accepted), loss 10cp
+lesson:caro-active/king-bishop/reply: Bf4 (sound opponent reply), loss 9cp
+lesson:caro-active/safe-king: O-O (accepted), loss 6cp
+lesson:caro-active/safe-king/reply: Rad1 (sound opponent reply), loss -2cp
+lesson:caro-active/break: c5 (accepted), loss -11cp
+lesson:caro-active/transfer-exchange: Bxd3 (accepted), loss 3cp
+lesson:caro-active/transfer-exchange/reply: Qxd3 (sound opponent reply), loss 1cp
+lesson:caro-active/transfer-shell: e6 (accepted), loss 0cp
+lesson:caro-active/transfer-shell/reply: Nf3 (sound opponent reply), loss 16cp
+lesson:caro-active/transfer-knight: Nd7 (accepted), loss 21cp
+lesson:caro-active/transfer-entry: Bd3 (sound opponent reply), loss 14cp
+lesson:caro-active/continuation:v2-coordinate: cxd4 (accepted), loss 24cp
+lesson:caro-active/continuation:v2-coordinate/cxd4/reply: Qxb7 (sound opponent reply), loss 28cp
+lesson:caro-active/continuation:v2-coordinate: Nd5 (accepted), loss 4cp
+lesson:caro-active/continuation:v2-coordinate/Nd5/reply: Bc1 (sound opponent reply), loss 0cp
+lesson:caro-active/continuation:v2-counterplay: axb6 (accepted), loss 4cp
+lesson:caro-active/continuation:v2-counterplay/axb6/reply: a3 (sound opponent reply), loss 0cp
+lesson:caro-active/continuation:v2-counterplay: Nxb6 (accepted), loss 0cp
+lesson:caro-active/continuation:v2-counterplay/Nxb6/reply: Be5 (sound opponent reply), loss 10cp
+lesson:caro-active/continuation:v2-structure: Nd5 (accepted), loss -3cp
+lesson:caro-active/continuation:v2-structure/Nd5/reply: Nxe6 (sound opponent reply), loss -4cp
+lesson:caro-active/continuation:v2-structure: Nc5 (accepted), loss 14cp
+lesson:caro-active/continuation:v2-structure/Nc5/reply: Ndf5 (sound opponent reply), loss 17cp
+lesson:caro-active/continuation:v2-improve: Ra4 (accepted), loss -10cp
+lesson:caro-active/continuation:v2-improve/Ra4/reply: Bxh6 (sound opponent reply), loss 4cp
+lesson:caro-active/continuation:v2-improve: Rc4 (accepted), loss 15cp
+lesson:caro-active/continuation:v2-improve/Rc4/reply: Rxd7 (sound opponent reply), loss 9cp
+lesson:caro-active/continuation:v2-simplify: Rxc2 (accepted), loss 10cp
+lesson:caro-active/continuation:v2-simplify/Rxc2/reply: Nf5 (sound opponent reply), loss 15cp
+lesson:caro-active/continuation:v2-simplify: Rf4 (accepted), loss 30cp
+lesson:caro-active/continuation:v2-simplify/Rf4/reply: c3 (sound opponent reply), loss -3cp
+lesson:caro-active/continuation:v2-ending-activity: b5 (accepted), loss 14cp
+lesson:caro-active/continuation:v2-ending-activity/b5/reply: Nf7+ (sound opponent reply), loss 17cp
+lesson:caro-active/continuation:v2-ending-activity: Rxa3 (accepted), loss 32cp
+lesson:caro-active/continuation:v2-ending-activity/Rxa3/reply: Ng4 (sound opponent reply), loss 22cp
+lesson:caro-active/illustration:v2-coordinate/0: Qb3 (illustrative connecting move), loss 12cp
+lesson:caro-active/illustration:v2-coordinate/1: cxd4 (illustrative connecting move), loss 24cp
+lesson:caro-active/illustration:v2-coordinate/2: Qxb7 (illustrative connecting move), loss 28cp
+lesson:caro-active/illustration:v2-counterplay/0: Qb6 (illustrative connecting move), loss 37cp
+lesson:caro-active/illustration:v2-counterplay/1: Qxb6 (illustrative connecting move), loss 2cp
+lesson:caro-active/illustration:v2-counterplay/2: axb6 (illustrative connecting move), loss 4cp
+lesson:caro-active/illustration:v2-counterplay/3: a3 (illustrative connecting move), loss 0cp
+lesson:caro-active/illustration:v2-structure/0: Rfc8 (illustrative connecting move), loss -10cp
+lesson:caro-active/illustration:v2-structure/1: Nxd4 (illustrative connecting move), loss -5cp
+lesson:caro-active/illustration:v2-structure/2: Nd5 (illustrative connecting move), loss -3cp
+lesson:caro-active/illustration:v2-structure/3: Nxe6 (illustrative connecting move), loss -4cp
+lesson:caro-active/illustration:v2-improve/0: fxe6 (illustrative connecting move), loss 5cp
+lesson:caro-active/illustration:v2-improve/1: Rxd5 (illustrative connecting move), loss 12cp
+lesson:caro-active/illustration:v2-improve/2: exd5 (illustrative connecting move), loss -3cp
+lesson:caro-active/illustration:v2-improve/3: Rxe7 (illustrative connecting move), loss -17cp
+lesson:caro-active/illustration:v2-improve/4: Ra4 (illustrative connecting move), loss -10cp
+lesson:caro-active/illustration:v2-improve/5: Bxh6 (illustrative connecting move), loss 4cp
+lesson:caro-active/illustration:v2-simplify/0: gxh6 (illustrative connecting move), loss 2cp
+lesson:caro-active/illustration:v2-simplify/1: Rxd7 (illustrative connecting move), loss -2cp
+lesson:caro-active/illustration:v2-simplify/2: Rxc2 (illustrative connecting move), loss 10cp
+lesson:caro-active/illustration:v2-simplify/3: Nf5 (illustrative connecting move), loss 15cp
+lesson:caro-active/illustration:v2-ending-activity/0: Rxb2 (illustrative connecting move), loss -5cp
+lesson:caro-active/illustration:v2-ending-activity/1: Nxh6+ (illustrative connecting move), loss 1cp
+lesson:caro-active/illustration:v2-ending-activity/2: Kh8 (illustrative connecting move), loss -13cp
+lesson:caro-active/illustration:v2-ending-activity/3: g3 (illustrative connecting move), loss 0cp
+lesson:caro-active/illustration:v2-ending-activity/4: b5 (illustrative connecting move), loss 14cp
+lesson:caro-active/illustration:v2-ending-activity/5: Nf7+ (illustrative connecting move), loss 17cp
+lesson:black-caro-kann-main:advance/decision-1: Nc6 (accepted), loss -4cp [preserved baseline]
+lesson:black-caro-kann-main:advance/decision-1/reply: c3 (sound opponent reply), loss -8cp [preserved baseline]
+lesson:black-caro-kann-main:advance/decision-1/mistake: Qf6 (mistake), loss 630cp [preserved baseline]
+lesson:black-caro-kann-main:advance/decision-2: Bg6 (accepted), loss -9cp [preserved baseline]
+lesson:black-caro-kann-main:advance/decision-2/reply: a3 (sound opponent reply), loss 3cp [preserved baseline]
+lesson:black-caro-kann-main:advance/decision-3: cxd4 (accepted), loss 2cp [preserved baseline]
+lesson:black-caro-kann-main:advance/decision-3/reply: cxd4 (sound opponent reply), loss 3cp [preserved baseline]
+lesson:black-caro-kann-main:advance/decision-4: Nge7 (accepted), loss 7cp [preserved baseline]
+lesson:black-caro-kann-main:advance/transfer-decision-1: cxd4 (accepted), loss 15cp [preserved baseline]
+lesson:black-caro-kann-main:advance/transfer-decision-1/reply: Nxd4 (sound opponent reply), loss 0cp [preserved baseline]
+lesson:black-caro-kann-main:advance/transfer-decision-2: Nxd4 (accepted), loss 8cp [preserved baseline]
+lesson:black-caro-kann-main:advance/transfer-entry: Be3 (sound opponent reply), loss 21cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/decision-1: Bxd3 (accepted), loss 18cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/decision-1/reply: Qxd3 (sound opponent reply), loss 1cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/decision-1/mistake: Qd6 (mistake), loss 613cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/decision-2: e6 (accepted), loss 4cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/decision-2/reply: Nf3 (sound opponent reply), loss 16cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/decision-3: Qa5+ (accepted), loss 4cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/decision-3/reply: Nbd2 (sound opponent reply), loss -5cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/decision-4: Nh6 (accepted), loss -4cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/transfer-decision-1: e6 (accepted), loss 6cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/transfer-decision-1/reply: Nc3 (sound opponent reply), loss 10cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/transfer-decision-2: Ne7 (accepted), loss 0cp [preserved baseline]
+lesson:black-caro-kann-main:advance-h4/transfer-entry: cxd3 (sound opponent reply), loss 28cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/decision-1: Nc6 (accepted), loss -5cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/decision-1/reply: c3 (sound opponent reply), loss 0cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/decision-1/mistake: Bf5 (mistake), loss 473cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/decision-2: Nf6 (accepted), loss 6cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/decision-2/reply: Bf4 (sound opponent reply), loss -4cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/decision-3: Bg4 (accepted), loss -3cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/decision-3/reply: Qb3 (sound opponent reply), loss 2cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/decision-4: Qd7 (accepted), loss 9cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/transfer-decision-1: Nb4 (accepted), loss -1cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/transfer-decision-1/reply: Bb5+ (sound opponent reply), loss -13cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/transfer-decision-2: Bd7 (accepted), loss -18cp [preserved baseline]
+lesson:black-caro-kann-main:exchange/transfer-entry: Ne2 (sound opponent reply), loss 12cp [preserved baseline]
+lesson:black-caro-kann-main:panov/decision-1: Be7 (accepted), loss 7cp [preserved baseline]
+lesson:black-caro-kann-main:panov/decision-1/reply: cxd5 (sound opponent reply), loss 3cp [preserved baseline]
+lesson:black-caro-kann-main:panov/decision-1/mistake: Bc5 (mistake), loss 395cp [preserved baseline]
+lesson:black-caro-kann-main:panov/decision-2: Nxd5 (accepted), loss 2cp [preserved baseline]
+lesson:black-caro-kann-main:panov/decision-2/reply: Bd3 (sound opponent reply), loss 10cp [preserved baseline]
+lesson:black-caro-kann-main:panov/decision-3: Nc6 (accepted), loss 4cp [preserved baseline]
+lesson:black-caro-kann-main:panov/decision-3/reply: O-O (sound opponent reply), loss -1cp [preserved baseline]
+lesson:black-caro-kann-main:panov/decision-4: O-O (accepted), loss -9cp [preserved baseline]
+lesson:black-caro-kann-main:panov/transfer-decision-1: O-O (accepted), loss -1cp [preserved baseline]
+lesson:black-caro-kann-main:panov/transfer-decision-1/reply: cxd5 (sound opponent reply), loss 3cp [preserved baseline]
+lesson:black-caro-kann-main:panov/transfer-decision-2: exd5 (accepted), loss 4cp [preserved baseline]
+lesson:black-caro-kann-main:panov/transfer-entry: a3 (sound opponent reply), loss 27cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/decision-1: e6 (accepted), loss 4cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/decision-1/reply: Nc3 (sound opponent reply), loss 9cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/decision-1/mistake: Bf5 (mistake), loss 402cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/decision-2: Qb6 (accepted), loss -5cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/decision-2/reply: Na4 (sound opponent reply), loss 1cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/decision-3: Qc7 (accepted), loss 6cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/decision-3/reply: Nc3 (sound opponent reply), loss -2cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/decision-4: Nd7 (accepted), loss -14cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/transfer-decision-1: dxe4 (accepted), loss -2cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/transfer-decision-1/reply: fxe4 (sound opponent reply), loss -7cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/transfer-decision-2: Qxd4 (accepted), loss 4cp [preserved baseline]
+lesson:black-caro-kann-main:fantasy/transfer-entry: Bd3 (sound opponent reply), loss 25cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/decision-1: dxe4 (accepted), loss -1cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/decision-1/reply: Nxe4 (sound opponent reply), loss 1cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/decision-1/mistake: Na6 (mistake), loss 133cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/decision-2: Nf6 (accepted), loss 0cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/decision-2/reply: Nxf6+ (sound opponent reply), loss 3cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/decision-3: exf6 (accepted), loss 4cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/decision-3/reply: d4 (sound opponent reply), loss 5cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/decision-4: Bd6 (accepted), loss -1cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/transfer-decision-1: e5 (accepted), loss 0cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/transfer-decision-1/reply: h4 (sound opponent reply), loss 16cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/transfer-decision-2: h6 (accepted), loss 20cp [preserved baseline]
+lesson:black-caro-kann-main:two-knights/transfer-entry: Ng5 (sound opponent reply), loss 55cp [preserved baseline]
+concept:caro-resolve-centre-v2/nc3-support/setup: b1c3 (entry position), loss -2cp
+concept:caro-resolve-centre-v2/nc3-support: d5e4 (accepted), loss -11cp
+concept:caro-resolve-centre-v2/nc3-support: g8f6 (accepted), loss 58cp
+concept:caro-resolve-centre-v2/advance-choice/setup: e4e5 (entry position), loss 6cp
+concept:caro-resolve-centre-v2/advance-choice: c8f5 (accepted), loss 8cp
+concept:caro-bishop-first/recapture-complete/setup: c3e4 (entry position), loss -10cp [preserved baseline]
+concept:caro-bishop-first/recapture-complete: c8f5 (accepted), loss -7cp [preserved baseline]
+concept:caro-bishop-first/recapture-complete: g8f6 (accepted), loss 4cp [preserved baseline]
+concept:caro-bishop-first/bishop-questioned/setup: e4g3 (entry position), loss 3cp [preserved baseline]
+concept:caro-bishop-first/bishop-questioned: f5g6 (accepted), loss 6cp [preserved baseline]
+concept:caro-bishop-first/bishop-questioned: f5c8 (accepted), loss 78cp [preserved baseline]
+concept:caro-active-break/be2-development/setup: f1e2 (entry position), loss -8cp [preserved baseline]
+concept:caro-active-break/be2-development: c6c5 (accepted), loss -15cp [preserved baseline]
+concept:caro-active-break/be2-development: b8d7 (accepted), loss 13cp [preserved baseline]
+concept:caro-active-break/be2-development: g8e7 (accepted), loss 12cp [preserved baseline]
+concept:caro-active-break/c3-support/setup: c2c3 (entry position), loss -5cp [preserved baseline]
+concept:caro-active-break/c3-support: b8c6 (accepted), loss -4cp [preserved baseline]
+concept:caro-active-break/c3-support: d8b6 (accepted), loss 49cp [preserved baseline]
+concept:caro-active-break/c3-support: g8e7 (accepted), loss 62cp [preserved baseline]
+concept:black-caro-kann-main:advance/main/setup: e1g1 (entry position), loss -5cp [preserved baseline]
+concept:black-caro-kann-main:advance/main: b8c6 (accepted), loss -4cp [preserved baseline]
+concept:black-caro-kann-main:advance/different-reply/setup: c1e3 (entry position), loss 21cp [preserved baseline]
+concept:black-caro-kann-main:advance/different-reply: c5d4 (accepted), loss 15cp [preserved baseline]
+concept:black-caro-kann-main:advance-h4/main/setup: f1d3 (entry position), loss 8cp [preserved baseline]
+concept:black-caro-kann-main:advance-h4/main: f5d3 (accepted), loss 18cp [preserved baseline]
+concept:black-caro-kann-main:advance-h4/different-reply/setup: c2d3 (entry position), loss 28cp [preserved baseline]
+concept:black-caro-kann-main:advance-h4/different-reply: e7e6 (accepted), loss 6cp [preserved baseline]
+concept:black-caro-kann-main:exchange/main/setup: f1d3 (entry position), loss -8cp [preserved baseline]
+concept:black-caro-kann-main:exchange/main: b8c6 (accepted), loss -5cp [preserved baseline]
+concept:black-caro-kann-main:exchange/different-reply/setup: g1e2 (entry position), loss 12cp [preserved baseline]
+concept:black-caro-kann-main:exchange/different-reply: c6b4 (accepted), loss -1cp [preserved baseline]
+concept:black-caro-kann-main:panov/main/setup: g1f3 (entry position), loss -7cp [preserved baseline]
+concept:black-caro-kann-main:panov/main: f8e7 (accepted), loss 7cp [preserved baseline]
+concept:black-caro-kann-main:panov/different-reply/setup: a2a3 (entry position), loss 27cp [preserved baseline]
+concept:black-caro-kann-main:panov/different-reply: e8g8 (accepted), loss -1cp [preserved baseline]
+concept:black-caro-kann-main:fantasy/main/setup: f2f3 (entry position), loss 12cp [preserved baseline]
+concept:black-caro-kann-main:fantasy/main: e7e6 (accepted), loss 4cp [preserved baseline]
+concept:black-caro-kann-main:fantasy/different-reply/setup: f1d3 (entry position), loss 25cp [preserved baseline]
+concept:black-caro-kann-main:fantasy/different-reply: d5e4 (accepted), loss -2cp [preserved baseline]
+concept:black-caro-kann-main:two-knights/main/setup: b1c3 (entry position), loss 13cp [preserved baseline]
+concept:black-caro-kann-main:two-knights/main: d5e4 (accepted), loss -1cp [preserved baseline]
+concept:black-caro-kann-main:two-knights/different-reply/setup: f3g5 (entry position), loss 55cp [preserved baseline]
+concept:black-caro-kann-main:two-knights/different-reply: e7e5 (accepted), loss 0cp [preserved baseline]
+concept:black-caro-kann-main:recognition-early-attacks/scenario-1/setup: c4b3 (entry position), loss 48cp [preserved baseline]
+concept:black-caro-kann-main:recognition-early-attacks/scenario-1: d5e4 (accepted), loss -7cp [preserved baseline]
+concept:black-caro-kann-main:recognition-early-attacks/scenario-2/setup: d1h5 (entry position), loss 96cp [preserved baseline]
+concept:black-caro-kann-main:recognition-early-attacks/scenario-2: g8f6 (accepted), loss -2cp [preserved baseline]
+concept:black-caro-kann-main:recognition-nd2/scenario-1/setup: d2e4 (entry position), loss -1cp [preserved baseline]
+concept:black-caro-kann-main:recognition-nd2/scenario-1: c8f5 (accepted), loss -7cp [preserved baseline]
+concept:black-caro-kann-main:recognition-nd2/scenario-2/setup: e4g3 (entry position), loss 3cp [preserved baseline]
+concept:black-caro-kann-main:recognition-nd2/scenario-2: f5g6 (accepted), loss 6cp [preserved baseline]
+208 claims checked; 0 require author review.

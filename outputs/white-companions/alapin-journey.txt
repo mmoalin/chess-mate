@@ -1,0 +1,62 @@
+Return to opening lesson
+Save & leave
+
+Original illustrative continuation · every position is replayable.
+
+Continuous journey recap
+
+6/6 independently correct. First submissions are preserved; unassessed replies earn no mastery credit.
+
+Coordinate after the early queen exchange
+Independently correct
+
+Losing castling rights has a different cost after queens are exchanged. Coordinate the pieces and king together.
+
+Your first move: Bb5 · Predicted reply: O-O-O
+
+Review decision: Coordinate after the early queen exchange
+Respond to pressure on the e3 bishop
+Independently correct
+
+An exchange on e3 can double the e-pawns. Piece activity and king access determine whether accepting that structure is reasonable.
+
+Your first move: Kc1 · Predicted reply: Nxe3
+
+Review decision: Respond to pressure on the e3 bishop
+Develop with the changed pawn structure
+Independently correct
+
+Recovering coordination may matter more than protecting every pawn. Calculate what Black can capture and what activity you gain.
+
+Your first move: Nd2 · Predicted reply: Bxg2
+
+Review decision: Develop with the changed pawn structure
+Use a pawn move to question the bishop
+Independently correct
+
+A central pawn advance must be judged by its targets and the squares it leaves behind. Two attacks on the same bishop can create different structures.
+
+Your first move: c4 · Predicted reply: Be6
+
+Review decision: Use a pawn move to question the bishop
+Activate the king after minor-piece exchanges
+Independently correct
+
+Simplification changes the useful role of the king. Keep the remaining rook and minor piece active while assessing isolated pawns.
+
+Your first move: Kc2 · Predicted reply: Rhf8
+
+Review decision: Activate the king after minor-piece exchanges
+Keep the last rook active
+Independently correct
+
+The remaining rook needs activity even when a pawn is threatened. This ending contains a bishop and knight as well as rooks; it is not a forced win.
+
+Your first move: Rg1 · Predicted reply: Bxe3
+
+Review decision: Keep the last rook active
+
+The remaining rook needs activity even when a pawn is threatened. This ending contains a bishop and knight as well as rooks; it is not a forced win.
+
+Back to the opening
+Replay every move from the opening

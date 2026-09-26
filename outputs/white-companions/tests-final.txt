@@ -1,0 +1,78 @@
+
+> chess-opening-trainer@0.1.0 test
+> vitest run --maxWorkers=1 --testTimeout=120000
+
+
+ RUN  v4.1.9 C:/Dev/CodexApps/chess
+
+ ❯ src/features/connected/learningExperience.test.tsx (75 tests | 1 failed) 168403ms
+     × requires explanation and a legal reply in the independent challenge 224ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/features/connected/learningExperience.test.tsx > learning experience integrity > requires explanation and a legal reply in the independent challenge
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st vi.fn() call:
+
+    Array [
+      Object {
+        "answers": Object {},
+        "assistance": Object {},
+        "checkpointId": "develop",
+        "completedCheckpoints": Array [],
+        "contentVersion": 1,
+        "decisionDraft": Object {
+          "checkpointId": "develop",
+          "move": Object {
+            "from": "f1",
+            "promotion": undefined,
+            "san": "Be2",
+            "to": "e2",
+          },
+          "plan": "",
+          "reply": "",
+        },
+        "id": "b884522f-92d9-436e-b4f7-cfafcf5b3a18",
+        "learnerId": "local",
+        "lessonKey": "lesson:vienna-development",
+        "moves": Array [
+          "e4",
+          "e5",
+          "Nc3",
+          "Nf6",
+          "f4",
+          "d5",
+          "fxe5",
+          "Nxe4",
+          "Nf3",
+          "Be7",
+        ],
+        "openingRecall": false,
+        "returnDestination": "today",
+        "reviewCheckpointId": "develop",
+        "stage": "main",
+        "updatedAt": "2026-09-25T20:42:13.908Z",
+      },
+    ]
+
+
+Number of calls: 1
+
+ ❯ src/features/connected/learningExperience.test.tsx:61:25
+     59|     await click('Play Be2');
+     60|     expect(screen.getByRole('button', { name: 'Check my decision' })).…
+     61|     expect(changed.mock.calls.at(-1)![0]).toMatchObject({ answers: {},…
+       |                         ^
+     62|     await userEvent.type(screen.getByRole('textbox', { name: 'Your pla…
+     63|     await userEvent.type(screen.getByRole('textbox', { name: 'Predicte…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 37 passed (38)
+      Tests  1 failed | 497 passed (498)
+   Start at  21:39:52
+   Duration  813.15s (transform 2.79s, setup 4.16s, import 99.58s, tests 671.52s, environment 28.77s)

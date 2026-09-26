@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { CompanionPack } from './CompanionPack';
 import type { LearnerProfile, OpeningFamily } from '../../domain/repertoire/types';
 import type { CourseMetadata } from '../connected/types';
 
@@ -50,6 +51,7 @@ export function GuidedOnboarding(props: {
 
       <fieldset>
         <legend>As White</legend>
+        <CompanionPack openings={props.openings} courses={props.courses ?? {}} selected={whiteKeys} onChange={setWhiteKeys} />
         <div className="choice-grid">
           {white.map((opening) => (
             <label key={opening.key}>

@@ -6,4 +6,4 @@ import { resetGuidedMemoryStoreForTests } from '../services/guidedStorage';
 vi.stubEnv('VITE_SUPABASE_URL', '');
 vi.stubEnv('VITE_SUPABASE_ANON_KEY', '');
 
-afterEach(() => { resetGuidedMemoryStoreForTests(); localStorage.clear(); });
+afterEach(() => { resetGuidedMemoryStoreForTests(); if (typeof localStorage !== 'undefined') localStorage.clear(); });

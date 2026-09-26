@@ -35,11 +35,12 @@ export function ConnectedLessonWorkspace(props: Props) {
   const [analysis, setAnalysis] = useState('');
   const [engineError, setEngineError] = useState('');
   const [busy, setBusy] = useState(false);
-  const [selected, setSelected] = useState(() => restoredQuestionChoice(props.initialSession, lesson));
+  const [selected, setSelected] = useState(() => props.initialSession.draftChoices?.[props.initialSession.checkpointId] ?? restoredQuestionChoice(props.initialSession, lesson));
   const [exploration, setExploration] = useState<{ candidate?: string } | null>(null);
-  const [pending, setPending] = useState<{ from: string; to: string; promotion?: string; san: string } | null>(null);
-  const [plan, setPlan] = useState('');
-  const [prediction, setPrediction] = useState('');
+  const initialDraft = props.initialSession.decisionDraft?.checkpointId === props.initialSession.checkpointId ? props.initialSession.decisionDraft : undefined;
+  const [pending, setPending] = useState<{ from: string; to: string; promotion?: string; san: string } | null>(initialDraft?.move ?? null);
+  const [plan, setPlan] = useState(initialDraft?.plan ?? '');
+  const [prediction, setPrediction] = useState(initialDraft?.reply ?? '');
   const independent = (session.learningMode ?? (props.depth && props.depth !== 'foundation' ? 'independent' : 'guided')) === 'independent';
 
   const panelRef = useRef<HTMLElement>(null);
@@ -103,7 +104,7 @@ export function ConnectedLessonWorkspace(props: Props) {
   }, [repository]);
   useEffect(() => {
     const choice = restoredQuestionChoice(current.current, lesson);
-    setSelected(choice);
+    setSelected(current.current.draftChoices?.[current.current.checkpointId] ?? choice);
     if (current.current.stage === 'question') {
       const question = lesson.questions.find((item) => item.id === current.current.checkpointId);
       setFeedback(question?.choices.find((item) => item.id === choice)?.feedback ?? 'Consider the position, then choose your answer.');
@@ -146,7 +147,7 @@ export function ConnectedLessonWorkspace(props: Props) {
     if (!pending || !plan.trim() || !prediction.trim()) return;
     try { positionAfter([...session.moves, pending.san]).move(prediction.trim()); }
     catch { setFeedback('Enter a legal opponent reply in notation, such as Nc6. You can change your candidate or use a hint.'); return; }
-    update({ ...current.current, reflections: { ...current.current.reflections, [session.checkpointId]: { move: pending.san, plan: plan.trim(), reply: prediction.trim() } } });
+    update({ ...current.current, decisionDraft: undefined, reflections: { ...current.current.reflections, [session.checkpointId]: { move: pending.san, plan: plan.trim(), reply: prediction.trim() } } });
     const move = pending; setPending(null); setPlan(''); setPrediction('');
     commitMove(move.from, move.to, move.promotion);
   }
@@ -166,6 +167,7 @@ export function ConnectedLessonWorkspace(props: Props) {
       try {
         const san = positionAfter(session.moves).move({ from, to, promotion }).san;
         setPending({ from, to, promotion, san }); setFeedback('Candidate placed. Explain your plan and predict a legal reply before checking.');
+        update({ ...current.current, decisionDraft: { checkpointId: session.checkpointId, move: { from, to, promotion, san }, plan: '', reply: '' } });
         return { accepted: true, message: `${san} is your candidate. Explain the plan and predict the reply.` };
       } catch { return false; }
     }
@@ -223,11 +225,11 @@ export function ConnectedLessonWorkspace(props: Props) {
           </>}
           {session.stage === 'question' && question && <>
             <h3>{question.prompt}</h3>{(!independent || session.completedCheckpoints.includes(question.id)) && <p>{lesson.introduction}</p>}
-            <ChoiceGroup label="Lesson choices" choices={question.choices} value={selected} disabled={session.completedCheckpoints.includes(question.id) || inspectPly !== null} onChange={setSelected} />
+            <ChoiceGroup label="Lesson choices" choices={question.choices} value={selected} disabled={session.completedCheckpoints.includes(question.id) || inspectPly !== null} onChange={(value) => { setSelected(value); update({ ...current.current, draftChoices: { ...current.current.draftChoices, [question.id]: value } }); }} />
             {response}
             {session.completedCheckpoints.includes(question.id) ? <button className="primary-button" disabled={inspectPly !== null} onClick={() => { update(nextQuestion(current.current, lesson)); setFeedback(''); }}>{session.reviewCheckpointId ? 'Finish checkpoint' : 'Continue lesson'}</button> : <button className="primary-button" disabled={!selected || inspectPly !== null} onClick={() => { const result = answerQuestion(current.current, lesson, selected); focusResponse.current = true; setFeedback(result.feedback); update(result.session); }}>Check answer</button>}
           </>}
-          {['main', 'transfer'].includes(session.stage) && decision && <><h3>{independent ? 'Choose a move and anticipate the reply' : decision.prompt}</h3><article className="position-change-card"><strong>What changed?</strong><p>{decision.change}</p></article>{pending && <div className="reasoning-card"><h3>Your candidate: {pending.san}</h3><label>What does your move improve?<textarea aria-label="Your plan" value={plan} onChange={(e) => setPlan(e.target.value)} /></label><label>What would your opponent play?<input aria-label="Predicted reply" placeholder="Move notation, e.g. Nc6" value={prediction} onChange={(e) => setPrediction(e.target.value)} /></label><p className="analysis">Your explanation is saved for reflection; the move is graded against the authored lesson. A legal predicted reply is not necessarily the best reply.</p><div className="button-row"><button className="primary-button" disabled={!plan.trim() || !prediction.trim()} onClick={submitReasoning}>Check my decision</button><button className="secondary-button" onClick={() => { setPending(null); setPlan(''); setPrediction(''); }}>Change candidate</button></div></div>}<p>Play your move. The position continues through your move and the opponent’s reply.</p><p className="analysis">Unlisted legal moves are ungraded; the lesson does not call every alternative a mistake.</p></>}
+          {['main', 'transfer'].includes(session.stage) && decision && <><h3>{independent ? 'Choose a move and anticipate the reply' : decision.prompt}</h3><article className="position-change-card"><strong>What changed?</strong><p>{decision.change}</p></article>{pending && <div className="reasoning-card"><h3>Your candidate: {pending.san}</h3><label>What does your move improve?<textarea aria-label="Your plan" value={plan} onChange={(e) => { setPlan(e.target.value); if (current.current.decisionDraft) update({ ...current.current, decisionDraft: { ...current.current.decisionDraft, plan: e.target.value } }); }} /></label><label>What would your opponent play?<input aria-label="Predicted reply" placeholder="Move notation, e.g. Nc6" value={prediction} onChange={(e) => { setPrediction(e.target.value); if (current.current.decisionDraft) update({ ...current.current, decisionDraft: { ...current.current.decisionDraft, reply: e.target.value } }); }} /></label><p className="analysis">Your explanation is saved for reflection; the move is graded against the authored lesson. A legal predicted reply is not necessarily the best reply.</p><div className="button-row"><button className="primary-button" disabled={!plan.trim() || !prediction.trim()} onClick={submitReasoning}>Check my decision</button><button className="secondary-button" onClick={() => { setPending(null); setPlan(''); setPrediction(''); update({ ...current.current, decisionDraft: undefined }); }}>Change candidate</button></div></div>}<p>Play your move. The position continues through your move and the opponent’s reply.</p><p className="analysis">Unlisted legal moves are ungraded; the lesson does not call every alternative a mistake.</p></>}
           {session.stage === 'transfer-intro' && <article className="lesson-card"><h3>Test a different opponent reply</h3><p>{lesson.transferExplanation}</p><button className="primary-button" onClick={() => { cancelEngine(); setInspectPly(null); update(beginTransfer(current.current, lesson)); setFeedback(lesson.transferExplanation); }}>Rewind and test the different reply</button></article>}
           {session.stage !== 'question' && response}
           {['opening', 'question', 'main', 'transfer'].includes(session.stage) && <>

@@ -1,17 +1,19 @@
 import { StructureGuide } from '../connected/StructureGuide';
+import { WhiteCoverageMap } from './WhiteCoverageMap';
 import { LessonProgress } from './LessonProgress';
 import { courseCatalog, orderedLessons } from '../connected/course';
 import type { LessonSession } from '../connected/types';
 import { outgoingEdges } from '../../domain/repertoire/graph';
 import type { MasteryState, OpeningFamily, RepertoireGraph } from '../../domain/repertoire/types';
 
-export function RepertoireMap(props: { sessions?: LessonSession[]; graph: RepertoireGraph; selectedKeys: string[]; mastery: MasteryState[]; onTrain: (openingKey: string) => void; onPracticeIdeas: (openingKey: string) => void; onConcept: (key: string) => void; onLesson?: (key: string) => void; onLine?: (key: string) => void }) {
+export function RepertoireMap(props: { sessions?: LessonSession[]; graph: RepertoireGraph; selectedKeys: string[]; mastery: MasteryState[]; onAdd?: (key: string) => void; onTrain: (openingKey: string) => void; onPracticeIdeas: (openingKey: string) => void; onConcept: (key: string) => void; onLesson?: (key: string) => void; onLine?: (key: string) => void }) {
   const selected = props.selectedKeys.map((key) => props.graph.openings[key]).filter((opening): opening is OpeningFamily => Boolean(opening));
   const uncoveredD4 = !selected.some((opening) => opening.context === 'black-vs-d4');
   const courses = courseCatalog(props.graph);
   return (
     <section className="dock-panel repertoire-map" aria-label="Repertoire map">
       <p className="eyebrow">Repertoire map</p><h2>Your openings, plans & tactics</h2><p className="analysis">Choose an opening, understand its plan, then test the decisions it creates.</p>
+      <WhiteCoverageMap graph={props.graph} selected={props.selectedKeys} sessions={props.sessions} onLesson={props.onLesson} onAdd={props.onAdd} />
       {selected.map((opening) => {
         const edges = outgoingEdges(props.graph, opening.rootPositionKey, opening.key);
         const units = Object.values(props.graph.learningUnits).filter((unit) => unit.openingFamilyKey === opening.key);

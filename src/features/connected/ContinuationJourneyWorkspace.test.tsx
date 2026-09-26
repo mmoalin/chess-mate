@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Chess } from 'chess.js';
 import { starterConnectedLessons } from '../../data/connectedLessons';
+import legacyRelease from '../../data/fixtures/pre-white-companions-release.json';
 import { ConnectedLessonWorkspace } from './ConnectedLessonWorkspace';
 import { createLessonSession } from './session';
 import { continuationBoard, continuationKey, openContinuation } from './continuationJourney';
@@ -13,7 +14,8 @@ import App from '../../App';
 
 vi.mock('react-chessboard', () => ({ Chessboard: ({ options }: any) => <div aria-label="Test board" data-fen={options.position}>{new Chess(options.position).moves({ verbose: true }).map((move) => <button key={move.san} onClick={() => options.onPieceDrop({ sourceSquare: move.from, targetSquare: move.to })}>Play {move.san}</button>)}</div> }));
 afterEach(() => vi.restoreAllMocks());
-const lesson = starterConnectedLessons[1];
+// Historic sessions retain their first-answer semantics even after a release.
+const lesson = legacyRelease.connectedLessons['lesson:caro-active'] as typeof starterConnectedLessons[number];
 const journey = lesson.continuation!;
 const click = async (name: string | RegExp) => userEvent.click(await screen.findByRole('button', { name }));
 function show(initial: LessonSession) {

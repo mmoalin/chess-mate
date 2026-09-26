@@ -1,5 +1,7 @@
 # Connected lessons release
 
+Current release: [White 1.e4 companions, bundled version 5](white-companions-2026-09-25.md). The notes below describe the original connected-lesson release. The companion release retains schema 3 and requires no additional migration.
+
 ## Delivered
 
 Two original lessons connect the existing Vienna and Classical Caro-Kann lines to structure and plan questions, continuous decisions, a clearly announced alternate-reply branch, a first-attempt summary, and optional Stockfish practice. The Vienna main path has four decisions plus two transfer decisions; Caro-Kann has eight plus three. Both include a concrete exchange consequence.

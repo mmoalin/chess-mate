@@ -8,6 +8,11 @@ export type CourseMetadata = {
   role: 'repertoire' | 'response';
   context: 'white' | 'black-vs-e4' | 'black-vs-d4' | 'black-other';
   scope: string;
+  drillMetadata?: { key: string; relatedLessons?: { lessonKey: string; label: string }[]; replaces?: string[] }[];
+  coverage?: {
+    entryMoves: string[];
+    routes: { key: string; title: string; entryMoves: string[]; lessonKeys: string[]; scope: string }[];
+  };
 };
 export type StructureGuideContent = { title: string; breaks: string; pieces: string; counterplay: string; exchanges: string; ending: string };
 export type LessonDecision = {
@@ -22,6 +27,7 @@ export type LessonDecision = {
   comparisons?: Record<string, string>;
 };
 export type ConnectedLesson = {
+  replacesCheckpoints?: Record<string, string>;
   key: string;
   version: number;
   title: string;
@@ -58,6 +64,8 @@ export type LessonSession = {
   answers: Record<string, LearningAttempt>;
   /** Latest submitted choice for presentation; answers retains first-attempt grading. */
   submittedChoices?: Record<string, string>;
+  draftChoices?: Record<string, string>;
+  decisionDraft?: { checkpointId: string; move: { from: string; to: string; promotion?: string; san: string }; plan: string; reply: string };
   assistance: Record<string, { hint: boolean; revealed: boolean; analysis?: boolean }>;
   completedCheckpoints: string[];
   returnDestination: 'today' | 'repertoire' | 'opening-trainer' | 'game-review';

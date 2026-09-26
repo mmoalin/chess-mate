@@ -1,4 +1,5 @@
 import { LessonProgress } from './LessonProgress';
+import { CompanionPack } from './CompanionPack';
 import type { LessonSession, ConnectedLesson } from '../connected/types';
 import type { DailyDuration, DailySession, LearnerProfile, MasteryDimension, MasteryState, OpeningFamily, RepertoireBacklogItem } from '../../domain/repertoire/types';
 
@@ -26,7 +27,7 @@ export function TodayPanel(props: {
     <p className="analysis reliability-note"><strong>Reliable recall</strong> means you answered successfully across spaced reviews. Completing a lesson records the work; later recall makes it reliable. {due} item{due === 1 ? '' : 's'} currently due.</p>
     <LessonProgress sessions={props.sessions} lessons={props.lessons ?? {}} onOpen={props.onStart} />
     <section className="saved-positions" aria-label="Saved positions"><h3>Saved positions</h3>{props.backlog.filter((item) => item.status !== 'resolved').map((item) => <button className="theory-branch-button" type="button" key={item.id} onClick={() => props.onStart(item.id)}><span>{item.title}</span><small>Open saved position →</small></button>)}{props.backlog.every((item) => item.status === 'resolved') && <p>No positions awaiting review.</p>}</section>
-    <details className="training-preferences"><summary>Training preferences</summary><Preferences {...props} /></details>
+    <details className="training-preferences"><summary>Training preferences</summary><CompanionPack openings={props.openings} courses={Object.fromEntries(Object.values(props.lessons ?? {}).filter(lesson => lesson.course).map(lesson => [lesson.openingFamilyKey, lesson.course!]))} selected={props.selectedOpeningKeys} onChange={keys => props.onPreferences({ ...props.profile, updatedAt: new Date().toISOString() }, keys)} /><Preferences {...props} /></details>
     <details className="reviewed-positions"><summary>Reviewed positions ({props.backlog.filter((item) => item.status === 'resolved').length})</summary>{props.backlog.filter((item) => item.status === 'resolved').map((item) => <button className="theory-branch-button" key={item.id} onClick={() => props.onStart(item.id)}>{item.title} · Open</button>)}</details>
   </section>;
 }

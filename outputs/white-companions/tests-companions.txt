@@ -1,0 +1,11 @@
+
+ RUN  v4.1.9 C:/Dev/CodexApps/chess
+
+ ❯ scripts/verification-policy.test.mjs (2 tests | 2 failed) 12ms
+     × exempts only fingerprinted legacy assessments, independently of colour and naming 9ms
+     × isolates side, course and exclusion evidence 1ms
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 12 passed (14)
+   Start at  21:32:39
+   Duration  71.65s (transform 1.33s, setup 481ms, import 13.09s, tests 55.23s, environment 1.91s)

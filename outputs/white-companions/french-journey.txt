@@ -1,0 +1,66 @@
+Return to opening lesson
+Save & leave
+
+ONE GAME · OPENING TO ENDING
+
+French Advance: support the pawn chain: follow the position into an ending
+
+Original illustrative continuation · every position is replayable.
+
+Continuous journey recap
+
+6/6 independently correct. First submissions are preserved; unassessed replies earn no mastery credit.
+
+Finish development behind the closed centre
+Independently correct
+
+A closed centre buys time but does not remove the need to develop. Watch when …cxd4 or …f6 can reopen lines.
+
+Your first move: Be2 · Predicted reply: O-O-O
+
+Review decision: Finish development behind the closed centre
+Choose between recovering material and developing
+Independently correct
+
+A pawn-chain opening can turn into open-file tactics. Recalculate exchanges when files open, rather than applying the original closed-centre plan.
+
+Your first move: Rxb3 · Predicted reply: Ba4
+
+Review decision: Choose between recovering material and developing
+Reassess after the tactical exchanges
+Independently correct
+
+This is a material imbalance, not an automatic advantage for either side. White needs coordinated minor pieces while Black seeks active rook files.
+
+Your first move: Bd3 · Predicted reply: Rc3
+
+Review decision: Reassess after the tactical exchanges
+Bring the remaining bishop into play
+Independently correct
+
+Minor pieces need useful diagonals to compete with active rooks. Anticipate attacks on the bishops as well as entry squares on the file.
+
+Your first move: Be3 · Predicted reply: Ng4
+
+Review decision: Bring the remaining bishop into play
+Balance a check with king activity
+Independently correct
+
+In an imbalanced ending, activity and concrete threats matter more than counting forcing moves. Reassess both kings after a check.
+
+Your first move: Rb1+ · Predicted reply: Ka7
+
+Review decision: Balance a check with king activity
+Support the advanced passed pawn
+Independently correct
+
+A passed pawn is useful when pieces support it. Both sides still have active pieces, and Black’s central counterplay prevents a claim of a forced win.
+
+Your first move: Re1 · Predicted reply: e5
+
+Review decision: Support the advanced passed pawn
+
+A passed pawn is useful when pieces support it. Both sides still have active pieces, and Black’s central counterplay prevents a claim of a forced win.
+
+Back to the opening
+Replay every move from the opening

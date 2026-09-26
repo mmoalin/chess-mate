@@ -127,7 +127,12 @@ describe('Alien release compatibility', () => {
     expect(graph.release).toEqual(before.release);
     expect(orderedLessons(graph, [family])).toHaveLength(5);
     expect(validateRepertoireGraph(graph)).toEqual([]);
-    for (const [key, lesson] of Object.entries(before.connectedLessons!)) expect(graph.connectedLessons![key]).toMatchObject(lesson);
+    for (const [key, lesson] of Object.entries(before.connectedLessons!)) {
+      if (key === 'lesson:caro-active') {
+        expect(graph.connectedLessons![key].decisions).toEqual(lesson.decisions);
+        expect(graph.connectedLessons![key].version).toBe(2);
+      } else expect(graph.connectedLessons![key]).toMatchObject(lesson);
+    }
     expect(withStarterConcepts(graph)).toEqual(graph);
   });
 

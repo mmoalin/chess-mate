@@ -1,0 +1,187 @@
+lesson:white-french-advance:main/opening:0: e4 (entry position), loss -2cp
+lesson:white-french-advance:main/opening:1: e6 (entry position), loss -10cp
+lesson:white-french-advance:main/opening:2: d4 (entry position), loss -8cp
+lesson:white-french-advance:main/opening:3: d5 (entry position), loss -2cp
+lesson:white-french-advance:main/opening:4: e5 (entry position), loss 7cp
+lesson:white-french-advance:main/opening:5: c5 (entry position), loss 5cp
+lesson:white-french-advance:main/opening:6: c3 (entry position), loss 0cp
+lesson:white-french-advance:main/opening:7: Nc6 (entry position), loss 3cp
+lesson:white-french-advance:main/opening:8: Nf3 (entry position), loss -3cp
+lesson:white-french-advance:main/opening:9: Qb6 (entry position), loss 13cp
+lesson:white-french-advance:main/decision-1: a3 (accepted), loss 13cp
+lesson:white-french-advance:main/decision-1/reply: c4 (sound opponent reply), loss -5cp
+lesson:white-french-advance:main/decision-1/mistake: Bh6 (mistake), loss 540cp
+lesson:white-french-advance:main/decision-2: Nbd2 (accepted), loss -8cp
+lesson:white-french-advance:main/decision-2/reply: Na5 (sound opponent reply), loss -3cp
+lesson:white-french-advance:main/decision-3: Rb1 (accepted), loss 9cp
+lesson:white-french-advance:main/decision-3/reply: Bd7 (sound opponent reply), loss 9cp
+lesson:white-french-advance:main/decision-4: h4 (accepted), loss 4cp
+lesson:white-french-advance:main/decision-4/reply: Nh6 (sound opponent reply), loss 1cp
+lesson:white-french-advance:main/transfer-decision-1: b4 (accepted), loss -16cp
+lesson:white-french-advance:main/transfer-decision-1/reply: cxd4 (sound opponent reply), loss -11cp
+lesson:white-french-advance:main/transfer-decision-2: cxd4 (accepted), loss 6cp
+lesson:white-french-advance:main/transfer-entry: Bd7 (sound opponent reply), loss 4cp
+lesson:white-french-advance:main/continuation:coordinate: Be2 (accepted), loss 0cp
+lesson:white-french-advance:main/continuation:coordinate/Be2/reply: O-O-O (sound opponent reply), loss 2cp
+lesson:white-french-advance:main/continuation:coordinate: g3 (accepted), loss 1cp
+lesson:white-french-advance:main/continuation:coordinate/g3/reply: O-O-O (sound opponent reply), loss -1cp
+lesson:white-french-advance:main/continuation:counterplay: Rxb3 (accepted), loss 13cp
+lesson:white-french-advance:main/continuation:counterplay/Rxb3/reply: Ba4 (sound opponent reply), loss 19cp
+lesson:white-french-advance:main/continuation:counterplay: Bg5 (accepted), loss -16cp
+lesson:white-french-advance:main/continuation:counterplay/Bg5/reply: Bxa3 (sound opponent reply), loss -17cp
+lesson:white-french-advance:main/continuation:structure: Bd3 (accepted), loss -11cp
+lesson:white-french-advance:main/continuation:structure/Bd3/reply: Rc3 (sound opponent reply), loss -16cp
+lesson:white-french-advance:main/continuation:structure: Ba2 (accepted), loss 0cp
+lesson:white-french-advance:main/continuation:structure/Ba2/reply: Rc3 (sound opponent reply), loss 4cp
+lesson:white-french-advance:main/continuation:improve: Be3 (accepted), loss -15cp
+lesson:white-french-advance:main/continuation:improve/Be3/reply: Ng4 (sound opponent reply), loss 2cp
+lesson:white-french-advance:main/continuation:improve: Bf4 (accepted), loss -6cp
+lesson:white-french-advance:main/continuation:improve/Bf4/reply: Ra3 (sound opponent reply), loss -1cp
+lesson:white-french-advance:main/continuation:simplify: Rb1+ (accepted), loss -16cp
+lesson:white-french-advance:main/continuation:simplify/Rb1+/reply: Ka7 (sound opponent reply), loss 27cp
+lesson:white-french-advance:main/continuation:simplify: Kg2 (accepted), loss 28cp
+lesson:white-french-advance:main/continuation:simplify/Kg2/reply: Rxa4 (sound opponent reply), loss 18cp
+lesson:white-french-advance:main/continuation:ending-activity: Re1 (accepted), loss -2cp
+lesson:white-french-advance:main/continuation:ending-activity/Re1/reply: e5 (sound opponent reply), loss 4cp
+lesson:white-french-advance:main/continuation:ending-activity: Rc1 (accepted), loss 32cp
+lesson:white-french-advance:main/continuation:ending-activity/Rc1/reply: Rxa4 (sound opponent reply), loss 22cp
+lesson:white-french-advance:main/illustration:coordinate/0: Be2 (illustrative connecting move), loss 0cp
+lesson:white-french-advance:main/illustration:coordinate/1: O-O-O (illustrative connecting move), loss 2cp
+lesson:white-french-advance:main/illustration:counterplay/0: O-O (illustrative connecting move), loss 12cp
+lesson:white-french-advance:main/illustration:counterplay/1: Kb8 (illustrative connecting move), loss 16cp
+lesson:white-french-advance:main/illustration:counterplay/2: b3 (illustrative connecting move), loss 10cp
+lesson:white-french-advance:main/illustration:counterplay/3: cxb3 (illustrative connecting move), loss 46cp
+lesson:white-french-advance:main/illustration:counterplay/4: c4 (illustrative connecting move), loss 20cp
+lesson:white-french-advance:main/illustration:counterplay/5: Nxc4 (illustrative connecting move), loss 3cp
+lesson:white-french-advance:main/illustration:counterplay/6: Nxc4 (illustrative connecting move), loss -5cp
+lesson:white-french-advance:main/illustration:counterplay/7: dxc4 (illustrative connecting move), loss -2cp
+lesson:white-french-advance:main/illustration:counterplay/8: Bxc4 (illustrative connecting move), loss -5cp
+lesson:white-french-advance:main/illustration:counterplay/9: Bc6 (illustrative connecting move), loss -12cp
+lesson:white-french-advance:main/illustration:counterplay/10: Rxb3 (illustrative connecting move), loss 13cp
+lesson:white-french-advance:main/illustration:counterplay/11: Ba4 (illustrative connecting move), loss 19cp
+lesson:white-french-advance:main/illustration:structure/0: Rxb6 (illustrative connecting move), loss 17cp
+lesson:white-french-advance:main/illustration:structure/1: Bxd1 (illustrative connecting move), loss 3cp
+lesson:white-french-advance:main/illustration:structure/2: Rxb7+ (illustrative connecting move), loss 10cp
+lesson:white-french-advance:main/illustration:structure/3: Kxb7 (illustrative connecting move), loss 10cp
+lesson:white-french-advance:main/illustration:structure/4: Rxd1 (illustrative connecting move), loss -4cp
+lesson:white-french-advance:main/illustration:structure/5: Rc8 (illustrative connecting move), loss -10cp
+lesson:white-french-advance:main/illustration:structure/6: Bd3 (illustrative connecting move), loss -11cp
+lesson:white-french-advance:main/illustration:structure/7: Rc3 (illustrative connecting move), loss -16cp
+lesson:white-french-advance:main/illustration:improve/0: a4 (illustrative connecting move), loss -3cp
+lesson:white-french-advance:main/illustration:improve/1: a5 (illustrative connecting move), loss -14cp
+lesson:white-french-advance:main/illustration:improve/2: Ng5 (illustrative connecting move), loss -6cp
+lesson:white-french-advance:main/illustration:improve/3: Bb4 (illustrative connecting move), loss -2cp
+lesson:white-french-advance:main/illustration:improve/4: g3 (illustrative connecting move), loss -6cp
+lesson:white-french-advance:main/illustration:improve/5: Rhc8 (illustrative connecting move), loss -9cp
+lesson:white-french-advance:main/illustration:improve/6: Be3 (illustrative connecting move), loss -15cp
+lesson:white-french-advance:main/illustration:improve/7: Ng4 (illustrative connecting move), loss 2cp
+lesson:white-french-advance:main/illustration:simplify/0: Be4+ (illustrative connecting move), loss -15cp
+lesson:white-french-advance:main/illustration:simplify/1: Kb8 (illustrative connecting move), loss -11cp
+lesson:white-french-advance:main/illustration:simplify/2: Bf4 (illustrative connecting move), loss 3cp
+lesson:white-french-advance:main/illustration:simplify/3: Ra3 (illustrative connecting move), loss -12cp
+lesson:white-french-advance:main/illustration:simplify/4: Nxf7 (illustrative connecting move), loss -13cp
+lesson:white-french-advance:main/illustration:simplify/5: Ra2 (illustrative connecting move), loss -6cp
+lesson:white-french-advance:main/illustration:simplify/6: Rf1 (illustrative connecting move), loss -1cp
+lesson:white-french-advance:main/illustration:simplify/7: Bc3 (illustrative connecting move), loss 3cp
+lesson:white-french-advance:main/illustration:simplify/8: Bxh7 (illustrative connecting move), loss 82cp
+lesson:white-french-advance:main/illustration:simplify/9: Bxd4 (illustrative connecting move), loss -8cp
+lesson:white-french-advance:main/illustration:simplify/10: Rb1+ (illustrative connecting move), loss -16cp
+lesson:white-french-advance:main/illustration:simplify/11: Ka7 (illustrative connecting move), loss 27cp
+lesson:white-french-advance:main/illustration:ending-activity/0: Kg2 (illustrative connecting move), loss 45cp
+lesson:white-french-advance:main/illustration:ending-activity/1: Nxf2 (illustrative connecting move), loss 45cp
+lesson:white-french-advance:main/illustration:ending-activity/2: Nd6 (illustrative connecting move), loss 10cp
+lesson:white-french-advance:main/illustration:ending-activity/3: Ne4+ (illustrative connecting move), loss 10cp
+lesson:white-french-advance:main/illustration:ending-activity/4: Kh3 (illustrative connecting move), loss 40cp
+lesson:white-french-advance:main/illustration:ending-activity/5: Nxd6 (illustrative connecting move), loss 1cp
+lesson:white-french-advance:main/illustration:ending-activity/6: exd6 (illustrative connecting move), loss 20cp
+lesson:white-french-advance:main/illustration:ending-activity/7: Rd8 (illustrative connecting move), loss 20cp
+lesson:white-french-advance:main/illustration:ending-activity/8: Re1 (illustrative connecting move), loss -2cp
+lesson:white-french-advance:main/illustration:ending-activity/9: e5 (illustrative connecting move), loss 4cp
+lesson:white-french-advance:exchange/opening:0: e4 (entry position), loss -2cp
+lesson:white-french-advance:exchange/opening:1: e6 (entry position), loss -10cp
+lesson:white-french-advance:exchange/opening:2: d4 (entry position), loss -8cp
+lesson:white-french-advance:exchange/opening:3: d5 (entry position), loss -2cp
+lesson:white-french-advance:exchange/opening:4: e5 (entry position), loss 7cp
+lesson:white-french-advance:exchange/opening:5: c5 (entry position), loss 5cp
+lesson:white-french-advance:exchange/opening:6: c3 (entry position), loss 0cp
+lesson:white-french-advance:exchange/opening:7: cxd4 (entry position), loss 12cp
+lesson:white-french-advance:exchange/decision-1: cxd4 (accepted), loss 7cp
+lesson:white-french-advance:exchange/decision-1/reply: Nc6 (sound opponent reply), loss 5cp
+lesson:white-french-advance:exchange/decision-1/mistake: Na3 (mistake), loss 223cp
+lesson:white-french-advance:exchange/decision-2: Nf3 (accepted), loss 4cp
+lesson:white-french-advance:exchange/decision-2/reply: Nge7 (sound opponent reply), loss 2cp
+lesson:white-french-advance:exchange/decision-3: Bd3 (accepted), loss 2cp
+lesson:white-french-advance:exchange/decision-3/reply: Nf5 (sound opponent reply), loss 4cp
+lesson:white-french-advance:exchange/decision-4: Bxf5 (accepted), loss -2cp
+lesson:white-french-advance:exchange/decision-4/reply: exf5 (sound opponent reply), loss -4cp
+lesson:white-french-advance:exchange/transfer-decision-1: Nf3 (accepted), loss 2cp
+lesson:white-french-advance:exchange/transfer-decision-1/reply: Nbc6 (sound opponent reply), loss 5cp
+lesson:white-french-advance:exchange/transfer-decision-2: Bd3 (accepted), loss 2cp
+lesson:white-french-advance:exchange/transfer-entry: Ne7 (sound opponent reply), loss 0cp
+lesson:white-french-advance:bd7/opening:0: e4 (entry position), loss -2cp
+lesson:white-french-advance:bd7/opening:1: e6 (entry position), loss -10cp
+lesson:white-french-advance:bd7/opening:2: d4 (entry position), loss -8cp
+lesson:white-french-advance:bd7/opening:3: d5 (entry position), loss -2cp
+lesson:white-french-advance:bd7/opening:4: e5 (entry position), loss 7cp
+lesson:white-french-advance:bd7/opening:5: c5 (entry position), loss 5cp
+lesson:white-french-advance:bd7/opening:6: c3 (entry position), loss 0cp
+lesson:white-french-advance:bd7/opening:7: Nc6 (entry position), loss 3cp
+lesson:white-french-advance:bd7/opening:8: Nf3 (entry position), loss -3cp
+lesson:white-french-advance:bd7/opening:9: Bd7 (entry position), loss -1cp
+lesson:white-french-advance:bd7/decision-1: Be2 (accepted), loss -7cp
+lesson:white-french-advance:bd7/decision-1/reply: Nge7 (sound opponent reply), loss 2cp
+lesson:white-french-advance:bd7/decision-1/mistake: Ng5 (mistake), loss 148cp
+lesson:white-french-advance:bd7/decision-2: O-O (accepted), loss 12cp
+lesson:white-french-advance:bd7/decision-2/reply: cxd4 (sound opponent reply), loss 14cp
+lesson:white-french-advance:bd7/decision-3: cxd4 (accepted), loss 3cp
+lesson:white-french-advance:bd7/decision-3/reply: Qb6 (sound opponent reply), loss 6cp
+lesson:white-french-advance:bd7/decision-4: Nc3 (accepted), loss -1cp
+lesson:white-french-advance:bd7/decision-4/reply: Nf5 (sound opponent reply), loss -1cp
+lesson:white-french-advance:bd7/transfer-decision-1: cxd4 (accepted), loss 11cp
+lesson:white-french-advance:bd7/transfer-decision-1/reply: Nge7 (sound opponent reply), loss 5cp
+lesson:white-french-advance:bd7/transfer-decision-2: Nc3 (accepted), loss 0cp
+lesson:white-french-advance:bd7/transfer-entry: cxd4 (sound opponent reply), loss -3cp
+lesson:white-french-advance:f6/opening:0: e4 (entry position), loss -2cp
+lesson:white-french-advance:f6/opening:1: e6 (entry position), loss -10cp
+lesson:white-french-advance:f6/opening:2: d4 (entry position), loss -8cp
+lesson:white-french-advance:f6/opening:3: d5 (entry position), loss -2cp
+lesson:white-french-advance:f6/opening:4: e5 (entry position), loss 7cp
+lesson:white-french-advance:f6/opening:5: c5 (entry position), loss 5cp
+lesson:white-french-advance:f6/opening:6: c3 (entry position), loss 0cp
+lesson:white-french-advance:f6/opening:7: Nc6 (entry position), loss 3cp
+lesson:white-french-advance:f6/opening:8: Nf3 (entry position), loss -3cp
+lesson:white-french-advance:f6/opening:9: f6 (entry position), loss 27cp
+lesson:white-french-advance:f6/decision-1: Bb5 (accepted), loss -1cp
+lesson:white-french-advance:f6/decision-1/reply: Bd7 (sound opponent reply), loss 2cp
+lesson:white-french-advance:f6/decision-1/mistake: Ng5 (mistake), loss 424cp
+lesson:white-french-advance:f6/decision-2: Bxc6 (accepted), loss 9cp
+lesson:white-french-advance:f6/decision-2/reply: Bxc6 (sound opponent reply), loss 20cp
+lesson:white-french-advance:f6/decision-3: O-O (accepted), loss 22cp
+lesson:white-french-advance:f6/decision-3/reply: Ne7 (sound opponent reply), loss 2cp
+lesson:white-french-advance:f6/decision-4: Re1 (accepted), loss 19cp
+lesson:white-french-advance:f6/decision-4/reply: Qd7 (sound opponent reply), loss 25cp
+lesson:white-french-advance:f6/transfer-decision-1: Bxc6+ (accepted), loss 1cp
+lesson:white-french-advance:f6/transfer-decision-1/reply: Qxc6 (sound opponent reply), loss 1cp
+lesson:white-french-advance:f6/transfer-decision-2: O-O (accepted), loss 3cp
+lesson:white-french-advance:f6/transfer-entry: Qb6 (sound opponent reply), loss -10cp
+concept:white-french-advance:main/main/setup: d8b6 (entry position), loss 13cp
+concept:white-french-advance:main/main: a2a3 (accepted), loss 13cp
+concept:white-french-advance:main/different-reply/setup: c8d7 (entry position), loss 4cp
+concept:white-french-advance:main/different-reply: b2b4 (accepted), loss -16cp
+concept:white-french-advance:exchange/main/setup: c5d4 (entry position), loss 12cp
+concept:white-french-advance:exchange/main: c3d4 (accepted), loss 7cp
+concept:white-french-advance:exchange/different-reply/setup: g8e7 (entry position), loss 0cp
+concept:white-french-advance:exchange/different-reply: g1f3 (accepted), loss 2cp
+concept:white-french-advance:bd7/main/setup: c8d7 (entry position), loss -1cp
+concept:white-french-advance:bd7/main: f1e2 (accepted), loss -7cp
+concept:white-french-advance:bd7/different-reply/setup: c5d4 (entry position), loss -3cp
+concept:white-french-advance:bd7/different-reply: c3d4 (accepted), loss 11cp
+concept:white-french-advance:f6/main/setup: f7f6 (entry position), loss 27cp
+concept:white-french-advance:f6/main: f1b5 (accepted), loss -1cp
+concept:white-french-advance:f6/different-reply/setup: d8b6 (entry position), loss -10cp
+concept:white-french-advance:f6/different-reply: b5c6 (accepted), loss 1cp
+concept:white-french-advance:recognition/recognition-1/setup: b7b6 (entry position), loss 31cp
+concept:white-french-advance:recognition/recognition-1: g1f3 (accepted), loss 2cp
+concept:white-french-advance:recognition/recognition-2/setup: b8c6 (entry position), loss 44cp
+concept:white-french-advance:recognition/recognition-2: c2c3 (accepted), loss 9cp
+186 claims checked; 0 require author review.

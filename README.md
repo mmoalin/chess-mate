@@ -6,13 +6,15 @@ A browser-based chess learning app focused on opening preparation, short strateg
 
 ### Connected opening, middlegame and endgame lessons
 
-- Open **Repertoire → Course chapters** for Alien Gambit, Vienna or Queen’s Gambit as White, or Caro-Kann as Black. Chapters have distinct titles, saved progress, and branch-specific structure guides.
+- Open **Repertoire → Course chapters** for the White and Black courses. The White 1.e4 companion pack adds Alapin Sicilian, French Advance and Caro-Kann Exchange: four core chapters, five drills and a six-checkpoint continuous journey per family.
+- **Repertoire → White after 1.e4** shows selected, available and unsupported replies, with named routes and separate learning progress. French transpositions link to the same chapter and progress. Completion does not mean mastery or exhaustive defence coverage.
+- Onboarding and **Today → Training preferences** offer **Add White 1.e4 companion courses**. Vienna/Caro-Kann remain the defaults; the pack adds available courses without removing selections or progress. Alien remains a separate attacking choice.
 - Replay the opening or recall your own moves, identify the structure, choose a plan, and play linked decisions with authored opponent replies.
 - Rewind explicitly to test a different opponent reply, then review your first answers and assistance used.
 - In Standard or Deep mode, choose a move, explain its purpose, and predict a legal reply before seeing feedback. A short diagnostic offers an exact decision without repeating the full lesson.
 - Explore an alternative on an isolated board and compare it with the lesson example and local Stockfish suggestion. Replay each candidate's replies, then return to the unchanged checkpoint.
 - Follow optional Caro-Kann and Vienna journeys through central exchanges, pawn transformations, rook activity, and king endings. These are explicitly labelled authored training examples; before/after pawn diagrams and exact checkpoint reviews connect the ideas.
-- Vienna, Queen’s Gambit and Caro-Kann offer **Follow this position into an ending**: six decisions on a continuous, annotated line from the main lesson to a rook ending. Compare alternatives, explain structural choices and predict strong replies, with separate feedback for each component. Replay every connecting move, resume saved answers and practise two-minute checkpoints through Today. The original separate endgame exercises remain available.
+- Main courses offer **Follow this position into an ending**: six decisions on a continuous, annotated illustrative line. Endings may retain minor pieces and material imbalances. Compare alternatives, explain structural choices and predict strong replies, with separate feedback for each component. Replay connecting moves, resume saved answers and practise two-minute checkpoints through Today. The original separate endgame exercises remain available.
 - Vienna has five core chapters covering the central counterattack, accepted gambit, …d6, early …Nc6, and the Bc4 setup against 2…Nc6. Queen’s Gambit has six: Declined Exchange, Accepted, Exchange Slav, Tarrasch, Chigorin, and Albin. Both include recognition drills for unusual early replies. The existing Vienna Qf3 branch remains optional theory.
 - Alien Gambit has five core chapters: the accepted sacrifice, immediate …c5, active …Bf5 after acceptance, and development against …Bf5 or …Nbd7 without …h6. Its six-checkpoint journey reaches an imbalanced ending. The course explicitly teaches the sacrifice as unsound against accurate defense, with practical attacking chances rather than a forced win. See [Alien content, engine evidence and release instructions](docs/alien-gambit-course-2026-09-19.md).
 - Practise a four-move plan against local Stockfish, retain your continuation and reflection, or use unrestricted **Play from here**. **Return to lesson** restores the original summary position.
@@ -24,6 +26,8 @@ Connected content uses schema version 3. Apply `202609090001_connected_lessons.s
 The usability update adds optional JSON fields to that schema; it needs no additional migration. See [implementation coverage and validation](docs/usability-implementation-2026-09-12.md) for the review backlog, content boundaries, and checks.
 
 The [White course expansion](docs/white-opening-courses-2026-09-19.md) also uses optional JSON fields, with no new migration. Unchanged starter releases receive complete branch dependencies; edited source graphs remain authoritative. Existing Vienna and Caro-Kann progress is preserved.
+
+The current [White 1.e4 companion release](docs/white-companions-2026-09-25.md) advances bundled content to release 5 while retaining schema 3. It includes 64 connected lessons and 82 drills overall, fingerprinted legacy verification, isolated engine evidence, and the corrected Caro continuation/drill with fresh replacement review targets. Publication instructions and local acceptance evidence are in the release note; production publication is a separate operation.
 
 ### Opening training
 
@@ -39,7 +43,7 @@ The [White course expansion](docs/white-opening-courses-2026-09-19.md) also uses
 - Drill critical positions from supplied FENs with position-specific feedback.
 - Turn opening mistakes into due review items and track recurring weak themes.
 
-The starter repertoire contains 25 lines covering:
+The starter repertoire and compiled course bundles cover these named families and routes:
 
 - Alien Gambit plans for White and defensive responses for Black.
 - Vienna Game and Vienna Gambit.
@@ -47,6 +51,7 @@ The starter repertoire contains 25 lines covering:
 - London System and the `...Qb6` branch.
 - Open Sicilian and Sicilian Dragon.
 - Classical Caro-Kann and Caro-Kann Advance.
+- White Alapin Sicilian, French Advance and Caro-Kann Exchange companions.
 
 ### Guided study path
 

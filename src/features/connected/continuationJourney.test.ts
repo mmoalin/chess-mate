@@ -1,13 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import { Chess } from 'chess.js';
-import { starterConnectedLessons } from '../../data/connectedLessons';
+import priorRelease from '../../data/fixtures/pre-white-companions-release.json';
+import type { ConnectedLesson } from './types';
 import { createLessonSession, hasCheckpoint, validateConnectedLesson } from './session';
 import { advanceContinuation, continuationBoard, continuationKey, continuationMoves, continuationResultLabel, openContinuation, submitContinuation, validateContinuation } from './continuationJourney';
 import { GuidedLearnerRepository } from '../../services/guidedLearnerRepository';
-import { embeddedRepertoireGraph } from '../../services/guidedContentRepository';
+import { embeddedRepertoireGraph as currentGraph } from '../../services/guidedContentRepository';
 import { buildDailySession } from '../../domain/repertoire/dailySessions';
 
-const lesson = starterConnectedLessons[1];
+// Keep the old assessed example as a backwards-compatibility exercise. The
+// corrected release and its redirects have separate companion-course coverage.
+const lesson = priorRelease.connectedLessons['lesson:caro-active'] as ConnectedLesson;
+const embeddedRepertoireGraph = { ...currentGraph, connectedLessons: { ...currentGraph.connectedLessons, [lesson.key]: lesson } };
 const journey = lesson.continuation!;
 function attempt(index = 0, alternative = 0) {
   const step = journey.steps[index];
@@ -17,7 +21,7 @@ function attempt(index = 0, alternative = 0) {
   return session;
 }
 
-describe('continuous Caro-Kann content and assessment', () => {
+describe('legacy continuous Caro-Kann content and assessment compatibility', () => {
   it('replays from the original opening through all six checkpoints to a rook ending', () => {
     expect(validateConnectedLesson(lesson)).toEqual([]);
     expect(journey.steps).toHaveLength(6);

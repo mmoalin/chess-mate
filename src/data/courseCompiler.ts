@@ -55,7 +55,7 @@ export function compileChapter(course: CourseDefinition, chapter: ChapterDefinit
   const lesson: ConnectedLesson = {
     key: chapter.key, version: 1, title: chapter.title, side: course.side, openingFamilyKey: course.key, lineKey: chapter.lineKey,
     courseOrder: chapter.order, optional: chapter.optional, structureGuide: chapter.structure,
-    ...(chapter.key === course.mainLessonKey ? { course: { mainLessonKey: course.mainLessonKey, role: course.role, context: course.context, scope: course.scope } } : {}),
+    ...(chapter.key === course.mainLessonKey ? { course: { mainLessonKey: course.mainLessonKey, role: course.role, context: course.context, scope: course.scope, ...(course.coverage ? { coverage: course.coverage } : {}), ...(course.drillMetadata ? { drillMetadata: course.drillMetadata } : {}) } } : {}),
     openingMoves, openingExplanations: chapter.opening.map(move => move.note), modelPositionPly: openingMoves.length,
     introduction: chapter.introduction, takeaway: chapter.takeaway, questions: chapter.questions,
     mainStartId: chapter.main[0].id, transferStartId: chapter.transfer.decisions[0].id, transferCheckpointMoves,

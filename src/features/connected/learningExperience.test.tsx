@@ -58,11 +58,27 @@ describe('learning experience integrity', () => {
     const { changed } = show(initial, vienna, 'deep');
     await click('Play Be2');
     expect(screen.getByRole('button', { name: 'Check my decision' })).toBeDisabled();
-    expect(changed).not.toHaveBeenCalled();
+    expect(changed.mock.calls.at(-1)![0]).toMatchObject({ answers: {}, decisionDraft: { move: { san: 'Be2' } } });
     await userEvent.type(screen.getByRole('textbox', { name: 'Your plan' }), 'Clear f1 to prepare castling.');
     await userEvent.type(screen.getByRole('textbox', { name: 'Predicted reply' }), 'Nc6');
     await click('Check my decision');
     expect(changed.mock.calls.at(-1)![0]).toMatchObject({ completedAt: expect.any(String), reflections: { develop: { move: 'Be2', plan: 'Clear f1 to prepare castling.', reply: 'Nc6' } } });
+    expect(screen.getByText(/Independently correct/)).toBeInTheDocument();
+  });
+
+  it('restores an unsubmitted independent decision without awarding credit', async () => {
+    const initial = createLessonSession(vienna, 'local', 'today', 'develop');
+    const view = show(initial, vienna, 'deep');
+    await click('Play Be2');
+    await userEvent.type(screen.getByRole('textbox', { name: 'Your plan' }), 'Prepare castling.');
+    await userEvent.type(screen.getByRole('textbox', { name: 'Predicted reply' }), 'Nc6');
+    const draft = view.changed.mock.calls.at(-1)![0] as LessonSession;
+    expect(draft.answers).toEqual({});
+    view.unmount();
+    show(structuredClone(draft), vienna, 'deep');
+    expect(screen.getByRole('textbox', { name: 'Your plan' })).toHaveValue('Prepare castling.');
+    expect(screen.getByRole('textbox', { name: 'Predicted reply' })).toHaveValue('Nc6');
+    await click('Check my decision');
     expect(screen.getByText(/Independently correct/)).toBeInTheDocument();
   });
 

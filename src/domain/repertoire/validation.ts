@@ -1,7 +1,7 @@
 import { Chess } from 'chess.js';
 import { buildPositionKey } from './positionKey';
 import type { RepertoireGraph } from './types';
-import { validateConnectedLesson } from '../../features/connected/session';
+import { hasCheckpoint, validateConnectedLesson } from '../../features/connected/session';
 
 export type ContentValidationIssue = {
   code: string;
@@ -13,9 +13,35 @@ export function validateRepertoireGraph(graph: RepertoireGraph): ContentValidati
   const issues: ContentValidationIssue[] = [];
   const descriptors = new Set<string>();
   for (const [key, lesson] of Object.entries(graph.connectedLessons ?? {})) {
+    for (const [old, replacement] of Object.entries(lesson.replacesCheckpoints ?? {})) if (hasCheckpoint(lesson, old) || !hasCheckpoint(lesson, replacement)) issues.push(issue('checkpoint-replacement-invalid', 'Retired checkpoints must point to a different current checkpoint.', key));
     if (lesson.course) {
       if (descriptors.has(lesson.openingFamilyKey) || lesson.course.mainLessonKey !== lesson.key || !lesson.course.scope.trim() || lesson.course.context !== graph.openings[lesson.openingFamilyKey]?.context) issues.push(issue('course-descriptor-invalid', 'A course needs one main descriptor with a matching context and scope.', key));
       descriptors.add(lesson.openingFamilyKey);
+      for (const metadata of lesson.course.drillMetadata ?? []) {
+        const drill = graph.conceptDrills[metadata.key];
+        if (!drill || drill.openingFamilyKey !== lesson.openingFamilyKey) issues.push(issue('course-drill-missing', 'Course drill metadata must reference its own drill.', key));
+        if (metadata.replaces?.includes(metadata.key)) issues.push(issue('concept-replacement-invalid', 'A drill cannot replace itself.', key));
+      }
+      if (lesson.course.coverage) {
+        const coverage = lesson.course.coverage;
+        try {
+          const entry = new Chess(); coverage.entryMoves.forEach(san => entry.move(san));
+          if (!coverage.entryMoves.length || !coverage.routes.length || new Set(coverage.routes.map(route => route.key)).size !== coverage.routes.length) throw new Error('Coverage requires an entry and unique routes.');
+          for (const route of coverage.routes) {
+            const position = new Chess(); const positions = new Set<string>();
+            route.entryMoves.forEach(san => { position.move(san); positions.add(buildPositionKey(position.fen())); });
+            if (!route.key.trim() || !route.title.trim() || !route.scope.trim() || !route.lessonKeys.length || new Set(route.lessonKeys).size !== route.lessonKeys.length || !positions.has(buildPositionKey(entry.fen()))) throw new Error('Coverage route must extend its entry and declare its scope.');
+            const routePosition = buildPositionKey(position.fen());
+            for (const lessonKey of route.lessonKeys) {
+              const target = graph.connectedLessons?.[lessonKey];
+              if (!target || target.side !== lesson.side) throw new Error('Coverage target is missing or belongs to the other colour.');
+              const replay = new Chess(); let reached = false;
+              for (const san of target.openingMoves) { replay.move(san); reached ||= buildPositionKey(replay.fen()) === routePosition; }
+              if (!reached) throw new Error('Coverage target does not reach the declared position.');
+            }
+          }
+        } catch (error) { issues.push(issue('course-coverage-invalid', error instanceof Error ? error.message : 'Invalid course coverage.', key)); }
+      }
     }
     if (graph.openings[lesson.openingFamilyKey]?.side !== lesson.side) issues.push(issue('lesson-side-mismatch', 'Lesson learner side must match its opening family.', key));
     if (key !== lesson.key || !graph.openings[lesson.openingFamilyKey]?.lineKeys.includes(lesson.lineKey)) issues.push(issue('lesson-opening-missing', 'Connected lesson must reference its source opening and line.', key));
@@ -109,6 +135,7 @@ export function validateRepertoireGraph(graph: RepertoireGraph): ContentValidati
 
   const drillOrders = new Map<string, string>();
   for (const drill of Object.values(graph.conceptDrills ?? {})) {
+    for (const link of drill.relatedLessons ?? []) if (!link.label.trim() || !graph.connectedLessons?.[link.lessonKey] || graph.connectedLessons[link.lessonKey].side !== graph.openings[drill.openingFamilyKey]?.side) issues.push(issue('concept-lesson-missing', 'Related lesson must exist for the same learner colour.', drill.key));
     if (!graph.openings[drill.openingFamilyKey]) issues.push(issue('concept-opening-missing', 'Concept drill references a missing opening.', drill.key));
     if (!drill.planChoices.some((choice) => choice.correct)) issues.push(issue('concept-correct-plan-missing', 'Concept drill needs a correct plan choice.', drill.key));
     if (drill.scenarios.length < 2) issues.push(issue('concept-scenarios-missing', 'Concept drill needs two decision scenarios.', drill.key));

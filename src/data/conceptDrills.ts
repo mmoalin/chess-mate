@@ -2,6 +2,7 @@ import type { ConceptDrill } from '../domain/repertoire/types';
 import { whiteCourseDrills, whiteRecognitionDrills } from './whiteOpeningCourses';
 import { alienCourseDrills } from './alienOpeningCourses';
 import { blackCourseDrills } from './blackOpeningCourses';
+import { companionDrills } from './whiteCompanionCourses';
 
 const choice = (id: string, label: string, correct: boolean, feedback: string) => ({ id, label, correct, feedback });
 
@@ -118,3 +119,8 @@ starterConceptDrills[2].scenarios[0].hint = 'The king knight can develop toward 
 export const preAlienStarterConceptDrills = structuredClone(starterConceptDrills);
 starterConceptDrills.push(...alienCourseDrills);
 starterConceptDrills.push(...blackCourseDrills);
+starterConceptDrills.push(...companionDrills);
+const correctedCaroDrill = starterConceptDrills.find(drill => drill.key === 'concept:caro-resolve-centre')!;
+correctedCaroDrill.replaces = [correctedCaroDrill.key];
+correctedCaroDrill.key = 'concept:caro-resolve-centre-v2';
+correctedCaroDrill.scenarios.find(scenario => scenario.id === 'advance-choice')!.acceptableMovesUci = [];

@@ -13,7 +13,7 @@
 
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
 }
 
 button,
@@ -1311,3 +1311,12 @@ button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px
   .app-shell:has(.daily-session-paused) .board-shell { width: min(100%, 32dvh, 300px); }
   .journey-panel, .candidate-panel { gap: 10px; }
 }
+/* Reply coverage shares the repertoire dock and remains readable on narrow boards. */
+.white-coverage { margin-block: 1rem 1.5rem; }
+.coverage-row { border: 1px solid var(--border, #c7cdd2); border-radius: 8px; margin-block: .5rem; padding: .7rem; }
+.coverage-row > summary { cursor: pointer; font-weight: 650; }
+.coverage-row > summary > span { display: block; font-size: .8rem; font-weight: 400; margin-top: .25rem; }
+.coverage-course, .coverage-route { margin-block: .85rem; min-width: 0; overflow-wrap: anywhere; }
+.coverage-course h4 { margin-bottom: .4rem; }
+.companion-pack { margin-block: .8rem; }
+.companion-pack button, .coverage-row button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }

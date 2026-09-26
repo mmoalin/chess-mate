@@ -1,0 +1,62 @@
+Return to opening lesson
+Save & leave
+
+Original illustrative continuation · every position is replayable.
+
+Continuous journey recap
+
+6/6 independently correct. First submissions are preserved; unassessed replies earn no mastery credit.
+
+Choose whether to exchange the active bishops
+Independently correct
+
+A bishop exchange changes the queen’s placement and attacking chances. The Exchange opening does not require exchanging every piece.
+
+Your first move: Bxd6 · Predicted reply: Qxd6
+
+Review decision: Choose whether to exchange the active bishops
+Choose which rook belongs on the e-file
+Independently correct
+
+Two moves to the same square can leave different coordination behind. Include the rook that does not move in your reasoning.
+
+Your first move: Rae1 · Predicted reply: Bxf3
+
+Review decision: Choose which rook belongs on the e-file
+Reposition the queen after queenside pressure
+Independently correct
+
+A useful early queen move is not a permanent home. Reposition when the opponent’s development changes its targets.
+
+Your first move: Qd1 · Predicted reply: a6
+
+Review decision: Reposition the queen after queenside pressure
+Prepare activity without abandoning the centre
+Independently correct
+
+The kingside plan depends on central stability. Recheck Black’s queenside knight activity before pushing more pawns.
+
+Your first move: Nh4 · Predicted reply: Na5
+
+Review decision: Prepare activity without abandoning the centre
+Choose between a central break and a queen exchange
+Independently correct
+
+A pawn break can create a favourable simplification without forcing it. Trading queens is a separate choice with its own piece activity.
+
+Your first move: f5 · Predicted reply: exf5
+
+Review decision: Choose between a central break and a queen exchange
+Activate a rook in the resulting ending
+Independently correct
+
+Rooks and knights remain, so king safety and pawn targets still matter. Activity is a goal, not a guarantee that the ending is won.
+
+Your first move: Re5 · Predicted reply: b5
+
+Review decision: Activate a rook in the resulting ending
+
+Rooks and knights remain, so king safety and pawn targets still matter. Activity is a goal, not a guarantee that the ending is won.
+
+Back to the opening
+Replay every move from the opening

@@ -1,5 +1,7 @@
 # Black opening courses
 
+Update: the three legacy Caro concerns documented below are corrected in [bundled release 5](white-companions-2026-09-25.md), with new checkpoint/drill identities and preserved historical attempts. The remaining notes describe the preceding Black release.
+
 Six Black courses now share the existing lesson, journey, practice, mastery and persistence machinery. The catalogue has 34 core Black chapters (including the preserved Caro-Kann main lesson), two optional chapters, and five new six-checkpoint journeys. There are 35 newly authored chapters and 43 new concept drills, bringing the complete application to 52 connected lessons and 67 drills.
 
 | Family | Recommended repertoire and coverage | Main lesson |

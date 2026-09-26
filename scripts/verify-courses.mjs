@@ -2,6 +2,8 @@ import './register-typescript.mjs';
 import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync } from 'node:fs';
 import { Chess } from 'chess.js';
 import { createEngine } from './chess-engine.mjs';
+import { isLegacyBaseline, verificationDirectory } from './verification-policy.mjs';
+const { contentFingerprint } = await import('../src/domain/repertoire/contentFingerprint.ts');
 const { starterConnectedLessons } = await import('../src/data/connectedLessons.ts');
 const { starterConceptDrills } = await import('../src/data/conceptDrills.ts');
 const { validateConnectedLesson } = await import('../src/features/connected/session.ts');
@@ -10,18 +12,19 @@ const args = process.argv.slice(2);
 const value = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
 const side = value('--side') ?? 'white';
 const family = value('--course') ?? (args.includes('--alien') ? 'white-alien-gambit-main' : undefined);
-const directory = side === 'black' ? 'outputs/black-courses' : args.includes('--alien') ? 'outputs/alien-courses' : 'outputs/white-courses';
+const directory = verificationDirectory({ side, family, exclude: value('--exclude-course'), output: value('--output') });
 mkdirSync(directory, { recursive: true });
 const path = directory + '/engine-evidence.json';
 const settings = { engine: 'Stockfish 17.1 lite single local WASM', depth: 18, hash: 16, perspective: 'White centipawns' };
 const previous = existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : {};
 const evidence = { settings, analyses: previous.settings && JSON.stringify(previous.settings) === JSON.stringify(settings) ? previous.analyses : {}, claims: [], limitations: 'Finite-depth engine comparisons are evidence, not proofs. Model journeys are illustrative.' };
-if (side === 'black' && existsSync(directory + '/authoring-evidence.json')) {
-  const authored = JSON.parse(readFileSync(directory + '/authoring-evidence.json', 'utf8'));
+for (const cache of ['outputs/white-companions/authoring-evidence.json', 'outputs/black-courses/engine-evidence.json', 'outputs/white-courses/engine-evidence.json', 'outputs/alien-courses/engine-evidence.json', directory + '/authoring-evidence.json']) if (existsSync(cache)) {
+  const authored = JSON.parse(readFileSync(cache, 'utf8'));
   if (JSON.stringify(authored.settings) === JSON.stringify(settings)) Object.assign(evidence.analyses, authored.analyses);
 }
 const engine = await createEngine();
 const selected = starterConnectedLessons.filter(lesson => (side === 'all' || lesson.side === side) && (!family || lesson.openingFamilyKey === family) && lesson.openingFamilyKey !== value('--exclude-course'));
+if (!['white', 'black', 'all'].includes(side) || !selected.length) { engine.close(); throw new Error('Verification selection matches no courses or has an invalid side.'); }
 const families = new Set(selected.map(lesson => lesson.openingFamilyKey));
 const failures = [];
 async function save() {
@@ -48,7 +51,7 @@ async function check(id, board, san, assessment, baseline = false) {
 try {
   for (const lesson of selected) {
     const issues = validateConnectedLesson(lesson); if (issues.length) throw new Error(lesson.key + ': ' + issues.join('; '));
-    const baseline = lesson.key === 'lesson:caro-active' || lesson.side === 'white';
+    const baseline = isLegacyBaseline('lessons', lesson, contentFingerprint);
     if (!baseline) {
       const opening = new Chess();
       for (const [index, san] of lesson.openingMoves.entries()) { await check(`${lesson.key}/opening:${index}`, opening, san, 'entry position', baseline); opening.move(san); }
@@ -61,6 +64,12 @@ try {
         for (const san of answer.repliesSan) { await check(`${lesson.key}/${decision.id}/reply`, replyBoard, san, 'sound opponent reply', baseline); replyBoard.move(san); }
       }
       for (const san of Object.keys(decision.mistakes)) await check(`${lesson.key}/${decision.id}/mistake`, board, san, 'mistake', baseline);
+    }
+    const transfer = lesson.decisions[lesson.transferStartId];
+    const transferBoard = boardAfter(lesson.transferCheckpointMoves);
+    for (const san of transfer.movesBefore.slice(lesson.transferCheckpointMoves.length)) {
+      await check(`${lesson.key}/transfer-entry`, transferBoard, san, 'sound opponent reply', baseline);
+      transferBoard.move(san);
     }
     if (lesson.continuation) {
       for (const [index, step] of lesson.continuation.steps.entries()) {
@@ -78,8 +87,12 @@ try {
     }
   }
   for (const drill of starterConceptDrills.filter(drill => families.has(drill.openingFamilyKey))) for (const scenario of drill.scenarios) {
-    const board = new Chess(scenario.setupFen); board.move(scenario.opponentMoveUci);
-    for (const san of [...scenario.preferredMovesUci, ...scenario.acceptableMovesUci]) await check(`${drill.key}/${scenario.id}`, board, san, 'accepted', !drill.key.startsWith('concept:black-'));
+    const board = new Chess(scenario.setupFen);
+    // A recognition/setup move can deliberately be inferior. Record its exact
+    // evidence without representing it as a recommended opponent reply.
+    await check(`${drill.key}/${scenario.id}/setup`, board, scenario.opponentMoveUci, 'entry position', isLegacyBaseline('drills', drill, contentFingerprint));
+    board.move(scenario.opponentMoveUci);
+    for (const san of [...scenario.preferredMovesUci, ...scenario.acceptableMovesUci]) await check(`${drill.key}/${scenario.id}`, board, san, 'accepted', isLegacyBaseline('drills', drill, contentFingerprint));
   }
   evidence.failures = failures;
   await save();

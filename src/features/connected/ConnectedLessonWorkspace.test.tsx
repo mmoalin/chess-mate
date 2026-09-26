@@ -21,6 +21,21 @@ function show(initialSession: LessonSession, lesson = vienna) {
   return { ...view, onSessionChange, repository };
 }
 describe('connected lesson interface', () => {
+  it('restores an unsubmitted choice without revealing feedback or creating an attempt', async () => {
+    const question = vienna.questions[0];
+    const choice = question.choices.find((item) => item.correct)!;
+    const view = show(startQuestions(createLessonSession(vienna, 'local', 'today'), vienna));
+    await userEvent.click(screen.getByRole('radio', { name: choice.label }));
+    const saved = view.onSessionChange.mock.calls.at(-1)![0] as LessonSession;
+    expect(saved.answers).toEqual({});
+    await view.repository.saveLessonSession(saved);
+    view.unmount();
+    show((await view.repository.loadLessonSessions('local')).find((item) => item.id === saved.id)!);
+    expect(screen.getByRole('radio', { name: choice.label })).toBeChecked();
+    expect(screen.getByRole('region', { name: 'Lesson feedback' })).toHaveTextContent('Consider the position');
+    await click('Check answer');
+    expect(screen.getByRole('button', { name: 'Continue lesson' })).toBeInTheDocument();
+  });
   it.each(['wrong', 'corrected', 'correct', 'assisted', 'legacy-corrected'])('restores a %s question without regrading it', async (kind) => {
     const question = vienna.questions[0];
     const wrong = question.choices.find((choice) => !choice.correct)!;

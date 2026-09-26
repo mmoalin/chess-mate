@@ -1,0 +1,97 @@
+ton "e5, empty"
+      - button "f5, empty"
+      - button "g5, empty"
+      - button "h5, empty"
+      - generic: "4"
+      - button "a4, empty"
+      - button "b4, empty"
+      - button "c4, empty"
+      - button "d4, White pawn":
+        - button [disabled]:
+      - button "e4, empty"
+      - button "f4, empty"
+      - button "g4, empty"
+      - button "h4, empty"
+      - generic: "3"
+      - button "a3, empty"
+      - button "b3, empty"
+      - button "c3, empty"
+      - button "d3, empty"
+      - button "e3, empty"
+      - button "f3, empty"
+      - button "g3, empty"
+      - button "h3, empty"
+      - generic: "2"
+      - button "a2, White pawn":
+        - button [disabled]:
+      - button "b2, White pawn":
+        - button [disabled]:
+      - button "c2, empty"
+      - button "d2, empty"
+      - button "e2, empty"
+      - button "f2, White pawn":
+        - button [disabled]:
+      - button "g2, White pawn":
+        - button [disabled]:
+      - button "h2, White pawn":
+        - button [disabled]:
+      - generic: a
+      - generic: "1"
+      - button "a1, White rook":
+        - button [disabled]:
+      - generic: b
+      - button "b1, White knight":
+        - button [disabled]:
+      - generic: c
+      - button "c1, White bishop":
+        - button [disabled]:
+      - generic: d
+      - button "d1, White queen":
+        - button [disabled]:
+      - generic: e
+      - button "e1, White king":
+        - button [disabled]:
+      - generic: f
+      - button "f1, White bishop":
+        - button [disabled]:
+      - generic: g
+      - button "g1, White knight":
+        - button [disabled]:
+      - generic: h
+      - button "h1, White rook":
+        - button [disabled]:
+      - status
+      - status
+    - complementary "Connected lesson":
+      - navigation "Lesson navigation":
+        - button "Today"
+        - button "Repertoire"
+        - button "Save & leave lesson"
+      - paragraph: Step 3 of 5 · Linked decisions
+      - 'checkbox "Independent challenge: move, explain, predict" [checked] [disabled]'
+      - text: "Independent challenge: move, explain, predict"
+      - heading "Choose a move and anticipate the reply" [active] [level=3]
+      - article:
+        - strong: What changed?
+        - paragraph: Black challenges the two-pawn centre immediately with …d5.
+      - 'heading "Your candidate: exd5" [level=3]'
+      - text: What does your move improve?
+      - textbox "Your plan": Resolve the central contact before developing.
+      - text: What would your opponent play?
+      - textbox "Predicted reply":
+        - /placeholder: Move notation, e.g. Nc6
+        - text: Qxd5
+      - paragraph: Your explanation is saved for reflection; the move is graded against the authored lesson. A legal predicted reply is not necessarily the best reply.
+      - button "Check my decision"
+      - button "Change candidate"
+      - paragraph: Play your move. The position continues through your move and the opponent’s reply.
+      - paragraph: Unlisted legal moves are ungraded; the lesson does not call every alternative a mistake.
+      - region "Lesson feedback":
+        - paragraph: Consider the position, then choose your answer.
+      - button "Hint"
+      - button "Reveal candidate"
+      - paragraph: Analysis marks this checkpoint as assisted. Hints and candidate reveals are separate choices.
+      - button "Explore a candidate" [disabled]
+      - button "Analyse position" [disabled]
+      - button "Copy PGN"
+      - generic "Inspect move history"
