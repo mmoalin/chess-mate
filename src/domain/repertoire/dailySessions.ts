@@ -12,6 +12,7 @@ type PlannedTarget = Omit<ActivityTarget, 'attemptId'>;
 
 export function buildDailySession(input: {
   learnerId: string; durationMinutes: DailyDuration; graph: RepertoireGraph; selectedOpeningKeys: string[];
+  gameReviews?: { id: string; side: 'white' | 'black'; fen: string; dueAt?: string }[];
   mastery: MasteryState[]; backlog: RepertoireBacklogItem[]; lessonSessions: LessonSession[]; profile?: LearnerProfile | null; now: string;
 }): DailySession {
   const [reviewMinutes, learnMinutes, applyMinutes] = budgets[input.durationMinutes];
@@ -20,9 +21,11 @@ export function buildDailySession(input: {
   const due = input.mastery.flatMap((state) => (['recall', 'understanding', 'tactics'] as MasteryDimension[]).map((dimension) => ({ state, dimension, progress: state[dimension] })))
     .filter(({ progress }) => progress.status !== 'unseen' && progress.dueAt <= input.now)
     .sort((a, b) => a.progress.dueAt.localeCompare(b.progress.dueAt));
-  const dueTarget = due.map(({ state, dimension }) => targetForMastery(input.graph, state, dimension, reviewMinutes)).find(Boolean);
+  const dueReview = due.map(({ state, dimension, progress }) => ({ target: targetForMastery(input.graph, state, dimension, reviewMinutes), dueAt: progress.dueAt })).find((item) => item.target);
+  const gameReview = input.gameReviews?.[0];
   const gap = input.backlog.filter((item) => item.status !== 'resolved').sort((a, b) => a.createdAt.localeCompare(b.createdAt))[0];
-  if (dueTarget) targets.push(dueTarget);
+  if (gameReview && (!dueReview || (gameReview.dueAt ?? input.now) < dueReview.dueAt)) { const card = gameReview; targets.push({ id: 'daily:game:' + card.id, kind: 'game-position', phase: 'review', contentKey: 'game-position:' + card.id, title: 'Review a position from your game', reason: 'Two minutes of assessed practice from a confirmed finding.', estimatedMinutes: 2, contentVersion: 1, learnerSide: card.side, dimension: 'tactics' }); }
+  else if (dueReview?.target) targets.push(dueReview.target);
   else if (gap) targets.push({ id: `daily:gap:${gap.id}`, kind: 'saved-position', phase: 'review', contentKey: gap.id, title: gap.title, reason: 'Review a position saved from one of your games.', estimatedMinutes: reviewMinutes, contentVersion: input.graph.release.version, openingFamilyKey: gap.openingFamilyKey, positionKey: gap.positionKey });
 
   const lessons = orderedLessons(input.graph, input.selectedOpeningKeys);

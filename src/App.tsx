@@ -1,3 +1,7 @@
+import { GameReviewWorkspace } from './features/gameReview/GameReviewWorkspace';
+import { GameReviewRepository } from './features/gameReview/repository';
+import { cardMastery, dueCards } from './features/gameReview/practice';
+import type { Library } from './features/gameReview/types';
 import type { User } from '@supabase/supabase-js';
 import { openContinuation } from './features/connected/continuationJourney';
 import { BookOpen, Brain, ChevronLeft, ChevronRight, ClipboardList, Home, List, Map as MapIcon, RotateCcw, Shield } from 'lucide-react';
@@ -69,6 +73,10 @@ export default function App() {
   const persistence = useMemo(() => new SupabasePersistence(supabaseClient), [supabaseClient]);
   const contentRepository = useMemo(() => new GuidedContentRepository(supabaseClient), [supabaseClient]);
   const learnerRepository = useMemo(() => new GuidedLearnerRepository(supabaseClient), [supabaseClient]);
+  const gameRepository = useMemo(() => new GameReviewRepository(supabaseClient), [supabaseClient]);
+  const [gameLibrary, setGameLibrary] = useState<Library>({ games: [], runs: [], positions: [], cards: [], sessions: [] });
+  const [libraryOpen, setLibraryOpen] = useState(false);
+  const [gameTarget, setGameTarget] = useState('');
   const trainer = useMemo(() => new OpeningTrainer(starterRepertoires), []);
 
   const [mode, updateMode] = useState<GameMode>('today');
@@ -93,7 +101,7 @@ export default function App() {
   const engineGeneration = useRef(0);
   const [engineBusy, setEngineBusy] = useState(false);
   const [engineAwaitingReply, setEngineAwaitingReply] = useState(false);
-  useEffect(() => { setAnalysis(''); setEngineBusy(false); return () => { engineGeneration.current++; engineRef.current.stop(); }; }, [mode, reviewMode]);
+  useEffect(() => { setAnalysis(''); setEngineBusy(false); return () => { engineGeneration.current++; engineRef.current.stop(); }; }, [mode, reviewMode, libraryOpen]);
   const [user, setUser] = useState<User | null>(null);
   const [learnerSetup, setLearnerSetup] = useState<LearnerSetup | null>(null);
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
@@ -146,11 +154,14 @@ export default function App() {
     }
     if (dockRef.current) dockRef.current.scrollTop = 0;
   }, [mode, moduleId, activeTaskIndex, activeGapId, activeCriticalPosition?.id]);
-  const positionAnalysis = usePositionAnalysis(snapshot.fen, [user?.id ?? 'local', mode, reviewMode, lineId, moduleId, activeTaskIndex, activeCriticalPosition?.id, activeConceptKey, activeGapId].join(':'));
+  const positionAnalysis = usePositionAnalysis(snapshot.fen, [user?.id ?? 'local', mode, reviewMode, libraryOpen, lineId, moduleId, activeTaskIndex, activeCriticalPosition?.id, activeConceptKey, activeGapId].join(':'));
 
   const learnerId = user?.id ?? LOCAL_LEARNER_ID;
   const learnerIdentity = useRef(learnerId);
   learnerIdentity.current = learnerId;
+  async function refreshGames() { const owner = learnerId; const data = await gameRepository.load(owner); if (learnerIdentity.current === owner) setGameLibrary(data); }
+  useEffect(() => { setGameLibrary({ games: [], runs: [], positions: [], cards: [], sessions: [] }); setGameTarget(localStorage.getItem('game-review:card:' + learnerId) ?? ''); setLibraryOpen(localStorage.getItem('game-review:open:' + learnerId) === 'true'); void refreshGames().then(async () => { await gameRepository.sync(learnerId); if (learnerIdentity.current === learnerId) await refreshGames(); }); }, [learnerId]);
+  useEffect(() => { if (workspaceReady === learnerId) localStorage.setItem('game-review:open:' + learnerId, String(libraryOpen)); }, [libraryOpen, learnerId, workspaceReady]);
   const activeConnectedLesson = connectedSession?.learnerId === learnerId ? repertoireGraph.connectedLessons?.[connectedSession.lessonKey] : undefined;
   const activeConceptDrill = repertoireGraph.conceptDrills?.[activeConceptKey];
   const trainingContext = useRef('');
@@ -258,7 +269,7 @@ export default function App() {
     const unfinished = lessonSessions.filter((s) => s.learnerId === learnerId && s.lessonKey === lesson.key && !s.supersededAt && (checkpoint
       ? s.reviewCheckpointId === checkpoint && (!s.completedAt || (currentDailyTarget(dailySession)?.contentKey === target && s.completedAt >= dailySession!.createdAt))
       : !s.reviewCheckpointId)).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
-    const destination = mode === 'today' || mode === 'repertoire' || (mode === 'game-review' && activeGap) ? mode : 'opening-trainer';
+    const destination = mode === 'today' || mode === 'repertoire' || (mode === 'game-review' && (activeGap || libraryOpen)) ? mode : 'opening-trainer';
     engineRef.current.stop();
     const next = saved ?? unfinished ?? createLessonSession(lesson, learnerId, destination, checkpoint);
     const opened = continuationTarget && lesson.continuation ? openContinuation(next, lesson.continuation) : next;
@@ -404,7 +415,7 @@ export default function App() {
     ? guidedSelections.map((selection) => selection.openingFamilyKey).filter((key) => Boolean(repertoireGraph.openings[key]))
     : ['white-vienna-main', 'black-caro-kann-main'].filter((key) => Boolean(repertoireGraph.openings[key]));
   const effectiveProfile: LearnerProfile = guidedProfile ?? { learnerId, depth: 'foundation', goal: 'basic-plans', dailyDurationMinutes: 10, onboardingCompleted: true, updatedAt: new Date(0).toISOString() };
-  const dailyPreview = useMemo(() => buildDailySession({ learnerId, durationMinutes: effectiveProfile.dailyDurationMinutes ?? 10, graph: repertoireGraph, selectedOpeningKeys, mastery: guidedMastery, backlog: guidedBacklog, lessonSessions: lessonSessions.filter((session) => session.learnerId === learnerId), profile: effectiveProfile, now: new Date().toISOString() }), [learnerId, effectiveProfile.dailyDurationMinutes, effectiveProfile.depth, effectiveProfile.goal, repertoireGraph, selectedOpeningKeys.join('|'), guidedMastery, guidedBacklog, lessonSessions]);
+  const dailyPreview = useMemo(() => buildDailySession({ learnerId, durationMinutes: effectiveProfile.dailyDurationMinutes ?? 10, graph: repertoireGraph, selectedOpeningKeys, mastery: guidedMastery, gameReviews: dueCards(learnerId, gameLibrary, new Date().toISOString()).map(({ card, mastery }) => ({ id: card.id, side: card.side, fen: card.finding.fen, dueAt: mastery.tactics.dueAt })), backlog: guidedBacklog, lessonSessions: lessonSessions.filter((session) => session.learnerId === learnerId), profile: effectiveProfile, now: new Date().toISOString() }), [learnerId, effectiveProfile.dailyDurationMinutes, effectiveProfile.depth, effectiveProfile.goal, repertoireGraph, selectedOpeningKeys.join('|'), guidedMastery, guidedBacklog, lessonSessions, gameLibrary]);
   function reviewMoveLabel(ply: number, san = '') { return moveLabel(ply, san, managerRef.current.getReplayPositions()[0]); }
 
   function refresh() {
@@ -459,8 +470,8 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (workspaceReady === learnerId && mode === 'game-review' && reviewMode === 'engine' && !activeGapId && engineAwaitingReply && !engineBusy) void playEngineReply();
-  }, [mode, reviewMode, workspaceReady]);
+    if (workspaceReady === learnerId && mode === 'game-review' && !libraryOpen && reviewMode === 'engine' && !activeGapId && engineAwaitingReply && !engineBusy) void playEngineReply();
+  }, [mode, reviewMode, workspaceReady, libraryOpen]);
 
   function createLegacySetup() {
     const setup = createLearnerSetup({
@@ -506,6 +517,7 @@ export default function App() {
   }
 
   function dailyTargetAvailable(kind: string, key: string) {
+    if (kind === 'game-position') return gameLibrary.cards.some((card) => key === 'game-position:' + card.id);
     if (kind === 'connected-lesson') return key.startsWith('session:') ? lessonSessions.some((session) => session.id === key.slice(8)) : Object.values(repertoireGraph.connectedLessons ?? {}).some((lesson) => key === lesson.key || key.startsWith(lesson.key + '/'));
     if (kind === 'opening-unit') return Boolean(repertoireGraph.learningUnits[key]);
     if (kind === 'concept-drill') return Boolean(repertoireGraph.conceptDrills?.[key]);
@@ -518,6 +530,7 @@ export default function App() {
   function dailyActivityMatches() {
     const target = currentDailyTarget(dailySession);
     if (!target) return false;
+    if (target.kind === 'game-position') return mode === 'game-review' && libraryOpen && target.contentKey === 'game-position:' + gameTarget;
     if (target.kind === 'connected-lesson') return mode === 'connected-lesson' && Boolean(connectedSession && (target.contentKey === 'session:' + connectedSession.id || (!connectedSession.reviewCheckpointId && target.contentKey === connectedSession.lessonKey) || target.contentKey === connectedSession.lessonKey + '/' + connectedSession.reviewCheckpointId));
     if (target.kind === 'concept-drill') return mode === 'idea-training' && activeConceptKey === target.contentKey;
     if (target.kind === 'study') return mode === 'curriculum' && target.contentKey === 'study:' + activeTask?.id;
@@ -529,6 +542,7 @@ export default function App() {
   function dailyActivityComplete() {
     const target = currentDailyTarget(dailySession);
     if (!target || !dailySession || !dailyActivityMatches()) return false;
+    if (target.kind === 'game-position') return gameLibrary.sessions.some((session) => session.id === target.attemptId && !!session.submittedAt);
     if (target.kind === 'connected-lesson') return target.lessonCheckpointId ? Boolean(connectedSession?.completedCheckpoints.includes(target.lessonCheckpointId)) : Boolean(connectedSession?.completedAt);
     if (target.kind === 'concept-drill') return mode === 'idea-training' && ideaSession?.drillKey === target.contentKey && ideaSession.stage === 'summary';
     if (target.kind === 'study') return mode === 'curriculum' && target.contentKey === 'study:' + activeTask?.id && Boolean(activeTask && curriculumAttempts[activeTask.id]?.lastReviewedAt >= dailySession.createdAt);
@@ -555,6 +569,7 @@ export default function App() {
 
   function outcomeForCurrentActivity(status: 'completed' | 'skipped', title?: string) {
     if (status === 'skipped') return { status, correct: 0, total: 0, assistanceUsed: 0, takeaway: `${title ?? 'This activity'} remains available for a later session.` } as const;
+    if (mode === 'game-review' && libraryOpen) { const answer = gameLibrary.sessions.find((s) => s.id === currentDailyTarget(dailySession)?.attemptId); return { status, correct: Number(answer?.correct), total: Number(!!answer?.submittedAt), assistanceUsed: Number(answer?.assisted), takeaway: 'Review the confirmed continuation in My games.' }; }
     if (mode === 'connected-lesson' && connectedSession) {
       const checkpoint = currentDailyTarget(dailySession)?.lessonCheckpointId;
       const answers = Object.entries(connectedSession.answers).filter(([key]) => !checkpoint || key === checkpoint).map(([, answer]) => answer);
@@ -633,6 +648,8 @@ export default function App() {
   }
 
   function startGuidedTarget(targetKey: string) {
+    if (targetKey.startsWith('game-position:')) { setGameTarget(targetKey.slice(14)); setLibraryOpen(true); setMode('game-review'); return; }
+    setLibraryOpen(false);
     targetKey = replacementTarget(repertoireGraph, targetKey);
     if (targetKey.startsWith('study:')) {
       const taskId = targetKey.slice(6);
@@ -1132,15 +1149,6 @@ export default function App() {
     if (guidedDetection?.coverageEnded) {
       setFeedback('You reached the end of this stored line. Choose a middlegame plan; the next move has not been classified as a mistake.');
     } else if (guidedDetection?.divergencePly && guidedDetection.matchedOpeningFamilyKey) {
-      const reason = guidedDetection.divergingSide === 'learner' ? 'forgotten-move' : 'opponent-deviation';
-      addGuidedBacklog({
-        positionKey: guidedDetection.lastKnownPositionKey,
-        reason,
-        openingFamilyKey: guidedDetection.matchedOpeningFamilyKey ?? undefined,
-        title: guidedDetection.divergingSide === 'learner'
-          ? `Compare the repertoire choice before ${reviewMoveLabel(guidedDetection.divergencePly, managerRef.current.snapshot().history[guidedDetection.divergencePly - 1])}`
-          : `Cover the opponent response at ${reviewMoveLabel(guidedDetection.divergencePly, managerRef.current.snapshot().history[guidedDetection.divergencePly - 1])}`
-      });
       setFeedback(`As ${reviewLearnerSide}, this game follows ${matchedOpening?.name ?? 'your repertoire'} through ${reviewMoveLabel(guidedDetection.matchedPlyCount, managerRef.current.snapshot().history[guidedDetection.matchedPlyCount - 1])}. ${guidedDetection.divergingSide === 'learner' ? 'Your move' : "The opponent's move"} differed from the stored line. This is a repertoire difference, not an evaluated mistake.`);
     } else if (guidedDetection?.matchedPlyCount) setFeedback(`As ${reviewLearnerSide}, the game stayed inside ${matchedOpening?.name ?? 'your selected repertoire'}.`);
     else setFeedback(`No ${reviewLearnerSide} repertoire match was found. The game is loaded and no review item was created.`);
@@ -1243,7 +1251,7 @@ export default function App() {
   }
 
   return (
-    <main className={`app-shell ${mode === 'idea-training' ? 'idea-workspace' : ''} ${!learnerSetup || mode === 'today' || mode === 'repertoire' ? 'overview-workspace' : ''}`}>
+    <main className={`app-shell ${mode === 'idea-training' ? 'idea-workspace' : ''} ${!learnerSetup || mode === 'today' || mode === 'repertoire' || (mode === 'game-review' && libraryOpen) ? 'overview-workspace' : ''}`}>
       <header className="topbar">
         <div>
           <p className="eyebrow">Chess Opening Trainer</p>
@@ -1274,7 +1282,7 @@ export default function App() {
       </header>
       {learnerSetup && dailySession?.status === 'active' && mode !== 'today' && <DailySessionBar session={dailySession} canComplete={dailyActivityComplete()} active={dailyActivityMatches()} onResume={() => startDaily(dailySession)} onComplete={() => finishDaily('completed')} onSkip={() => finishDaily('skipped')} onSave={() => mode === 'connected-lesson' ? exitConnectedLesson('today') : setMode('today')} />}
       {mode === 'connected-lesson' && activeConnectedLesson && connectedSession ? <ConnectedLessonWorkspace key={learnerId + ':' + connectedSession.id} lesson={activeConnectedLesson} initialSession={connectedSession} depth={effectiveProfile.depth} repository={learnerRepository} onSessionChange={trackLessonSession} onPersisted={refreshLessonProgress} onExit={exitConnectedLesson} /> : <section className="workspace">
-        {learnerSetup && mode !== 'today' && mode !== 'repertoire' && <div className="board-column">
+        {learnerSetup && mode !== 'today' && mode !== 'repertoire' && !(mode === 'game-review' && libraryOpen) && <div className="board-column">
           <ChessBoardUI
             fen={snapshot.fen}
             orientation={orientation}
@@ -1379,7 +1387,7 @@ export default function App() {
             {isContentEditor && <button className={mode === 'admin' ? 'active' : ''} type="button" onClick={() => setMode('admin')} title="Admin"><Shield size={17} />Admin</button>}
           </nav>
 
-          {learnerSetup && mode === 'today' && <TodayPanel dailySession={dailySession} preview={dailyPreview} profile={effectiveProfile} openings={Object.values(repertoireGraph.openings)} selectedOpeningKeys={selectedOpeningKeys} mastery={guidedMastery} sessions={lessonSessions} lessons={repertoireGraph.connectedLessons} backlog={guidedBacklog} onStart={startGuidedTarget} onStartSession={() => startDaily()} onContinueSession={() => dailySession && startDaily(dailySession)} onDuration={setDailyDuration} onPreferences={updatePreferences} />}
+          {learnerSetup && mode === 'today' && <TodayPanel dailySession={dailySession} preview={dailyPreview} profile={effectiveProfile} openings={Object.values(repertoireGraph.openings)} selectedOpeningKeys={selectedOpeningKeys} mastery={[...guidedMastery, ...gameLibrary.cards.map((card) => cardMastery(learnerId, card, gameLibrary.sessions))]} sessions={lessonSessions} lessons={repertoireGraph.connectedLessons} backlog={guidedBacklog} onStart={startGuidedTarget} onStartSession={() => startDaily()} onContinueSession={() => dailySession && startDaily(dailySession)} onDuration={setDailyDuration} onPreferences={updatePreferences} />}
 
           {learnerSetup && mode === 'repertoire' && <RepertoireMap onAdd={key => updatePreferences({ ...effectiveProfile, updatedAt: new Date().toISOString() }, [...new Set([...selectedOpeningKeys, key])])} onLine={(key) => { const line = trainer.findLine(key); if (line) { startOpening(line.parentLineId ?? key); setLineId(key); } }} sessions={lessonSessions} graph={repertoireGraph} selectedKeys={selectedOpeningKeys} mastery={guidedMastery} onTrain={startOpening} onPracticeIdeas={startIdeasForOpening} onConcept={startConceptDrill} onLesson={startConnectedLesson} />}
 
@@ -1632,9 +1640,10 @@ export default function App() {
             </section>
           )}
 
-          {learnerSetup && mode === 'game-review' && (
+          {learnerSetup && mode === 'game-review' && libraryOpen && <GameReviewWorkspace key={learnerId} owner={learnerId} repository={gameRepository} graph={repertoireGraph} selectedKeys={selectedOpeningKeys} targetCard={gameTarget} attemptId={currentDailyTarget(dailySession)?.kind === 'game-position' && currentDailyTarget(dailySession)?.contentKey === 'game-position:' + gameTarget ? currentDailyTarget(dailySession)?.attemptId : undefined} onChange={() => void refreshGames()} onCardChange={setGameTarget} onLesson={startConnectedLesson} onClose={() => { setLibraryOpen(false); setGameTarget(''); }} />}
+          {learnerSetup && mode === 'game-review' && !libraryOpen && (
             <section className="dock-panel">
-              <p className="eyebrow">Review workspace</p>
+              <p className="eyebrow">Review workspace</p><button className="primary-button" onClick={() => { engineRef.current.stop(); positionAnalysis.stop(); setGameTarget(''); setLibraryOpen(true); }}>My games · Import and analyse</button>
               <div className="segmented-control review-mode-switch" aria-label="Review purpose">
                 <button className={reviewMode === 'pgn' ? 'selected' : ''} type="button" onClick={() => switchReviewMode('pgn')}>
                   Review a game

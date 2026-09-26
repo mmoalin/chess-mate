@@ -13,6 +13,8 @@ export type AnalysisOptions = {
   depth?: number;
   moveTimeMs?: number;
   timeoutMs?: number;
+  hashMb?: number;
+  threads?: number;
 };
 
 export type EngineAnalysis = EngineInfo & {
@@ -81,6 +83,8 @@ export class EngineService {
       };
 
       worker.postMessage('uci');
+      if (options.threads) worker.postMessage(`setoption name Threads value ${options.threads}`);
+      if (options.hashMb) worker.postMessage(`setoption name Hash value ${options.hashMb}`);
       worker.postMessage('isready');
       worker.postMessage(`position fen ${fen}`);
       worker.postMessage(moveTimeMs ? `go movetime ${moveTimeMs}` : `go depth ${depth}`);
@@ -132,7 +136,7 @@ export class EngineService {
 
   private handleMessage(message: string) {
     const info = parseInfoLine(message);
-    if (info && this.pending) {
+    if (info && info.score && !/\b(?:lowerbound|upperbound)\b/.test(message) && this.pending) {
       this.pending.latestInfo = info;
     }
 

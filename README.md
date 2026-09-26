@@ -29,6 +29,12 @@ The [White course expansion](docs/white-opening-courses-2026-09-19.md) also uses
 
 The current [White 1.e4 companion release](docs/white-companions-2026-09-25.md) advances bundled content to release 5 while retaining schema 3. It includes 64 connected lessons and 82 drills overall, fingerprinted legacy verification, isolated engine evidence, and the corrected Caro continuation/drill with fresh replacement review targets. Publication instructions and local acceptance evidence are in the release note; production publication is a separate operation.
 
+### Personal game review
+
+**Review → My games · Import and analyse** saves single PGNs, analyses the chosen learner colour with local Stockfish, and offers up to three confirmed teaching moments. Add selected positions to assessed, spaced practice in the existing daily review slot. Games and drafts save locally first; account sync uses the additive `202609260001_game_review.sql` migration. Guest games are copied to an account only on request. Repertoire departures alone are never scheduled as forgotten moves.
+
+See [personal game review, verification and deployment instructions](docs/personal-game-review-2026-09-26.md). Course content stays at schema 3 and bundled release 5. Production deployment and migration application are separate actions.
+
 ### Opening training
 
 - Practice complete repertoire lines for White or Black on an interactive drag-and-drop board.

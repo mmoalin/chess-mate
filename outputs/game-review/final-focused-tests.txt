@@ -1,0 +1,8 @@
+
+ RUN  v4.1.9 C:/Dev/CodexApps/chess
+
+
+ Test Files  7 passed (7)
+      Tests  48 passed (48)
+   Start at  12:28:24
+   Duration  100.45s (transform 3.02s, setup 935ms, import 44.39s, tests 46.64s, environment 6.35s)

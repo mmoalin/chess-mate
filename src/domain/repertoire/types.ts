@@ -10,7 +10,7 @@ export type GuidanceKind = 'idea' | 'cue' | 'fallback' | 'mistake';
 export type MasteryDimension = 'recall' | 'understanding' | 'tactics';
 export type MasteryStatus = 'unseen' | 'learning' | 'due' | 'reliable';
 export type DailyDuration = 5 | 10 | 20;
-export type ActivityKind = 'connected-lesson' | 'opening-unit' | 'concept-drill' | 'study' | 'tactic' | 'saved-position';
+export type ActivityKind = 'connected-lesson' | 'opening-unit' | 'concept-drill' | 'study' | 'tactic' | 'saved-position' | 'game-position';
 
 export type ContentRelease = {
   id: string;

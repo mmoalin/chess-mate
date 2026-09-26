@@ -1,0 +1,1996 @@
+
+ RUN  v4.1.9 C:/Dev/CodexApps/chess
+
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > distinguishes exhausted coverage from a real line difference 176ms
+ ✓ src/features/guided/guidedFlow.test.tsx > guided repertoire flow > captures rating and goal, then builds a position-based repertoire map 2696ms
+ ✓ src/features/guided/guidedFlow.test.tsx > guided repertoire flow > shows a bounded guided session in Today 1820ms
+ ✓ src/features/guided/guidedFlow.test.tsx > guided repertoire flow > moves through a daily routine and ends with a recap 2686ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > does not create a forgotten-move item after reaching the end of a stored line 7193ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > uses real activity estimates and a focused checkpoint for short sessions 3ms
+ ✓ src/features/guided/guidedFlow.test.tsx > guided repertoire flow > retains idea-first practice from the opening and checks the plan before board play 1429ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > requires explanation and a legal reply in the independent challenge 2239ms
+ ✓ src/features/guided/guidedFlow.test.tsx > guided repertoire flow > connects a line to its model continuation, tactical position and plan lesson 2106ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > restores an unsubmitted independent decision without awarding credit 1641ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > compares a legal alternative and returns to the exact checkpoint with analysis assistance 902ms
+ ✓ src/features/guided/guidedFlow.test.tsx > guided repertoire flow > restores a tactical decision after a wrong move and resets when returning to line training 2020ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ignores a late comparison result after returning to the lesson 665ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > keeps a diagnostic separate from a scheduled full lesson and records skipped answers as partial 2750ms
+ ✓ src/features/guided/guidedFlow.test.tsx > guided repertoire flow > lets learners choose a specific opening plan from the repertoire 2872ms
+ ✓ src/features/guided/guidedFlow.test.tsx > guided repertoire flow > restores anonymous onboarding from local storage after remount 1153ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:vienna-development 5031ms
+ ✓ src/features/guided/guidedFlow.test.tsx > guided repertoire flow > keeps a PGN repertoire departure separate from scheduled mistakes 4554ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:caro-active 4973ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:vienna-accepted 4678ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:vienna-d6 4033ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:vienna-premature-nc6 4480ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:vienna-nc6 4868ms
+ ✓ src/features/connected/whiteCourses.test.ts > complete White opening courses > ships all eleven core White chapters with source lines, explanations and contrasting drills 13144ms
+ ✓ src/features/connected/whiteCourses.test.ts > complete White opening courses > replays and persists every Vienna: turn initiative into a plan continuation checkpoint 287ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:queens-gambit-qgd 5886ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:queens-gambit-accepted 4698ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:queens-gambit-slav 4731ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:queens-gambit-tarrasch 5922ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:queens-gambit-chigorin 4660ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:queens-gambit-albin 4440ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:alien-gambit-main 5218ms
+ ✓ src/features/connected/whiteCourses.test.ts > complete White opening courses > replays and persists every Queen’s Gambit Declined: the Exchange structure continuation checkpoint 314ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:alien-gambit-central-counterattack 6811ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:alien-gambit-active-bishop 7038ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:alien-gambit-decline 5229ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:alien-gambit-nbd7 5475ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-caro-kann-main:advance 5389ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-caro-kann-main:advance-h4 6184ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-caro-kann-main:exchange 4584ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-caro-kann-main:panov 4721ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-caro-kann-main:fantasy 3821ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-caro-kann-main:two-knights 3984ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-main 5273ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:english 5239ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:bg5 5375ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:bc4 6296ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:f4 5491ms
+ ✓ src/features/connected/whiteCourses.test.ts > complete White opening courses > matches branch-specific games and transpositions, with a main-chapter fallback for shared prefixes 33133ms
+ ✓ src/features/connected/whiteCourses.test.ts > complete White opening courses > orders chapters deterministically and schedules a main journey before unstarted sidelines 8ms
+ ✓ src/features/connected/whiteCourses.test.ts > complete White opening courses > opens and completes an exact two-minute review without completing the opening lesson 22ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:g3 4483ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:alapin 3991ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:closed 4796ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:grand-prix 4346ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:moscow 3036ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-sicilian-basic:dragon 4501ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-alien-main 2958ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-alien-gambit-defense:quiet 9570ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-alien-gambit-defense:f4 13512ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-alien-gambit-defense:accepted 12422ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-vienna-main 16489ms
+ × src/features/connected/whiteCourses.test.ts > conservative White course upgrades > upgrades a complete legacy bundle and preserves release identity and existing lesson keys 80972ms
+   → Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-vienna-main:exd5 9998ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-vienna-main:bc4 9805ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-vienna-main:g3 7895ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-vienna-main:d3 11962ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-queens-gambit-main 11202ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-queens-gambit-main:bg5 9322ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-queens-gambit-main:nge2 10532ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-queens-gambit-main:bf4 4567ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-queens-gambit-main:catalan 4491ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-london-main 4774ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-london-main:ne5 5777ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-london-main:exchange 4722ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:black-london-main:jobava 4463ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-sicilian-alapin:main 5368ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-sicilian-alapin:nf6 5264ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-sicilian-alapin:nc6 4651ms
+ × src/features/connected/whiteCourses.test.ts > conservative White course upgrades > preserves edited lessons, custom journeys and drills while upgrading unchanged source lines 88504ms
+   → Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/features/connected/whiteCourses.test.ts > conservative White course upgrades > skips edited family dependencies while allowing independent courses 109438ms
+   → Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-sicilian-alapin:d6 5757ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-french-advance:main 5874ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-french-advance:exchange 5792ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > restores an unsubmitted choice without revealing feedback or creating an attempt 1888ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > restores a wrong question without regrading it 296ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > restores a corrected question without regrading it 131ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > restores a correct question without regrading it 133ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > restores a assisted question without regrading it 106ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > restores a legacy-corrected question without regrading it 130ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-french-advance:bd7 7579ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 4581ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-french-advance:f6 6534ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 6383ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-caro-exchange:main 6643ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3529ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3237ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-caro-exchange:bf5 5085ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3418ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3328ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-caro-exchange:bg4 6205ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 4444ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > ends practice after four learner moves and preserves its recap for lesson:white-caro-exchange:g6 6000ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > continues an optional journey opened from a structure checkpoint without completing that checkpoint 439ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > validates and persists the complete endgame journey for white 17ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > validates and persists the complete endgame journey for black 44ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3357ms
+ ✓ src/features/connected/learningExperience.test.tsx > learning experience integrity > plays the Caro-Kann journey, survives remount, and preserves a wrong first answer on retry 1604ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3030ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3437ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3402ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3917ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3540ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 5039ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3699ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 4025ms
+ ✓ src/features/connected/alienCourses.test.ts > Alien Gambit course > validates complete chapters and preserves all existing Alien source records 14733ms
+ ✓ src/features/connected/alienCourses.test.ts > Alien Gambit course > routes accepted branches and genuine Nd2 transpositions to the right chapter 5542ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 5606ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 4151ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3155ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3130ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3722ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3228ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2899ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3990ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 4307ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3667ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2143ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2265ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2210ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3209ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2374ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2409ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2022ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2383ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2374ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2407ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2429ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3329ms
+ ✓ src/features/connected/alienCourses.test.ts > Alien Gambit course > persists every journey checkpoint before and after submission without changing another White course 321ms
+ ✓ src/features/connected/alienCourses.test.ts > Alien Gambit course > keeps assistance and unknown legal exploration separate from independent answers 30ms
+ ✓ src/features/connected/alienCourses.test.ts > Alien Gambit course > schedules its journey before unstarted sidelines and provides exact two-minute reviews 54ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 4100ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 2931ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 10009ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 4999ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3857ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3607ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 4227ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3442ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 4496ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3266ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3526ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 4263ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3828ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for black 3158ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 3449ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2713ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2322ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2101ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2489ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2162ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2103ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2080ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2565ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2422ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2754ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > finishes both branches and hands the exact position to Stockfish for white 2972ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > restores from the app after a reload and leaves history inspection ungraded 873ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > ignores an engine answer after returning to the lesson 263ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > discards analysis when the lesson moves to a different position 249ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > keeps a completed lesson available when the engine is unavailable or the game is over 362ms
+ ✓ src/features/connected/ConnectedLessonWorkspace.test.tsx > connected lesson interface > preserves old results and requires restart when content changes 241ms
+ × src/features/connected/alienCourses.test.ts > Alien release compatibility > upgrades the previous White release through cached loading with every dependency 62903ms
+   → Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ × src/features/connected/alienCourses.test.ts > Alien release compatibility > preserves edited source records and authored Alien journeys 95618ms
+   → Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ✓ src/features/connected/whiteCompanions.test.ts > White companion release > ships complete legal chapters, two contrasting scenarios and continuous journeys 15314ms
+ ✓ src/features/connected/whiteCompanions.test.ts > White companion release > persists first answers and reopens all six exact journey checkpoints for white-sicilian-alapin 162ms
+ ✓ src/features/connected/whiteCompanions.test.ts > White companion release > persists first answers and reopens all six exact journey checkpoints for white-french-advance 208ms
+ ✓ src/features/connected/whiteCompanions.test.ts > White companion release > persists first answers and reopens all six exact journey checkpoints for white-caro-exchange 189ms
+ ✓ src/features/connected/whiteCompanions.test.ts > White companion release > resolves the Sicilian/French transposition without duplicating lessons or Black progress 2785ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > ships six families, 34 core chapters, optional alternatives and a complete source graph 11235ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > preserves every old lesson answer, journey identity, and original source line 15ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > resolves each branch and same-position opposite-colour courses independently 23464ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > uses active course descriptors and keeps optional chapters after every core chapter 2ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > persists, resumes and reviews all six journey decisions: black-sicilian-basic 329ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > persists, resumes and reviews all six journey decisions: black-alien-gambit-defense 332ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > persists, resumes and reviews all six journey decisions: black-vienna-main 303ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > persists, resumes and reviews all six journey decisions: black-queens-gambit-main 431ms
+ ✓ src/features/connected/whiteCompanions.test.ts > White companion release > derives availability from active metadata and rejects false coverage declarations 10939ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > persists, resumes and reviews all six journey decisions: black-london-main 325ms
+ ✓ src/features/connected/blackCourses.test.ts > Black course contracts > allows the main journey before sidelines and preserves assistance versus legal exploration 28ms
+ ✓ src/features/connected/blackCourses.test.ts > shared compiler and safe course upgrades > rejects wrong turns, missing edges and duplicate checkpoint identities 6ms
+ × src/features/connected/whiteCompanions.test.ts > White companion release > atomically upgrades a previous cache, installs French dependencies and preserves unrelated teaching 77806ms
+   → Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ✓ src/features/connected/whiteCompanions.test.ts > White companion release > preserves custom Caro content and reports the correction conflict 48260ms
+ ✓ src/features/connected/whiteCompanions.test.ts > White companion release > keeps historic Caro mastery but schedules replacement checkpoints without inherited credit 9ms
+ ✓ src/domain/repertoire/domain.test.ts > guided repertoire domain > canonicalizes clocks and irrelevant en-passant fields while preserving meaningful position state 20ms
+ × src/features/connected/blackCourses.test.ts > shared compiler and safe course upgrades > upgrades an old cached bundle atomically and keeps release and learner records intact 101205ms
+   → Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ✓ src/domain/repertoire/domain.test.ts > guided repertoire domain > compiles every legacy line into a valid graph and learning units 21278ms
+ ✓ src/features/connected/blackCourses.test.ts > shared compiler and safe course upgrades > preserves edited source families and authored journeys while upgrading independent packages 46584ms
+ ✓ src/features/connected/blackCourses.test.ts > shared compiler and safe course upgrades > does not repair a deleted source edge by attaching a dependent course 17143ms
+ ✓ src/domain/repertoire/domain.test.ts > guided repertoire domain > classifies repertoire, alternative, and uncovered moves without treating all differences as errors 11813ms
+ ✓ src/domain/repertoire/domain.test.ts > guided repertoire domain > schedules failures sooner and grows intervals after unassisted success 2ms
+ ✓ src/domain/repertoire/domain.test.ts > guided repertoire domain > matches PGN paths and identifies the side responsible for a divergence 12757ms
+ ✓ src/domain/repertoire/domain.test.ts > guided repertoire domain > chooses the strongest family match instead of the first shared opening move 17581ms
+ ✓ src/domain/repertoire/domain.test.ts > guided repertoire domain > creates the same key for a transposed position 12ms
+ ✓ src/usabilityFixes.test.tsx > usability regression flows > restores an opening Plan Lab at the same scenario after refresh 6405ms
+ ✓ src/usabilityFixes.test.tsx > usability regression flows > returns a due Study review to its own module and task 1393ms
+ ✓ src/usabilityFixes.test.tsx > usability regression flows > preserves an unanswered engine turn across reload and provides a working retry 3222ms
+ ✓ src/usabilityFixes.test.tsx > usability regression flows > records revealed tactical answers without awarding unassisted mastery 1928ms
+ ✓ src/services/guidedContentRepository.test.ts > GuidedContentRepository > supplements an unchanged cached Caro-Kann while preserving remote edits and authored journeys 17264ms
+ ✓ src/services/guidedContentRepository.test.ts > GuidedContentRepository > serves a validated embedded published release when Supabase is unavailable 4ms
+ ✓ src/services/guidedContentRepository.test.ts > GuidedContentRepository > requires Supabase for shared draft creation 5ms
+ ✓ src/services/guidedContentRepository.test.ts > GuidedContentRepository > round-trips connected lesson branches through a content release 29354ms
+ ✓ src/usabilityFixes.test.tsx > usability regression flows > uses the endgame board, retries a wrong move, and keeps Study progress after remount 2254ms
+ ✓ src/usabilityFixes.test.tsx > usability regression flows > keeps a valid game on invalid input and restores the selected replay position 5934ms
+ × src/usabilityFixes.test.tsx > usability regression flows > saves gap notes, returns from the related lesson, and lets a reviewed gap reopen 4047ms
+   → Unable to find an accessible element with the role "button" and name `/Open saved position/`
+
+Here are the accessible roles:
+
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"app-shell  overview-workspace"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"topbar"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"eyebrow"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"eyebrow"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"eyebrow"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"analysis"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"analysis"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"analysis reliability-note"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"analysis"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Today":
+  [36m<h1 />[39m
+
+  Name "Progress Sync":
+  [36m<h2 />[39m
+
+  Name "Your guided practice":
+  [36m<h2[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "Saved positions":
+  [36m<h3 />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Show moves":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Show moves"[39m
+    [33mclass[39m=[32m"icon-button"[39m
+    [33mtitle[39m=[32m"Show moves"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Reset board":
+  [36m<button[39m
+    [33mclass[39m=[32m"icon-button"[39m
+    [33mtitle[39m=[32m"Reset board"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Sign in":
+  [36m<button[39m
+    [33mclass[39m=[32m"primary-button"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Create account":
+  [36m<button[39m
+    [33mclass[39m=[32m"secondary-button"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Today":
+  [36m<button[39m
+    [33mclass[39m=[32m"active"[39m
+    [33mtitle[39m=[32m"Today"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Repertoire":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtitle[39m=[32m"Repertoire"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Train openings":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtitle[39m=[32m"Train openings"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Study":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtitle[39m=[32m"Study"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Review":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtitle[39m=[32m"Review"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "5 min":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "10 min":
+  [36m<button[39m
+    [33mclass[39m=[32m"selected"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "20 min":
+  [36m<button[39m
+    [33mclass[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Start session":
+  [36m<button[39m
+    [33mclass[39m=[32m"primary-button session-start"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Add White 1.e4 companion courses":
+  [36m<button[39m
+    [33mclass[39m=[32m"secondary-button"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"account-menu"[39m
+  [36m/>[39m
+
+  Name "Daily session length":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Daily session length"[39m
+    [33mclass[39m=[32m"duration-picker"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"training-preferences"[39m
+  [36m/>[39m
+
+  Name "My openings":
+  [36m<fieldset />[39m
+
+  Name "":
+  [36m<details[39m
+    [33mclass[39m=[32m"reviewed-positions"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Account":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Account"[39m
+    [33mclass[39m=[32m"account-strip"[39m
+  [36m/>[39m
+
+  Name "Today workspace":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Today workspace"[39m
+    [33mclass[39m=[32m"dock-panel guided-today"[39m
+  [36m/>[39m
+
+  Name "Learning progress":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Learning progress"[39m
+    [33mclass[39m=[32m"progress-story"[39m
+  [36m/>[39m
+
+  Name "Saved positions":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Saved positions"[39m
+    [33mclass[39m=[32m"saved-positions"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<p[39m
+    [33maria-live[39m=[32m"polite"[39m
+    [33mclass[39m=[32m"muted auth-message"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Email":
+  [36m<input[39m
+    [33mplaceholder[39m=[32m"you@example.com"[39m
+    [33mtype[39m=[32m"email"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  complementary:
+
+  Name "Task dock":
+  [36m<aside[39m
+    [33maria-label[39m=[32m"Task dock"[39m
+    [33mclass[39m=[32m"task-dock"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Chess modes":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Chess modes"[39m
+    [33mclass[39m=[32m"mode-tabs"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "Daily activity preview":
+  [36m<ol[39m
+    [33maria-label[39m=[32m"Daily activity preview"[39m
+    [33mclass[39m=[32m"session-preview"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Training goal":
+  [36m<select />[39m
+
+  Name "Depth":
+  [36m<select />[39m
+
+  --------------------------------------------------
+  option:
+
+  Name "Learn basic plans":
+  [36m<option[39m
+    [33mvalue[39m=[32m"basic-plans"[39m
+  [36m/>[39m
+
+  Name "Become tactically dangerous":
+  [36m<option[39m
+    [33mvalue[39m=[32m"tactical-danger"[39m
+  [36m/>[39m
+
+  Name "Learn sharper lines":
+  [36m<option[39m
+    [33mvalue[39m=[32m"sharp-gambits"[39m
+  [36m/>[39m
+
+  Name "Build a deeper repertoire":
+  [36m<option[39m
+    [33mvalue[39m=[32m"deep-repertoire"[39m
+  [36m/>[39m
+
+  Name "Foundation":
+  [36m<option[39m
+    [33mvalue[39m=[32m"foundation"[39m
+  [36m/>[39m
+
+  Name "Standard":
+  [36m<option[39m
+    [33mvalue[39m=[32m"standard"[39m
+  [36m/>[39m
+
+  Name "Deep":
+  [36m<option[39m
+    [33mvalue[39m=[32m"deep"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "White · Alien Gambit: f7 Attack":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Black · Alien Gambit: Calm Defense":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "White · Vienna Game: Main Development Plan":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "White · London System: Solid Middlegame Setup":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Black · Sicilian Defense: Open Sicilian Development Plan":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Black · Caro-Kann: Classical Active Structure":
+  [36m<input[39m
+    [33mchecked[39m=[32m""[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "White · Queen’s Gambit: practical White repertoire":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Black · Vienna: central counterplay for Black":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Black · Queen’s Gambit: QGD for Black":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "Black · London: challenge the centre":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "White · Alapin Sicilian: build and defend the centre":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "White · French Advance: support the pawn chain":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  Name "White · Caro-Kann Exchange: active development":
+  [36m<input[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"app-shell  overview-workspace"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"topbar"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"eyebrow"[39m
+          [36m>[39m
+            [0mChess Opening Trainer[0m
+          [36m</p>[39m
+          [36m<h1>[39m
+            [0mToday[0m
+          [36m</h1>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"topbar-actions"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Show moves"[39m
+            [33mclass[39m=[32m"icon-button"[39m
+            [33mtitle[39m=[32m"Show moves"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-list"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 12h.01"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 18h.01"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 6h.01"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8 12h13"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8 18h13"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8 6h13"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"icon-button"[39m
+            [33mtitle[39m=[32m"Reset board"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-rotate-ccw"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 3v5h5"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+          [36m<details[39m
+            [33mclass[39m=[32m"account-menu"[39m
+          [36m>[39m
+            [36m<summary>[39m
+              [0mSign in / sync[0m
+            [36m</summary>[39m
+            [36m<section[39m
+              [33maria-label[39m=[32m"Account"[39m
+              [33mclass[39m=[32m"account-strip"[39m
+            [36m>[39m
+              [36m<div>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"eyebrow"[39m
+                [36m>[39m
+                  [0mAccount[0m
+                [36m</p>[39m
+                [36m<h2>[39m
+                  [0mProgress Sync[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33maria-live[39m=[32m"polite"[39m
+                  [33mclass[39m=[32m"muted auth-message"[39m
+                  [33mrole[39m=[32m"status"[39m
+                [36m>[39m
+                  [0mMissing VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in the deployed build. Add the variables and redeploy.[0m
+                [36m</p>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"auth-grid"[39m
+              [36m>[39m
+                [36m<label[39m
+                  [33mclass[39m=[32m"field-label"[39m
+                [36m>[39m
+                  [0mEmail[0m
+                  [36m<input[39m
+                    [33mplaceholder[39m=[32m"you@example.com"[39m
+                    [33mtype[39m=[32m"email"[39m
+                    [33mvalue[39m=[32m""[39m
+                  [36m/>[39m
+                [36m</label>[39m
+                [36m<label[39m
+                  [33mclass[39m=[32m"field-label"[39m
+                [36m>[39m
+                  [0mPassword[0m
+                  [36m<input[39m
+                    [33mplaceholder[39m=[32m"At least 6 characters"[39m
+                    [33mtype[39m=[32m"password"[39m
+                    [33mvalue[39m=[32m""[39m
+                  [36m/>[39m
+                [36m</label>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"primary-button"[39m
+                  [33mdisabled[39m=[32m""[39m
+                  [33mtype[39m=[32m"button"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-log-in"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"16"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"16"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"[39m
+                    [36m/>[39m
+                    [36m<polyline[39m
+                      [33mpoints[39m=[32m"10 17 15 12 10 7"[39m
+                    [36m/>[39m
+                    [36m<line[39m
+                      [33mx1[39m=[32m"15"[39m
+                      [33mx2[39m=[32m"3"[39m
+                      [33my1[39m=[32m"12"[39m
+                      [33my2[39m=[32m"12"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                  [0mSign in[0m
+                [36m</button>[39m
+                [36m<button[39m
+                  [33mclass[39m=[32m"secondary-button"[39m
+   ...
+ ✓ src/usabilityFixes.test.tsx > usability regression flows > shows completed lessons separately from reliable units in Today and Repertoire 1369ms
+ ✓ src/features/connected/ContinuationJourneyWorkspace.test.tsx > continuous journey interactions > restores a pending choice, explanation and reply, then retains a wrong first result after retry 5875ms
+ ✓ src/features/connected/ContinuationJourneyWorkspace.test.tsx > continuous journey interactions > requires an explicit return from an alternative and replays the bridge without changing answers 2742ms
+ ✓ src/features/connected/ContinuationJourneyWorkspace.test.tsx > continuous journey interactions > explores an unassessed move and discards late analysis without grading it 1353ms
+ ✓ src/App.test.tsx > App > lands on Today with one next action after onboarding 1102ms
+ ✓ src/App.test.tsx > App > keeps repertoire moves above lesson details in the task dock 691ms
+stderr | src/App.test.tsx > App > shows setup before mounting the interactive board
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/App.test.tsx > App > shows setup before mounting the interactive board
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/App.test.tsx > App > shows setup before mounting the interactive board
+An update to App inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ✓ src/App.test.tsx > App > shows setup before mounting the interactive board 108ms
+ ✓ src/App.test.tsx > App > uses a single task dock instead of stacked utility cards 989ms
+ ✓ src/App.test.tsx > App > opens move history as a collapsed drawer utility 1470ms
+ ✓ src/features/connected/ContinuationJourneyWorkspace.test.tsx > continuous journey interactions > completes all six decisions, exposes the whole replay and preserves the separate endgame exercise 9832ms
+ ✓ src/App.test.tsx > App > navigates the board to a clicked move in the move history 4085ms
+ ✓ src/features/connected/ContinuationJourneyWorkspace.test.tsx > continuous journey interactions > opens the new journey from the structure guide and restores it after leaving Today 3339ms
+ ✓ src/App.test.tsx > App > switches to game review mode from the mode tabs 1114ms
+ ✓ src/App.test.tsx > App > uses Review for both PGN replay and engine play 1702ms
+ ✓ src/App.test.tsx > App > copies played moves as standard PGN 1303ms
+ ✓ src/App.test.tsx > App > switches to the curriculum study workflow 1306ms
+ ✓ src/App.test.tsx > App > lets a beginner use hint and reveal during opening practice 1535ms
+ ✓ src/App.test.tsx > App > navigates the board when a repertoire move chip is clicked 862ms
+ ✓ src/App.test.tsx > App > scores an interactive curriculum choice and unlocks the next task 1471ms
+ ✓ src/App.test.tsx > App > detects where a review PGN leaves the selected repertoire 1230ms
+ ✓ src/App.test.tsx > App > shows beginner difficulty and middlegame ideas for the default opening line 572ms
+ ✓ src/App.test.tsx > App > surfaces theory branches without making them the default lesson 512ms
+ ✓ src/App.ux-regression.test.tsx > UX review regressions > preserves an engine game across Study, Today, the active mode button, and reload 5084ms
+ ✓ src/App.ux-regression.test.tsx > UX review regressions > keeps the imported PGN and selected replay ply separate from engine and Study boards 5303ms
+ ✓ src/App.ux-regression.test.tsx > UX review regressions > ignores an interrupted reply and requests exactly one replacement on return 1643ms
+ ✓ src/App.ux-regression.test.tsx > UX review regressions > retains each Study task board when changing tasks and workspaces 2349ms
+ ✓ src/App.ux-regression.test.tsx > UX review regressions > retries 'e3' from the exact position without regrading the correction 1725ms
+ ✓ src/App.ux-regression.test.tsx > UX review regressions > retries 'a3' from the exact position without regrading the correction 2259ms
+ ✓ src/App.ux-regression.test.tsx > UX review regressions > retries 'Bd6' from the exact position without regrading the correction 2724ms
+ ✓ src/App.ux-regression.test.tsx > UX review regressions > restores the correct turn before Reveal and keeps exploration ungraded 3299ms
+ ✓ src/features/guided/ideaTraining.test.ts > idea-first training > ships valid decision drills across Alien Gambit, Vienna, Queen’s Gambit and Caro-Kann 13840ms
+ ✓ src/features/guided/ideaTraining.test.ts > idea-first training > moves through plan, two decisions, and summary 2ms
+ ✓ src/features/guided/ideaTraining.test.ts > idea-first training > accepts authored alternatives and applies the engine thresholds 3ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna: turn initiative into a plan 91ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 67ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Caro-Kann: stay solid and active 112ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 129ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna: meet the accepted gambit 16ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 51ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna: build against …d6 13ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 31ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna: resolve the centre after …Nc6 10ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 31ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna: develop with Bc4 against …Nc6 12ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 38ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Queen’s Gambit Declined: the Exchange structure 57ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 88ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Queen’s Gambit Accepted: recover through development 15ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 40ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Queen’s Gambit: active play in the Exchange Slav 14ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 47ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Queen’s Gambit: blockade the Tarrasch pawn 29ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 49ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Queen’s Gambit: meet the Chigorin’s piece activity 13ms
+ ✓ src/components/AuthPanel.test.tsx > AuthPanel > lets a new learner switch to registration and create an account 759ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 41ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Queen’s Gambit: contain the Albin wedge 11ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 24ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alien Gambit: the sacrifice and its real cost 68ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 64ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alien Gambit: meet the immediate …c5 counterattack 42ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 73ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alien Gambit: checks against …Bf5 48ms
+ ✓ src/components/AuthPanel.test.tsx > AuthPanel > signs in an existing learner with labelled fields 435ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 110ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alien Gambit: keep the knight against …Bf5 35ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 87ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alien Gambit: develop against …Nbd7 36ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 105ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Advance: challenge the supported centre 41ms
+ ✓ src/components/AuthPanel.test.tsx > AuthPanel > shows sign-in errors in the live status region 466ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 97ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Advance: handle the bishop chase 33ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 68ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Exchange: active pieces behind the pawns 25ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 62ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Panov: activity around the isolated pawn 36ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 84ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Fantasy: respond to f3 in the centre 21ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 67ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Two Knights: development before pawn hunting 26ms
+ ✓ src/components/AuthPanel.test.tsx > AuthPanel > turns a network failure into an actionable account-service message 551ms
+ ✓ src/components/AuthPanel.test.tsx > AuthPanel > explains when Supabase is not configured 51ms
+ ✓ src/components/AuthPanel.test.tsx > AuthPanel > shows the missing Supabase env vars when sync is unavailable 4ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 65ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Open Sicilian: meet Be2 with coordination 129ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 75ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in English Attack: respect opposite-wing attacks 46ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 97ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Bg5: account for the pin 39ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 82ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Bc4: cover the central diagonals 35ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 79ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Early f4: meet space with central control 30ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 75ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Fianchetto: contest the long diagonal 37ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 84ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alapin: challenge the planned pawn centre 21ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 51ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Closed Sicilian: prepare the central response 25ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 66ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Grand Prix: challenge the attacking centre 27ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 61ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Moscow: resolve the checking bishop 18ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 32ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Optional Dragon: defend the long diagonal 53ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 96ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alien defense: meet direct Bc4 pressure 124ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 93ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alien defense: meet Bd3 and the knight retreat 42ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 82ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alien defense: challenge the pawn attack 44ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 69ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Optional Alien recovery: coordinate after Kxf7 46ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 84ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna Gambit: counter the advanced e-pawn 127ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 98ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna Gambit: respond to the central exchange 23ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 73ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna Bc4: develop against f7 pressure 19ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 55ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna g3: meet the long diagonal 18ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 63ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Vienna d3: improve before expanding 19ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 52ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in QGD Exchange: counter the minority attack 137ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 87ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in QGD Bg5: release the pin with development 33ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 74ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in QGD Exchange: meet the central expansion 45ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 85ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in QGD Bf4: contest the active bishop 25ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 60ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Catalan: account for the long diagonal 25ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 69ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in London triangle: challenge d4 138ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 93ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in London Ne5: answer the kingside foothold 102ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 152ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in London exchanges: reassess the open files 54ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 115ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Jobava: handle Nc3 and direct threats 24ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for black 70ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alapin: meet the immediate …d5 128ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 103ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alapin: meet the immediate …Nf6 37ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 113ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alapin: use the tempo after …Nc6 48ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 112ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Alapin: build the centre against …d6 35ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 115ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in French Advance: defend d4 against …Qb6 177ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 102ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in French Advance: recapture after early …cxd4 39ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 106ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in French Advance: develop against …Bd7 46ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 105ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in French Advance: reassess after …f6 41ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 112ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Caro Exchange: develop with Bd3 144ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 134ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Caro Exchange: meet the early …Bf5 34ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 107ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Caro Exchange: account for …Bg4 56ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 147ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > validates every authored path in Caro Exchange: meet the fianchetto 43ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > completes linked decisions and visibly rewinds for white 109ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > keeps the first answer and assistance on retry 9ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > restores a mistake and keeps unauthored moves ungraded 29ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > scores recall only when explicitly enabled and resumes the exact checkpoint 21ms
+ ✓ src/features/connected/session.test.ts > connected lesson sessions > rejects discontinuities and stale content 103ms
+ ✓ src/components/ChessBoardUI.input.test.tsx > board input > has one named tab stop and plays using square navigation 851ms
+ ✓ src/components/ChessBoardUI.input.test.tsx > board input > reverses arrow directions for Black and lets Escape cancel selection 895ms
+ ✓ src/components/ChessBoardUI.input.test.tsx > board input > does not allow tap moves on an inspection board 536ms
+ ✓ src/features/guided/WhiteCoverageMap.test.tsx > White reply coverage and companion selection > shows unsupported replies, limited Alien scope and exact resume destinations 715ms
+ ✓ src/features/guided/WhiteCoverageMap.test.tsx > White reply coverage and companion selection > adds only available courses without removing or duplicating existing selections 73ms
+ ✓ src/features/guided/WhiteCoverageMap.test.tsx > White reply coverage and companion selection > keeps onboarding defaults until the learner explicitly adds the pack 323ms
+ ✓ src/features/gameReview/gameReview.test.ts > single-game import > deduplicates headers, comments and variations but separates learner colour 22ms
+ ✓ src/features/gameReview/gameReview.test.ts > single-game import > preserves a custom FEN and promotion 3ms
+ ✓ src/features/gameReview/gameReview.test.ts > single-game import > accepts castling and terminal main lines 9ms
+ ✓ src/features/gameReview/gameReview.test.ts > single-game import > rejects unsupported input: 1. e4 e5 1-0
+1. d4 d5 0-1 3ms
+ ✓ src/features/gameReview/gameReview.test.ts > single-game import > rejects unsupported input: [Event "A"]
+1. e4 *
+[Event "B"]
+1. d4 * 0ms
+ ✓ src/features/gameReview/gameReview.test.ts > single-game import > rejects unsupported input: 1. e5 * 1ms
+ ✓ src/features/gameReview/gameReview.test.ts > single-game import > rejects unsupported input: 1. e4 (1. d4 0ms
+ ✓ src/features/gameReview/gameReview.test.ts > single-game import > rejects unsupported input: [Variant "Chess960"]
+1. e4 * 1ms
+ ✓ src/features/gameReview/gameReview.test.ts > single-game import > enforces byte and ply limits 92ms
+ ✓ src/features/gameReview/gameReview.test.ts > score perspective and confirmation > publishes only confirmed findings, ranks ties by ply and prefers four-ply separation 65ms
+ ✓ src/features/gameReview/gameReview.test.ts > score perspective and confirmation > assesses legal alternatives at depth 16 and leaves missing evidence ungraded 8ms
+ ✓ src/features/gameReview/gameReview.test.ts > score perspective and confirmation > normalises both colours without turning mate into centipawns 36ms
+ ✓ src/features/gameReview/gameReview.test.ts > score perspective and confirmation > handles checkmate and draws without starting the engine 1ms
+ ✓ src/features/gameReview/gameReview.test.ts > score perspective and confirmation > retains incremental results, confirms losses and resumes from exact cached evidence 15ms
+ ✓ src/features/gameReview/gameReview.test.ts > score perspective and confirmation > keeps worker failures incomplete, then resumes without losing successful results 6ms
+ ✓ src/features/gameReview/gameReview.test.ts > score perspective and confirmation > rejects shallow results and ignores stale replies after cancellation 7ms
+ ✓ src/features/gameReview/gameReview.test.ts > local repository and practice history > isolates accounts, requires explicit guest copy and preserves cards after game deletion 3ms
+ ✓ src/features/gameReview/gameReview.test.ts > local repository and practice history > keeps drafts and the first due answer authoritative across retries 23ms
+ ✓ src/features/guided/blackCourseNavigation.test.tsx > Black course navigation > preserves the onboarding defaults and offers targeted Black additions separately 944ms
+ ✓ src/features/guided/blackCourseNavigation.test.tsx > Black course navigation > shows core chapters, secondary optional study and honest 1.d4 coverage 837ms
+ ✓ src/features/guided/TodayPanel.test.tsx > counts distinct recently practised skills, preserves the answer recap, and expires old practice 267ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > replays from the original opening through all six checkpoints to a rook ending 346ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > rejects disconnected prefixes, illegal alternatives and missing explanations 109ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 1, candidate 1 and reopens its exact position 24ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 1, candidate 2 and reopens its exact position 15ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 2, candidate 1 and reopens its exact position 14ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 2, candidate 2 and reopens its exact position 15ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 3, candidate 1 and reopens its exact position 18ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 3, candidate 2 and reopens its exact position 23ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 4, candidate 1 and reopens its exact position 19ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 4, candidate 2 and reopens its exact position 19ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 5, candidate 1 and reopens its exact position 26ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 5, candidate 2 and reopens its exact position 23ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 6, candidate 1 and reopens its exact position 27ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > assesses checkpoint 6, candidate 2 and reopens its exact position 27ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > keeps unknown legal moves ungraded and opens isolated exploration 7ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > separates unassessed replies from wrong answers and preserves that first submission 16ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > retains a wrong first reason, assistance, reflections and attempt identity across storage and retries 30ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > detects the documented rook blunder without calling the opponent recapture wrong 25ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > does not grade illegal reply notation or finish an untouched checkpoint 7ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > preserves old endgame progress and returns an alternative to the exact main continuation 21ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > schedules new and due continuation checkpoints as two-minute activities 22ms
+ ✓ src/features/connected/continuationJourney.test.ts > legacy continuous Caro-Kann content and assessment compatibility > bounds a daily resume of an unfinished full journey without losing its session identity 1ms
+ ✓ src/data/repertoires.test.ts > starterRepertoires > contains legal SAN sequences from the starting position 100ms
+ ✓ src/data/repertoires.test.ts > starterRepertoires > keeps theory branches linked to real beginner parent lines 1ms
+ ✓ src/data/repertoires.test.ts > starterRepertoires > gives every line a middlegame plan and valid model position 4ms
+ ✓ src/data/repertoires.test.ts > starterRepertoires > keeps middlegame plan moves legal from the model position 100ms
+ ✓ src/data/repertoires.test.ts > starterRepertoires > includes both Alien Gambit sides and critical positions 3ms
+ ✓ src/services/engineService.test.ts > engine output parsing > parses bestmove lines 4ms
+ ✓ src/services/engineService.test.ts > engine output parsing > parses centipawn and mate evaluation lines 1ms
+ ✓ src/services/engineService.test.ts > engine output parsing > reports candidate loss in centipawns from the original mover perspective 5ms
+ ✓ src/services/engineService.test.ts > engine lifecycle > rejects overlapping requests and settles cancelled promises 4ms
+ ✓ src/services/engineService.test.ts > engine lifecycle > settles a no-move response and never starts a worker for a terminal position 2ms
+ ✓ src/services/engineService.test.ts > engine lifecycle > times out and rejects worker startup failures 6ms
+ ✓ src/services/usePositionAnalysis.test.tsx > position-bound analysis > discards a late answer after changing position and clearing existing advice 38ms
+ ✓ src/services/usePositionAnalysis.test.tsx > position-bound analysis > clears completed advice when the learning context changes at the same position 14ms
+ ✓ src/services/usePositionAnalysis.test.tsx > position-bound analysis > uses SAN and states a consistent White evaluation perspective 2ms
+ ✓ src/core/gameManager.test.ts > GameManager > round-trips a study position PGN and preserves it when a later import fails 23ms
+ ✓ src/core/gameManager.test.ts > GameManager > accepts legal moves and rejects illegal moves without changing position 14ms
+ ✓ src/core/gameManager.test.ts > GameManager > imports a PGN and exposes every replay position 13ms
+ ✓ src/services/lessonPersistence.test.ts > lesson persistence > atomically retains the session, first answer and one mastery increment despite duplicate saves 29ms
+ ✓ src/services/lessonPersistence.test.ts > lesson persistence > retains pending writes through a network failure and retries with stable IDs 15ms
+ ✓ src/services/lessonPersistence.test.ts > lesson persistence > rejects answers owned by another account 19ms
+ ✓ src/services/lessonPersistence.test.ts > lesson persistence > does not rescore remotely committed answers when opening a session on another device 11ms
+ ✓ scripts/verification-policy.test.mjs > verification baseline safety > exempts only fingerprinted legacy assessments, independently of colour and naming 10ms
+ ✓ scripts/verification-policy.test.mjs > verification baseline safety > isolates side, course and exclusion evidence 2ms
+ ✓ src/services/guidedLearnerRepository.test.ts > GuidedLearnerRepository offline mode > persists profile, selections, attempts, mastery, and deduplicated backlog without Supabase 6ms
+ ✓ src/services/guidedLearnerRepository.test.ts > GuidedLearnerRepository offline mode > surfaces Supabase read errors instead of treating them as empty data 4ms
+ ✓ src/services/guidedLearnerRepository.test.ts > GuidedLearnerRepository offline mode > upserts repertoire selections on their user and opening identity 4ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for opening-principles-explain-development 5ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for opening-principles-find-center 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for opening-principles-choose-plan 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for pawn-chains-find-base 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for pawn-chains-choose-break 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for pawn-chains-model-structure 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for open-files-find-file 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for open-files-choose-entry 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for open-files-calculate-trade 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for imbalances-compare-pieces 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for imbalances-choose-trade 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for imbalances-calculate-plan 0ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for basic-endgames-opposition 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for basic-endgames-passed-pawn 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for basic-endgames-rook-activity 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for alien-recognize 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for alien-white-plan 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > has a legal, playable exercise for alien-black-plan 1ms
+ ✓ src/features/curriculum/studyPositions.test.ts > task-owned study positions > takes opposition in the endgame position, independent of any opening selection 3ms
+ ✓ src/services/supabasePersistence.test.ts > Supabase progress mappers > persists guest attempts across repository instances without remote writes 4ms
+ ✓ src/services/supabasePersistence.test.ts > Supabase progress mappers > still writes authenticated progress to the configured backend 3ms
+ ✓ src/services/supabasePersistence.test.ts > Supabase progress mappers > round-trips position progress rows 1ms
+ ✓ src/services/supabasePersistence.test.ts > Supabase progress mappers > round-trips training progress rows 0ms
+ ✓ src/services/supabasePersistence.test.ts > Supabase progress mappers > uses non-null adaptive defaults for a basic opening progress save 1ms
+ ✓ src/services/supabasePersistence.test.ts > Supabase progress mappers > round-trips curriculum progress rows 1ms
+ ✓ src/features/journey/journey.test.ts > learner journey helpers > creates beginner setup defaults with recommended first white and black lines 6ms
+ ✓ src/features/journey/journey.test.ts > learner journey helpers > does not recommend theory branches as the beginner setup default 1ms
+ ✓ src/features/journey/journey.test.ts > learner journey helpers > recommends due review before new study and falls back to the first setup line 1ms
+ ✓ src/features/journey/journey.test.ts > learner journey helpers > creates a review item from an incorrect opening move with weak themes 1ms
+ ✓ src/features/journey/journey.test.ts > learner journey helpers > scores curriculum attempts from useful beginner explanations 1ms
+ ✓ src/features/journey/journey.test.ts > learner journey helpers > detects a matching opening prefix from PGN move history 1ms
+ ✓ src/features/journey/journey.test.ts > learner journey helpers > summarizes due reviews, mastered lines, and weak themes for the dashboard 0ms
+ ✓ src/features/curriculum/curriculum.test.ts > curriculum module validation > accepts each original starter module 5ms
+ ✓ src/features/curriculum/curriculum.test.ts > curriculum module validation > reports missing required fields, duplicate task ids, and invalid completion references 1ms
+ ✓ src/features/curriculum/curriculum.test.ts > curriculum progress calculations > calculates completion percentage, score percentage, and unmet criteria 1ms
+ ✓ src/features/curriculum/curriculum.test.ts > curriculum progress calculations > marks a module complete when required tasks and minimum score are met 1ms
+ ✓ src/core/errors.test.ts > error reporting > extracts messages from Error instances, strings, and Supabase-style objects 5ms
+ ✓ src/core/errors.test.ts > error reporting > reports background failures with their operation context 4ms
+ ✓ src/features/openings/openingTrainer.test.ts > OpeningTrainer > marks a correct move and advances the expected move index 4ms
+ ✓ src/features/openings/openingTrainer.test.ts > OpeningTrainer > marks incorrect moves as needs-review without advancing 1ms
+ ✓ src/features/openings/openingTrainer.test.ts > OpeningTrainer > evaluates expected and acceptable critical-position moves 1ms
+ ✓ src/features/openings/openingTrainer.test.ts > OpeningTrainer > returns side-specific repertoire lines 1ms
+ ✓ src/features/openings/openingTrainer.test.ts > OpeningTrainer > filters lines by strategic theme tags 1ms
+ ✓ src/features/openings/openingTrainer.test.ts > OpeningTrainer > returns move explanations and common mistake notes by move index 1ms
+ ✓ src/features/openings/openingTrainer.test.ts > OpeningTrainer > sorts beginner lines before theory branches while keeping side filtering 0ms
+ ✓ src/features/openings/openingTrainer.test.ts > OpeningTrainer > finds theory branches that build from a parent beginner line 0ms
+ ✓ src/domain/repertoire/dailySessions.test.ts > daily learning sessions > fits game-position practice into the review slot without extending the budget 9ms
+ ✓ src/domain/repertoire/dailySessions.test.ts > daily learning sessions > fits real review and focused-learning estimates into the chosen time budget 4ms
+ ✓ src/domain/repertoire/dailySessions.test.ts > daily learning sessions > keeps outcomes idempotent and ends after the final target 2ms
+ ✓ src/components/ChessBoardUI.test.ts > chessboard promotion handling > does not tag ordinary moves as promotions 3ms
+ ✓ src/components/ChessBoardUI.test.ts > chessboard promotion handling > defaults a last-rank pawn move to a queen 1ms
+ ✓ src/features/connected/recommendations.test.ts > connected lesson recommendations > prioritizes unfinished sessions, then exact due checkpoints, then new lessons 8ms
+ ✓ src/features/connected/recommendations.test.ts > connected lesson recommendations > does not confuse checkpoint review with whole-lesson completion or restart with resume 1ms
+ ✓ src/core/notation.test.ts > scoresheet notation > uses full move numbers and distinguishes Black moves 4ms
+ ✓ src/core/notation.test.ts > scoresheet notation > honors a custom starting position’s side and full move number 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/usabilityFixes.test.tsx > usability regression flows > saves gap notes, returns from the related lesson, and lets a reviewed gap reopen
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name `/Open saved position/`
+
+Here are the accessible roles:
+
+  main:
+
+  Name "":
+  <main
+    class="app-shell  overview-workspace"
+  />
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  <header
+    class="topbar"
+  />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  <p
+    class="eyebrow"
+  />
+
+  Name "":
+  <p
+    class="eyebrow"
+  />
+
+  Name "":
+  <p
+    class="eyebrow"
+  />
+
+  Name "":
+  <p
+    class="analysis"
+  />
+
+  Name "":
+  <p
+    class="analysis"
+  />
+
+  Name "":
+  <p
+    class="analysis reliability-note"
+  />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="analysis"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Today":
+  <h1 />
+
+  Name "Progress Sync":
+  <h2 />
+
+  Name "Your guided practice":
+  <h2
+    tabindex="-1"
+  />
+
+  Name "Saved positions":
+  <h3 />
+
+  --------------------------------------------------
+  button:
+
+  Name "Show moves":
+  <button
+    aria-label="Show moves"
+    class="icon-button"
+    title="Show moves"
+    type="button"
+  />
+
+  Name "Reset board":
+  <button
+    class="icon-button"
+    title="Reset board"
+    type="button"
+  />
+
+  Name "Sign in":
+  <button
+    class="primary-button"
+    disabled=""
+    type="button"
+  />
+
+  Name "Create account":
+  <button
+    class="secondary-button"
+    disabled=""
+    type="button"
+  />
+
+  Name "Today":
+  <button
+    class="active"
+    title="Today"
+    type="button"
+  />
+
+  Name "Repertoire":
+  <button
+    class=""
+    title="Repertoire"
+    type="button"
+  />
+
+  Name "Train openings":
+  <button
+    class=""
+    title="Train openings"
+    type="button"
+  />
+
+  Name "Study":
+  <button
+    class=""
+    title="Study"
+    type="button"
+  />
+
+  Name "Review":
+  <button
+    class=""
+    title="Review"
+    type="button"
+  />
+
+  Name "5 min":
+  <button
+    class=""
+    type="button"
+  />
+
+  Name "10 min":
+  <button
+    class="selected"
+    type="button"
+  />
+
+  Name "20 min":
+  <button
+    class=""
+    type="button"
+  />
+
+  Name "Start session":
+  <button
+    class="primary-button session-start"
+    type="button"
+  />
+
+  Name "Add White 1.e4 companion courses":
+  <button
+    class="secondary-button"
+    type="button"
+  />
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  <details
+    class="account-menu"
+  />
+
+  Name "Daily session length":
+  <div
+    aria-label="Daily session length"
+    class="duration-picker"
+    role="group"
+  />
+
+  Name "":
+  <details
+    class="training-preferences"
+  />
+
+  Name "My openings":
+  <fieldset />
+
+  Name "":
+  <details
+    class="reviewed-positions"
+  />
+
+  --------------------------------------------------
+  region:
+
+  Name "Account":
+  <section
+    aria-label="Account"
+    class="account-strip"
+  />
+
+  Name "Today workspace":
+  <section
+    aria-label="Today workspace"
+    class="dock-panel guided-today"
+  />
+
+  Name "Learning progress":
+  <section
+    aria-label="Learning progress"
+    class="progress-story"
+  />
+
+  Name "Saved positions":
+  <section
+    aria-label="Saved positions"
+    class="saved-positions"
+  />
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  <p
+    aria-live="polite"
+    class="muted auth-message"
+    role="status"
+  />
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Email":
+  <input
+    placeholder="you@example.com"
+    type="email"
+    value=""
+  />
+
+  --------------------------------------------------
+  complementary:
+
+  Name "Task dock":
+  <aside
+    aria-label="Task dock"
+    class="task-dock"
+  />
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Chess modes":
+  <nav
+    aria-label="Chess modes"
+    class="mode-tabs"
+  />
+
+  --------------------------------------------------
+  list:
+
+  Name "Daily activity preview":
+  <ol
+    aria-label="Daily activity preview"
+    class="session-preview"
+  />
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  <li
+    class=""
+  />
+
+  Name "":
+  <li
+    class=""
+  />
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  <strong />
+
+  Name "":
+  <strong />
+
+  Name "":
+  <strong />
+
+  Name "":
+  <strong />
+
+  Name "":
+  <strong />
+
+  Name "":
+  <strong />
+
+  Name "":
+  <strong />
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Training goal":
+  <select />
+
+  Name "Depth":
+  <select />
+
+  --------------------------------------------------
+  option:
+
+  Name "Learn basic plans":
+  <option
+    value="basic-plans"
+  />
+
+  Name "Become tactically dangerous":
+  <option
+    value="tactical-danger"
+  />
+
+  Name "Learn sharper lines":
+  <option
+    value="sharp-gambits"
+  />
+
+  Name "Build a deeper repertoire":
+  <option
+    value="deep-repertoire"
+  />
+
+  Name "Foundation":
+  <option
+    value="foundation"
+  />
+
+  Name "Standard":
+  <option
+    value="standard"
+  />
+
+  Name "Deep":
+  <option
+    value="deep"
+  />
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "White · Alien Gambit: f7 Attack":
+  <input
+    type="checkbox"
+  />
+
+  Name "Black · Alien Gambit: Calm Defense":
+  <input
+    type="checkbox"
+  />
+
+  Name "White · Vienna Game: Main Development Plan":
+  <input
+    checked=""
+    type="checkbox"
+  />
+
+  Name "White · London System: Solid Middlegame Setup":
+  <input
+    type="checkbox"
+  />
+
+  Name "Black · Sicilian Defense: Open Sicilian Development Plan":
+  <input
+    type="checkbox"
+  />
+
+  Name "Black · Caro-Kann: Classical Active Structure":
+  <input
+    checked=""
+    type="checkbox"
+  />
+
+  Name "White · Queen’s Gambit: practical White repertoire":
+  <input
+    type="checkbox"
+  />
+
+  Name "Black · Vienna: central counterplay for Black":
+  <input
+    type="checkbox"
+  />
+
+  Name "Black · Queen’s Gambit: QGD for Black":
+  <input
+    type="checkbox"
+  />
+
+  Name "Black · London: challenge the centre":
+  <input
+    type="checkbox"
+  />
+
+  Name "White · Alapin Sicilian: build and defend the centre":
+  <input
+    type="checkbox"
+  />
+
+  Name "White · French Advance: support the pawn chain":
+  <input
+    type="checkbox"
+  />
+
+  Name "White · Caro-Kann Exchange: active development":
+  <input
+    type="checkbox"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <main
+      class="app-shell  overview-workspace"
+    >
+      <header
+        class="topbar"
+      >
+        <div>
+          <p
+            class="eyebrow"
+          >
+            Chess Opening Trainer
+          </p>
+          <h1>
+            Today
+          </h1>
+        </div>
+        <div
+          class="topbar-actions"
+        >
+          <button
+            aria-label="Show moves"
+            class="icon-button"
+            title="Show moves"
+            type="button"
+          >
+            <svg
+              class="lucide lucide-list"
+              fill="none"
+              height="18"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 12h.01"
+              />
+              <path
+                d="M3 18h.01"
+              />
+              <path
+                d="M3 6h.01"
+              />
+              <path
+                d="M8 12h13"
+              />
+              <path
+                d="M8 18h13"
+              />
+              <path
+                d="M8 6h13"
+              />
+            </svg>
+          </button>
+          <button
+            class="icon-button"
+            title="Reset board"
+            type="button"
+          >
+            <svg
+              class="lucide lucide-rotate-ccw"
+              fill="none"
+              height="18"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
+              />
+              <path
+                d="M3 3v5h5"
+              />
+            </svg>
+          </button>
+          <details
+            class="account-menu"
+          >
+            <summary>
+              Sign in / sync
+            </summary>
+            <section
+              aria-label="Account"
+              class="account-strip"
+            >
+              <div>
+                <p
+                  class="eyebrow"
+                >
+                  Account
+                </p>
+                <h2>
+                  Progress Sync
+                </h2>
+                <p
+                  aria-live="polite"
+                  class="muted auth-message"
+                  role="status"
+                >
+                  Missing VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in the deployed build. Add the variables and redeploy.
+                </p>
+              </div>
+              <div
+                class="auth-grid"
+              >
+                <label
+                  class="field-label"
+                >
+                  Email
+                  <input
+                    placeholder="you@example.com"
+                    type="email"
+                    value=""
+                  />
+                </label>
+                <label
+                  class="field-label"
+                >
+                  Password
+                  <input
+                    placeholder="At least 6 characters"
+                    type="password"
+                    value=""
+                  />
+                </label>
+                <button
+                  class="primary-button"
+                  disabled=""
+                  type="button"
+                >
+                  <svg
+                    class="lucide lucide-log-in"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"
+                    />
+                    <polyline
+                      points="10 17 15 12 10 7"
+                    />
+                    <line
+                      x1="15"
+                      x2="3"
+                      y1="12"
+                      y2="12"
+                    />
+                  </svg>
+                  Sign in
+                </button>
+                <button
+                  class="secondary-button"
+   ...
+ ❯ Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ click src/usabilityFixes.test.tsx:15:65
+
+ ❯ src/usabilityFixes.test.tsx:96:33
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  src/features/connected/alienCourses.test.ts > Alien release compatibility > upgrades the previous White release through cached loading with every dependency
+Error: Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/features/connected/alienCourses.test.ts:121:3
+    119|
+    120| describe('Alien release compatibility', () => {
+    121|   it('upgrades the previous White release through cached loading with …
+       |   ^
+    122|     const store = new GuidedBrowserStore();
+    123|     const before = structuredClone(preAlienEmbeddedRepertoireGraph);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  src/features/connected/alienCourses.test.ts > Alien release compatibility > preserves edited source records and authored Alien journeys
+Error: Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/features/connected/alienCourses.test.ts:139:3
+    137|   });
+    138|
+    139|   it('preserves edited source records and authored Alien journeys', ()…
+       |   ^
+    140|     const before = structuredClone(preAlienEmbeddedRepertoireGraph);
+    141|     before.openings[family].summary = 'An editor’s repertoire';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  src/features/connected/blackCourses.test.ts > shared compiler and safe course upgrades > upgrades an old cached bundle atomically and keeps release and learner records intact
+Error: Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/features/connected/blackCourses.test.ts:144:3
+    142|   });
+    143|
+    144|   it('upgrades an old cached bundle atomically and keeps release and l…
+       |   ^
+    145|     const store = new GuidedBrowserStore(); const before = structuredC…
+    146|     await store.put('content:published', before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  src/features/connected/whiteCompanions.test.ts > White companion release > atomically upgrades a previous cache, installs French dependencies and preserves unrelated teaching
+Error: Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/features/connected/whiteCompanions.test.ts:81:3
+     79|   });
+     80|
+     81|   it('atomically upgrades a previous cache, installs French dependenci…
+       |   ^
+     82|     const store = new GuidedBrowserStore(); const before = structuredC…
+     83|     await store.put('content:published', before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  src/features/connected/whiteCourses.test.ts > conservative White course upgrades > upgrades a complete legacy bundle and preserves release identity and existing lesson keys
+Error: Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/features/connected/whiteCourses.test.ts:111:3
+    109|
+    110| describe('conservative White course upgrades', () => {
+    111|   it('upgrades a complete legacy bundle and preserves release identity…
+       |   ^
+    112|     const before = structuredClone(legacyEmbeddedRepertoireGraph);
+    113|     before.release.id = 'remote-published-id';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  src/features/connected/whiteCourses.test.ts > conservative White course upgrades > preserves edited lessons, custom journeys and drills while upgrading unchanged source lines
+Error: Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/features/connected/whiteCourses.test.ts:124:3
+    122|   });
+    123|
+    124|   it('preserves edited lessons, custom journeys and drills while upgra…
+       |   ^
+    125|     const before = structuredClone(legacyEmbeddedRepertoireGraph);
+    126|     before.connectedLessons![vienna.key].decisions.develop.prompt = 'A…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  src/features/connected/whiteCourses.test.ts > conservative White course upgrades > skips edited family dependencies while allowing independent courses
+Error: Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/features/connected/whiteCourses.test.ts:136:3
+    134|   });
+    135|
+    136|   it('skips edited family dependencies while allowing independent cour…
+       |   ^
+    137|     const before = structuredClone(legacyEmbeddedRepertoireGraph);
+    138|     before.openings[vienna.openingFamilyKey].summary = 'An edited repe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  5 failed | 34 passed (39)
+      Tests  8 failed | 510 passed (518)
+   Start at  12:04:30
+   Duration  1029.28s (transform 8.53s, setup 6.86s, import 237.90s, tests 1756.37s, environment 40.53s)

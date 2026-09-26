@@ -10,6 +10,7 @@ import { createLessonSession } from './features/connected/session';
 import { EngineService } from './services/engineService';
 import { createInitialMastery } from './domain/repertoire/training';
 import { embeddedRepertoireGraph } from './services/guidedContentRepository';
+import { buildPositionKey } from './domain/repertoire/positionKey';
 
 vi.mock('react-chessboard', () => ({ Chessboard: ({ options }: any) => <div aria-label="Test board" data-fen={options.position}>{new Chess(options.position).moves({ verbose: true }).map((m) => <button key={m.san} onClick={() => options.onPieceDrop({ sourceSquare: m.from, targetSquare: m.to })}>{'Play ' + m.san}</button>)}</div> }));
 const click = (name: string | RegExp) => userEvent.click(screen.getByRole('button', { name }));
@@ -89,6 +90,9 @@ describe('usability regression flows', () => {
   });
 
   it('saves gap notes, returns from the related lesson, and lets a reviewed gap reopen', async () => {
+    // Preserve a historical saved position; new PGN imports no longer schedule departures.
+    const previous = new Chess(); previous.loadPgn('1. e4 e5 2. Nc3 Nf6');
+    await new GuidedLearnerRepository(null).saveBacklogItem({ id:'historical-gap', learnerId:'local', positionKey:buildPositionKey(previous.fen()), reason:'forgotten-move', openingFamilyKey:'white-vienna-main', title:'Historical Vienna position', status:'new', createdAt:'2026-09-01T00:00:00Z' });
     const first = render(<App />); await click(/Start learning/i); await click('Review');
     await userEvent.clear(screen.getByRole('textbox', { name: 'PGN input' }));
     await userEvent.type(screen.getByRole('textbox', { name: 'PGN input' }), '1. e4 e5 2. Nc3 Nf6 3. Bc4'); await click('Load PGN');

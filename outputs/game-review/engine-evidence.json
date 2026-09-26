@@ -1,0 +1,662 @@
+{
+  "engine": "Stockfish 17.1 ASM (same asset as browser)",
+  "game": {
+    "schema": 1,
+    "id": "b6c625a89e24e7368c77b4f4875042ff3051926f608594219ade61e961abdc35",
+    "fingerprint": "b6c625a89e24e7368c77b4f4875042ff3051926f608594219ade61e961abdc35",
+    "headers": {
+      "Event": "Local verification",
+      "Site": "?",
+      "Date": "????.??.??",
+      "Round": "?",
+      "White": "?",
+      "Black": "?",
+      "Result": "*",
+      "SetUp": "1",
+      "FEN": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1"
+    },
+    "startFen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+    "moves": [
+      "d1d2",
+      "d8d2"
+    ],
+    "sans": [
+      "Qd2",
+      "Rxd2"
+    ],
+    "fens": [
+      "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+      "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+      "6k1/6pp/8/8/8/8/3r2PP/6K1 w - - 0 2"
+    ],
+    "pgn": "[Event \"Local verification\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n[SetUp \"1\"]\n[FEN \"3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1\"]\n\n1. Qd2 Rxd2 *",
+    "side": "white",
+    "createdAt": "2026-09-26T11:19:06.206Z"
+  },
+  "positions": [
+    {
+      "schema": 1,
+      "id": "verification:12:3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+      "runId": "verification",
+      "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+      "depth": 12,
+      "evidence": {
+        "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+        "version": "stockfish-17.1-game-v1",
+        "settings": {
+          "depth": 12,
+          "timeoutMs": 15000,
+          "threads": 1,
+          "hashMb": 16
+        },
+        "requestedDepth": 12,
+        "depth": 12,
+        "score": {
+          "type": "cp",
+          "value": 505
+        },
+        "pv": [
+          "d1d8",
+          "g8f7",
+          "g2g4",
+          "g7g6",
+          "g1f2",
+          "h7h6",
+          "d8d5",
+          "f7g7"
+        ]
+      }
+    },
+    {
+      "schema": 1,
+      "id": "verification:12:3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+      "runId": "verification",
+      "fen": "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+      "depth": 12,
+      "evidence": {
+        "fen": "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+        "version": "stockfish-17.1-game-v1",
+        "settings": {
+          "depth": 12,
+          "timeoutMs": 15000,
+          "threads": 1,
+          "hashMb": 16
+        },
+        "requestedDepth": 12,
+        "depth": 12,
+        "score": {
+          "type": "cp",
+          "value": 474
+        },
+        "pv": [
+          "d8d2",
+          "h2h4",
+          "g8f7",
+          "g1f1",
+          "d2d8",
+          "g2g3",
+          "h7h6",
+          "f1g2",
+          "g7g5",
+          "h4g5",
+          "h6g5",
+          "g2f1"
+        ]
+      }
+    },
+    {
+      "schema": 1,
+      "id": "verification:assessment:0:12",
+      "runId": "verification",
+      "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+      "depth": 12,
+      "assessment": {
+        "before": {
+          "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+          "version": "stockfish-17.1-game-v1",
+          "settings": {
+            "depth": 12,
+            "timeoutMs": 15000,
+            "threads": 1,
+            "hashMb": 16
+          },
+          "requestedDepth": 12,
+          "depth": 12,
+          "score": {
+            "type": "cp",
+            "value": 505
+          },
+          "pv": [
+            "d1d8",
+            "g8f7",
+            "g2g4",
+            "g7g6",
+            "g1f2",
+            "h7h6",
+            "d8d5",
+            "f7g7"
+          ]
+        },
+        "after": {
+          "fen": "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+          "version": "stockfish-17.1-game-v1",
+          "settings": {
+            "depth": 12,
+            "timeoutMs": 15000,
+            "threads": 1,
+            "hashMb": 16
+          },
+          "requestedDepth": 12,
+          "depth": 12,
+          "score": {
+            "type": "cp",
+            "value": 474
+          },
+          "pv": [
+            "d8d2",
+            "h2h4",
+            "g8f7",
+            "g1f1",
+            "d2d8",
+            "g2g3",
+            "h7h6",
+            "f1g2",
+            "g7g5",
+            "h4g5",
+            "h6g5",
+            "g2f1"
+          ]
+        },
+        "side": "white",
+        "played": "d1d2",
+        "afterFen": "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+        "learnerLossCp": 979,
+        "lostForcedWin": false,
+        "allowedForcedLoss": false
+      }
+    },
+    {
+      "schema": 1,
+      "id": "verification:16:3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+      "runId": "verification",
+      "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+      "depth": 16,
+      "evidence": {
+        "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+        "version": "stockfish-17.1-game-v1",
+        "settings": {
+          "depth": 16,
+          "timeoutMs": 30000,
+          "threads": 1,
+          "hashMb": 16
+        },
+        "requestedDepth": 16,
+        "depth": 16,
+        "score": {
+          "type": "cp",
+          "value": 751
+        },
+        "pv": [
+          "d1d8",
+          "g8f7",
+          "g1f2",
+          "f7e6",
+          "f2f3",
+          "h7h5",
+          "f3f4",
+          "h5h4",
+          "d8h4",
+          "e6d6",
+          "f4f5",
+          "d6c7"
+        ]
+      }
+    },
+    {
+      "schema": 1,
+      "id": "verification:16:3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+      "runId": "verification",
+      "fen": "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+      "depth": 16,
+      "evidence": {
+        "fen": "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+        "version": "stockfish-17.1-game-v1",
+        "settings": {
+          "depth": 16,
+          "timeoutMs": 30000,
+          "threads": 1,
+          "hashMb": 16
+        },
+        "requestedDepth": 16,
+        "depth": 16,
+        "score": {
+          "type": "cp",
+          "value": 587
+        },
+        "pv": [
+          "d8d2",
+          "h2h4",
+          "g8f7",
+          "g1h2",
+          "f7g6",
+          "h2g3",
+          "g6f5",
+          "g3f3",
+          "d2d3",
+          "f3f2",
+          "h7h5",
+          "f2g1",
+          "d3d1",
+          "g1f2"
+        ]
+      }
+    },
+    {
+      "schema": 1,
+      "id": "verification:assessment:0:16",
+      "runId": "verification",
+      "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+      "depth": 16,
+      "assessment": {
+        "before": {
+          "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+          "version": "stockfish-17.1-game-v1",
+          "settings": {
+            "depth": 16,
+            "timeoutMs": 30000,
+            "threads": 1,
+            "hashMb": 16
+          },
+          "requestedDepth": 16,
+          "depth": 16,
+          "score": {
+            "type": "cp",
+            "value": 751
+          },
+          "pv": [
+            "d1d8",
+            "g8f7",
+            "g1f2",
+            "f7e6",
+            "f2f3",
+            "h7h5",
+            "f3f4",
+            "h5h4",
+            "d8h4",
+            "e6d6",
+            "f4f5",
+            "d6c7"
+          ]
+        },
+        "after": {
+          "fen": "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+          "version": "stockfish-17.1-game-v1",
+          "settings": {
+            "depth": 16,
+            "timeoutMs": 30000,
+            "threads": 1,
+            "hashMb": 16
+          },
+          "requestedDepth": 16,
+          "depth": 16,
+          "score": {
+            "type": "cp",
+            "value": 587
+          },
+          "pv": [
+            "d8d2",
+            "h2h4",
+            "g8f7",
+            "g1h2",
+            "f7g6",
+            "h2g3",
+            "g6f5",
+            "g3f3",
+            "d2d3",
+            "f3f2",
+            "h7h5",
+            "f2g1",
+            "d3d1",
+            "g1f2"
+          ]
+        },
+        "side": "white",
+        "played": "d1d2",
+        "afterFen": "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+        "learnerLossCp": 1338,
+        "lostForcedWin": false,
+        "allowedForcedLoss": false
+      }
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "completed": 1,
+    "complete": true,
+    "findings": [
+      {
+        "ply": 0,
+        "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+        "played": "d1d2",
+        "alternative": "d1d8",
+        "before": {
+          "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+          "version": "stockfish-17.1-game-v1",
+          "settings": {
+            "depth": 16,
+            "timeoutMs": 30000,
+            "threads": 1,
+            "hashMb": 16
+          },
+          "requestedDepth": 16,
+          "depth": 16,
+          "score": {
+            "type": "cp",
+            "value": 751
+          },
+          "pv": [
+            "d1d8",
+            "g8f7",
+            "g1f2",
+            "f7e6",
+            "f2f3",
+            "h7h5",
+            "f3f4",
+            "h5h4",
+            "d8h4",
+            "e6d6",
+            "f4f5",
+            "d6c7"
+          ]
+        },
+        "after": {
+          "fen": "3r2k1/6pp/8/8/8/8/3Q2PP/6K1 b - - 1 1",
+          "version": "stockfish-17.1-game-v1",
+          "settings": {
+            "depth": 16,
+            "timeoutMs": 30000,
+            "threads": 1,
+            "hashMb": 16
+          },
+          "requestedDepth": 16,
+          "depth": 16,
+          "score": {
+            "type": "cp",
+            "value": 587
+          },
+          "pv": [
+            "d8d2",
+            "h2h4",
+            "g8f7",
+            "g1h2",
+            "f7g6",
+            "h2g3",
+            "g6f5",
+            "g3f3",
+            "d2d3",
+            "f3f2",
+            "h7h5",
+            "f2g1",
+            "d3d1",
+            "g1f2"
+          ]
+        },
+        "loss": 1338,
+        "severity": 1338,
+        "category": "material",
+        "explanation": "The confirmed evaluation loss is 1338 centipawns. In the displayed continuation: Rxd2 captures a queen."
+      }
+    ]
+  },
+  "assessment": {
+    "correct": true,
+    "evidence": {
+      "fen": "3r2k1/6pp/8/8/8/8/6PP/3Q2K1 w - - 0 1",
+      "version": "stockfish-17.1-game-v1",
+      "settings": {
+        "depth": 16,
+        "timeoutMs": 30000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "requestedDepth": 16,
+      "depth": 16,
+      "score": {
+        "type": "cp",
+        "value": 751
+      },
+      "pv": [
+        "d1d8",
+        "g8f7",
+        "g1f2",
+        "f7e6",
+        "f2f3",
+        "h7h5",
+        "f3f4",
+        "h5h4",
+        "d8h4",
+        "e6d6",
+        "f4f5",
+        "d6c7"
+      ]
+    }
+  },
+  "alternativeAssessment": {
+    "correct": false,
+    "evidence": {
+      "fen": "3r2k1/6pp/8/8/8/8/6PP/4Q1K1 b - - 1 1",
+      "version": "stockfish-17.1-game-v1",
+      "settings": {
+        "depth": 16,
+        "timeoutMs": 30000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "requestedDepth": 16,
+      "depth": 16,
+      "score": {
+        "type": "cp",
+        "value": -288
+      },
+      "pv": [
+        "d8f8",
+        "e1e6",
+        "f8f7",
+        "h2h4",
+        "g7g6",
+        "g1h2",
+        "g8g7",
+        "h4h5",
+        "g6h5",
+        "e6e5",
+        "f7f6",
+        "e5e7",
+        "g7g6",
+        "h2h3",
+        "f6f4",
+        "e7e5",
+        "f4f6"
+      ]
+    }
+  },
+  "raw": [
+    "Stockfish 17.1 Lite ASM.JS by the Stockfish developers (see AUTHORS file)",
+    "id name Stockfish 17.1 Lite ASM.JS",
+    "id author the Stockfish developers (see AUTHORS file)",
+    "",
+    "option name Threads type spin default 1 min 1 max 1",
+    "option name Hash type spin default 16 min 1 max 33554432",
+    "option name Clear Hash type button",
+    "option name Ponder type check default false",
+    "option name MultiPV type spin default 1 min 1 max 256",
+    "option name Skill Level type spin default 20 min 0 max 20",
+    "option name Move Overhead type spin default 10 min 0 max 5000",
+    "option name nodestime type spin default 0 min 0 max 10000",
+    "option name UCI_Chess960 type check default false",
+    "option name UCI_LimitStrength type check default false",
+    "option name UCI_Elo type spin default 1320 min 1320 max 3190",
+    "option name UCI_ShowWDL type check default false",
+    "option name EvalFile type string default nn-9067e33176e8.nnue",
+    "option name EvalFileSmall type string default <empty>",
+    "uciok",
+    "readyok",
+    "info string NNUE evaluation using nn-9067e33176e8.nnue (11MiB, (22528, 256, 15, 32, 1))",
+    "info depth 1 seldepth 5 multipv 1 score cp 429 nodes 37 nps 616 hashfull 0 time 60 pv d1b3 d8d5 b3d5 g8f8",
+    "info depth 2 seldepth 5 multipv 1 score cp 398 nodes 69 nps 1061 hashfull 0 time 65 pv d1d8 g8f7",
+    "info depth 3 seldepth 5 multipv 1 score cp 462 nodes 103 nps 1514 hashfull 0 time 68 pv d1d8 g8f7",
+    "info depth 4 seldepth 5 multipv 1 score cp 469 nodes 150 nps 2083 hashfull 0 time 72 pv d1d8 g8f7 d8d5 f7f8",
+    "info depth 5 seldepth 7 multipv 1 score cp 492 nodes 189 nps 2589 hashfull 0 time 73 pv d1d8 g8f7 d8d5 f7f8 d5c5 f8f7",
+    "info depth 6 seldepth 7 multipv 1 score cp 508 nodes 247 nps 3207 hashfull 0 time 77 pv d1d8 g8f7 d8d5 f7f8 g1f2 g7g6",
+    "info depth 7 seldepth 9 multipv 1 score cp 491 nodes 309 nps 3862 hashfull 0 time 80 pv d1d8 g8f7 d8d5 f7f8 g1f2 g7g6 d5d6 f8g8",
+    "info depth 8 seldepth 11 multipv 1 score cp 508 nodes 542 nps 5474 hashfull 0 time 99 pv d1d8 g8f7 d8d7 f7f8 h2h3 h7h5 d7d6 f8f7",
+    "info depth 9 seldepth 13 multipv 1 score cp 494 nodes 898 nps 7360 hashfull 0 time 122 pv d1d8 g8f7 d8d7 f7f8 d7d6 f8g8 d6b8 g8f7 b8b3 f7f8 b3a3 f8f7",
+    "info depth 10 seldepth 15 multipv 1 score cp 487 nodes 1445 nps 10703 hashfull 0 time 135 pv d1d8 g8f7 d8d7 f7f8 d7f5 f8e7 f5h7 e7f8",
+    "info depth 11 seldepth 15 multipv 1 score cp 484 nodes 2264 nps 10729 hashfull 0 time 211 pv d1d8 g8f7 d8c7 f7g8 g2g4 g8f8 c7d8 f8f7",
+    "info depth 12 seldepth 15 multipv 1 score cp 505 nodes 3545 nps 13582 hashfull 0 time 261 pv d1d8 g8f7 g2g4 g7g6 g1f2 h7h6 d8d5 f7g7",
+    "bestmove d1d8 ponder g8f7",
+    "id name Stockfish 17.1 Lite ASM.JS",
+    "id author the Stockfish developers (see AUTHORS file)",
+    "",
+    "option name Threads type spin default 1 min 1 max 1",
+    "option name Hash type spin default 16 min 1 max 33554432",
+    "option name Clear Hash type button",
+    "option name Ponder type check default false",
+    "option name MultiPV type spin default 1 min 1 max 256",
+    "option name Skill Level type spin default 20 min 0 max 20",
+    "option name Move Overhead type spin default 10 min 0 max 5000",
+    "option name nodestime type spin default 0 min 0 max 10000",
+    "option name UCI_Chess960 type check default false",
+    "option name UCI_LimitStrength type check default false",
+    "option name UCI_Elo type spin default 1320 min 1320 max 3190",
+    "option name UCI_ShowWDL type check default false",
+    "option name EvalFile type string default nn-9067e33176e8.nnue",
+    "option name EvalFileSmall type string default <empty>",
+    "uciok",
+    "readyok",
+    "info string NNUE evaluation using nn-9067e33176e8.nnue (11MiB, (22528, 256, 15, 32, 1))",
+    "info depth 1 seldepth 4 multipv 1 score cp 276 nodes 20 nps 6666 hashfull 0 time 3 pv d8d2",
+    "info depth 2 seldepth 3 multipv 1 score cp 303 nodes 45 nps 11250 hashfull 0 time 4 pv d8d2",
+    "info depth 3 seldepth 5 multipv 1 score cp 374 nodes 80 nps 16000 hashfull 0 time 5 pv d8d2",
+    "info depth 4 seldepth 5 multipv 1 score cp 417 nodes 163 nps 20375 hashfull 0 time 8 pv d8d2 g2g3 g8f7",
+    "info depth 5 seldepth 7 multipv 1 score cp 426 nodes 253 nps 23000 hashfull 0 time 11 pv d8d2 h2h4",
+    "info depth 6 seldepth 7 multipv 1 score cp 449 nodes 323 nps 23071 hashfull 0 time 14 pv d8d2 h2h4 g8f7 g1f1 d2d1 f1e2",
+    "info depth 7 seldepth 9 multipv 1 score cp 443 nodes 413 nps 24294 hashfull 0 time 17 pv d8d2 h2h3 g8f7 g1h2 d2d8",
+    "info depth 8 seldepth 9 multipv 1 score cp 451 nodes 529 nps 26450 hashfull 0 time 20 pv d8d2 h2h3 g8f7 g1h2 d2d8 h2h1",
+    "info depth 9 seldepth 11 multipv 1 score cp 450 nodes 1108 nps 22612 hashfull 0 time 49 pv d8d2 h2h4 g8f7 g1h2 d2d8",
+    "info depth 10 seldepth 12 multipv 1 score cp 448 nodes 1509 nps 20391 hashfull 0 time 74 pv d8d2 h2h4 g8f7 g1f1 h7h5 g2g3",
+    "info depth 11 seldepth 13 multipv 1 score cp 466 nodes 2052 nps 17538 hashfull 0 time 117 pv d8d2 h2h4 d2d8 h4h5",
+    "info depth 12 seldepth 15 multipv 1 score cp 474 nodes 3594 nps 22185 hashfull 1 time 162 pv d8d2 h2h4 g8f7 g1f1 d2d8 g2g3 h7h6 f1g2 g7g5 h4g5 h6g5 g2f1",
+    "bestmove d8d2 ponder h2h4",
+    "id name Stockfish 17.1 Lite ASM.JS",
+    "id author the Stockfish developers (see AUTHORS file)",
+    "",
+    "option name Threads type spin default 1 min 1 max 1",
+    "option name Hash type spin default 16 min 1 max 33554432",
+    "option name Clear Hash type button",
+    "option name Ponder type check default false",
+    "option name MultiPV type spin default 1 min 1 max 256",
+    "option name Skill Level type spin default 20 min 0 max 20",
+    "option name Move Overhead type spin default 10 min 0 max 5000",
+    "option name nodestime type spin default 0 min 0 max 10000",
+    "option name UCI_Chess960 type check default false",
+    "option name UCI_LimitStrength type check default false",
+    "option name UCI_Elo type spin default 1320 min 1320 max 3190",
+    "option name UCI_ShowWDL type check default false",
+    "option name EvalFile type string default nn-9067e33176e8.nnue",
+    "option name EvalFileSmall type string default <empty>",
+    "uciok",
+    "readyok",
+    "info string NNUE evaluation using nn-9067e33176e8.nnue (11MiB, (22528, 256, 15, 32, 1))",
+    "info depth 1 seldepth 4 multipv 1 score cp 399 nodes 32 nps 16000 hashfull 0 time 2 pv d1d8 g8f7",
+    "info depth 2 seldepth 3 multipv 1 score cp 399 nodes 59 nps 29500 hashfull 0 time 2 pv d1d8 g8f7",
+    "info depth 3 seldepth 5 multipv 1 score cp 480 nodes 92 nps 30666 hashfull 0 time 3 pv d1d8 g8f7 d8d5 f7f8",
+    "info depth 4 seldepth 5 multipv 1 score cp 480 nodes 127 nps 31750 hashfull 0 time 4 pv d1d8 g8f7 d8d5 f7f8",
+    "info depth 5 seldepth 6 multipv 1 score cp 460 nodes 164 nps 41000 hashfull 0 time 4 pv d1d8 g8f7 d8d5 f7f8 g2g4",
+    "info depth 6 seldepth 8 multipv 1 score cp 487 nodes 220 nps 44000 hashfull 0 time 5 pv d1d8 g8f7 d8d5 f7f8 g1f2 h7h5",
+    "info depth 7 seldepth 9 multipv 1 score cp 489 nodes 270 nps 45000 hashfull 0 time 6 pv d1d8 g8f7 d8d5 f7f8 g1f2 h7h6 g2g4",
+    "info depth 8 seldepth 10 multipv 1 score cp 487 nodes 445 nps 44500 hashfull 0 time 10 pv d1d8 g8f7 g2g4 h7h6",
+    "info depth 9 seldepth 12 multipv 1 score cp 490 nodes 646 nps 46142 hashfull 0 time 14 pv d1d8 g8f7 g1f2 h7h5 d8d5 f7f8",
+    "info depth 10 seldepth 12 multipv 1 score cp 498 nodes 1002 nps 37111 hashfull 0 time 27 pv d1d8 g8f7 d8d5 f7f8 g1f2 h7h6",
+    "info depth 11 seldepth 13 multipv 1 score cp 505 nodes 2147 nps 33030 hashfull 0 time 65 pv d1d8 g8f7 d8d5 f7f8 g1f2 h7h6 f2e2 g7g6 d5c5 f8g8",
+    "info depth 12 seldepth 17 multipv 1 score cp 503 nodes 3375 nps 38793 hashfull 0 time 87 pv d1d8 g8f7 g1f2 h7h5 d8d5 f7f8 f2g3 g7g6 d5a8 f8g7",
+    "info depth 13 seldepth 17 multipv 1 score cp 506 nodes 5124 nps 33490 hashfull 0 time 153 pv d1d8 g8f7 g1f2 h7h5 d8d1 f7g8 d1h5 g8f8 h5d1 g7g6",
+    "info depth 14 seldepth 19 multipv 1 score cp 550 nodes 9909 nps 33476 hashfull 2 time 296 pv d1d8 g8f7 g1f2 h7h6 f2g3 g7g6 g3f4 f7g7 f4e4 g7h7 d8d1 h7h8 e4f4",
+    "info depth 15 seldepth 26 multipv 1 score cp 729 nodes 51445 nps 44120 hashfull 13 time 1166 pv d1d8 g8f7 g1f2 f7g6 f2g3 g6f7 g3f4 f7e6 d8g8 e6d7 g8g7 d7e8 g7h7",
+    "info depth 16 seldepth 33 multipv 1 score cp 751 nodes 65200 nps 50542 hashfull 17 time 1290 pv d1d8 g8f7 g1f2 f7e6 f2f3 h7h5 f3f4 h5h4 d8h4 e6d6 f4f5 d6c7",
+    "bestmove d1d8 ponder g8f7",
+    "id name Stockfish 17.1 Lite ASM.JS",
+    "id author the Stockfish developers (see AUTHORS file)",
+    "",
+    "option name Threads type spin default 1 min 1 max 1",
+    "option name Hash type spin default 16 min 1 max 33554432",
+    "option name Clear Hash type button",
+    "option name Ponder type check default false",
+    "option name MultiPV type spin default 1 min 1 max 256",
+    "option name Skill Level type spin default 20 min 0 max 20",
+    "option name Move Overhead type spin default 10 min 0 max 5000",
+    "option name nodestime type spin default 0 min 0 max 10000",
+    "option name UCI_Chess960 type check default false",
+    "option name UCI_LimitStrength type check default false",
+    "option name UCI_Elo type spin default 1320 min 1320 max 3190",
+    "option name UCI_ShowWDL type check default false",
+    "option name EvalFile type string default nn-9067e33176e8.nnue",
+    "option name EvalFileSmall type string default <empty>",
+    "uciok",
+    "readyok",
+    "info string NNUE evaluation using nn-9067e33176e8.nnue (11MiB, (22528, 256, 15, 32, 1))",
+    "info depth 1 seldepth 4 multipv 1 score cp 308 nodes 20 nps 10000 hashfull 0 time 2 pv d8d2",
+    "info depth 2 seldepth 3 multipv 1 score cp 334 nodes 44 nps 14666 hashfull 0 time 3 pv d8d2 g1h1",
+    "info depth 3 seldepth 4 multipv 1 score cp 410 nodes 78 nps 19500 hashfull 0 time 4 pv d8d2",
+    "info depth 4 seldepth 5 multipv 1 score cp 428 nodes 155 nps 31000 hashfull 0 time 5 pv d8d2 h2h3 g8f7",
+    "info depth 5 seldepth 7 multipv 1 score cp 467 nodes 249 nps 41500 hashfull 0 time 6 pv d8d2 g2g3 g8f7",
+    "info depth 6 seldepth 7 multipv 1 score cp 448 nodes 315 nps 45000 hashfull 0 time 7 pv d8d2 g1f1 g8f7",
+    "info depth 7 seldepth 9 multipv 1 score cp 474 nodes 437 nps 43700 hashfull 0 time 10 pv d8d2 g1f1 g8f7 g2g3 f7f6 h2h4 d2d8",
+    "info depth 8 seldepth 9 multipv 1 score cp 485 nodes 601 nps 46230 hashfull 0 time 13 pv d8d2 g2g4 g8f7 g4g5 d2d1 g1f2",
+    "info depth 9 seldepth 12 multipv 1 score cp 468 nodes 892 nps 49555 hashfull 0 time 18 pv d8d2 g2g4 g8f7 g1h1 d2d8",
+    "info depth 10 seldepth 12 multipv 1 score cp 493 nodes 2454 nps 68166 hashfull 0 time 36 pv d8d2 h2h3 g8f7 g1h1 d2d8 h1h2",
+    "info depth 11 seldepth 11 multipv 1 score cp 497 nodes 3097 nps 75536 hashfull 1 time 41 pv d8d2 h2h3 g8f8 g1h1 d2d1 h1h2",
+    "info depth 12 seldepth 14 multipv 1 score cp 526 nodes 5567 nps 97666 hashfull 2 time 57 pv d8d2 h2h3 g8f7 g1f1 f7f6 g2g4 d2d1 f1f2",
+    "info depth 13 seldepth 15 multipv 1 score cp 509 nodes 9628 nps 104652 hashfull 4 time 92 pv d8d2 h2h4 g8f7 h4h5 f7f6 h5h6 d2d1 g1f2 d1d8",
+    "info depth 14 seldepth 16 multipv 1 score cp 524 nodes 12801 nps 93437 hashfull 5 time 137 pv d8d2 h2h4 d2d8 h4h5 g8f7 h5h6 g7g6 g1f1 f7f6 g2g4 f6g5",
+    "info depth 15 seldepth 21 multipv 1 score cp 569 nodes 23885 nps 59862 hashfull 6 time 399 pv d8d2 h2h4 g8f7 h4h5 f7f6 g1h2 d2d1 h2g3 d1d8 g3f4",
+    "info depth 16 seldepth 20 multipv 1 score cp 587 nodes 39427 nps 46113 hashfull 11 time 855 pv d8d2 h2h4 g8f7 g1h2 f7g6 h2g3 g6f5 g3f3 d2d3 f3f2 h7h5 f2g1 d3d1 g1f2",
+    "bestmove d8d2 ponder h2h4",
+    "id name Stockfish 17.1 Lite ASM.JS",
+    "id author the Stockfish developers (see AUTHORS file)",
+    "",
+    "option name Threads type spin default 1 min 1 max 1",
+    "option name Hash type spin default 16 min 1 max 33554432",
+    "option name Clear Hash type button",
+    "option name Ponder type check default false",
+    "option name MultiPV type spin default 1 min 1 max 256",
+    "option name Skill Level type spin default 20 min 0 max 20",
+    "option name Move Overhead type spin default 10 min 0 max 5000",
+    "option name nodestime type spin default 0 min 0 max 10000",
+    "option name UCI_Chess960 type check default false",
+    "option name UCI_LimitStrength type check default false",
+    "option name UCI_Elo type spin default 1320 min 1320 max 3190",
+    "option name UCI_ShowWDL type check default false",
+    "option name EvalFile type string default nn-9067e33176e8.nnue",
+    "option name EvalFileSmall type string default <empty>",
+    "uciok",
+    "readyok",
+    "info string NNUE evaluation using nn-9067e33176e8.nnue (11MiB, (22528, 256, 15, 32, 1))",
+    "info depth 1 seldepth 2 multipv 1 score cp -141 nodes 21 nps 5250 hashfull 0 time 4 pv d8d6",
+    "info depth 2 seldepth 3 multipv 1 score cp -187 nodes 283 nps 35375 hashfull 0 time 8 pv g8h8",
+    "info depth 3 seldepth 5 multipv 1 score cp -227 nodes 372 nps 37200 hashfull 0 time 10 pv g8h8 e1e6 d8d1 g1f2",
+    "info depth 4 seldepth 5 multipv 1 score cp -228 nodes 398 nps 36181 hashfull 0 time 11 pv g8h8 e1e6 d8d1 g1f2",
+    "info depth 5 seldepth 6 multipv 1 score cp -252 nodes 543 nps 36200 hashfull 0 time 15 pv h7h6 e1e6 g8h7 e6f5 h7g8",
+    "info depth 6 seldepth 8 multipv 1 score cp -225 nodes 650 nps 36111 hashfull 0 time 18 pv d8f8 e1e6 f8f7",
+    "info depth 7 seldepth 8 multipv 1 score cp -251 nodes 858 nps 37304 hashfull 0 time 23 pv d8f8 h2h3 h7h6 e1e6 f8f7 e6e8 f7f8",
+    "info depth 8 seldepth 13 multipv 1 score cp -231 nodes 1174 nps 37870 hashfull 0 time 31 pv d8f8 h2h3 h7h6 g1h2 f8f5 e1e8 f5f8 e8e4 f8f7",
+    "info depth 9 seldepth 14 multipv 1 score cp -219 nodes 3492 nps 44769 hashfull 0 time 78 pv d8f8 e1e6 g8h8 e6e4 h8g8 h2h3 h7h6 g1h2 f8f6",
+    "info depth 10 seldepth 14 multipv 1 score cp -211 nodes 4843 nps 45688 hashfull 0 time 106 pv d8f8 e1e6 g8h8 h2h3 h7h6 e6c6 f8f6 c6a8 h8h7 g1h2 f6d6",
+    "info depth 11 seldepth 19 multipv 1 score cp -215 nodes 8140 nps 39901 hashfull 1 time 204 pv h7h6 h2h4 d8f8 g1h2 g8h8 g2g4",
+    "info depth 12 seldepth 20 multipv 1 score cp -208 nodes 12005 nps 41396 hashfull 2 time 290 pv h7h6 e1e6 g8h7 g1f2 d8f8 f2g3 f8f6 e6e4 h7g8 e4e8 g8h7 h2h3 f6g6 g3h2",
+    "info depth 13 seldepth 20 multipv 1 score cp -213 nodes 15391 nps 42991 hashfull 3 time 358 pv d8f8 e1e6 g8h8 h2h3 h7h6 e6g6 h8g8 g6e4 f8f6 g1h2 f6f8 h2g3 f8f6 e4a8 g8h7 g3h2 f6d6",
+    "info depth 14 seldepth 23 multipv 1 score cp -200 nodes 18051 nps 45583 hashfull 4 time 396 pv d8f8 e1e6 g8h8 h2h3 h7h6 e6c6 f8f6 c6e8 h8h7 e8e4 h7g8 g1h2 f6f8 e4c6 f8f4 c6e8 g8h7",
+    "info depth 15 seldepth 32 multipv 1 score cp -257 nodes 62550 nps 43347 hashfull 23 time 1443 pv d8f8 e1e6 g8h8 h2h4 h7h6 e6e4 f8f6 g1h2 h8g8 g2g4 f6d6 h2g3 g7g6 g4g5 h6g5 h4g5 g8g7",
+    "info depth 16 seldepth 34 multipv 1 score cp -288 nodes 106844 nps 47486 hashfull 33 time 2250 pv d8f8 e1e6 f8f7 h2h4 g7g6 g1h2 g8g7 h4h5 g6h5 e6e5 f7f6 e5e7 g7g6 h2h3 f6f4 e7e5 f4f6",
+    "bestmove d8f8 ponder e1e6"
+  ]
+}

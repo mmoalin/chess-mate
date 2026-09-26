@@ -130,7 +130,7 @@ describe('guided repertoire flow', () => {
     expect(screen.getByRole('button', { name: /^Today$/i })).toBeInTheDocument();
   });
 
-  it('turns a PGN divergence into a visible game gap', async () => {
+  it('keeps a PGN repertoire departure separate from scheduled mistakes', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: /Start learning/i }));
     await userEvent.click(screen.getByRole('button', { name: 'Train openings' }));
@@ -139,10 +139,7 @@ describe('guided repertoire flow', () => {
     await userEvent.clear(pgn); await userEvent.type(pgn, '1. e4 e5 2. Nc3 Nf6 3. a3');
     await userEvent.click(screen.getByRole('button', { name: /Load PGN/i }));
     await userEvent.click(screen.getByRole('button', { name: /^Today$/i }));
-    expect(screen.getByRole('region', { name: /Today workspace/i })).toHaveTextContent(/Compare the repertoire choice before 3.a3/i);
-    const [gap] = await new GuidedLearnerRepository(null).loadBacklog(LOCAL_LEARNER_ID);
-    await userEvent.click(screen.getByRole('button', { name: /Open saved position/i }));
-    expect(screen.getByLabelText('Chess board mock')).toHaveAttribute('data-position', new Chess(positionKeyToFen(gap.positionKey)).fen());
-    expect(screen.getByRole('region', { name: /Feedback/i })).toHaveTextContent('Saved gap:');
+    expect(screen.getByRole('region', { name: /Today workspace/i })).not.toHaveTextContent(/Compare the repertoire choice before 3.a3/i);
+    expect(await new GuidedLearnerRepository(null).loadBacklog(LOCAL_LEARNER_ID)).toEqual([]);
   });
 });

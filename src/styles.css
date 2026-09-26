@@ -1320,3 +1320,15 @@ button:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px
 .coverage-course h4 { margin-bottom: .4rem; }
 .companion-pack { margin-block: .8rem; }
 .companion-pack button, .coverage-row button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.game-library { width: 100%; min-width: 0; padding: 1rem; }
+.game-library label { display: grid; gap: .4rem; margin: .8rem 0; }
+.game-library textarea { width: 100%; min-height: 6rem; }
+.game-library input, .game-library select { max-width: 100%; min-width: 0; }
+.game-library button { white-space: normal; overflow-wrap: anywhere; margin: .2rem; border: 1px solid #c9ccbf; background: #fffcf6; color: #263e32; border-radius: 8px; padding: .6rem .8rem; min-height: 44px; font: inherit; cursor: pointer; }
+.game-library button:disabled { opacity: .55; cursor: default; }
+.game-library .primary-button { background: #467e65; color: white; }
+.game-library input, .game-library select, .game-library textarea { border: 1px solid #b7c4b7; border-radius: 6px; padding: .6rem; font: inherit; }
+.game-library article { border-top: 1px solid #ccd2c4; padding: 1rem 0; }
+.game-review-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; margin-top: 1rem; }
+.game-review-grid > div { min-width: 0; }
+@media (max-width: 700px) { .game-review-grid { grid-template-columns: minmax(0, 1fr); } .game-library { padding: .5rem; } }

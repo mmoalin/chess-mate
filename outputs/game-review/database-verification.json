@@ -1,0 +1,14 @@
+{
+  "runtime": "PGlite disposable PostgreSQL",
+  "productionTouched": false,
+  "checks": [
+    "Idempotent mutation retry",
+    "Independent positions merge and complete evidence survives errors",
+    "Revision conflicts and submitted answers immutable",
+    "Deletion tombstone wins; practice card retained",
+    "Stale writes cannot cross an account switch",
+    "Cross-account SELECT, parent reference and direct write denied",
+    "Anonymous reads and writes denied"
+  ],
+  "passed": true
+}
