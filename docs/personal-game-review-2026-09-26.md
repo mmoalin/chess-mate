@@ -28,6 +28,8 @@ Docker was unavailable, so disposable PostgreSQL verification used PGlite. Exist
 
 ## Separate deployment procedure
 
+The [staging readiness follow-up](game-review-staging-readiness-2026-09-26.md) records environment discovery, database-backed two-device tests and longer-game engine evidence.
+
 1. Review this change and the additive migration in a staging Supabase project. Back up the target database using the project's normal procedure.
 2. Apply `202609260001_game_review.sql` through the normal migration pipeline, after existing migrations. Verify owner-only reads, anonymous denial, the RPC and cross-owner parent rejection with disposable staging users.
 3. Deploy the production build through the existing application hosting workflow. Do not republish course content: bundled release 5/schema 3 are unchanged.

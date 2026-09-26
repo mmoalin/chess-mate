@@ -32,6 +32,20 @@ describe('single-game import', () => {
   });
 });
 describe('score perspective and confirmation', () => {
+  it.each([['white', 'cp'], ['black', 'cp'], ['white', 'mate'], ['black', 'mate']] as const)('does not publish a %s %s mistake when the confirmed best move was played', async (side, scoreType) => {
+    const game = await importGame('1. e4 e5 *', side);
+    const ply = side === 'white' ? 0 : 1;
+    const results: PositionResult[] = [12, 16].flatMap((depth) => [
+      { schema: 1 as const, id: `before-${depth}`, runId: 'r', fen: game.fens[ply], depth,
+        evidence: { ...evidence(game.fens[ply], scoreType === 'mate' ? 3 : 300, scoreType, depth), pv: [game.moves[ply]] } },
+      { schema: 1 as const, id: `after-${depth}`, runId: 'r', fen: game.fens[ply + 1], depth,
+        evidence: evidence(game.fens[ply + 1], 0, 'cp', depth) }
+    ]);
+    expect(analysisSummary(game, 'r', results)).toMatchObject({ complete: true, completed: 1, findings: [] });
+    // A different confirmed alternative remains eligible for a finding.
+    results.find((r) => r.id === 'before-16')!.evidence!.pv = [side === 'white' ? 'd2d4' : 'c7c5'];
+    expect(analysisSummary(game, 'r', results).findings).toHaveLength(1);
+  });
   it('publishes only confirmed findings, ranks ties by ply and prefers four-ply separation', async () => {
     const game = await importGame('1. Nf3 Nf6 2. Ng1 Ng8 3. Nf3 Nf6 4. Ng1 Ng8 5. Nf3 Nf6 *','white');
     const results: PositionResult[] = game.fens.flatMap((fen) => [12,16].map((depth) => ({ schema:1 as const,id:fen+depth,runId:'r',fen,depth,evidence:evidence(fen,100,'cp',depth) })));

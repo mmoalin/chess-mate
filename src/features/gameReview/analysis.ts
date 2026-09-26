@@ -95,6 +95,9 @@ export function analysisSummary(game: Game, runId: string, results: PositionResu
     const before = evidence.get(`16:${game.fens[ply]}`), after = evidence.get(`16:${game.fens[ply + 1]}`);
     if (!before || !after) continue;
     completed++; const loss = lossBetween(before, after, game.side);
+    // Independent searches can disagree across the move boundary. If the
+    // confirmed best move is the move played, there is no corrective alternative.
+    if (before.pv[0] === game.moves[ply]) continue;
     if (!loss.mate && (loss.loss ?? 0) < 100) continue;
     const facts = continuationFacts(after, game.side);
     const a = relative(before, game.side), b = relative(after, game.side);

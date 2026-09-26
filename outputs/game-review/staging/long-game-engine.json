@@ -1,0 +1,6074 @@
+{
+  "engine": "Stockfish 17.1 ASM",
+  "scope": "Node worker adapter; not mobile hardware",
+  "pgn": "1. e4 e5 2. Nf3 d6 3. d4 Bg4 4. dxe5 Bxf3 5. Qxf3 dxe5 6. Bc4 Nf6 7. Qb3 Qe7 8. Nc3 c6 9. Bg5 b5 10. Nxb5 cxb5 11. Bxb5+ Nbd7 12. O-O-O Rd8 13. Rxd7 Rxd7 14. Rd1 Qe6 15. Bxd7+ Nxd7 16. Qb8+ Nxb8 17. Rd8# 1-0",
+  "pauseResumePassed": true,
+  "reports": [
+    {
+      "side": "white",
+      "plies": 33,
+      "summary": {
+        "total": 17,
+        "completed": 17,
+        "complete": true,
+        "findings": [
+          {
+            "ply": 28,
+            "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+            "played": "b5d7",
+            "alternative": "g5f6",
+            "before": {
+              "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": 592
+              },
+              "pv": [
+                "g5f6",
+                "g7f6",
+                "b5d7",
+                "e6d7",
+                "d1d7",
+                "e8d7",
+                "b3b7",
+                "d7d8",
+                "b7f7",
+                "f8h6",
+                "c1b1",
+                "d8c8"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": -301
+              },
+              "pv": [
+                "f6d7",
+                "b3b7",
+                "f7f6",
+                "b7c8",
+                "e8e7",
+                "g5e3",
+                "h7h5",
+                "e3a7",
+                "g7g6",
+                "c1b1",
+                "f6f5",
+                "c8c7",
+                "e7e8",
+                "a2a4",
+                "h8h7",
+                "c7c8",
+                "e8e7",
+                "a4a5",
+                "e7f6",
+                "a5a6",
+                "f8b4"
+              ]
+            },
+            "loss": 291,
+            "severity": 291,
+            "category": "material",
+            "explanation": "The confirmed evaluation loss is 291 centipawns. In the displayed continuation: Nxd7 captures a bishop; Qc8+ gives check; Bxa7 captures a pawn."
+          }
+        ]
+      },
+      "positions": [
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 40
+            },
+            "pv": [
+              "e2e4",
+              "d7d5",
+              "e4d5",
+              "d8d5",
+              "g1f3",
+              "c8g4",
+              "b1c3",
+              "d5e6",
+              "d1e2",
+              "b8c6",
+              "e2e6",
+              "g4e6",
+              "d2d4",
+              "e8c8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -27
+            },
+            "pv": [
+              "e7e6",
+              "d2d4",
+              "d7d5",
+              "e4d5",
+              "e6d5",
+              "b1c3",
+              "g8f6",
+              "g1f3",
+              "f8d6",
+              "f1e2"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:0:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 40
+              },
+              "pv": [
+                "e2e4",
+                "d7d5",
+                "e4d5",
+                "d8d5",
+                "g1f3",
+                "c8g4",
+                "b1c3",
+                "d5e6",
+                "d1e2",
+                "b8c6",
+                "e2e6",
+                "g4e6",
+                "d2d4",
+                "e8c8"
+              ]
+            },
+            "after": {
+              "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -27
+              },
+              "pv": [
+                "e7e6",
+                "d2d4",
+                "d7d5",
+                "e4d5",
+                "e6d5",
+                "b1c3",
+                "g8f6",
+                "g1f3",
+                "f8d6",
+                "f1e2"
+              ]
+            },
+            "side": "white",
+            "played": "e2e4",
+            "afterFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+            "learnerLossCp": 13,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 46
+            },
+            "pv": [
+              "g1f3",
+              "g8f6",
+              "d2d4",
+              "f6e4",
+              "f1d3",
+              "d7d5",
+              "f3e5",
+              "f8b4",
+              "c2c3",
+              "b4d6",
+              "b1d2",
+              "d6e5",
+              "d4e5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -35
+            },
+            "pv": [
+              "b8c6",
+              "d2d4",
+              "e5d4",
+              "f3d4",
+              "g8f6",
+              "d4c6",
+              "d7c6",
+              "d1d8",
+              "e8d8",
+              "f1d3",
+              "f8b4",
+              "c1d2"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:2:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 46
+              },
+              "pv": [
+                "g1f3",
+                "g8f6",
+                "d2d4",
+                "f6e4",
+                "f1d3",
+                "d7d5",
+                "f3e5",
+                "f8b4",
+                "c2c3",
+                "b4d6",
+                "b1d2",
+                "d6e5",
+                "d4e5"
+              ]
+            },
+            "after": {
+              "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -35
+              },
+              "pv": [
+                "b8c6",
+                "d2d4",
+                "e5d4",
+                "f3d4",
+                "g8f6",
+                "d4c6",
+                "d7c6",
+                "d1d8",
+                "e8d8",
+                "f1d3",
+                "f8b4",
+                "c1d2"
+              ]
+            },
+            "side": "white",
+            "played": "g1f3",
+            "afterFen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+            "learnerLossCp": 11,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 50
+            },
+            "pv": [
+              "d2d4",
+              "e5d4",
+              "f3d4",
+              "g8f6",
+              "f1b5",
+              "c8d7",
+              "b1c3",
+              "b8c6",
+              "e1g1",
+              "c6d4",
+              "b5d7",
+              "d8d7",
+              "d1d4"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -47
+            },
+            "pv": [
+              "e5d4",
+              "f3d4",
+              "g8f6",
+              "f1d3",
+              "f8e7",
+              "e1g1",
+              "b8c6",
+              "d4c6",
+              "b7c6",
+              "c1g5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:4:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 50
+              },
+              "pv": [
+                "d2d4",
+                "e5d4",
+                "f3d4",
+                "g8f6",
+                "f1b5",
+                "c8d7",
+                "b1c3",
+                "b8c6",
+                "e1g1",
+                "c6d4",
+                "b5d7",
+                "d8d7",
+                "d1d4"
+              ]
+            },
+            "after": {
+              "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -47
+              },
+              "pv": [
+                "e5d4",
+                "f3d4",
+                "g8f6",
+                "f1d3",
+                "f8e7",
+                "e1g1",
+                "b8c6",
+                "d4c6",
+                "b7c6",
+                "c1g5"
+              ]
+            },
+            "side": "white",
+            "played": "d2d4",
+            "afterFen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+            "learnerLossCp": 3,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 101
+            },
+            "pv": [
+              "d4e5",
+              "b8c6",
+              "e5d6",
+              "f8d6",
+              "f1b5",
+              "g8f6",
+              "e4e5",
+              "d6b4",
+              "c1d2",
+              "b4d2",
+              "b1d2",
+              "f6d5",
+              "e1g1"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -102
+            },
+            "pv": [
+              "b8c6",
+              "e5d6",
+              "f8d6",
+              "h2h3",
+              "g4h5",
+              "f1b5",
+              "d8e7",
+              "b5c6",
+              "b7c6",
+              "d1e2"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:6:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 101
+              },
+              "pv": [
+                "d4e5",
+                "b8c6",
+                "e5d6",
+                "f8d6",
+                "f1b5",
+                "g8f6",
+                "e4e5",
+                "d6b4",
+                "c1d2",
+                "b4d2",
+                "b1d2",
+                "f6d5",
+                "e1g1"
+              ]
+            },
+            "after": {
+              "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -102
+              },
+              "pv": [
+                "b8c6",
+                "e5d6",
+                "f8d6",
+                "h2h3",
+                "g4h5",
+                "f1b5",
+                "d8e7",
+                "b5c6",
+                "b7c6",
+                "d1e2"
+              ]
+            },
+            "side": "white",
+            "played": "d4e5",
+            "afterFen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+            "learnerLossCp": 0,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 149
+            },
+            "pv": [
+              "d1f3",
+              "d6e5",
+              "f3b3",
+              "f8c5",
+              "b3b7",
+              "b8d7",
+              "b7b3",
+              "g8f6",
+              "b3f3",
+              "e8g8",
+              "f1d3",
+              "a8b8",
+              "e1g1",
+              "f8e8",
+              "b1c3"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -160
+            },
+            "pv": [
+              "d6e5",
+              "f3b3",
+              "b7b6",
+              "f1b5",
+              "c7c6",
+              "b5c4",
+              "d8d7",
+              "b3g3",
+              "g8f6",
+              "g3e5",
+              "d7e7",
+              "e5f5",
+              "e7e4",
+              "f5e4",
+              "f6e4"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:8:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 149
+              },
+              "pv": [
+                "d1f3",
+                "d6e5",
+                "f3b3",
+                "f8c5",
+                "b3b7",
+                "b8d7",
+                "b7b3",
+                "g8f6",
+                "b3f3",
+                "e8g8",
+                "f1d3",
+                "a8b8",
+                "e1g1",
+                "f8e8",
+                "b1c3"
+              ]
+            },
+            "after": {
+              "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -160
+              },
+              "pv": [
+                "d6e5",
+                "f3b3",
+                "b7b6",
+                "f1b5",
+                "c7c6",
+                "b5c4",
+                "d8d7",
+                "b3g3",
+                "g8f6",
+                "g3e5",
+                "d7e7",
+                "e5f5",
+                "e7e4",
+                "f5e4",
+                "f6e4"
+              ]
+            },
+            "side": "white",
+            "played": "d1f3",
+            "afterFen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+            "learnerLossCp": 0,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 169
+            },
+            "pv": [
+              "f3b3",
+              "b7b6",
+              "b1c3",
+              "f8d6",
+              "f1c4",
+              "d8d7",
+              "c1g5",
+              "h7h6",
+              "g5h4",
+              "b8c6",
+              "c4b5",
+              "g7g5",
+              "h4g3",
+              "g8e7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -121
+            },
+            "pv": [
+              "d8d7",
+              "e1g1",
+              "g8f6",
+              "f3b3",
+              "c7c6",
+              "b1c3",
+              "d7c7",
+              "c1g5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:10:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 169
+              },
+              "pv": [
+                "f3b3",
+                "b7b6",
+                "b1c3",
+                "f8d6",
+                "f1c4",
+                "d8d7",
+                "c1g5",
+                "h7h6",
+                "g5h4",
+                "b8c6",
+                "c4b5",
+                "g7g5",
+                "h4g3",
+                "g8e7"
+              ]
+            },
+            "after": {
+              "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -121
+              },
+              "pv": [
+                "d8d7",
+                "e1g1",
+                "g8f6",
+                "f3b3",
+                "c7c6",
+                "b1c3",
+                "d7c7",
+                "c1g5"
+              ]
+            },
+            "side": "white",
+            "played": "f1c4",
+            "afterFen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+            "learnerLossCp": 48,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 203
+            },
+            "pv": [
+              "f3b3",
+              "f8c5",
+              "c4f7",
+              "e8e7",
+              "f7d5",
+              "f6d5",
+              "e4d5",
+              "b8d7",
+              "c1g5",
+              "d7f6",
+              "e1g1",
+              "e7e8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -198
+            },
+            "pv": [
+              "f8c5",
+              "c4f7",
+              "e8e7",
+              "f7c4",
+              "b8c6",
+              "e1g1",
+              "h8f8",
+              "c1g5",
+              "c6a5",
+              "b3b5",
+              "d8d4",
+              "b5a5",
+              "d4c4",
+              "a5c7",
+              "e7e6"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:12:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 203
+              },
+              "pv": [
+                "f3b3",
+                "f8c5",
+                "c4f7",
+                "e8e7",
+                "f7d5",
+                "f6d5",
+                "e4d5",
+                "b8d7",
+                "c1g5",
+                "d7f6",
+                "e1g1",
+                "e7e8"
+              ]
+            },
+            "after": {
+              "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -198
+              },
+              "pv": [
+                "f8c5",
+                "c4f7",
+                "e8e7",
+                "f7c4",
+                "b8c6",
+                "e1g1",
+                "h8f8",
+                "c1g5",
+                "c6a5",
+                "b3b5",
+                "d8d4",
+                "b5a5",
+                "d4c4",
+                "a5c7",
+                "e7e6"
+              ]
+            },
+            "side": "white",
+            "played": "f3b3",
+            "afterFen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+            "learnerLossCp": 5,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 227
+            },
+            "pv": [
+              "b3b7",
+              "e7b4",
+              "b7b4",
+              "f8b4",
+              "c2c3",
+              "b4d6",
+              "b1d2",
+              "a7a5",
+              "a2a4",
+              "e8e7",
+              "e1d1",
+              "h7h5",
+              "h2h3",
+              "h5h4",
+              "d1c2",
+              "b8d7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -130
+            },
+            "pv": [
+              "c7c6",
+              "f2f4",
+              "e5f4",
+              "c1f4",
+              "b7b5",
+              "c4e2",
+              "b8d7",
+              "e4e5",
+              "d7e5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:14:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 227
+              },
+              "pv": [
+                "b3b7",
+                "e7b4",
+                "b7b4",
+                "f8b4",
+                "c2c3",
+                "b4d6",
+                "b1d2",
+                "a7a5",
+                "a2a4",
+                "e8e7",
+                "e1d1",
+                "h7h5",
+                "h2h3",
+                "h5h4",
+                "d1c2",
+                "b8d7"
+              ]
+            },
+            "after": {
+              "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -130
+              },
+              "pv": [
+                "c7c6",
+                "f2f4",
+                "e5f4",
+                "c1f4",
+                "b7b5",
+                "c4e2",
+                "b8d7",
+                "e4e5",
+                "d7e5"
+              ]
+            },
+            "side": "white",
+            "played": "b1c3",
+            "afterFen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+            "learnerLossCp": 97,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 172
+            },
+            "pv": [
+              "c1g5",
+              "a7a5",
+              "a2a3",
+              "e7c7",
+              "e1c1",
+              "f8c5",
+              "g5f6",
+              "g7f6"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -145
+            },
+            "pv": [
+              "e7c7",
+              "g5f6",
+              "g7f6",
+              "a2a4",
+              "f8c5",
+              "e1c1",
+              "e8g8",
+              "c1b1"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:16:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 172
+              },
+              "pv": [
+                "c1g5",
+                "a7a5",
+                "a2a3",
+                "e7c7",
+                "e1c1",
+                "f8c5",
+                "g5f6",
+                "g7f6"
+              ]
+            },
+            "after": {
+              "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -145
+              },
+              "pv": [
+                "e7c7",
+                "g5f6",
+                "g7f6",
+                "a2a4",
+                "f8c5",
+                "e1c1",
+                "e8g8",
+                "c1b1"
+              ]
+            },
+            "side": "white",
+            "played": "c1g5",
+            "afterFen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+            "learnerLossCp": 27,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 342
+            },
+            "pv": [
+              "c3b5",
+              "c6b5",
+              "c4b5",
+              "e8d8",
+              "e1c1",
+              "d8c7",
+              "d1d3",
+              "e7b4",
+              "b3f7",
+              "f8e7",
+              "h1d1",
+              "h8f8",
+              "d3c3",
+              "c7b7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -316
+            },
+            "pv": [
+              "e7b4",
+              "b5c3",
+              "b4b3",
+              "a2b3",
+              "b8d7",
+              "f2f3",
+              "f8c5",
+              "c3a4",
+              "c5e7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:18:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 342
+              },
+              "pv": [
+                "c3b5",
+                "c6b5",
+                "c4b5",
+                "e8d8",
+                "e1c1",
+                "d8c7",
+                "d1d3",
+                "e7b4",
+                "b3f7",
+                "f8e7",
+                "h1d1",
+                "h8f8",
+                "d3c3",
+                "c7b7"
+              ]
+            },
+            "after": {
+              "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -316
+              },
+              "pv": [
+                "e7b4",
+                "b5c3",
+                "b4b3",
+                "a2b3",
+                "b8d7",
+                "f2f3",
+                "f8c5",
+                "c3a4",
+                "c5e7"
+              ]
+            },
+            "side": "white",
+            "played": "c3b5",
+            "afterFen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+            "learnerLossCp": 26,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 375
+            },
+            "pv": [
+              "c4b5",
+              "b8d7",
+              "e1c1",
+              "e7c5",
+              "g5f6",
+              "g7f6",
+              "d1d7",
+              "f8h6",
+              "c1b1",
+              "e8g8",
+              "h1d1"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -380
+            },
+            "pv": [
+              "e8d8",
+              "e1c1",
+              "d8c8",
+              "d1d3",
+              "e7b4",
+              "d3c3",
+              "c8b7",
+              "b3f7",
+              "b4e7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:20:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 375
+              },
+              "pv": [
+                "c4b5",
+                "b8d7",
+                "e1c1",
+                "e7c5",
+                "g5f6",
+                "g7f6",
+                "d1d7",
+                "f8h6",
+                "c1b1",
+                "e8g8",
+                "h1d1"
+              ]
+            },
+            "after": {
+              "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -380
+              },
+              "pv": [
+                "e8d8",
+                "e1c1",
+                "d8c8",
+                "d1d3",
+                "e7b4",
+                "d3c3",
+                "c8b7",
+                "b3f7",
+                "b4e7"
+              ]
+            },
+            "side": "white",
+            "played": "c4b5",
+            "afterFen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+            "learnerLossCp": 0,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+          "depth": 12,
+          "evidence": {
+            "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 454
+            },
+            "pv": [
+              "e1c1",
+              "a8d8",
+              "d1d7",
+              "d8d7",
+              "h1d1",
+              "e7e6",
+              "g5f6",
+              "f8d6",
+              "b3e6",
+              "f7e6",
+              "b5d7",
+              "e8d7",
+              "f6e5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+          "depth": 12,
+          "evidence": {
+            "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -428
+            },
+            "pv": [
+              "e7c5",
+              "g5f6",
+              "g7f6",
+              "b5d7",
+              "e8e7",
+              "c1b1",
+              "c5b6",
+              "b3a3",
+              "e7d8",
+              "d7e6",
+              "d8c7",
+              "a3c3",
+              "f8c5",
+              "e6d5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:22:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 454
+              },
+              "pv": [
+                "e1c1",
+                "a8d8",
+                "d1d7",
+                "d8d7",
+                "h1d1",
+                "e7e6",
+                "g5f6",
+                "f8d6",
+                "b3e6",
+                "f7e6",
+                "b5d7",
+                "e8d7",
+                "f6e5"
+              ]
+            },
+            "after": {
+              "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -428
+              },
+              "pv": [
+                "e7c5",
+                "g5f6",
+                "g7f6",
+                "b5d7",
+                "e8e7",
+                "c1b1",
+                "c5b6",
+                "b3a3",
+                "e7d8",
+                "d7e6",
+                "d8c7",
+                "a3c3",
+                "f8c5",
+                "e6d5"
+              ]
+            },
+            "side": "white",
+            "played": "e1c1",
+            "afterFen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+            "learnerLossCp": 26,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+          "depth": 12,
+          "evidence": {
+            "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 528
+            },
+            "pv": [
+              "d1d7",
+              "d8d7",
+              "h1d1",
+              "e7e6",
+              "g5f6",
+              "f8d6",
+              "b3e6",
+              "f7e6",
+              "b5d7",
+              "e8d7",
+              "f6e5",
+              "h7h5",
+              "e5g3",
+              "d7e8",
+              "d1d6"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+          "depth": 12,
+          "evidence": {
+            "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -497
+            },
+            "pv": [
+              "d8d7",
+              "h1d1",
+              "e7c5",
+              "g5f6",
+              "f8d6",
+              "b5d7",
+              "e8d7",
+              "f6g7",
+              "d7c8",
+              "g7h8",
+              "c5f2",
+              "b3d3",
+              "d6c7",
+              "d3d7",
+              "c8b7",
+              "d7d5",
+              "b7c8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:24:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 528
+              },
+              "pv": [
+                "d1d7",
+                "d8d7",
+                "h1d1",
+                "e7e6",
+                "g5f6",
+                "f8d6",
+                "b3e6",
+                "f7e6",
+                "b5d7",
+                "e8d7",
+                "f6e5",
+                "h7h5",
+                "e5g3",
+                "d7e8",
+                "d1d6"
+              ]
+            },
+            "after": {
+              "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -497
+              },
+              "pv": [
+                "d8d7",
+                "h1d1",
+                "e7c5",
+                "g5f6",
+                "f8d6",
+                "b5d7",
+                "e8d7",
+                "f6g7",
+                "d7c8",
+                "g7h8",
+                "c5f2",
+                "b3d3",
+                "d6c7",
+                "d3d7",
+                "c8b7",
+                "d7d5",
+                "b7c8"
+              ]
+            },
+            "side": "white",
+            "played": "d1d7",
+            "afterFen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+            "learnerLossCp": 31,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 509
+            },
+            "pv": [
+              "h1d1",
+              "e7e6",
+              "g5f6",
+              "f8d6",
+              "b3e6",
+              "f7e6",
+              "b5d7",
+              "e8d7",
+              "f6e5",
+              "h7h5",
+              "e5g3"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -491
+            },
+            "pv": [
+              "e7c5",
+              "g5f6",
+              "f8d6",
+              "b5d7",
+              "e8d7",
+              "f6g7",
+              "h8c8",
+              "g7f6",
+              "d7e8",
+              "f6g5",
+              "a7a5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:26:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 509
+              },
+              "pv": [
+                "h1d1",
+                "e7e6",
+                "g5f6",
+                "f8d6",
+                "b3e6",
+                "f7e6",
+                "b5d7",
+                "e8d7",
+                "f6e5",
+                "h7h5",
+                "e5g3"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -491
+              },
+              "pv": [
+                "e7c5",
+                "g5f6",
+                "f8d6",
+                "b5d7",
+                "e8d7",
+                "f6g7",
+                "h8c8",
+                "g7f6",
+                "d7e8",
+                "f6g5",
+                "a7a5"
+              ]
+            },
+            "side": "white",
+            "played": "h1d1",
+            "afterFen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+            "learnerLossCp": 18,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 572
+            },
+            "pv": [
+              "g5f6",
+              "f8d6",
+              "b3e6",
+              "f7e6",
+              "d1d6",
+              "e8g8",
+              "b5d7",
+              "f8f7",
+              "f6h4"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -175
+            },
+            "pv": [
+              "f6d7",
+              "b3b7",
+              "f7f6",
+              "b7c8",
+              "e8e7",
+              "g5e3",
+              "h7h5",
+              "e3a7",
+              "g7g6",
+              "c1b1",
+              "f8g7",
+              "c8c7",
+              "h8d8",
+              "d1d5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:28:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 572
+              },
+              "pv": [
+                "g5f6",
+                "f8d6",
+                "b3e6",
+                "f7e6",
+                "d1d6",
+                "e8g8",
+                "b5d7",
+                "f8f7",
+                "f6h4"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -175
+              },
+              "pv": [
+                "f6d7",
+                "b3b7",
+                "f7f6",
+                "b7c8",
+                "e8e7",
+                "g5e3",
+                "h7h5",
+                "e3a7",
+                "g7g6",
+                "c1b1",
+                "f8g7",
+                "c8c7",
+                "h8d8",
+                "d1d5"
+              ]
+            },
+            "side": "white",
+            "played": "b5d7",
+            "afterFen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+            "learnerLossCp": 397,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:16:4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+          "depth": 16,
+          "evidence": {
+            "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 16,
+              "timeoutMs": 30000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 16,
+            "depth": 16,
+            "score": {
+              "type": "cp",
+              "value": 592
+            },
+            "pv": [
+              "g5f6",
+              "g7f6",
+              "b5d7",
+              "e6d7",
+              "d1d7",
+              "e8d7",
+              "b3b7",
+              "d7d8",
+              "b7f7",
+              "f8h6",
+              "c1b1",
+              "d8c8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:16:4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "depth": 16,
+          "evidence": {
+            "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 16,
+              "timeoutMs": 30000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 16,
+            "depth": 16,
+            "score": {
+              "type": "cp",
+              "value": -301
+            },
+            "pv": [
+              "f6d7",
+              "b3b7",
+              "f7f6",
+              "b7c8",
+              "e8e7",
+              "g5e3",
+              "h7h5",
+              "e3a7",
+              "g7g6",
+              "c1b1",
+              "f6f5",
+              "c8c7",
+              "e7e8",
+              "a2a4",
+              "h8h7",
+              "c7c8",
+              "e8e7",
+              "a4a5",
+              "e7f6",
+              "a5a6",
+              "f8b4"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:28:16",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+          "depth": 16,
+          "assessment": {
+            "before": {
+              "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": 592
+              },
+              "pv": [
+                "g5f6",
+                "g7f6",
+                "b5d7",
+                "e6d7",
+                "d1d7",
+                "e8d7",
+                "b3b7",
+                "d7d8",
+                "b7f7",
+                "f8h6",
+                "c1b1",
+                "d8c8"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": -301
+              },
+              "pv": [
+                "f6d7",
+                "b3b7",
+                "f7f6",
+                "b7c8",
+                "e8e7",
+                "g5e3",
+                "h7h5",
+                "e3a7",
+                "g7g6",
+                "c1b1",
+                "f6f5",
+                "c8c7",
+                "e7e8",
+                "a2a4",
+                "h8h7",
+                "c7c8",
+                "e8e7",
+                "a4a5",
+                "e7f6",
+                "a5a6",
+                "f8b4"
+              ]
+            },
+            "side": "white",
+            "played": "b5d7",
+            "afterFen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+            "learnerLossCp": 291,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "mate",
+              "value": 2
+            },
+            "pv": [
+              "b3b8",
+              "d7b8",
+              "d1d8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+          "depth": 12,
+          "evidence": {
+            "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "mate",
+              "value": -1
+            },
+            "pv": [
+              "d7b8",
+              "d1d8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:30:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "mate",
+                "value": 2
+              },
+              "pv": [
+                "b3b8",
+                "d7b8",
+                "d1d8"
+              ]
+            },
+            "after": {
+              "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "mate",
+                "value": -1
+              },
+              "pv": [
+                "d7b8",
+                "d1d8"
+              ]
+            },
+            "side": "white",
+            "played": "b3b8",
+            "afterFen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+            "learnerLossCp": null,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+          "depth": 12,
+          "evidence": {
+            "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "mate",
+              "value": 1
+            },
+            "pv": [
+              "d1d8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:12:1n1Rkb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2K5 b k - 1 17",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "1n1Rkb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2K5 b k - 1 17",
+          "depth": 12,
+          "evidence": {
+            "fen": "1n1Rkb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2K5 b k - 1 17",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "mate",
+              "value": 0
+            },
+            "terminal": "mate",
+            "pv": []
+          }
+        },
+        {
+          "schema": 1,
+          "id": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1:assessment:32:12",
+          "runId": "2b2f7414136e7fdb4df1adff98f5730d1451046ccf5f4ed322c80e373b2929e7:stockfish-17.1-game-v1",
+          "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "mate",
+                "value": 1
+              },
+              "pv": [
+                "d1d8"
+              ]
+            },
+            "after": {
+              "fen": "1n1Rkb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2K5 b k - 1 17",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "mate",
+                "value": 0
+              },
+              "terminal": "mate",
+              "pv": []
+            },
+            "side": "white",
+            "played": "d1d8",
+            "afterFen": "1n1Rkb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2K5 b k - 1 17",
+            "learnerLossCp": null,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        }
+      ]
+    },
+    {
+      "side": "black",
+      "plies": 33,
+      "summary": {
+        "total": 16,
+        "completed": 16,
+        "complete": true,
+        "findings": [
+          {
+            "ply": 29,
+            "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+            "played": "f6d7",
+            "alternative": "f6d7",
+            "before": {
+              "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": -301
+              },
+              "pv": [
+                "f6d7",
+                "b3b7",
+                "f7f6",
+                "b7c8",
+                "e8e7",
+                "g5e3",
+                "h7h5",
+                "e3a7",
+                "g7g6",
+                "c1b1",
+                "f6f5",
+                "c8c7",
+                "e7e8",
+                "a2a4",
+                "h8h7",
+                "c7c8",
+                "e8e7",
+                "a4a5",
+                "e7f6",
+                "a5a6",
+                "f8b4"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "mate",
+                "value": 2
+              },
+              "pv": [
+                "b3b8",
+                "d7b8",
+                "d1d8"
+              ]
+            },
+            "loss": null,
+            "severity": 0,
+            "category": "mate",
+            "explanation": "The played move allows the opponent to force mate in the confirmed line."
+          }
+        ]
+      },
+      "positions": [
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -27
+            },
+            "pv": [
+              "e7e6",
+              "d2d4",
+              "d7d5",
+              "e4d5",
+              "e6d5",
+              "b1c3",
+              "g8f6",
+              "g1f3",
+              "f8d6",
+              "f1e2"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 46
+            },
+            "pv": [
+              "g1f3",
+              "g8f6",
+              "d2d4",
+              "f6e4",
+              "f1d3",
+              "d7d5",
+              "f3e5",
+              "f8b4",
+              "c2c3",
+              "b4d6",
+              "b1d2",
+              "d6e5",
+              "d4e5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:1:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -27
+              },
+              "pv": [
+                "e7e6",
+                "d2d4",
+                "d7d5",
+                "e4d5",
+                "e6d5",
+                "b1c3",
+                "g8f6",
+                "g1f3",
+                "f8d6",
+                "f1e2"
+              ]
+            },
+            "after": {
+              "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 46
+              },
+              "pv": [
+                "g1f3",
+                "g8f6",
+                "d2d4",
+                "f6e4",
+                "f1d3",
+                "d7d5",
+                "f3e5",
+                "f8b4",
+                "c2c3",
+                "b4d6",
+                "b1d2",
+                "d6e5",
+                "d4e5"
+              ]
+            },
+            "side": "black",
+            "played": "e7e5",
+            "afterFen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+            "learnerLossCp": 19,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -35
+            },
+            "pv": [
+              "b8c6",
+              "d2d4",
+              "e5d4",
+              "f3d4",
+              "g8f6",
+              "d4c6",
+              "d7c6",
+              "d1d8",
+              "e8d8",
+              "f1d3",
+              "f8b4",
+              "c1d2"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 50
+            },
+            "pv": [
+              "d2d4",
+              "e5d4",
+              "f3d4",
+              "g8f6",
+              "f1b5",
+              "c8d7",
+              "b1c3",
+              "b8c6",
+              "e1g1",
+              "c6d4",
+              "b5d7",
+              "d8d7",
+              "d1d4"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:3:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -35
+              },
+              "pv": [
+                "b8c6",
+                "d2d4",
+                "e5d4",
+                "f3d4",
+                "g8f6",
+                "d4c6",
+                "d7c6",
+                "d1d8",
+                "e8d8",
+                "f1d3",
+                "f8b4",
+                "c1d2"
+              ]
+            },
+            "after": {
+              "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 50
+              },
+              "pv": [
+                "d2d4",
+                "e5d4",
+                "f3d4",
+                "g8f6",
+                "f1b5",
+                "c8d7",
+                "b1c3",
+                "b8c6",
+                "e1g1",
+                "c6d4",
+                "b5d7",
+                "d8d7",
+                "d1d4"
+              ]
+            },
+            "side": "black",
+            "played": "d7d6",
+            "afterFen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+            "learnerLossCp": 15,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+          "depth": 12,
+          "evidence": {
+            "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -47
+            },
+            "pv": [
+              "e5d4",
+              "f3d4",
+              "g8f6",
+              "f1d3",
+              "f8e7",
+              "e1g1",
+              "b8c6",
+              "d4c6",
+              "b7c6",
+              "c1g5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 101
+            },
+            "pv": [
+              "d4e5",
+              "b8c6",
+              "e5d6",
+              "f8d6",
+              "f1b5",
+              "g8f6",
+              "e4e5",
+              "d6b4",
+              "c1d2",
+              "b4d2",
+              "b1d2",
+              "f6d5",
+              "e1g1"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:5:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -47
+              },
+              "pv": [
+                "e5d4",
+                "f3d4",
+                "g8f6",
+                "f1d3",
+                "f8e7",
+                "e1g1",
+                "b8c6",
+                "d4c6",
+                "b7c6",
+                "c1g5"
+              ]
+            },
+            "after": {
+              "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 101
+              },
+              "pv": [
+                "d4e5",
+                "b8c6",
+                "e5d6",
+                "f8d6",
+                "f1b5",
+                "g8f6",
+                "e4e5",
+                "d6b4",
+                "c1d2",
+                "b4d2",
+                "b1d2",
+                "f6d5",
+                "e1g1"
+              ]
+            },
+            "side": "black",
+            "played": "c8g4",
+            "afterFen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+            "learnerLossCp": 54,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -102
+            },
+            "pv": [
+              "b8c6",
+              "e5d6",
+              "f8d6",
+              "h2h3",
+              "g4h5",
+              "f1b5",
+              "d8e7",
+              "b5c6",
+              "b7c6",
+              "d1e2"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 149
+            },
+            "pv": [
+              "d1f3",
+              "d6e5",
+              "f3b3",
+              "f8c5",
+              "b3b7",
+              "b8d7",
+              "b7b3",
+              "g8f6",
+              "b3f3",
+              "e8g8",
+              "f1d3",
+              "a8b8",
+              "e1g1",
+              "f8e8",
+              "b1c3"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:7:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -102
+              },
+              "pv": [
+                "b8c6",
+                "e5d6",
+                "f8d6",
+                "h2h3",
+                "g4h5",
+                "f1b5",
+                "d8e7",
+                "b5c6",
+                "b7c6",
+                "d1e2"
+              ]
+            },
+            "after": {
+              "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 149
+              },
+              "pv": [
+                "d1f3",
+                "d6e5",
+                "f3b3",
+                "f8c5",
+                "b3b7",
+                "b8d7",
+                "b7b3",
+                "g8f6",
+                "b3f3",
+                "e8g8",
+                "f1d3",
+                "a8b8",
+                "e1g1",
+                "f8e8",
+                "b1c3"
+              ]
+            },
+            "side": "black",
+            "played": "g4f3",
+            "afterFen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+            "learnerLossCp": 47,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -160
+            },
+            "pv": [
+              "d6e5",
+              "f3b3",
+              "b7b6",
+              "f1b5",
+              "c7c6",
+              "b5c4",
+              "d8d7",
+              "b3g3",
+              "g8f6",
+              "g3e5",
+              "d7e7",
+              "e5f5",
+              "e7e4",
+              "f5e4",
+              "f6e4"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 169
+            },
+            "pv": [
+              "f3b3",
+              "b7b6",
+              "b1c3",
+              "f8d6",
+              "f1c4",
+              "d8d7",
+              "c1g5",
+              "h7h6",
+              "g5h4",
+              "b8c6",
+              "c4b5",
+              "g7g5",
+              "h4g3",
+              "g8e7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:9:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -160
+              },
+              "pv": [
+                "d6e5",
+                "f3b3",
+                "b7b6",
+                "f1b5",
+                "c7c6",
+                "b5c4",
+                "d8d7",
+                "b3g3",
+                "g8f6",
+                "g3e5",
+                "d7e7",
+                "e5f5",
+                "e7e4",
+                "f5e4",
+                "f6e4"
+              ]
+            },
+            "after": {
+              "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 169
+              },
+              "pv": [
+                "f3b3",
+                "b7b6",
+                "b1c3",
+                "f8d6",
+                "f1c4",
+                "d8d7",
+                "c1g5",
+                "h7h6",
+                "g5h4",
+                "b8c6",
+                "c4b5",
+                "g7g5",
+                "h4g3",
+                "g8e7"
+              ]
+            },
+            "side": "black",
+            "played": "d6e5",
+            "afterFen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+            "learnerLossCp": 9,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -121
+            },
+            "pv": [
+              "d8d7",
+              "e1g1",
+              "g8f6",
+              "f3b3",
+              "c7c6",
+              "b1c3",
+              "d7c7",
+              "c1g5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 203
+            },
+            "pv": [
+              "f3b3",
+              "f8c5",
+              "c4f7",
+              "e8e7",
+              "f7d5",
+              "f6d5",
+              "e4d5",
+              "b8d7",
+              "c1g5",
+              "d7f6",
+              "e1g1",
+              "e7e8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:11:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -121
+              },
+              "pv": [
+                "d8d7",
+                "e1g1",
+                "g8f6",
+                "f3b3",
+                "c7c6",
+                "b1c3",
+                "d7c7",
+                "c1g5"
+              ]
+            },
+            "after": {
+              "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 203
+              },
+              "pv": [
+                "f3b3",
+                "f8c5",
+                "c4f7",
+                "e8e7",
+                "f7d5",
+                "f6d5",
+                "e4d5",
+                "b8d7",
+                "c1g5",
+                "d7f6",
+                "e1g1",
+                "e7e8"
+              ]
+            },
+            "side": "black",
+            "played": "g8f6",
+            "afterFen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+            "learnerLossCp": 82,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -198
+            },
+            "pv": [
+              "f8c5",
+              "c4f7",
+              "e8e7",
+              "f7c4",
+              "b8c6",
+              "e1g1",
+              "h8f8",
+              "c1g5",
+              "c6a5",
+              "b3b5",
+              "d8d4",
+              "b5a5",
+              "d4c4",
+              "a5c7",
+              "e7e6"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 227
+            },
+            "pv": [
+              "b3b7",
+              "e7b4",
+              "b7b4",
+              "f8b4",
+              "c2c3",
+              "b4d6",
+              "b1d2",
+              "a7a5",
+              "a2a4",
+              "e8e7",
+              "e1d1",
+              "h7h5",
+              "h2h3",
+              "h5h4",
+              "d1c2",
+              "b8d7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:13:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -198
+              },
+              "pv": [
+                "f8c5",
+                "c4f7",
+                "e8e7",
+                "f7c4",
+                "b8c6",
+                "e1g1",
+                "h8f8",
+                "c1g5",
+                "c6a5",
+                "b3b5",
+                "d8d4",
+                "b5a5",
+                "d4c4",
+                "a5c7",
+                "e7e6"
+              ]
+            },
+            "after": {
+              "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 227
+              },
+              "pv": [
+                "b3b7",
+                "e7b4",
+                "b7b4",
+                "f8b4",
+                "c2c3",
+                "b4d6",
+                "b1d2",
+                "a7a5",
+                "a2a4",
+                "e8e7",
+                "e1d1",
+                "h7h5",
+                "h2h3",
+                "h5h4",
+                "d1c2",
+                "b8d7"
+              ]
+            },
+            "side": "black",
+            "played": "d8e7",
+            "afterFen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+            "learnerLossCp": 29,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -130
+            },
+            "pv": [
+              "c7c6",
+              "f2f4",
+              "e5f4",
+              "c1f4",
+              "b7b5",
+              "c4e2",
+              "b8d7",
+              "e4e5",
+              "d7e5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 172
+            },
+            "pv": [
+              "c1g5",
+              "a7a5",
+              "a2a3",
+              "e7c7",
+              "e1c1",
+              "f8c5",
+              "g5f6",
+              "g7f6"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:15:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -130
+              },
+              "pv": [
+                "c7c6",
+                "f2f4",
+                "e5f4",
+                "c1f4",
+                "b7b5",
+                "c4e2",
+                "b8d7",
+                "e4e5",
+                "d7e5"
+              ]
+            },
+            "after": {
+              "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 172
+              },
+              "pv": [
+                "c1g5",
+                "a7a5",
+                "a2a3",
+                "e7c7",
+                "e1c1",
+                "f8c5",
+                "g5f6",
+                "g7f6"
+              ]
+            },
+            "side": "black",
+            "played": "c7c6",
+            "afterFen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+            "learnerLossCp": 42,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -145
+            },
+            "pv": [
+              "e7c7",
+              "g5f6",
+              "g7f6",
+              "a2a4",
+              "f8c5",
+              "e1c1",
+              "e8g8",
+              "c1b1"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 342
+            },
+            "pv": [
+              "c3b5",
+              "c6b5",
+              "c4b5",
+              "e8d8",
+              "e1c1",
+              "d8c7",
+              "d1d3",
+              "e7b4",
+              "b3f7",
+              "f8e7",
+              "h1d1",
+              "h8f8",
+              "d3c3",
+              "c7b7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:17:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -145
+              },
+              "pv": [
+                "e7c7",
+                "g5f6",
+                "g7f6",
+                "a2a4",
+                "f8c5",
+                "e1c1",
+                "e8g8",
+                "c1b1"
+              ]
+            },
+            "after": {
+              "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 342
+              },
+              "pv": [
+                "c3b5",
+                "c6b5",
+                "c4b5",
+                "e8d8",
+                "e1c1",
+                "d8c7",
+                "d1d3",
+                "e7b4",
+                "b3f7",
+                "f8e7",
+                "h1d1",
+                "h8f8",
+                "d3c3",
+                "c7b7"
+              ]
+            },
+            "side": "black",
+            "played": "b7b5",
+            "afterFen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+            "learnerLossCp": 197,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:16:rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+          "depth": 16,
+          "evidence": {
+            "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 16,
+              "timeoutMs": 30000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 16,
+            "depth": 16,
+            "score": {
+              "type": "cp",
+              "value": -177
+            },
+            "pv": [
+              "e7c7",
+              "a2a4",
+              "b8a6",
+              "g5f6",
+              "g7f6",
+              "c4a6",
+              "b7a6",
+              "b3c4",
+              "a8d8",
+              "e1g1",
+              "d8d4",
+              "c4a6",
+              "f8c5",
+              "a1d1",
+              "e8g8",
+              "b2b3",
+              "f8d8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:16:rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+          "depth": 16,
+          "evidence": {
+            "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 16,
+              "timeoutMs": 30000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 16,
+            "depth": 16,
+            "score": {
+              "type": "cp",
+              "value": 273
+            },
+            "pv": [
+              "c3b5",
+              "e7b4",
+              "b3b4",
+              "f8b4",
+              "c2c3",
+              "c6b5",
+              "c4b5",
+              "e8e7",
+              "c3b4",
+              "h8c8",
+              "e1g1",
+              "a7a6",
+              "b5a4",
+              "b8c6",
+              "a4c6",
+              "c8c6",
+              "f1c1",
+              "a8c8",
+              "f2f3",
+              "c6c2",
+              "a2a3",
+              "e7e6",
+              "c1c2",
+              "c8c2",
+              "g5f6",
+              "e6f6"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:17:16",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+          "depth": 16,
+          "assessment": {
+            "before": {
+              "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": -177
+              },
+              "pv": [
+                "e7c7",
+                "a2a4",
+                "b8a6",
+                "g5f6",
+                "g7f6",
+                "c4a6",
+                "b7a6",
+                "b3c4",
+                "a8d8",
+                "e1g1",
+                "d8d4",
+                "c4a6",
+                "f8c5",
+                "a1d1",
+                "e8g8",
+                "b2b3",
+                "f8d8"
+              ]
+            },
+            "after": {
+              "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": 273
+              },
+              "pv": [
+                "c3b5",
+                "e7b4",
+                "b3b4",
+                "f8b4",
+                "c2c3",
+                "c6b5",
+                "c4b5",
+                "e8e7",
+                "c3b4",
+                "h8c8",
+                "e1g1",
+                "a7a6",
+                "b5a4",
+                "b8c6",
+                "a4c6",
+                "c8c6",
+                "f1c1",
+                "a8c8",
+                "f2f3",
+                "c6c2",
+                "a2a3",
+                "e7e6",
+                "c1c2",
+                "c8c2",
+                "g5f6",
+                "e6f6"
+              ]
+            },
+            "side": "black",
+            "played": "b7b5",
+            "afterFen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+            "learnerLossCp": 96,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -316
+            },
+            "pv": [
+              "e7b4",
+              "b5c3",
+              "b4b3",
+              "a2b3",
+              "b8d7",
+              "f2f3",
+              "f8c5",
+              "c3a4",
+              "c5e7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 375
+            },
+            "pv": [
+              "c4b5",
+              "b8d7",
+              "e1c1",
+              "e7c5",
+              "g5f6",
+              "g7f6",
+              "d1d7",
+              "f8h6",
+              "c1b1",
+              "e8g8",
+              "h1d1"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:19:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -316
+              },
+              "pv": [
+                "e7b4",
+                "b5c3",
+                "b4b3",
+                "a2b3",
+                "b8d7",
+                "f2f3",
+                "f8c5",
+                "c3a4",
+                "c5e7"
+              ]
+            },
+            "after": {
+              "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 375
+              },
+              "pv": [
+                "c4b5",
+                "b8d7",
+                "e1c1",
+                "e7c5",
+                "g5f6",
+                "g7f6",
+                "d1d7",
+                "f8h6",
+                "c1b1",
+                "e8g8",
+                "h1d1"
+              ]
+            },
+            "side": "black",
+            "played": "c6b5",
+            "afterFen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+            "learnerLossCp": 59,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+          "depth": 12,
+          "evidence": {
+            "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -380
+            },
+            "pv": [
+              "e8d8",
+              "e1c1",
+              "d8c8",
+              "d1d3",
+              "e7b4",
+              "d3c3",
+              "c8b7",
+              "b3f7",
+              "b4e7"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+          "depth": 12,
+          "evidence": {
+            "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 454
+            },
+            "pv": [
+              "e1c1",
+              "a8d8",
+              "d1d7",
+              "d8d7",
+              "h1d1",
+              "e7e6",
+              "g5f6",
+              "f8d6",
+              "b3e6",
+              "f7e6",
+              "b5d7",
+              "e8d7",
+              "f6e5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:21:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -380
+              },
+              "pv": [
+                "e8d8",
+                "e1c1",
+                "d8c8",
+                "d1d3",
+                "e7b4",
+                "d3c3",
+                "c8b7",
+                "b3f7",
+                "b4e7"
+              ]
+            },
+            "after": {
+              "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 454
+              },
+              "pv": [
+                "e1c1",
+                "a8d8",
+                "d1d7",
+                "d8d7",
+                "h1d1",
+                "e7e6",
+                "g5f6",
+                "f8d6",
+                "b3e6",
+                "f7e6",
+                "b5d7",
+                "e8d7",
+                "f6e5"
+              ]
+            },
+            "side": "black",
+            "played": "b8d7",
+            "afterFen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+            "learnerLossCp": 74,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+          "depth": 12,
+          "evidence": {
+            "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -428
+            },
+            "pv": [
+              "e7c5",
+              "g5f6",
+              "g7f6",
+              "b5d7",
+              "e8e7",
+              "c1b1",
+              "c5b6",
+              "b3a3",
+              "e7d8",
+              "d7e6",
+              "d8c7",
+              "a3c3",
+              "f8c5",
+              "e6d5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+          "depth": 12,
+          "evidence": {
+            "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 528
+            },
+            "pv": [
+              "d1d7",
+              "d8d7",
+              "h1d1",
+              "e7e6",
+              "g5f6",
+              "f8d6",
+              "b3e6",
+              "f7e6",
+              "b5d7",
+              "e8d7",
+              "f6e5",
+              "h7h5",
+              "e5g3",
+              "d7e8",
+              "d1d6"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:23:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -428
+              },
+              "pv": [
+                "e7c5",
+                "g5f6",
+                "g7f6",
+                "b5d7",
+                "e8e7",
+                "c1b1",
+                "c5b6",
+                "b3a3",
+                "e7d8",
+                "d7e6",
+                "d8c7",
+                "a3c3",
+                "f8c5",
+                "e6d5"
+              ]
+            },
+            "after": {
+              "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 528
+              },
+              "pv": [
+                "d1d7",
+                "d8d7",
+                "h1d1",
+                "e7e6",
+                "g5f6",
+                "f8d6",
+                "b3e6",
+                "f7e6",
+                "b5d7",
+                "e8d7",
+                "f6e5",
+                "h7h5",
+                "e5g3",
+                "d7e8",
+                "d1d6"
+              ]
+            },
+            "side": "black",
+            "played": "a8d8",
+            "afterFen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+            "learnerLossCp": 100,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:16:r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+          "depth": 16,
+          "evidence": {
+            "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 16,
+              "timeoutMs": 30000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 16,
+            "depth": 16,
+            "score": {
+              "type": "cp",
+              "value": -461
+            },
+            "pv": [
+              "e7c5",
+              "g5f6",
+              "g7f6",
+              "b5d7",
+              "e8e7",
+              "d1d5",
+              "c5b6",
+              "b3a3",
+              "e7d8",
+              "d7f5",
+              "d8c7",
+              "a3c3",
+              "c7b7",
+              "d5d7",
+              "b7b8",
+              "h1d1",
+              "f8c5",
+              "c3b3"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:16:3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+          "depth": 16,
+          "evidence": {
+            "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 16,
+              "timeoutMs": 30000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 16,
+            "depth": 16,
+            "score": {
+              "type": "cp",
+              "value": 527
+            },
+            "pv": [
+              "d1d7",
+              "f6d7",
+              "g5e7",
+              "f8e7",
+              "b5d7",
+              "d8d7",
+              "b3b8",
+              "d7d8",
+              "b8b5",
+              "e8f8",
+              "b5e5",
+              "h7h5",
+              "h1d1",
+              "d8d1",
+              "c1d1",
+              "h8h6"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:23:16",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+          "depth": 16,
+          "assessment": {
+            "before": {
+              "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": -461
+              },
+              "pv": [
+                "e7c5",
+                "g5f6",
+                "g7f6",
+                "b5d7",
+                "e8e7",
+                "d1d5",
+                "c5b6",
+                "b3a3",
+                "e7d8",
+                "d7f5",
+                "d8c7",
+                "a3c3",
+                "c7b7",
+                "d5d7",
+                "b7b8",
+                "h1d1",
+                "f8c5",
+                "c3b3"
+              ]
+            },
+            "after": {
+              "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": 527
+              },
+              "pv": [
+                "d1d7",
+                "f6d7",
+                "g5e7",
+                "f8e7",
+                "b5d7",
+                "d8d7",
+                "b3b8",
+                "d7d8",
+                "b8b5",
+                "e8f8",
+                "b5e5",
+                "h7h5",
+                "h1d1",
+                "d8d1",
+                "c1d1",
+                "h8h6"
+              ]
+            },
+            "side": "black",
+            "played": "a8d8",
+            "afterFen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+            "learnerLossCp": 66,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+          "depth": 12,
+          "evidence": {
+            "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -497
+            },
+            "pv": [
+              "d8d7",
+              "h1d1",
+              "e7c5",
+              "g5f6",
+              "f8d6",
+              "b5d7",
+              "e8d7",
+              "f6g7",
+              "d7c8",
+              "g7h8",
+              "c5f2",
+              "b3d3",
+              "d6c7",
+              "d3d7",
+              "c8b7",
+              "d7d5",
+              "b7c8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 509
+            },
+            "pv": [
+              "h1d1",
+              "e7e6",
+              "g5f6",
+              "f8d6",
+              "b3e6",
+              "f7e6",
+              "b5d7",
+              "e8d7",
+              "f6e5",
+              "h7h5",
+              "e5g3"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:25:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -497
+              },
+              "pv": [
+                "d8d7",
+                "h1d1",
+                "e7c5",
+                "g5f6",
+                "f8d6",
+                "b5d7",
+                "e8d7",
+                "f6g7",
+                "d7c8",
+                "g7h8",
+                "c5f2",
+                "b3d3",
+                "d6c7",
+                "d3d7",
+                "c8b7",
+                "d7d5",
+                "b7c8"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 509
+              },
+              "pv": [
+                "h1d1",
+                "e7e6",
+                "g5f6",
+                "f8d6",
+                "b3e6",
+                "f7e6",
+                "b5d7",
+                "e8d7",
+                "f6e5",
+                "h7h5",
+                "e5g3"
+              ]
+            },
+            "side": "black",
+            "played": "d8d7",
+            "afterFen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+            "learnerLossCp": 12,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -491
+            },
+            "pv": [
+              "e7c5",
+              "g5f6",
+              "f8d6",
+              "b5d7",
+              "e8d7",
+              "f6g7",
+              "h8c8",
+              "g7f6",
+              "d7e8",
+              "f6g5",
+              "a7a5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": 572
+            },
+            "pv": [
+              "g5f6",
+              "f8d6",
+              "b3e6",
+              "f7e6",
+              "d1d6",
+              "e8g8",
+              "b5d7",
+              "f8f7",
+              "f6h4"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:27:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -491
+              },
+              "pv": [
+                "e7c5",
+                "g5f6",
+                "f8d6",
+                "b5d7",
+                "e8d7",
+                "f6g7",
+                "h8c8",
+                "g7f6",
+                "d7e8",
+                "f6g5",
+                "a7a5"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": 572
+              },
+              "pv": [
+                "g5f6",
+                "f8d6",
+                "b3e6",
+                "f7e6",
+                "d1d6",
+                "e8g8",
+                "b5d7",
+                "f8f7",
+                "f6h4"
+              ]
+            },
+            "side": "black",
+            "played": "e7e6",
+            "afterFen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+            "learnerLossCp": 81,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "cp",
+              "value": -175
+            },
+            "pv": [
+              "f6d7",
+              "b3b7",
+              "f7f6",
+              "b7c8",
+              "e8e7",
+              "g5e3",
+              "h7h5",
+              "e3a7",
+              "g7g6",
+              "c1b1",
+              "f8g7",
+              "c8c7",
+              "h8d8",
+              "d1d5"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+          "depth": 12,
+          "evidence": {
+            "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "mate",
+              "value": 2
+            },
+            "pv": [
+              "b3b8",
+              "d7b8",
+              "d1d8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:29:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "cp",
+                "value": -175
+              },
+              "pv": [
+                "f6d7",
+                "b3b7",
+                "f7f6",
+                "b7c8",
+                "e8e7",
+                "g5e3",
+                "h7h5",
+                "e3a7",
+                "g7g6",
+                "c1b1",
+                "f8g7",
+                "c8c7",
+                "h8d8",
+                "d1d5"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "mate",
+                "value": 2
+              },
+              "pv": [
+                "b3b8",
+                "d7b8",
+                "d1d8"
+              ]
+            },
+            "side": "black",
+            "played": "f6d7",
+            "afterFen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+            "learnerLossCp": null,
+            "lostForcedWin": false,
+            "allowedForcedLoss": true
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:16:4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "depth": 16,
+          "evidence": {
+            "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 16,
+              "timeoutMs": 30000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 16,
+            "depth": 16,
+            "score": {
+              "type": "cp",
+              "value": -301
+            },
+            "pv": [
+              "f6d7",
+              "b3b7",
+              "f7f6",
+              "b7c8",
+              "e8e7",
+              "g5e3",
+              "h7h5",
+              "e3a7",
+              "g7g6",
+              "c1b1",
+              "f6f5",
+              "c8c7",
+              "e7e8",
+              "a2a4",
+              "h8h7",
+              "c7c8",
+              "e8e7",
+              "a4a5",
+              "e7f6",
+              "a5a6",
+              "f8b4"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:16:4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+          "depth": 16,
+          "evidence": {
+            "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 16,
+              "timeoutMs": 30000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 16,
+            "depth": 16,
+            "score": {
+              "type": "mate",
+              "value": 2
+            },
+            "pv": [
+              "b3b8",
+              "d7b8",
+              "d1d8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:29:16",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+          "depth": 16,
+          "assessment": {
+            "before": {
+              "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": -301
+              },
+              "pv": [
+                "f6d7",
+                "b3b7",
+                "f7f6",
+                "b7c8",
+                "e8e7",
+                "g5e3",
+                "h7h5",
+                "e3a7",
+                "g7g6",
+                "c1b1",
+                "f6f5",
+                "c8c7",
+                "e7e8",
+                "a2a4",
+                "h8h7",
+                "c7c8",
+                "e8e7",
+                "a4a5",
+                "e7f6",
+                "a5a6",
+                "f8b4"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "mate",
+                "value": 2
+              },
+              "pv": [
+                "b3b8",
+                "d7b8",
+                "d1d8"
+              ]
+            },
+            "side": "black",
+            "played": "f6d7",
+            "afterFen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+            "learnerLossCp": null,
+            "lostForcedWin": false,
+            "allowedForcedLoss": true
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+          "depth": 12,
+          "evidence": {
+            "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "mate",
+              "value": -1
+            },
+            "pv": [
+              "d7b8",
+              "d1d8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:12:1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+          "depth": 12,
+          "evidence": {
+            "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+            "version": "stockfish-17.1-game-v1",
+            "settings": {
+              "depth": 12,
+              "timeoutMs": 15000,
+              "threads": 1,
+              "hashMb": 16
+            },
+            "requestedDepth": 12,
+            "depth": 12,
+            "score": {
+              "type": "mate",
+              "value": 1
+            },
+            "pv": [
+              "d1d8"
+            ]
+          }
+        },
+        {
+          "schema": 1,
+          "id": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1:assessment:31:12",
+          "runId": "092029c9a4756ddc2d9566aabde88ec81cf4c1b2c6b0158c151fb293b8ed3f24:stockfish-17.1-game-v1",
+          "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+          "depth": 12,
+          "assessment": {
+            "before": {
+              "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "mate",
+                "value": -1
+              },
+              "pv": [
+                "d7b8",
+                "d1d8"
+              ]
+            },
+            "after": {
+              "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 12,
+                "timeoutMs": 15000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 12,
+              "depth": 12,
+              "score": {
+                "type": "mate",
+                "value": 1
+              },
+              "pv": [
+                "d1d8"
+              ]
+            },
+            "side": "black",
+            "played": "d7b8",
+            "afterFen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+            "learnerLossCp": null,
+            "lostForcedWin": false,
+            "allowedForcedLoss": false
+          }
+        }
+      ]
+    }
+  ],
+  "timings": [
+    {
+      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 1602,
+      "depth": 12
+    },
+    {
+      "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 1991,
+      "depth": 12
+    },
+    {
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 571,
+      "depth": 12
+    },
+    {
+      "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 360,
+      "depth": 12
+    },
+    {
+      "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 220,
+      "depth": 12
+    },
+    {
+      "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 204,
+      "depth": 12
+    },
+    {
+      "fen": "rn1qkbnr/ppp2ppp/3p4/4p3/3PP1b1/5N2/PPP2PPP/RNBQKB1R w KQkq - 1 4",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 348,
+      "depth": 12
+    },
+    {
+      "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P1b1/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 228,
+      "depth": 12
+    },
+    {
+      "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5b2/PPP2PPP/RNBQKB1R w KQkq - 0 5",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 366,
+      "depth": 12
+    },
+    {
+      "fen": "rn1qkbnr/ppp2ppp/3p4/4P3/4P3/5Q2/PPP2PPP/RNB1KB1R b KQkq - 0 5",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 656,
+      "depth": 12
+    },
+    {
+      "fen": "rn1qkbnr/ppp2ppp/8/4p3/4P3/5Q2/PPP2PPP/RNB1KB1R w KQkq - 0 6",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 591,
+      "depth": 12
+    },
+    {
+      "fen": "rn1qkbnr/ppp2ppp/8/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R b KQkq - 1 6",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 434,
+      "depth": 12
+    },
+    {
+      "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/5Q2/PPP2PPP/RNB1K2R w KQkq - 2 7",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 232,
+      "depth": 12
+    },
+    {
+      "fen": "rn1qkb1r/ppp2ppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R b KQkq - 3 7",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 285,
+      "depth": 12
+    },
+    {
+      "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1Q6/PPP2PPP/RNB1K2R w KQkq - 4 8",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 299,
+      "depth": 12
+    },
+    {
+      "fen": "rn2kb1r/ppp1qppp/5n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R b KQkq - 5 8",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 513,
+      "depth": 12
+    },
+    {
+      "fen": "rn2kb1r/pp2qppp/2p2n2/4p3/2B1P3/1QN5/PPP2PPP/R1B1K2R w KQkq - 0 9",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 168,
+      "depth": 12
+    },
+    {
+      "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 602,
+      "depth": 12
+    },
+    {
+      "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 209,
+      "depth": 12
+    },
+    {
+      "fen": "rn2kb1r/p3qppp/2p2n2/1N2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 10",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 136,
+      "depth": 12
+    },
+    {
+      "fen": "rn2kb1r/p3qppp/5n2/1p2p1B1/2B1P3/1Q6/PPP2PPP/R3K2R w KQkq - 0 11",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 334,
+      "depth": 12
+    },
+    {
+      "fen": "rn2kb1r/p3qppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R b KQkq - 0 11",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 274,
+      "depth": 12
+    },
+    {
+      "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/R3K2R w KQkq - 1 12",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 158,
+      "depth": 12
+    },
+    {
+      "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 108,
+      "depth": 12
+    },
+    {
+      "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 141,
+      "depth": 12
+    },
+    {
+      "fen": "3rkb1r/p2Rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R b k - 0 13",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 170,
+      "depth": 12
+    },
+    {
+      "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2K4R w k - 0 14",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 51,
+      "depth": 12
+    },
+    {
+      "fen": "4kb1r/p2rqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 1 14",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 91,
+      "depth": 12
+    },
+    {
+      "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 60,
+      "depth": 12
+    },
+    {
+      "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 104,
+      "depth": 12
+    },
+    {
+      "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+      "settings": {
+        "depth": 16,
+        "timeoutMs": 30000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 440,
+      "depth": 16
+    },
+    {
+      "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+      "settings": {
+        "depth": 16,
+        "timeoutMs": 30000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 13938,
+      "depth": 16
+    },
+    {
+      "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 16,
+      "depth": 12
+    },
+    {
+      "fen": "1Q2kb1r/p2n1ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 b k - 1 16",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 14,
+      "depth": 12
+    },
+    {
+      "fen": "1n2kb1r/p4ppp/4q3/4p1B1/4P3/8/PPP2PPP/2KR4 w k - 0 17",
+      "settings": {
+        "depth": 12,
+        "timeoutMs": 15000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 12,
+      "depth": 12
+    },
+    {
+      "fen": "rn2kb1r/pp2qppp/2p2n2/4p1B1/2B1P3/1QN5/PPP2PPP/R3K2R b KQkq - 1 9",
+      "settings": {
+        "depth": 16,
+        "timeoutMs": 30000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 2925,
+      "depth": 16
+    },
+    {
+      "fen": "rn2kb1r/p3qppp/2p2n2/1p2p1B1/2B1P3/1QN5/PPP2PPP/R3K2R w KQkq - 0 10",
+      "settings": {
+        "depth": 16,
+        "timeoutMs": 30000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 1022,
+      "depth": 16
+    },
+    {
+      "fen": "r3kb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R b kq - 2 12",
+      "settings": {
+        "depth": 16,
+        "timeoutMs": 30000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 642,
+      "depth": 16
+    },
+    {
+      "fen": "3rkb1r/p2nqppp/5n2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR3R w k - 3 13",
+      "settings": {
+        "depth": 16,
+        "timeoutMs": 30000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 363,
+      "depth": 16
+    },
+    {
+      "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+      "settings": {
+        "depth": 16,
+        "timeoutMs": 30000,
+        "threads": 1,
+        "hashMb": 16
+      },
+      "elapsedMs": 31,
+      "depth": 16
+    }
+  ]
+}

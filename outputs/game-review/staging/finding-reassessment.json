@@ -1,0 +1,267 @@
+{
+  "source": "long-game-engine.json",
+  "reports": [
+    {
+      "side": "white",
+      "before": {
+        "total": 17,
+        "completed": 17,
+        "complete": true,
+        "findings": [
+          {
+            "ply": 28,
+            "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+            "played": "b5d7",
+            "alternative": "g5f6",
+            "before": {
+              "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": 592
+              },
+              "pv": [
+                "g5f6",
+                "g7f6",
+                "b5d7",
+                "e6d7",
+                "d1d7",
+                "e8d7",
+                "b3b7",
+                "d7d8",
+                "b7f7",
+                "f8h6",
+                "c1b1",
+                "d8c8"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": -301
+              },
+              "pv": [
+                "f6d7",
+                "b3b7",
+                "f7f6",
+                "b7c8",
+                "e8e7",
+                "g5e3",
+                "h7h5",
+                "e3a7",
+                "g7g6",
+                "c1b1",
+                "f6f5",
+                "c8c7",
+                "e7e8",
+                "a2a4",
+                "h8h7",
+                "c7c8",
+                "e8e7",
+                "a4a5",
+                "e7f6",
+                "a5a6",
+                "f8b4"
+              ]
+            },
+            "loss": 291,
+            "severity": 291,
+            "category": "material",
+            "explanation": "The confirmed evaluation loss is 291 centipawns. In the displayed continuation: Nxd7 captures a bishop; Qc8+ gives check; Bxa7 captures a pawn."
+          }
+        ]
+      },
+      "after": {
+        "total": 17,
+        "completed": 17,
+        "complete": true,
+        "findings": [
+          {
+            "ply": 28,
+            "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+            "played": "b5d7",
+            "alternative": "g5f6",
+            "before": {
+              "fen": "4kb1r/p2r1ppp/4qn2/1B2p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 2 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": 592
+              },
+              "pv": [
+                "g5f6",
+                "g7f6",
+                "b5d7",
+                "e6d7",
+                "d1d7",
+                "e8d7",
+                "b3b7",
+                "d7d8",
+                "b7f7",
+                "f8h6",
+                "c1b1",
+                "d8c8"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": -301
+              },
+              "pv": [
+                "f6d7",
+                "b3b7",
+                "f7f6",
+                "b7c8",
+                "e8e7",
+                "g5e3",
+                "h7h5",
+                "e3a7",
+                "g7g6",
+                "c1b1",
+                "f6f5",
+                "c8c7",
+                "e7e8",
+                "a2a4",
+                "h8h7",
+                "c7c8",
+                "e8e7",
+                "a4a5",
+                "e7f6",
+                "a5a6",
+                "f8b4"
+              ]
+            },
+            "loss": 291,
+            "severity": 291,
+            "category": "material",
+            "explanation": "The confirmed evaluation loss is 291 centipawns. In the displayed continuation: Nxd7 captures a bishop; Qc8+ gives check; Bxa7 captures a pawn."
+          }
+        ]
+      }
+    },
+    {
+      "side": "black",
+      "before": {
+        "total": 16,
+        "completed": 16,
+        "complete": true,
+        "findings": [
+          {
+            "ply": 29,
+            "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+            "played": "f6d7",
+            "alternative": "f6d7",
+            "before": {
+              "fen": "4kb1r/p2B1ppp/4qn2/4p1B1/4P3/1Q6/PPP2PPP/2KR4 b k - 0 15",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "cp",
+                "value": -301
+              },
+              "pv": [
+                "f6d7",
+                "b3b7",
+                "f7f6",
+                "b7c8",
+                "e8e7",
+                "g5e3",
+                "h7h5",
+                "e3a7",
+                "g7g6",
+                "c1b1",
+                "f6f5",
+                "c8c7",
+                "e7e8",
+                "a2a4",
+                "h8h7",
+                "c7c8",
+                "e8e7",
+                "a4a5",
+                "e7f6",
+                "a5a6",
+                "f8b4"
+              ]
+            },
+            "after": {
+              "fen": "4kb1r/p2n1ppp/4q3/4p1B1/4P3/1Q6/PPP2PPP/2KR4 w k - 0 16",
+              "version": "stockfish-17.1-game-v1",
+              "settings": {
+                "depth": 16,
+                "timeoutMs": 30000,
+                "threads": 1,
+                "hashMb": 16
+              },
+              "requestedDepth": 16,
+              "depth": 16,
+              "score": {
+                "type": "mate",
+                "value": 2
+              },
+              "pv": [
+                "b3b8",
+                "d7b8",
+                "d1d8"
+              ]
+            },
+            "loss": null,
+            "severity": 0,
+            "category": "mate",
+            "explanation": "The played move allows the opponent to force mate in the confirmed line."
+          }
+        ]
+      },
+      "after": {
+        "total": 16,
+        "completed": 16,
+        "complete": true,
+        "findings": []
+      }
+    }
+  ],
+  "passed": true
+}

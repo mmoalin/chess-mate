@@ -1,0 +1,149 @@
+- main:
+  - paragraph: Chess Opening Trainer
+  - heading "Review" [level=1]
+  - generic "Sign in / sync"
+  - complementary "Task dock":
+    - navigation "Chess modes":
+      - button "Today":
+        - text: Today
+      - button "Repertoire":
+        - text: Repertoire
+      - button "Train openings":
+        - text: Train openings
+      - button "Study":
+        - text: Study
+      - button "Review":
+        - text: Review
+    - region "My games":
+      - button "My games"
+      - button "Saved positions and engine play"
+      - status: Saved on this device.
+      - button "Retry game sync"
+      - generic "Chess board":
+        - paragraph: Arrow keys move one square. Enter or Space selects a piece and its destination. Escape cancels. You can also tap two squares or drag a piece.
+        - generic: "8"
+        - button "a8, Black rook":
+          - button [disabled]:
+        - button "b8, Black knight":
+          - button [disabled]:
+        - button "c8, Black bishop":
+          - button [disabled]:
+        - button "d8, Black queen":
+          - button [disabled]:
+        - button "e8, Black king":
+          - button [disabled]:
+        - button "f8, Black bishop":
+          - button [disabled]:
+        - button "g8, Black knight":
+          - button [disabled]:
+        - button "h8, Black rook":
+          - button [disabled]:
+        - generic: "7"
+        - button "a7, Black pawn":
+          - button [disabled]:
+        - button "b7, Black pawn":
+          - button [disabled]:
+        - button "c7, Black pawn":
+          - button [disabled]:
+        - button "d7, Black pawn":
+          - button [disabled]:
+        - button "e7, Black pawn":
+          - button [disabled]:
+        - button "f7, Black pawn":
+          - button [disabled]:
+        - button "g7, Black pawn":
+          - button [disabled]:
+        - button "h7, Black pawn":
+          - button [disabled]:
+        - generic: "6"
+        - button "a6, empty"
+        - button "b6, empty"
+        - button "c6, empty"
+        - button "d6, empty"
+        - button "e6, empty"
+        - button "f6, empty"
+        - button "g6, empty"
+        - button "h6, empty"
+        - generic: "5"
+        - button "a5, empty"
+        - button "b5, empty"
+        - button "c5, empty"
+        - button "d5, empty"
+        - button "e5, empty"
+        - button "f5, empty"
+        - button "g5, empty"
+        - button "h5, empty"
+        - generic: "4"
+        - button "a4, empty"
+        - button "b4, empty"
+        - button "c4, empty"
+        - button "d4, empty"
+        - button "e4, empty"
+        - button "f4, empty"
+        - button "g4, empty"
+        - button "h4, empty"
+        - generic: "3"
+        - button "a3, empty"
+        - button "b3, empty"
+        - button "c3, empty"
+        - button "d3, empty"
+        - button "e3, empty"
+        - button "f3, empty"
+        - button "g3, empty"
+        - button "h3, empty"
+        - generic: "2"
+        - button "a2, White pawn":
+          - button [disabled]:
+        - button "b2, White pawn":
+          - button [disabled]:
+        - button "c2, White pawn":
+          - button [disabled]:
+        - button "d2, White pawn":
+          - button [disabled]:
+        - button "e2, White pawn":
+          - button [disabled]:
+        - button "f2, White pawn":
+          - button [disabled]:
+        - button "g2, White pawn":
+          - button [disabled]:
+        - button "h2, White pawn":
+          - button [disabled]:
+        - generic: a
+        - generic: "1"
+        - button "a1, White rook":
+          - button [disabled]:
+        - generic: b
+        - button "b1, White knight":
+          - button [disabled]:
+        - generic: c
+        - button "c1, White bishop":
+          - button [disabled]:
+        - generic: d
+        - button "d1, White queen":
+          - button [disabled]:
+        - generic: e
+        - button "e1, White king":
+          - button [disabled]:
+        - generic: f
+        - button "f1, White bishop":
+          - button [disabled]:
+        - generic: g
+        - button "g1, White knight":
+          - button [disabled]:
+        - generic: h
+        - button "h1, White rook":
+          - button [disabled]:
+        - status
+        - status
+      - button "Previous move" [disabled]
+      - button "Next move"
+      - button "Game start"
+      - paragraph: Game replay · ply 0
+      - heading "Local test – Fixture" [level=2]
+      - paragraph: Analysing white's moves. 16 of 17 learner moves complete.
+      - button "Pause analysis" [active]
+      - paragraph: "Repertoire: Learner departure; this is not an evaluated mistake."
+      - button "Export PGN"
+      - button "Remove game"
+      - heading "Confirmed teaching moments" [level=3]
+      - paragraph: No confirmed findings yet. Incomplete analysis is never counted as a mistake.

@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-26",
+  "baseCommit": "cb5352b",
+  "focusedTests": { "passed": 36, "files": 5, "command": "npx vitest run src/features/gameReview src/services/engineService.test.ts src/domain/repertoire/dailySessions.test.ts --maxWorkers=1 --testTimeout=300000" },
+  "build": { "passed": true, "command": "npm run build", "warnings": "Existing Stockfish Node imports, IIFE name and chunk size warnings" },
+  "sync": { "passed": true, "evidence": "sync-verification.json", "hostedHttpAuthTested": false },
+  "engine": { "evidenceBeforeFindingFix": "long-game-engine.json", "reassessmentAfterFix": "finding-reassessment.json", "whiteMovesCompleted": 17, "blackMovesCompleted": 16 },
+  "browser": { "url": "http://localhost:5183/", "responsiveWidths": [390, 320], "pausedAndRefreshedAt": "9/17", "firstPass": "16/17; incomplete position ungraded", "afterRetry": "17/17", "afterFix": "Contradictory finding absent after refresh", "physicalMobileDevice": false, "evidence": ["browser-complete.txt", "completed-320.png"] },
+  "hostedChanges": false,
+  "outstanding": ["Provision identified staging database and preview hosting target", "Hosted Auth/PostgREST two-device verification", "Physical mobile performance and broader learner-game editorial review"]
+}

@@ -1,0 +1,14 @@
+{
+  "runtime": "Real repository + migration on disposable PGlite PostgreSQL",
+  "transport": "In-process SQL adapter; hosted PostgREST and browser account sync remain separate checks",
+  "productionTouched": false,
+  "passed": true,
+  "checks": [
+    "Explicit guest copy, unavailable migration, retained outbox and recovery",
+    "Two-device partial merge, offline refresh, timeout upgrade and duplicate retry",
+    "Submitted answer authority and separately preserved conflicting offline draft",
+    "Tombstones prevent resurrection while practice history and guest data survive",
+    "Account switch cannot redirect pending writes; original owner can retry",
+    "A fresh device retrieves all analysis records across the 500-record page boundary"
+  ]
+}
